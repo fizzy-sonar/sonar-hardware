@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "Sonar")(type "KiCad")(uri "${KIPRJMOD}/libs/Sonar.pretty")(options "")(descr "Project-specific Sonar footprints"))
+)

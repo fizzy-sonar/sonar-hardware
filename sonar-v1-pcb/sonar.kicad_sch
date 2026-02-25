@@ -3,219 +3,12 @@
 	(generator "eeschema")
 	(generator_version "9.0")
 	(uuid "f72ceae0-eee4-4385-b0e8-639846bcb5f2")
-	(paper "A4")
+	(paper "A3")
+	(title_block
+		(title "Phased Fizzing")
+		(rev "1")
+	)
 	(lib_symbols
-		(symbol "Device:Microphone_Ultrasound"
-			(pin_names
-				(offset 0.0254)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "MK"
-				(at -3.81 1.143 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify right)
-				)
-			)
-			(property "Value" "Microphone_Ultrasound"
-				(at -3.81 -0.762 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify right)
-				)
-			)
-			(property "Footprint" ""
-				(at 1.27 -1.778 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 2.54 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Ultrasound receiver"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "microphone ultrasound crystal"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Microphone_Ultrasound_0_1"
-				(polyline
-					(pts
-						(xy -2.54 2.54) (xy -2.54 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.27 0.508)
-					(end 1.27 -0.508)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 1.016) (xy 0.762 1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 -1.016) (xy 0.762 -1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 1.016) (xy 0 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 0 0)
-					(radius 2.54)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -1.016) (xy 0 -1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.254 3.81) (xy 0.762 3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.508 4.064) (xy 0.508 3.556)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Microphone_Ultrasound_1_1"
-				(pin passive line
-					(at 0 5.08 270)
-					(length 2.54)
-					(name "+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -5.08 90)
-					(length 2.54)
-					(name "-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:Speaker_Ultrasound"
 			(pin_names
 				(offset 0)
@@ -404,712 +197,8 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 246.38 95.25 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "19d3b0e1-5c75-474d-a643-043981ed697d")
-		(property "Reference" "MK12"
-			(at 244.348 105.156 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 235.712 102.616 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 247.65 97.028 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 246.38 92.71 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 246.38 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "d08ce13b-ebe1-4b88-8e13-1da8624802fe")
-		)
-		(pin "1"
-			(uuid "f25d67f3-2a72-4773-ad4b-cc8a69385add")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK12")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 132.08 82.55 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "36772c66-617c-449c-9ab2-63188e0a1372")
-		(property "Reference" "MK1"
-			(at 135.89 80.5814 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 135.89 83.1214 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 133.35 84.328 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 132.08 80.01 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 132.08 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "6340fd96-2398-4576-862b-897fafa17926")
-		)
-		(pin "1"
-			(uuid "aaf7f3a2-9ac6-46c9-9723-cdb33ad862bc")
-		)
-		(instances
-			(project ""
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK1")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 132.08 66.04 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "45884554-eea1-4266-b566-fc9446a3fd46")
-		(property "Reference" "MK2"
-			(at 135.89 64.0714 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 135.89 66.6114 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 133.35 67.818 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 132.08 63.5 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 132.08 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "3b5655d9-af9a-4a0c-ba6b-db2356641cec")
-		)
-		(pin "1"
-			(uuid "5775d4a8-4144-4ffc-a820-b8059aeb9155")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK2")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 220.98 95.25 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "5e2814bc-0e5a-4859-a4a2-0058349b4eb7")
-		(property "Reference" "MK11"
-			(at 218.948 105.156 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 210.312 102.616 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 222.25 97.028 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 220.98 92.71 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 220.98 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "c193c3e2-c9fb-4d79-a9f2-d28536c39a30")
-		)
-		(pin "1"
-			(uuid "2ff3182e-3cf8-4fc2-8888-8b973038b525")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK11")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 132.08 149.86 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "64bd58c3-f26e-4735-93ed-69fb5b68910a")
-		(property "Reference" "MK8"
-			(at 135.89 147.8914 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 135.89 150.4314 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 133.35 151.638 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 132.08 147.32 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 132.08 149.86 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "a1caef76-0db4-4661-b91e-94d67442a07b")
-		)
-		(pin "1"
-			(uuid "961382d0-7672-4c02-ac0b-b3702c3d590e")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK8")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 167.64 95.25 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "7274adb1-29f5-4322-b652-08e157edd1d8")
-		(property "Reference" "MK5"
-			(at 165.608 105.156 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 156.972 102.616 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 168.91 97.028 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 167.64 92.71 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 167.64 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "22920b47-ccc1-4ec0-8880-ccecfcce3e89")
-		)
-		(pin "1"
-			(uuid "b495ba8b-092f-44ec-9c9c-5399b4d9a3d1")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK5")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 195.58 95.25 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "7c5ed1d5-5bb8-4ed0-a067-564b8ba1afad")
-		(property "Reference" "MK10"
-			(at 193.548 105.156 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 184.912 102.616 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 196.85 97.028 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 195.58 92.71 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 195.58 95.25 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "8d4788ed-36c5-4e64-9700-f1ac21ec36dd")
-		)
-		(pin "1"
-			(uuid "b50063e6-d5ab-493f-924a-1dff2617b8ff")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK10")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 132.08 49.53 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "834f520d-ab69-46cb-a790-ce604e9a72fe")
-		(property "Reference" "MK3"
-			(at 135.89 47.5614 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 135.89 50.1014 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 133.35 51.308 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 132.08 46.99 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 132.08 49.53 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "2b6c47db-7c34-40ba-98e6-27988a4d6b48")
-		)
-		(pin "1"
-			(uuid "550e0cf2-1b8a-4f5f-b177-a4548ee07773")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK3")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 78.74 96.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "9446fdcb-e710-410a-83d2-02897c475c60")
-		(property "Reference" "MK14"
-			(at 76.708 106.426 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 68.072 103.886 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 80.01 98.298 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 78.74 93.98 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 78.74 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "10b97eaf-e6ea-49f2-8584-0642b2398382")
-		)
-		(pin "1"
-			(uuid "e3ea0721-8a35-4047-8df8-5bbfdef8dbc9")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK14")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 26.67 96.52 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "96d2b830-cd7f-4cad-9dd3-7f6b91696c6a")
-		(property "Reference" "MK16"
-			(at 24.638 106.426 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 16.002 103.886 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 27.94 98.298 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 26.67 93.98 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 26.67 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "0ccaef34-ab02-4b89-9dc6-e0f1deb7aba0")
-		)
-		(pin "1"
-			(uuid "488f08a0-0ad8-4358-b148-312feb68e3ac")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK16")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:Speaker_Ultrasound")
-		(at 132.08 93.98 0)
+		(at 97.79 62.23 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -1118,7 +207,7 @@
 		(fields_autoplaced yes)
 		(uuid "990e5c48-ace2-4133-883a-8fb700ece90e")
 		(property "Reference" "LS1"
-			(at 137.16 93.9799 0)
+			(at 102.87 62.2299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1127,7 +216,7 @@
 			)
 		)
 		(property "Value" "Speaker_Ultrasound"
-			(at 137.16 96.5199 0)
+			(at 102.87 64.7699 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1136,7 +225,7 @@
 			)
 		)
 		(property "Footprint" "Sonar:MA40S4"
-			(at 131.191 95.25 0)
+			(at 96.901 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1145,7 +234,7 @@
 			)
 		)
 		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 131.191 95.25 0)
+			(at 96.901 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1154,7 +243,7 @@
 			)
 		)
 		(property "Description" "Ultrasonic transducer"
-			(at 132.08 93.98 0)
+			(at 97.79 62.23 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1177,17 +266,24 @@
 			)
 		)
 	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 105.41 96.52 0)
-		(unit 1)
+	(sheet
+		(at 115.57 114.3)
+		(size 30.48 24.13)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "ae46fe75-ac03-4557-9980-f14fe3fb2d6f")
-		(property "Reference" "MK13"
-			(at 103.378 106.426 0)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "81539334-4380-430d-9c42-c4ea325ea31d")
+		(property "Sheetname" "eight_transducer_array1"
+			(at 115.57 113.5884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1195,8 +291,41 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 94.742 103.886 0)
+		(property "Sheetfile" "eight_transducer_array.kicad_sch"
+			(at 115.57 139.0146 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
+					(page "11")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 165.1 114.3)
+		(size 30.48 24.13)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "cf4de81b-f687-41a2-a533-0de8fb37ff5a")
+		(property "Sheetname" "eight_transducer_array2"
+			(at 165.1 113.5884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1204,60 +333,41 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 106.68 98.298 90)
+		(property "Sheetfile" "eight_transducer_array.kicad_sch"
+			(at 165.1 139.0146 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
-				(hide yes)
+				(justify left top)
 			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 105.41 93.98 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 105.41 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "51a7f1cb-8c8f-477a-a12b-2abb0dbd1c05")
-		)
-		(pin "1"
-			(uuid "10406456-fdf6-4d7f-95a4-683b76cd97ad")
 		)
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK13")
-					(unit 1)
+					(page "20")
 				)
 			)
 		)
 	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 53.34 96.52 0)
-		(unit 1)
+	(sheet
+		(at 64.77 114.3)
+		(size 30.48 24.13)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
-		(uuid "d96e1233-7835-41a2-bde9-5adc5fc35c0c")
-		(property "Reference" "MK15"
-			(at 51.308 106.426 0)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0.0000)
+		)
+		(uuid "d78844ef-eb5d-4b24-a5c3-8824db20c2bc")
+		(property "Sheetname" "eight_transducer_array"
+			(at 64.77 113.5884 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -1265,338 +375,19 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 42.672 103.886 0)
+		(property "Sheetfile" "eight_transducer_array.kicad_sch"
+			(at 64.77 139.0146 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left bottom)
+				(justify left top)
 			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 54.61 98.298 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 53.34 93.98 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 53.34 96.52 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "591cbe1a-f827-490c-b43a-bfc16f3e006d")
-		)
-		(pin "1"
-			(uuid "5ac84ed9-8a16-4267-88af-b252eaa542f6")
 		)
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK15")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 132.08 132.08 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e0d4995a-36d7-4ce9-b92c-e6b2737f098f")
-		(property "Reference" "MK7"
-			(at 135.89 130.1114 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 135.89 132.6514 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 133.35 133.858 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 132.08 129.54 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 132.08 132.08 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "b4f88a48-db3a-4092-994d-5db5bc140006")
-		)
-		(pin "1"
-			(uuid "39b713f4-4d8c-489c-ae4a-8ea03a7d6806")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK7")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 132.08 34.29 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e5fc9f6c-96e3-45c1-b1b2-04b167631c63")
-		(property "Reference" "MK4"
-			(at 135.89 32.3214 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 135.89 34.8614 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 133.35 36.068 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 132.08 31.75 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 132.08 34.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "ac4820dc-22ad-4498-bb7d-c0c3ce33def4")
-		)
-		(pin "1"
-			(uuid "7259acf2-d218-46de-b6fc-902be1e6ddd7")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK4")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 132.08 113.03 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "e7473b53-1193-4041-8dfd-080763977b23")
-		(property "Reference" "MK6"
-			(at 135.89 111.0614 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 135.89 113.6014 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 133.35 114.808 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 132.08 110.49 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 132.08 113.03 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "1d320a4c-d60a-4378-a6d0-7239f8a8af6c")
-		)
-		(pin "1"
-			(uuid "d6360a0b-8802-4e27-9f8a-8890db03c469")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK6")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 132.08 167.64 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "ee9352b2-9a55-4790-91f1-af787669466a")
-		(property "Reference" "MK9"
-			(at 135.89 165.6714 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 135.89 168.2114 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 133.35 169.418 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 132.08 165.1 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 132.08 167.64 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "88483629-8bd2-4fd3-a9a9-3eac75f69dba")
-		)
-		(pin "1"
-			(uuid "7fa3de95-957b-4ebc-9625-d3a54685cba0")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "MK9")
-					(unit 1)
+					(page "2")
 				)
 			)
 		)

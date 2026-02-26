@@ -7,7 +7,7 @@
 _autosave-*
 
 # KiCad lock files
-~*.lck
+*.lck
 
 # KiCad local settings (user-specific)
 *.kicad_prl
@@ -15,10 +15,26 @@ _autosave-*
 # KiCad cache files
 fp-info-cache
 
+# KiCad netlist and DRC/ERC output
+*.net
+*.drl
+*.rpt
+
 # Gerber and manufacturing output (regenerate from source)
 gerbers/
 fabrication/
+output/
+
+# 3D model cache
+3d-cache/
 
 # OS files
 .DS_Store
 Thumbs.db
+desktop.ini
+
+# Editor/IDE files
+*.swp
+*.swo
+.vscode/
+.idea/

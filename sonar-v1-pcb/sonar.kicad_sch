@@ -384,6 +384,46 @@
 				(justify left top)
 			)
 		)
+		(pin "GND" input
+			(at 64.77 127 180)
+			(uuid "e96c24bb-9453-4a08-bf70-c23d886c4103")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "20V" input
+			(at 64.77 121.92 180)
+			(uuid "1c89c2ba-44e7-41b4-a7c1-fbebee1e5c16")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "ADC_CONV_START" input
+			(at 64.77 132.08 180)
+			(uuid "f8a4cd4c-2fa0-458a-8054-af716ffd5fb8")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "10V" input
+			(at 64.77 124.46 180)
+			(uuid "d2bcfc4f-d376-44ea-b3fc-e449bff603c4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"

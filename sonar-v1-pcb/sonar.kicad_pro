@@ -448,7 +448,9 @@
   },
   "libraries": {
     "pinned_footprint_libs": [],
-    "pinned_symbol_libs": []
+    "pinned_symbol_libs": [
+      "sonar_lib"
+    ]
   },
   "meta": {
     "filename": "sonar.kicad_pro",
@@ -627,108 +629,108 @@
       "eight_transducer_array"
     ],
     [
-      "b923419a-11b8-4ce4-afaf-bf138c598cb0",
-      "RX_amp"
+      "ad8dbaa4-0cf9-4800-af41-718616cf10d1",
+      "rx_amp_1"
     ],
     [
-      "527380a3-ac2e-4693-9c26-9c4ba2abd8c2",
-      "RX_amp1"
+      "ad8dbaa4-0cf9-4800-af41-718616cf10d1",
+      "rx_amp_1"
     ],
     [
-      "71531447-a3db-4b2e-8328-08bc96212bcd",
-      "RX_amp2"
+      "ad8dbaa4-0cf9-4800-af41-718616cf10d1",
+      "rx_amp_1"
     ],
     [
       "92589eb0-14ab-438f-abf4-d7e391dbea95",
-      "RX_amp3"
+      "rx_amp_0"
     ],
     [
-      "aa8414d9-7bad-485a-8c18-3d120a00d8a6",
-      "RX_amp4"
+      "2f0d228a-0bad-47f5-8729-4b667d423d24",
+      "rx_amp_2"
     ],
     [
-      "777ea59f-a9a1-4fa8-b046-3815dc8a9c07",
-      "RX_amp5"
+      "2f0d228a-0bad-47f5-8729-4b667d423d24",
+      "rx_amp_2"
     ],
     [
-      "9a1fc735-577d-49d4-9c67-7f0afc7df90e",
-      "RX_amp6"
+      "2f0d228a-0bad-47f5-8729-4b667d423d24",
+      "rx_amp_2"
     ],
     [
-      "b15c05f0-db04-4dbe-8bb2-87bf303e6fbb",
-      "RX_amp7"
+      "1db08c84-8720-4b4b-996e-1a6993aea775",
+      "rx_amp_3"
     ],
     [
       "81539334-4380-430d-9c42-c4ea325ea31d",
       "eight_transducer_array1"
     ],
     [
-      "9a1fc735-577d-49d4-9c67-7f0afc7df90e",
-      "RX_amp6"
+      "1db08c84-8720-4b4b-996e-1a6993aea775",
+      "rx_amp_3"
     ],
     [
-      "777ea59f-a9a1-4fa8-b046-3815dc8a9c07",
-      "RX_amp5"
+      "1db08c84-8720-4b4b-996e-1a6993aea775",
+      "rx_amp_3"
     ],
     [
-      "71531447-a3db-4b2e-8328-08bc96212bcd",
-      "RX_amp2"
+      "dab094c2-5421-4cd1-abf6-07053bb196f3",
+      "rx_amp_4"
     ],
     [
-      "b15c05f0-db04-4dbe-8bb2-87bf303e6fbb",
-      "RX_amp7"
+      "dab094c2-5421-4cd1-abf6-07053bb196f3",
+      "rx_amp_4"
     ],
     [
       "92589eb0-14ab-438f-abf4-d7e391dbea95",
-      "RX_amp3"
+      "rx_amp_0"
     ],
     [
-      "aa8414d9-7bad-485a-8c18-3d120a00d8a6",
-      "RX_amp4"
+      "dab094c2-5421-4cd1-abf6-07053bb196f3",
+      "rx_amp_4"
     ],
     [
-      "b923419a-11b8-4ce4-afaf-bf138c598cb0",
-      "RX_amp"
+      "d331f5be-3098-450d-b417-a05dce7668ed",
+      "rx_amp_5"
     ],
     [
-      "527380a3-ac2e-4693-9c26-9c4ba2abd8c2",
-      "RX_amp1"
+      "d331f5be-3098-450d-b417-a05dce7668ed",
+      "rx_amp_5"
     ],
     [
       "cf4de81b-f687-41a2-a533-0de8fb37ff5a",
       "eight_transducer_array2"
     ],
     [
-      "9a1fc735-577d-49d4-9c67-7f0afc7df90e",
-      "RX_amp6"
+      "d331f5be-3098-450d-b417-a05dce7668ed",
+      "rx_amp_5"
     ],
     [
-      "777ea59f-a9a1-4fa8-b046-3815dc8a9c07",
-      "RX_amp5"
+      "1fe682c8-8262-4041-8a77-b967141b552c",
+      "rx_amp_6"
     ],
     [
-      "71531447-a3db-4b2e-8328-08bc96212bcd",
-      "RX_amp2"
+      "1fe682c8-8262-4041-8a77-b967141b552c",
+      "rx_amp_6"
     ],
     [
-      "b15c05f0-db04-4dbe-8bb2-87bf303e6fbb",
-      "RX_amp7"
+      "1fe682c8-8262-4041-8a77-b967141b552c",
+      "rx_amp_6"
     ],
     [
       "92589eb0-14ab-438f-abf4-d7e391dbea95",
-      "RX_amp3"
+      "rx_amp_0"
     ],
     [
-      "aa8414d9-7bad-485a-8c18-3d120a00d8a6",
-      "RX_amp4"
+      "ff1a1451-0fa3-4c68-a4eb-3b27a1508249",
+      "rx_amp_7"
     ],
     [
-      "b923419a-11b8-4ce4-afaf-bf138c598cb0",
-      "RX_amp"
+      "ff1a1451-0fa3-4c68-a4eb-3b27a1508249",
+      "rx_amp_7"
     ],
     [
-      "527380a3-ac2e-4693-9c26-9c4ba2abd8c2",
-      "RX_amp1"
+      "ff1a1451-0fa3-4c68-a4eb-3b27a1508249",
+      "rx_amp_7"
     ]
   ],
   "text_variables": {}

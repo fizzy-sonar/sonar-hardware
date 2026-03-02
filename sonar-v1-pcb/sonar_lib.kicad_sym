@@ -81,54 +81,6 @@
 			)
 		)
 		(symbol "ADS8568SPM_0_1"
-			(polyline
-				(pts
-					(xy -22.86 54.61) (xy -22.86 -64.77)
-				)
-				(stroke
-					(width 0.2032)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(polyline
-				(pts
-					(xy -22.86 -64.77) (xy 22.86 -64.77)
-				)
-				(stroke
-					(width 0.2032)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(polyline
-				(pts
-					(xy 22.86 54.61) (xy -22.86 54.61)
-				)
-				(stroke
-					(width 0.2032)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
-			(polyline
-				(pts
-					(xy 22.86 -64.77) (xy 22.86 54.61)
-				)
-				(stroke
-					(width 0.2032)
-					(type default)
-				)
-				(fill
-					(type none)
-				)
-			)
 			(pin power_in line
 				(at -27.94 49.53 0)
 				(length 5.08)
@@ -1279,6 +1231,19 @@
 							(size 1.27 1.27)
 						)
 					)
+				)
+			)
+		)
+		(symbol "ADS8568SPM_1_1"
+			(rectangle
+				(start -22.86 54.61)
+				(end 22.86 -64.77)
+				(stroke
+					(width 0)
+					(type default)
+				)
+				(fill
+					(type background)
 				)
 			)
 		)

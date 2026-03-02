@@ -771,6 +771,10 @@
     [
       "0971c334-b681-41ae-ad35-a89520df0687",
       "power_supply"
+    ],
+    [
+      "43b3c482-e2f0-4b6c-ae84-751c8208aa65",
+      "tx_transducer"
     ]
   ],
   "text_variables": {}

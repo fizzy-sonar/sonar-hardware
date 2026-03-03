@@ -10,60 +10,60 @@
 	)
 	(lib_symbols)
 	(junction
-		(at 177.8 176.53)
+		(at 171.45 170.18)
 		(diameter 0)
 		(color 0 0 0 0)
-		(uuid "9a572154-1be5-425e-b646-b349ef7f2919")
+		(uuid "7d23811e-4595-4689-83fa-36dfea6b2f5a")
 	)
 	(bus
 		(pts
-			(xy 177.8 209.55) (xy 177.8 176.53)
+			(xy 158.75 170.18) (xy 171.45 170.18)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "054f846a-da28-4509-97bd-78f503c72110")
+		(uuid "4974470a-1a86-4e47-b902-957695a67028")
 	)
 	(bus
 		(pts
-			(xy 158.75 209.55) (xy 177.8 209.55)
+			(xy 171.45 214.63) (xy 171.45 170.18)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "16e8c430-7967-4e92-8083-e13d04e533d4")
+		(uuid "4f5c40e1-faf7-4c1c-a614-6185a50dc796")
 	)
 	(bus
 		(pts
-			(xy 177.8 144.78) (xy 177.8 176.53)
+			(xy 158.75 127) (xy 171.45 127)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "207cb4b5-2087-4d82-90d2-9ad3033694e5")
+		(uuid "7792f7c9-dc32-46c8-82cb-d6453b6870a4")
 	)
 	(bus
 		(pts
-			(xy 158.75 144.78) (xy 177.8 144.78)
+			(xy 171.45 127) (xy 171.45 170.18)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "91b35abd-7e63-48f1-8f69-6f9388c08588")
+		(uuid "d1d87676-42f9-4ebc-be94-d729c3c314ea")
 	)
 	(bus
 		(pts
-			(xy 177.8 176.53) (xy 158.75 176.53)
+			(xy 158.75 214.63) (xy 171.45 214.63)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "998cc298-f1ff-46fd-aa16-554a65990d3c")
+		(uuid "f2482720-ca68-4c2c-b02c-9ac923e58481")
 	)
 	(sheet
 		(at 45.72 163.83)
@@ -190,8 +190,8 @@
 		)
 	)
 	(sheet
-		(at 118.11 160.02)
-		(size 40.64 24.13)
+		(at 115.57 207.01)
+		(size 43.18 35.56)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -204,9 +204,9 @@
 		(fill
 			(color 0 0 0 0.0000)
 		)
-		(uuid "77046f61-f57a-417b-ae38-dc459ccec364")
-		(property "Sheetname" "eight_transducer_array1"
-			(at 118.11 159.3084 0)
+		(uuid "68d332b8-de02-4694-8619-1c5597a76eff")
+		(property "Sheetname" "eight_transducer_array2"
+			(at 115.57 206.2984 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -215,7 +215,7 @@
 			)
 		)
 		(property "Sheetfile" "eight_transducer_array.kicad_sch"
-			(at 118.11 184.7346 0)
+			(at 115.57 243.1546 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -224,8 +224,8 @@
 			)
 		)
 		(pin "-10V" input
-			(at 118.11 182.88 180)
-			(uuid "6b0f0983-5638-4e93-aee4-fa0606e9b508")
+			(at 115.57 224.79 180)
+			(uuid "f4e7fdc5-a143-449f-a6e8-cba34486589d")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -234,8 +234,8 @@
 			)
 		)
 		(pin "10V" input
-			(at 118.11 172.72 180)
-			(uuid "76d2ae7e-d05f-482c-b146-ba5e49efbcb1")
+			(at 115.57 209.55 180)
+			(uuid "2d22ba82-2993-49cf-827e-56bab3321fa4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -244,8 +244,8 @@
 			)
 		)
 		(pin "ADC_CONV_START" input
-			(at 118.11 166.37 180)
-			(uuid "8267625c-74a8-4270-9aab-854c84eddfcd")
+			(at 115.57 237.49 180)
+			(uuid "3a5e2aac-1e0b-4625-8cd1-ef4a1f39584b")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -254,8 +254,8 @@
 			)
 		)
 		(pin "GND" input
-			(at 118.11 180.34 180)
-			(uuid "d89ec44d-0c08-404c-8308-b755f930ffe2")
+			(at 115.57 219.71 180)
+			(uuid "e7f4522c-2414-42ab-9e86-31d38a7fc040")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -264,8 +264,8 @@
 			)
 		)
 		(pin "5V" input
-			(at 118.11 175.26 180)
-			(uuid "8ee2098f-03a5-4e2c-9ca7-7e1c33ac0c4e")
+			(at 115.57 212.09 180)
+			(uuid "ff232a64-e432-47ab-8447-69182b7716e2")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -274,8 +274,8 @@
 			)
 		)
 		(pin "chip_select_frame_sync" input
-			(at 118.11 162.56 180)
-			(uuid "b8fb3317-c1d6-4c4b-834e-f6c218b1018f")
+			(at 115.57 232.41 180)
+			(uuid "4538f4bf-117d-4476-9cfc-9497c8a2aa47")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -284,8 +284,8 @@
 			)
 		)
 		(pin "read_out_bus{read_out_bus}" output
-			(at 158.75 176.53 0)
-			(uuid "14e31973-87e9-485b-afb7-497d1345d703")
+			(at 158.75 214.63 0)
+			(uuid "2bb8da45-653a-4021-b719-07d7a1b433c4")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -294,8 +294,68 @@
 			)
 		)
 		(pin "3.3" input
-			(at 118.11 177.8 180)
-			(uuid "9883f0e2-5f1e-4e23-80b1-bc794db59bfc")
+			(at 115.57 214.63 180)
+			(uuid "23486ca8-a12d-487c-947e-9c4c6cfcb410")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "refen_~{wr}" input
+			(at 115.57 229.87 180)
+			(uuid "59cce367-fc2b-4a57-b4d0-17060a5bf82f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "hw_sw_select" input
+			(at 115.57 234.95 180)
+			(uuid "f764030f-c26b-4d98-b932-f1cdd729059f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "-2.5V" input
+			(at 115.57 222.25 180)
+			(uuid "c5805118-d64b-4b09-8a02-f5cbca0f7fbe")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "2.5V" input
+			(at 115.57 217.17 180)
+			(uuid "0ccd5362-5bd0-4427-be37-8a04212f7f6e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "adc_busy" output
+			(at 158.75 219.71 0)
+			(uuid "37db3472-eb18-4f0b-b53e-0f92700e9c0f")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "range_xclk" input
+			(at 115.57 240.03 180)
+			(uuid "400f4ea0-d0c5-45b3-9945-606a307bfda9")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -306,14 +366,14 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(page "4")
+					(page "17")
 				)
 			)
 		)
 	)
 	(sheet
-		(at 118.11 128.27)
-		(size 40.64 24.13)
+		(at 115.57 119.38)
+		(size 43.18 35.56)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -328,7 +388,7 @@
 		)
 		(uuid "d78844ef-eb5d-4b24-a5c3-8824db20c2bc")
 		(property "Sheetname" "eight_transducer_array"
-			(at 118.11 127.5584 0)
+			(at 115.57 118.6684 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -337,7 +397,7 @@
 			)
 		)
 		(property "Sheetfile" "eight_transducer_array.kicad_sch"
-			(at 118.11 152.9846 0)
+			(at 115.57 155.5246 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -346,7 +406,7 @@
 			)
 		)
 		(pin "-10V" input
-			(at 118.11 151.13 180)
+			(at 115.57 137.16 180)
 			(uuid "e96c24bb-9453-4a08-bf70-c23d886c4103")
 			(effects
 				(font
@@ -356,7 +416,7 @@
 			)
 		)
 		(pin "10V" input
-			(at 118.11 140.97 180)
+			(at 115.57 121.92 180)
 			(uuid "1c89c2ba-44e7-41b4-a7c1-fbebee1e5c16")
 			(effects
 				(font
@@ -366,7 +426,7 @@
 			)
 		)
 		(pin "ADC_CONV_START" input
-			(at 118.11 134.62 180)
+			(at 115.57 149.86 180)
 			(uuid "f8a4cd4c-2fa0-458a-8054-af716ffd5fb8")
 			(effects
 				(font
@@ -376,7 +436,7 @@
 			)
 		)
 		(pin "GND" input
-			(at 118.11 148.59 180)
+			(at 115.57 132.08 180)
 			(uuid "d2bcfc4f-d376-44ea-b3fc-e449bff603c4")
 			(effects
 				(font
@@ -386,7 +446,7 @@
 			)
 		)
 		(pin "5V" input
-			(at 118.11 143.51 180)
+			(at 115.57 124.46 180)
 			(uuid "4c7203da-cf6f-4519-875a-d62f1bbfcb62")
 			(effects
 				(font
@@ -396,7 +456,7 @@
 			)
 		)
 		(pin "chip_select_frame_sync" input
-			(at 118.11 130.81 180)
+			(at 115.57 144.78 180)
 			(uuid "c9950cf0-3587-4d5c-922d-32c191af61f1")
 			(effects
 				(font
@@ -406,7 +466,7 @@
 			)
 		)
 		(pin "read_out_bus{read_out_bus}" output
-			(at 158.75 144.78 0)
+			(at 158.75 127 0)
 			(uuid "ff46548b-8ea4-44f3-b4da-19678bac3328")
 			(effects
 				(font
@@ -416,8 +476,68 @@
 			)
 		)
 		(pin "3.3" input
-			(at 118.11 146.05 180)
+			(at 115.57 127 180)
 			(uuid "466a3810-616f-4c0d-8068-0be08e801078")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "refen_~{wr}" input
+			(at 115.57 142.24 180)
+			(uuid "8eb01c5f-19a5-4de0-9a63-b0eeda733c35")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "hw_sw_select" input
+			(at 115.57 147.32 180)
+			(uuid "1f5e5cfd-d032-4169-9924-96373061af7d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "-2.5V" input
+			(at 115.57 134.62 180)
+			(uuid "8c5939dc-9c02-44a8-a66a-fa54fd3d3e3d")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "2.5V" input
+			(at 115.57 129.54 180)
+			(uuid "8e13e21e-cfca-4cce-b262-af779db63d9b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "adc_busy" output
+			(at 158.75 132.08 0)
+			(uuid "1784aea1-3164-48e9-baa5-6d9c6dedf695")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "range_xclk" input
+			(at 115.57 152.4 180)
+			(uuid "3869b510-f1ac-4814-aaf0-fe1a59a30411")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -434,8 +554,8 @@
 		)
 	)
 	(sheet
-		(at 118.11 193.04)
-		(size 40.64 24.13)
+		(at 115.57 162.56)
+		(size 43.18 35.56)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -448,9 +568,9 @@
 		(fill
 			(color 0 0 0 0.0000)
 		)
-		(uuid "fe4e4a09-1a74-4707-94fa-f2cc524d2ced")
-		(property "Sheetname" "eight_transducer_array2"
-			(at 118.11 192.3284 0)
+		(uuid "dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60")
+		(property "Sheetname" "eight_transducer_array1"
+			(at 115.57 161.8484 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -459,7 +579,7 @@
 			)
 		)
 		(property "Sheetfile" "eight_transducer_array.kicad_sch"
-			(at 118.11 217.7546 0)
+			(at 115.57 198.7046 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -468,8 +588,8 @@
 			)
 		)
 		(pin "-10V" input
-			(at 118.11 215.9 180)
-			(uuid "a40f5385-f94a-4c02-9b75-50dd371e54c3")
+			(at 115.57 180.34 180)
+			(uuid "3b8558e8-80fa-4bee-9f1e-24abf20ff12a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -478,8 +598,8 @@
 			)
 		)
 		(pin "10V" input
-			(at 118.11 205.74 180)
-			(uuid "809be16c-1d41-4f23-bb22-68903f4db243")
+			(at 115.57 165.1 180)
+			(uuid "dd0566a0-9ecd-46a5-8367-117900b8aa78")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -488,8 +608,8 @@
 			)
 		)
 		(pin "ADC_CONV_START" input
-			(at 118.11 199.39 180)
-			(uuid "24706a0d-be5d-4110-b26b-fefbb5decb80")
+			(at 115.57 193.04 180)
+			(uuid "979edc8b-41d7-45f9-9d5a-ddfc0f24d337")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -498,8 +618,8 @@
 			)
 		)
 		(pin "GND" input
-			(at 118.11 213.36 180)
-			(uuid "effc0a12-f594-4a66-814f-372a793aa9d1")
+			(at 115.57 175.26 180)
+			(uuid "091dce43-4230-402b-92a9-ea4283b35b3a")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -508,8 +628,8 @@
 			)
 		)
 		(pin "5V" input
-			(at 118.11 208.28 180)
-			(uuid "431a418f-aa5c-463d-872c-193a5bb7765c")
+			(at 115.57 167.64 180)
+			(uuid "6e65eda8-1393-4c6f-9d35-ad5a056d2bc8")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -518,8 +638,8 @@
 			)
 		)
 		(pin "chip_select_frame_sync" input
-			(at 118.11 195.58 180)
-			(uuid "98292513-8594-48ab-8a9c-7ad8c828ee30")
+			(at 115.57 187.96 180)
+			(uuid "8865dbcb-3f65-439b-af77-5250b79bad79")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -528,8 +648,8 @@
 			)
 		)
 		(pin "read_out_bus{read_out_bus}" output
-			(at 158.75 209.55 0)
-			(uuid "6dcc717e-0ac8-4f1d-a66a-8192265c2418")
+			(at 158.75 170.18 0)
+			(uuid "af63dcdf-be37-4886-b8a4-8cf0f26380b2")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -538,8 +658,68 @@
 			)
 		)
 		(pin "3.3" input
-			(at 118.11 210.82 180)
-			(uuid "b4d3cc44-aafa-46dd-82d4-87751e68b054")
+			(at 115.57 170.18 180)
+			(uuid "12ec6d37-a41c-42af-8a31-ca1d0d747a3e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "refen_~{wr}" input
+			(at 115.57 185.42 180)
+			(uuid "36316f3e-2b4a-43c9-95e1-368c51ddb4b7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "hw_sw_select" input
+			(at 115.57 190.5 180)
+			(uuid "18afe63c-1f9d-4deb-a26d-9bba41a00226")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "-2.5V" input
+			(at 115.57 177.8 180)
+			(uuid "2f4d48f6-5711-4855-93f3-8ed54c8323a5")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "2.5V" input
+			(at 115.57 172.72 180)
+			(uuid "a393937a-573f-47d7-8471-84b711707968")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "adc_busy" output
+			(at 158.75 175.26 0)
+			(uuid "3b339f1a-27eb-46cf-8d47-9663ba6e2095")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "range_xclk" input
+			(at 115.57 195.58 180)
+			(uuid "88b1e66d-a623-450a-a4c7-066ec8b98bfc")
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -550,7 +730,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(page "17")
+					(page "4")
 				)
 			)
 		)

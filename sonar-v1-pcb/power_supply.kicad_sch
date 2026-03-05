@@ -1079,6 +1079,18 @@
 			(embedded_fonts no)
 		)
 	)
+	(rectangle
+		(start 231.14 101.6)
+		(end 276.86 127)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(fill
+			(type none)
+		)
+		(uuid 8a73ff19-a24c-487b-8b3f-dee6fba5e308)
+	)
 	(text "TPS7A30 NEGTAIVE LDO for -2.5V"
 		(exclude_from_sim no)
 		(at 184.404 126.238 0)
@@ -1148,6 +1160,17 @@
 			)
 		)
 		(uuid "b2222ac9-6d4c-412c-b3a4-c2a57c11d672")
+	)
+	(text "2.75 is for speakers, \nbut maybe we could just use 2.5 \nsince they are rated for that too, \nits just not the example."
+		(exclude_from_sim no)
+		(at 252.984 110.744 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+				(color 194 0 0 1)
+			)
+		)
+		(uuid "f0eeff32-e4c3-499e-bb6b-e6dc3c8750c9")
 	)
 	(junction
 		(at 90.17 71.12)
@@ -1487,6 +1510,72 @@
 		)
 		(uuid "2a19325f-3158-4e1a-a667-4032984531c9")
 	)
+	(hierarchical_label "3.3V"
+		(shape output)
+		(at 256.54 68.58 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "2991d79e-19a8-4e65-afa2-4c752fc091a7")
+	)
+	(hierarchical_label "-10V"
+		(shape output)
+		(at 256.54 76.2 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "394c59ee-1116-48e3-97b1-3e3c18b9ddaa")
+	)
+	(hierarchical_label "2.5V"
+		(shape output)
+		(at 256.54 81.28 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "53b770ff-df34-45a2-a9a2-14f16f95eae4")
+	)
+	(hierarchical_label "10V"
+		(shape output)
+		(at 256.54 66.04 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5d96cdf6-44ad-420f-acc2-3346ea82fc9c")
+	)
+	(hierarchical_label "2.75V"
+		(shape output)
+		(at 250.19 119.38 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "aa299133-095e-495f-8af2-d4bdf51e94c2")
+	)
+	(hierarchical_label "-2.5V"
+		(shape output)
+		(at 256.54 78.74 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b02908ab-602f-450f-9c0a-16ff50bd5071")
+	)
 	(hierarchical_label "GND"
 		(shape output)
 		(at 58.42 97.79 0)
@@ -1508,6 +1597,17 @@
 			(justify left)
 		)
 		(uuid "c4a2aa81-6473-40f0-b0a1-f3c9f2f6b787")
+	)
+	(hierarchical_label "5V"
+		(shape output)
+		(at 256.54 71.12 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "fb623a1b-782d-45ad-8d23-4214faf93a1b")
 	)
 	(symbol
 		(lib_id "Device:R_US")
@@ -1537,7 +1637,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 74.676 94.234 90)
 			(effects
 				(font
@@ -1606,7 +1706,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
 			(at 49.2252 107.95 0)
 			(effects
 				(font
@@ -1676,7 +1776,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
 			(at 86.106 94.234 90)
 			(effects
 				(font

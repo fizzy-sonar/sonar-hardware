@@ -212,7 +212,7 @@
 		)
 		(uuid "581c3801-246f-4fe6-839a-84b7aa105a8a")
 	)
-	(text "TODO: Power transducer with 20Vp-p"
+	(text "TODO: Power transducer with 20Vp-p\n\nREAL TODO: Switch to a speaker, maybe look at using DSS or something so we could chirp.\n"
 		(exclude_from_sim no)
 		(at 87.122 67.31 0)
 		(effects

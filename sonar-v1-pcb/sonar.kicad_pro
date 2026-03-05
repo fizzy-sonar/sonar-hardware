@@ -447,7 +447,9 @@
     }
   },
   "libraries": {
-    "pinned_footprint_libs": [],
+    "pinned_footprint_libs": [
+      "Sonar"
+    ],
     "pinned_symbol_libs": [
       "sonar_lib"
     ]

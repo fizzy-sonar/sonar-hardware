@@ -264,217 +264,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "Device:Microphone_Ultrasound"
-			(pin_names
-				(offset 0.0254)
-				(hide yes)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "MK"
-				(at -3.81 1.143 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify right)
-				)
-			)
-			(property "Value" "Microphone_Ultrasound"
-				(at -3.81 -0.762 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify right)
-				)
-			)
-			(property "Footprint" ""
-				(at 1.27 -1.778 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "~"
-				(at 0 2.54 90)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Ultrasound receiver"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_keywords" "microphone ultrasound crystal"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "Microphone_Ultrasound_0_1"
-				(polyline
-					(pts
-						(xy -2.54 2.54) (xy -2.54 -2.54)
-					)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(rectangle
-					(start -1.27 0.508)
-					(end 1.27 -0.508)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 1.016) (xy 0.762 1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -0.762 -1.016) (xy 0.762 -1.016)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 1.016) (xy 0 1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(circle
-					(center 0 0)
-					(radius 2.54)
-					(stroke
-						(width 0.254)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0 -1.016) (xy 0 -1.778)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.254 3.81) (xy 0.762 3.81)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy 0.508 4.064) (xy 0.508 3.556)
-					)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "Microphone_Ultrasound_1_1"
-				(pin passive line
-					(at 0 5.08 270)
-					(length 2.54)
-					(name "+"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -5.08 90)
-					(length 2.54)
-					(name "-"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Device:Opamp_Dual"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -935,6 +724,248 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "sonar_lib:SPV08A0LR5H-1"
+			(pin_names
+				(offset 1.016)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "MK"
+				(at -7.62 8.382 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Value" "SPV08A0LR5H-1"
+				(at -7.62 -10.16 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left bottom)
+				)
+			)
+			(property "Footprint" "SPV08A0LR5H-1:MIC_SPV08A0LR5H-1"
+				(at -0.508 -27.178 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" ""
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "MF" "Knowles"
+				(at 0.254 25.4 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MAXIMUM_PACKAGE_HEIGHT" "1.0mm"
+				(at -0.254 -39.878 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Package" "None"
+				(at 1.016 -32.512 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Price" "None"
+				(at 0.254 22.352 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Check_prices" "https://www.snapeda.com/parts/SPV08A0LR5H-1/Knowles/view-part/?ref=eda"
+				(at 0 -13.716 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "STANDARD" "Manufacturer Recommendations"
+				(at -0.508 -22.352 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "PARTREV" "A"
+				(at 5.588 14.732 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "SnapEDA_Link" "https://www.snapeda.com/parts/SPV08A0LR5H-1/Knowles/view-part/?ref=snap"
+				(at 0 -16.51 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MP" "SPV08A0LR5H-1"
+				(at -0.254 -36.068 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Description_1" "20 Hz ~ 10 kHz Analog Microphone MEMS (Silicon) 2.3 V ~ 3.6 V Omnidirectional (-42dB ±1dB @ 94dB SPL) Solder Pads"
+				(at 0.508 -19.558 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "Availability" "In Stock"
+				(at 0.254 29.21 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(property "MANUFACTURER" "Knowles"
+				(at -0.254 18.796 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify bottom)
+					(hide yes)
+				)
+			)
+			(symbol "SPV08A0LR5H-1_0_0"
+				(rectangle
+					(start -7.62 7.62)
+					(end 7.62 -7.62)
+					(stroke
+						(width 0.254)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+				(pin power_in line
+					(at 12.7 5.08 180)
+					(length 5.08)
+					(name "VDD"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin output line
+					(at 12.7 0 180)
+					(length 5.08)
+					(name "OUT"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 12.7 -5.08 180)
+					(length 5.08)
+					(name "GND"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+					(number "3"
+						(effects
+							(font
+								(size 1.016 1.016)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 	)
 	(rectangle
 		(start 123.19 58.42)
@@ -1054,16 +1085,16 @@
 		(uuid "0a27fcc2-1479-441c-b759-33168b6e89df")
 	)
 	(junction
+		(at 116.84 87.63)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "20b3e619-30b8-47c2-ae17-ce248c0df097")
+	)
+	(junction
 		(at 162.56 87.63)
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "2794ec15-845b-486f-8898-5b4a2e187a50")
-	)
-	(junction
-		(at 116.84 76.2)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "4aa3ad01-43a4-4588-9735-cea516678863")
 	)
 	(junction
 		(at 218.44 76.2)
@@ -1102,12 +1133,6 @@
 		(uuid "baf6d4b4-3046-44d0-b0d2-a1555d64e4e6")
 	)
 	(junction
-		(at 116.84 90.17)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d4b132e9-0856-493e-9b24-0a570334606d")
-	)
-	(junction
 		(at 71.12 74.93)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -1131,16 +1156,6 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 90.17) (xy 116.84 100.33)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "0a19c415-536d-4364-96b5-c450c0e5792b")
-	)
-	(wire
-		(pts
 			(xy 147.32 81.28) (xy 147.32 87.63)
 		)
 		(stroke
@@ -1161,13 +1176,13 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 87.63) (xy 116.84 90.17)
+			(xy 113.03 76.2) (xy 113.03 82.55)
 		)
 		(stroke
 			(width 0)
 			(type default)
 		)
-		(uuid "1dcd306a-0922-4374-84c4-64f292e3faa2")
+		(uuid "12b1ac55-9b23-490a-a4e6-416acf986ce5")
 	)
 	(wire
 		(pts
@@ -1198,16 +1213,6 @@
 			(type default)
 		)
 		(uuid "39984fd8-87e0-4e31-9626-837d23a9c76c")
-	)
-	(wire
-		(pts
-			(xy 114.3 90.17) (xy 116.84 90.17)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3c1972eb-7526-4f07-9bc6-1112135d5e8d")
 	)
 	(wire
 		(pts
@@ -1311,6 +1316,16 @@
 	)
 	(wire
 		(pts
+			(xy 116.84 107.95) (xy 116.84 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "72859171-0a91-437d-bb3c-5e8b52e71438")
+	)
+	(wire
+		(pts
 			(xy 154.94 87.63) (xy 154.94 96.52)
 		)
 		(stroke
@@ -1341,7 +1356,7 @@
 	)
 	(wire
 		(pts
-			(xy 116.84 77.47) (xy 116.84 76.2)
+			(xy 116.84 76.2) (xy 116.84 87.63)
 		)
 		(stroke
 			(width 0)
@@ -1411,6 +1426,16 @@
 	)
 	(wire
 		(pts
+			(xy 113.03 87.63) (xy 116.84 87.63)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "b50d4241-512f-4e24-a99c-5c7da45fe223")
+	)
+	(wire
+		(pts
 			(xy 73.66 74.93) (xy 73.66 76.2)
 		)
 		(stroke
@@ -1438,16 +1463,6 @@
 			(type default)
 		)
 		(uuid "c337164c-46d4-4b41-8d1a-7d27ccc9c445")
-	)
-	(wire
-		(pts
-			(xy 116.84 76.2) (xy 116.84 71.12)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "cb256af2-f0f3-464f-9b29-3728d8ede787")
 	)
 	(wire
 		(pts
@@ -1518,6 +1533,16 @@
 			(type default)
 		)
 		(uuid "e0acdf16-d6c6-457b-b896-a35041254665")
+	)
+	(wire
+		(pts
+			(xy 113.03 92.71) (xy 113.03 100.33)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "e4a694a2-8ff0-4c3a-a2fe-166e2a661228")
 	)
 	(wire
 		(pts
@@ -2226,7 +2251,7 @@
 	)
 	(hierarchical_label "GND"
 		(shape input)
-		(at 116.84 100.33 270)
+		(at 113.03 100.33 270)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -2234,6 +2259,17 @@
 			(justify right)
 		)
 		(uuid "4f252ba4-9b48-4b90-95db-469fdbe10304")
+	)
+	(hierarchical_label "2.75V"
+		(shape input)
+		(at 113.03 76.2 90)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "5a6efa12-e29e-4301-8265-5cb18c65c3e0")
 	)
 	(hierarchical_label "GND"
 		(shape input)
@@ -2589,6 +2625,164 @@
 		)
 	)
 	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 116.84 107.95 180)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "30403f5e-3908-4272-8cef-b0cba6f266a0")
+		(property "Reference" "TP1"
+			(at 112.776 110.49 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "TestPoint_Probe"
+			(at 113.284 108.204 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
+			(at 111.76 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 111.76 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 116.84 107.95 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "441ae996-2972-40a8-877d-a3559bdfaa3c")
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
+					(reference "TP33")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
+					(reference "TP46")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/5fa345fd-8f82-4102-b4da-88393397ee2f"
+					(reference "TP37")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/92589eb0-14ab-438f-abf4-d7e391dbea95"
+					(reference "TP30")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
+					(reference "TP41")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
+					(reference "TP29")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/da58af52-59a2-42c6-b6e7-fabe3f18277b"
+					(reference "TP45")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/ef24f3d1-799c-40c0-a32b-fd2185333268"
+					(reference "TP38")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
+					(reference "TP42")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
+					(reference "TP6")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/5fa345fd-8f82-4102-b4da-88393397ee2f"
+					(reference "TP26")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/92589eb0-14ab-438f-abf4-d7e391dbea95"
+					(reference "TP5")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
+					(reference "TP21")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
+					(reference "TP1")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/da58af52-59a2-42c6-b6e7-fabe3f18277b"
+					(reference "TP13")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/ef24f3d1-799c-40c0-a32b-fd2185333268"
+					(reference "TP34")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
+					(reference "TP10")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
+					(reference "TP25")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/5fa345fd-8f82-4102-b4da-88393397ee2f"
+					(reference "TP14")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/92589eb0-14ab-438f-abf4-d7e391dbea95"
+					(reference "TP9")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
+					(reference "TP18")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
+					(reference "TP2")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/da58af52-59a2-42c6-b6e7-fabe3f18277b"
+					(reference "TP22")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/ef24f3d1-799c-40c0-a32b-fd2185333268"
+					(reference "TP17")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
 		(lib_id "Device:C")
 		(at 67.31 83.82 0)
 		(unit 1)
@@ -2750,168 +2944,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:Microphone_Ultrasound")
-		(at 116.84 82.55 180)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "39d2d866-867f-49f6-8b46-946c757fefd4")
-		(property "Reference" "MK1"
-			(at 112.014 80.264 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Value" "Microphone_Ultrasound"
-			(at 114.554 77.978 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Footprint" "Sonar:MA40S4"
-			(at 115.57 80.772 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "kicad-embed://ultrasonics.pdf"
-			(at 116.84 85.09 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Ultrasound receiver"
-			(at 116.84 82.55 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "2"
-			(uuid "959df5a5-6622-4d8f-a314-388c80e4c06f")
-		)
-		(pin "1"
-			(uuid "46f3f80f-4d9a-4641-8070-a8f17832eef3")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "MK17")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "MK24")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "MK19")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "MK16")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "MK21")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
-					(reference "MK15")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "MK23")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "MK20")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "MK22")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "MK4")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "MK14")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "MK3")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "MK11")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
-					(reference "MK1")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "MK7")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "MK18")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "MK6")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "MK13")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "MK8")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "MK5")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "MK10")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
-					(reference "MK2")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "MK12")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "MK9")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:R_US")
 		(at 147.32 93.98 0)
 		(unit 1)
@@ -3067,6 +3099,290 @@
 				)
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/ef24f3d1-799c-40c0-a32b-fd2185333268"
 					(reference "R50")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "sonar_lib:SPV08A0LR5H-1")
+		(at 100.33 87.63 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "45ed1908-fdb4-4ca5-9a66-f1eabd0282b9")
+		(property "Reference" "MK25"
+			(at 100.33 74.93 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "SPV08A0LR5H-1"
+			(at 100.33 77.47 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" "Sonar:MIC_SPV08A0LR5H-1"
+			(at 99.822 114.808 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "kicad-embed://SPV0142LR5H-1_DS.pdf"
+			(at 100.33 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" ""
+			(at 100.33 87.63 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "MF" "Knowles"
+			(at 100.584 62.23 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MAXIMUM_PACKAGE_HEIGHT" "1.0mm"
+			(at 100.076 127.508 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Package" "None"
+			(at 101.346 120.142 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Price" "None"
+			(at 100.584 65.278 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Check_prices" "https://www.snapeda.com/parts/SPV08A0LR5H-1/Knowles/view-part/?ref=eda"
+			(at 100.33 101.346 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "STANDARD" "Manufacturer Recommendations"
+			(at 99.822 109.982 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "PARTREV" "A"
+			(at 105.918 72.898 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "SnapEDA_Link" "https://www.snapeda.com/parts/SPV08A0LR5H-1/Knowles/view-part/?ref=snap"
+			(at 100.33 104.14 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MP" "SPV08A0LR5H-1"
+			(at 100.076 123.698 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Description_1" "20 Hz ~ 10 kHz Analog Microphone MEMS (Silicon) 2.3 V ~ 3.6 V Omnidirectional (-42dB ±1dB @ 94dB SPL) Solder Pads"
+			(at 100.838 107.188 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "Availability" "In Stock"
+			(at 100.584 58.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(property "MANUFACTURER" "Knowles"
+			(at 100.076 68.834 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify bottom)
+				(hide yes)
+			)
+		)
+		(pin "3"
+			(uuid "7d28a509-361e-4f23-ae26-233409100406")
+		)
+		(pin "2"
+			(uuid "5572788c-a6fc-4ccd-8b58-75b1ebab67d0")
+		)
+		(pin "1"
+			(uuid "650ec0fd-539f-42f5-8cc5-51ad6d6a356e")
+		)
+		(instances
+			(project ""
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
+					(reference "MK41")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
+					(reference "MK48")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/5fa345fd-8f82-4102-b4da-88393397ee2f"
+					(reference "MK43")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/92589eb0-14ab-438f-abf4-d7e391dbea95"
+					(reference "MK40")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
+					(reference "MK45")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
+					(reference "MK39")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/da58af52-59a2-42c6-b6e7-fabe3f18277b"
+					(reference "MK47")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/ef24f3d1-799c-40c0-a32b-fd2185333268"
+					(reference "MK44")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
+					(reference "MK46")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
+					(reference "MK28")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/5fa345fd-8f82-4102-b4da-88393397ee2f"
+					(reference "MK38")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/92589eb0-14ab-438f-abf4-d7e391dbea95"
+					(reference "MK27")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
+					(reference "MK35")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
+					(reference "MK25")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/da58af52-59a2-42c6-b6e7-fabe3f18277b"
+					(reference "MK31")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/ef24f3d1-799c-40c0-a32b-fd2185333268"
+					(reference "MK42")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
+					(reference "MK30")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
+					(reference "MK37")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/5fa345fd-8f82-4102-b4da-88393397ee2f"
+					(reference "MK32")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/92589eb0-14ab-438f-abf4-d7e391dbea95"
+					(reference "MK29")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
+					(reference "MK34")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
+					(reference "MK26")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/da58af52-59a2-42c6-b6e7-fabe3f18277b"
+					(reference "MK36")
+					(unit 1)
+				)
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/ef24f3d1-799c-40c0-a32b-fd2185333268"
+					(reference "MK33")
 					(unit 1)
 				)
 			)
@@ -3927,164 +4243,6 @@
 		)
 	)
 	(symbol
-		(lib_id "Connector:TestPoint_Probe")
-		(at 116.84 71.12 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "da358013-1f09-4301-8923-07fde8b995c2")
-		(property "Reference" "TP2"
-			(at 112.522 70.358 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Value" "TestPoint_Probe"
-			(at 112.776 68.326 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
-			(at 116.84 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 116.84 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point (alternative probe-style design)"
-			(at 116.84 71.12 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "53387d24-68dd-4a2b-938d-3ecaafabe571")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "TP66")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "TP94")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "TP74")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "TP62")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "TP82")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
-					(reference "TP58")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "TP90")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "TP78")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "TP86")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "TP14")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "TP54")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "TP10")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "TP42")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
-					(reference "TP2")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "TP26")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "TP70")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "TP22")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "TP50")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "TP30")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "TP18")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "TP38")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
-					(reference "TP6")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "TP46")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "TP34")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:Opamp_Dual")
 		(at 76.2 83.82 0)
 		(unit 3)
@@ -4827,162 +4985,6 @@
 				)
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/ef24f3d1-799c-40c0-a32b-fd2185333268"
 					(reference "TP36")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
-		(lib_id "Connector:TestPoint_Probe")
-		(at 114.3 90.17 90)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(uuid "fdbffd69-dcc0-4896-9ca8-e7cf4c52d3f8")
-		(property "Reference" "TP1"
-			(at 107.442 89.662 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "TestPoint_Probe"
-			(at 102.87 87.376 90)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "TestPoint:TestPoint_Pad_D1.0mm"
-			(at 114.3 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "~"
-			(at 114.3 85.09 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "test point (alternative probe-style design)"
-			(at 114.3 90.17 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "1"
-			(uuid "3707dc13-bc76-430b-b56d-121acd149829")
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "TP65")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "TP93")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "TP73")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "TP61")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "TP81")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
-					(reference "TP57")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "TP89")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/68d332b8-de02-4694-8619-1c5597a76eff/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "TP77")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "TP85")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "TP13")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "TP53")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "TP9")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "TP41")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
-					(reference "TP1")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "TP25")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "TP69")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "TP21")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "TP49")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "TP29")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "TP17")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "TP37")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/c05b66d6-72b5-4ee3-a91d-80cd7033985f"
-					(reference "TP5")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "TP45")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "TP33")
 					(unit 1)
 				)
 			)

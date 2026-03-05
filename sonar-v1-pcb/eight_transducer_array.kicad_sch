@@ -4957,7 +4957,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PM0064A-IPC_A"
+		(property "Footprint" "Package_QFP:LQFP-64-1EP_10x10mm_P0.5mm_EP5x5mm_ThermalVias"
 			(at 167.64 32.512 0)
 			(effects
 				(font

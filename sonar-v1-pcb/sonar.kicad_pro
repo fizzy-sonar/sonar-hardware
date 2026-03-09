@@ -689,59 +689,59 @@
       "rx_amp_1"
     ],
     [
-      "dbee82a7-8e4c-4ab8-a9a7-41d31ebc4a60",
+      "d3b8d639-c387-46bd-9010-317ff5495a13",
       "eight_transducer_array1"
+    ],
+    [
+      "a69a1e19-7333-49c9-8cfe-abe95e31b9e6",
+      "rx_amp_4"
+    ],
+    [
+      "92589eb0-14ab-438f-abf4-d7e391dbea95",
+      "rx_amp_0"
+    ],
+    [
+      "4b88e5a9-a1a4-4236-ac8a-a515268f9e7e",
+      "rx_amp_2"
+    ],
+    [
+      "92589eb0-14ab-438f-abf4-d7e391dbea95",
+      "rx_amp_0"
     ],
     [
       "4baae0c7-5504-4fa5-b170-826798e08abe",
       "rx_amp_1"
     ],
     [
-      "92589eb0-14ab-438f-abf4-d7e391dbea95",
-      "rx_amp_0"
-    ],
-    [
-      "4b88e5a9-a1a4-4236-ac8a-a515268f9e7e",
-      "rx_amp_2"
-    ],
-    [
-      "92589eb0-14ab-438f-abf4-d7e391dbea95",
-      "rx_amp_0"
-    ],
-    [
-      "1e9737bb-54d3-46c6-89c7-bafd5d01cb9f",
-      "rx_amp_7"
+      "da58af52-59a2-42c6-b6e7-fabe3f18277b",
+      "rx_amp_3"
     ],
     [
       "da58af52-59a2-42c6-b6e7-fabe3f18277b",
       "rx_amp_3"
+    ],
+    [
+      "4b88e5a9-a1a4-4236-ac8a-a515268f9e7e",
+      "rx_amp_2"
     ],
     [
       "5fa345fd-8f82-4102-b4da-88393397ee2f",
       "rx_amp_5"
     ],
     [
+      "a69a1e19-7333-49c9-8cfe-abe95e31b9e6",
+      "rx_amp_4"
+    ],
+    [
+      "1e9737bb-54d3-46c6-89c7-bafd5d01cb9f",
+      "rx_amp_7"
+    ],
+    [
       "ef24f3d1-799c-40c0-a32b-fd2185333268",
       "rx_amp_6"
     ],
     [
-      "a69a1e19-7333-49c9-8cfe-abe95e31b9e6",
-      "rx_amp_4"
-    ],
-    [
-      "a69a1e19-7333-49c9-8cfe-abe95e31b9e6",
-      "rx_amp_4"
-    ],
-    [
-      "da58af52-59a2-42c6-b6e7-fabe3f18277b",
-      "rx_amp_3"
-    ],
-    [
-      "4b88e5a9-a1a4-4236-ac8a-a515268f9e7e",
-      "rx_amp_2"
-    ],
-    [
-      "68d332b8-de02-4694-8619-1c5597a76eff",
+      "293969c4-9575-41aa-bb6a-e94ffb52e407",
       "eight_transducer_array2"
     ],
     [
@@ -749,36 +749,20 @@
       "rx_amp_5"
     ],
     [
-      "4baae0c7-5504-4fa5-b170-826798e08abe",
-      "rx_amp_1"
+      "a69a1e19-7333-49c9-8cfe-abe95e31b9e6",
+      "rx_amp_4"
     ],
     [
       "92589eb0-14ab-438f-abf4-d7e391dbea95",
       "rx_amp_0"
     ],
     [
-      "1e9737bb-54d3-46c6-89c7-bafd5d01cb9f",
-      "rx_amp_7"
+      "4baae0c7-5504-4fa5-b170-826798e08abe",
+      "rx_amp_1"
     ],
     [
       "ef24f3d1-799c-40c0-a32b-fd2185333268",
       "rx_amp_6"
-    ],
-    [
-      "5fa345fd-8f82-4102-b4da-88393397ee2f",
-      "rx_amp_5"
-    ],
-    [
-      "ef24f3d1-799c-40c0-a32b-fd2185333268",
-      "rx_amp_6"
-    ],
-    [
-      "a69a1e19-7333-49c9-8cfe-abe95e31b9e6",
-      "rx_amp_4"
-    ],
-    [
-      "1e9737bb-54d3-46c6-89c7-bafd5d01cb9f",
-      "rx_amp_7"
     ],
     [
       "da58af52-59a2-42c6-b6e7-fabe3f18277b",
@@ -787,6 +771,22 @@
     [
       "4b88e5a9-a1a4-4236-ac8a-a515268f9e7e",
       "rx_amp_2"
+    ],
+    [
+      "5fa345fd-8f82-4102-b4da-88393397ee2f",
+      "rx_amp_5"
+    ],
+    [
+      "1e9737bb-54d3-46c6-89c7-bafd5d01cb9f",
+      "rx_amp_7"
+    ],
+    [
+      "1e9737bb-54d3-46c6-89c7-bafd5d01cb9f",
+      "rx_amp_7"
+    ],
+    [
+      "ef24f3d1-799c-40c0-a32b-fd2185333268",
+      "rx_amp_6"
     ],
     [
       "0971c334-b681-41ae-ad35-a89520df0687",

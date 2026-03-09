@@ -25,7 +25,7 @@
 				)
 			)
 		)
-		(property "Footprint" "PM0064A-IPC_A"
+		(property "Footprint" "Package_QFP:LQFP-64-1EP_10x10mm_P0.5mm_EP5x5mm_ThermalVias"
 			(at 1.27 51.308 0)
 			(effects
 				(font
@@ -52,14 +52,6 @@
 					(size 1.27 1.27)
 				)
 				(hide yes)
-			)
-		)
-		(property "ki_locked" ""
-			(at 0 0 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
 			)
 		)
 		(property "ki_keywords" "ADS8568SPM"
@@ -10169,7 +10161,7 @@
 		)
 		(embedded_fonts no)
 	)
-	(symbol "SPV08A0LR5H-1"
+	(symbol "SPV0142LR5H-1"
 		(pin_names
 			(offset 1.016)
 		)
@@ -10185,7 +10177,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Value" "SPV08A0LR5H-1"
+		(property "Value" "SPV0142LR5H-1"
 			(at -7.62 -10.16 0)
 			(effects
 				(font
@@ -10194,7 +10186,7 @@
 				(justify left bottom)
 			)
 		)
-		(property "Footprint" "SPV08A0LR5H-1:MIC_SPV08A0LR5H-1"
+		(property "Footprint" "Sonar:MIC_SPV08A0LR5H-1"
 			(at -0.508 -27.178 0)
 			(effects
 				(font
@@ -10204,8 +10196,8 @@
 				(hide yes)
 			)
 		)
-		(property "Datasheet" ""
-			(at 0 0 0)
+		(property "Datasheet" "https://static1.squarespace.com/static/6488b0b8150a045d2d112999/t/67caf41d815fb04909623d2d/1741354016529/SPV0142LR5H-1-datasheet.pdf"
+			(at 0 -14.478 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10262,16 +10254,6 @@
 				(hide yes)
 			)
 		)
-		(property "Check_prices" "https://www.snapeda.com/parts/SPV08A0LR5H-1/Knowles/view-part/?ref=eda"
-			(at 0 -13.716 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
 		(property "STANDARD" "Manufacturer Recommendations"
 			(at -0.508 -22.352 0)
 			(effects
@@ -10282,48 +10264,8 @@
 				(hide yes)
 			)
 		)
-		(property "PARTREV" "A"
-			(at 5.588 14.732 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "SnapEDA_Link" "https://www.snapeda.com/parts/SPV08A0LR5H-1/Knowles/view-part/?ref=snap"
-			(at 0 -16.51 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "MP" "SPV08A0LR5H-1"
+		(property "MP" "SPV0142LR5H-1"
 			(at -0.254 -36.068 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Description_1" "20 Hz ~ 10 kHz Analog Microphone MEMS (Silicon) 2.3 V ~ 3.6 V Omnidirectional (-42dB ±1dB @ 94dB SPL) Solder Pads"
-			(at 0.508 -19.558 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify bottom)
-				(hide yes)
-			)
-		)
-		(property "Availability" "In Stock"
-			(at 0.254 29.21 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -10342,7 +10284,7 @@
 				(hide yes)
 			)
 		)
-		(symbol "SPV08A0LR5H-1_0_0"
+		(symbol "SPV0142LR5H-1_0_0"
 			(rectangle
 				(start -7.62 7.62)
 				(end 7.62 -7.62)

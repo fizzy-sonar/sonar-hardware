@@ -497,6 +497,10 @@
       {
         "netclass": "Power",
         "pattern": "*V"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "**GND*"
       }
     ]
   },
@@ -681,7 +685,7 @@
       "eight_transducer_array"
     ],
     [
-      "c05b66d6-72b5-4ee3-a91d-80cd7033985f",
+      "4baae0c7-5504-4fa5-b170-826798e08abe",
       "rx_amp_1"
     ],
     [
@@ -689,7 +693,7 @@
       "eight_transducer_array1"
     ],
     [
-      "c05b66d6-72b5-4ee3-a91d-80cd7033985f",
+      "4baae0c7-5504-4fa5-b170-826798e08abe",
       "rx_amp_1"
     ],
     [
@@ -745,7 +749,7 @@
       "rx_amp_5"
     ],
     [
-      "c05b66d6-72b5-4ee3-a91d-80cd7033985f",
+      "4baae0c7-5504-4fa5-b170-826798e08abe",
       "rx_amp_1"
     ],
     [

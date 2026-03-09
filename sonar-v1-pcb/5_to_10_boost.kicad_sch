@@ -881,7 +881,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bb590fae-0c2c-44e4-bf14-b23a6414f997")
-		(property "Reference" "R135"
+		(property "Reference" "R3101"
 			(at 200.66 139.6999 0)
 			(effects
 				(font
@@ -935,7 +935,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/6814f6cb-3c12-4399-b1d1-2b674ba47631"
-					(reference "R135")
+					(reference "R3101")
 					(unit 1)
 				)
 			)
@@ -951,7 +951,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bd1a4a8e-8596-4bb1-9b40-263ba4d886a0")
-		(property "Reference" "TP97"
+		(property "Reference" "TP3102"
 			(at 116.84 54.2924 0)
 			(effects
 				(font
@@ -1002,7 +1002,7 @@
 		(instances
 			(project ""
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/6814f6cb-3c12-4399-b1d1-2b674ba47631"
-					(reference "TP97")
+					(reference "TP3102")
 					(unit 1)
 				)
 			)
@@ -1018,7 +1018,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ed9e8d71-4d26-4b66-80b9-0c1eb38bfd59")
-		(property "Reference" "TP98"
+		(property "Reference" "TP3101"
 			(at 196.85 46.6724 0)
 			(effects
 				(font
@@ -1069,7 +1069,7 @@
 		(instances
 			(project ""
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/6814f6cb-3c12-4399-b1d1-2b674ba47631"
-					(reference "TP98")
+					(reference "TP3101")
 					(unit 1)
 				)
 			)
@@ -1085,7 +1085,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "fdc1c80a-ac40-453d-beaa-5ec66f6eafc8")
-		(property "Reference" "U34"
+		(property "Reference" "U3101"
 			(at 149.86 53.34 0)
 			(effects
 				(font
@@ -1101,7 +1101,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "PWP14"
 			(at 150.114 113.284 0)
 			(effects
 				(font
@@ -1178,7 +1178,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/6814f6cb-3c12-4399-b1d1-2b674ba47631"
-					(reference "U34")
+					(reference "U3101")
 					(unit 1)
 				)
 			)

@@ -3,11 +3,114 @@
 	(generator "eeschema")
 	(generator_version "9.0")
 	(uuid "1161a04d-a450-4fec-9383-065380dc14dd")
-	(paper "A4")
+	(paper "A5")
+	(title_block
+		(title "Power MUX")
+		(date "2026-03-11")
+		(rev "1")
+		(comment 1 "George Sleen")
+	)
 	(lib_symbols)
+	(junction
+		(at 130.81 43.18)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "24f368f0-61ca-4641-ab45-d813a5075315")
+	)
+	(wire
+		(pts
+			(xy 130.81 43.18) (xy 143.51 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5c0f39cd-5a00-4df5-9cff-b44586bacc91")
+	)
+	(wire
+		(pts
+			(xy 77.47 78.74) (xy 90.17 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6bc3d1e6-0d4c-481d-9fbb-7753d4bc34d3")
+	)
+	(wire
+		(pts
+			(xy 115.57 43.18) (xy 130.81 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "82881c8e-a4b1-45ba-a224-06642d8a9f46")
+	)
+	(wire
+		(pts
+			(xy 115.57 69.85) (xy 130.81 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "9c9dbf3c-ce22-468b-93a4-0044e2e7b943")
+	)
+	(wire
+		(pts
+			(xy 77.47 69.85) (xy 90.17 69.85)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "c4ae7e4f-2930-41cd-9afa-fa3c79637bb6")
+	)
+	(wire
+		(pts
+			(xy 77.47 43.18) (xy 90.17 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "eced2d6c-3c8c-4096-bab2-e552699230ee")
+	)
+	(wire
+		(pts
+			(xy 130.81 69.85) (xy 130.81 43.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fa82bbf0-6def-48c6-be51-5a5da5ab72e6")
+	)
+	(wire
+		(pts
+			(xy 77.47 52.07) (xy 90.17 52.07)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "fc35478c-066e-46db-9c01-c9d11a72cd0c")
+	)
+	(hierarchical_label "GND"
+		(shape input)
+		(at 77.47 78.74 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "2beebe1c-6253-44b0-8654-cc69a8612524")
+	)
 	(hierarchical_label "Vout"
 		(shape output)
-		(at 152.4 101.6 0)
+		(at 143.51 43.18 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -18,7 +121,7 @@
 	)
 	(hierarchical_label "Vin_0"
 		(shape input)
-		(at 120.65 96.52 180)
+		(at 77.47 43.18 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -27,9 +130,20 @@
 		)
 		(uuid "732d8d65-6824-4b54-8271-de57c3d4eb7a")
 	)
+	(hierarchical_label "GND"
+		(shape input)
+		(at 77.47 52.07 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "910350a2-c95c-4787-b185-442c3421d3df")
+	)
 	(hierarchical_label "Vin_1"
 		(shape input)
-		(at 120.65 104.14 180)
+		(at 77.47 69.85 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -37,5 +151,149 @@
 			(justify right)
 		)
 		(uuid "ff28e6aa-f8ba-4de4-b59f-648032cbed1b")
+	)
+	(sheet
+		(at 90.17 38.1)
+		(size 25.4 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 128 143 1.0000)
+		)
+		(uuid "ab70ca3e-ed5c-4f99-a65b-ac0abc0fd6ab")
+		(property "Sheetname" "ideal_diode0"
+			(at 90.17 37.3884 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ideal_diode.kicad_sch"
+			(at 90.17 56.4646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "Anode" input
+			(at 90.17 43.18 180)
+			(uuid "7ca0a522-bf2a-4608-85bc-39ef984b1ab6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Cathode" input
+			(at 115.57 43.18 0)
+			(uuid "7136677a-4d1d-4b3f-8bd7-05e6fe2890c9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "GND" input
+			(at 90.17 52.07 180)
+			(uuid "c95788b5-1920-4cba-81b7-f727b1724906")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/ddd4c64c-15a9-4941-99f5-db47bc249a62"
+					(page "36")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 90.17 64.77)
+		(size 25.4 17.78)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 128 143 1.0000)
+		)
+		(uuid "b92f8092-9ccb-42fc-ae04-008cba6d9635")
+		(property "Sheetname" "ideal_diode1"
+			(at 90.17 64.0584 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "ideal_diode.kicad_sch"
+			(at 90.17 83.1346 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "Anode" input
+			(at 90.17 69.85 180)
+			(uuid "c6ec5f2f-eea1-4f2e-92a5-0d9820da5747")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Cathode" input
+			(at 115.57 69.85 0)
+			(uuid "b3e5c5ad-45a8-41f0-a41f-43a7486ceb7c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(pin "GND" input
+			(at 90.17 78.74 180)
+			(uuid "9d843cee-bd92-4393-879d-b3e841f08cf4")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/ddd4c64c-15a9-4941-99f5-db47bc249a62"
+					(page "37")
+				)
+			)
+		)
 	)
 )

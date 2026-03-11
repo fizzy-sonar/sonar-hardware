@@ -803,6 +803,26 @@
     [
       "ddd4c64c-15a9-4941-99f5-db47bc249a62",
       "power_mux"
+    ],
+    [
+      "3221bd23-5073-46fa-ae01-536305e89f25",
+      "5V_to_12V_boost"
+    ],
+    [
+      "ce209eb9-a1b7-4871-a319-7b08a4d68f6c",
+      "12V_to_10V_LDO"
+    ],
+    [
+      "b540816d-de86-42bd-acdb-d7039b5ee686",
+      "5V_to_-12V_inverting_buck_boost"
+    ],
+    [
+      "ab70ca3e-ed5c-4f99-a65b-ac0abc0fd6ab",
+      "ideal_diode0"
+    ],
+    [
+      "b92f8092-9ccb-42fc-ae04-008cba6d9635",
+      "ideal_diode1"
     ]
   ],
   "text_variables": {}

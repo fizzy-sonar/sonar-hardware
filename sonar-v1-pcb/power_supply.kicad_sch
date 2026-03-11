@@ -1587,6 +1587,26 @@
 		)
 		(uuid "f2a561c7-4064-4c12-a1dd-056cce5beec8")
 	)
+	(text_box "Not actually 12V but figure out the dropout voltage on the LDO"
+		(exclude_from_sim no)
+		(at 182.88 43.18 0)
+		(size 30.48 10.16)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "47f21e93-cb7f-446e-a72c-7126be50b8a3")
+	)
 	(junction
 		(at 716.28 68.58)
 		(diameter 0)
@@ -3143,7 +3163,7 @@
 	)
 	(hierarchical_label "Vin"
 		(shape input)
-		(at 128.27 92.71 180)
+		(at 111.76 88.9 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5254,6 +5274,48 @@
 		)
 	)
 	(sheet
+		(at 139.7 83.82)
+		(size 27.94 7.62)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 128 143 1.0000)
+		)
+		(uuid "3221bd23-5073-46fa-ae01-536305e89f25")
+		(property "Sheetname" "5V_to_12V_boost"
+			(at 139.7 83.1084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "5v_to_12v_boost.kicad_sch"
+			(at 139.7 92.0246 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
+					(page "33")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 502.92 91.44)
 		(size 27.94 26.67)
 		(exclude_from_sim no)
@@ -5331,6 +5393,90 @@
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(page "31")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 139.7 110.49)
+		(size 27.94 8.89)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 128 143 1.0000)
+		)
+		(uuid "b540816d-de86-42bd-acdb-d7039b5ee686")
+		(property "Sheetname" "5V_to_-12V_inverting_buck_boost"
+			(at 139.7 109.7784 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "inverting_buck_boost.kicad_sch"
+			(at 139.7 119.9646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
+					(page "35")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 186.69 58.42)
+		(size 25.4 22.86)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 128 143 1.0000)
+		)
+		(uuid "ce209eb9-a1b7-4871-a319-7b08a4d68f6c")
+		(property "Sheetname" "12V_to_10V_LDO"
+			(at 186.69 57.7084 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "12v_to_10v_ldo.kicad_sch"
+			(at 186.69 81.8646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
+					(page "34")
 				)
 			)
 		)

@@ -5,45 +5,27 @@
 	(uuid "406b504d-c566-4bc6-9c47-df6bc9a4eb1d")
 	(paper "A4")
 	(lib_symbols
-		(symbol "GS_Switching_Regulators:TPS54360DDAR"
+		(symbol "sonar_lib:AP63301WU-7"
 			(exclude_from_sim no)
 			(in_bom yes)
 			(on_board yes)
 			(property "Reference" "U"
-				(at 0 22.86 0)
+				(at 0 13.97 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Value" "TPS54360DDAR"
-				(at 0 20.32 0)
+			(property "Value" "AP63301WU-7"
+				(at 0 11.43 0)
 				(effects
 					(font
 						(size 1.27 1.27)
 					)
 				)
 			)
-			(property "Footprint" "GS_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm"
-				(at 0 33.02 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.lcsc.com/datasheet/C44377.pdf"
-				(at 0 40.64 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "2.5MHz Adjustable Buck Converter, 4.5V-60V Input Voltage, 3.5A Max Current"
+			(property "Footprint" "Sonar:TSOT-23-6"
 				(at 0 30.48 0)
 				(effects
 					(font
@@ -52,8 +34,8 @@
 					(hide yes)
 				)
 			)
-			(property "Manufacturer" "TI"
-				(at 0 25.4 0)
+			(property "Datasheet" "https://www.lcsc.com/datasheet/C2158003.pdf"
+				(at 0 17.78 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -61,8 +43,8 @@
 					(hide yes)
 				)
 			)
-			(property "Mfr. Part #" "TPS54360DDAR"
-				(at 0 38.1 0)
+			(property "Description" "500kHz Adjustable Buck Converter, 3A Max Current, 3.8V-32V Input Voltage"
+				(at 0 20.32 0)
 				(effects
 					(font
 						(size 1.27 1.27)
@@ -70,7 +52,7 @@
 					(hide yes)
 				)
 			)
-			(property "LCSC ID" "C44377"
+			(property "Manufacturer" "DIODES"
 				(at 0 35.56 0)
 				(effects
 					(font
@@ -79,7 +61,34 @@
 					(hide yes)
 				)
 			)
-			(property "Package" "SOIC-8-EP"
+			(property "Mfr. Part #" "AP63301WU-7"
+				(at 0 33.02 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "LCSC ID" "C2158003"
+				(at 0 22.86 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Package" "TSOT-23-6"
+				(at 0 25.4 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Spice Warning Override" "No SPICE model available"
 				(at 0 27.94 0)
 				(effects
 					(font
@@ -97,7 +106,7 @@
 					(hide yes)
 				)
 			)
-			(property "ki_fp_filters" "SOIC-8-*EP*"
+			(property "ki_fp_filters" "TSOT-23-6*"
 				(at 0 0 0)
 				(effects
 					(font
@@ -106,10 +115,10 @@
 					(hide yes)
 				)
 			)
-			(symbol "TPS54360DDAR_0_1"
+			(symbol "AP63301WU-7_0_1"
 				(rectangle
-					(start -11.43 19.05)
-					(end 11.43 -19.05)
+					(start -8.89 10.16)
+					(end 8.89 -10.16)
 					(stroke
 						(width 0)
 						(type default)
@@ -119,29 +128,11 @@
 					)
 				)
 			)
-			(symbol "TPS54360DDAR_1_1"
+			(symbol "AP63301WU-7_1_1"
 				(pin power_in line
-					(at -15.24 3.81 0)
-					(length 3.81)
+					(at -11.43 0 0)
+					(length 2.54)
 					(name "VIN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -15.24 -3.81 0)
-					(length 3.81)
-					(name "EN"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -157,9 +148,27 @@
 					)
 				)
 				(pin input line
-					(at -15.24 -11.43 0)
-					(length 3.81)
-					(name "RT/CLK"
+					(at -11.43 -7.62 0)
+					(length 2.54)
+					(name "EN"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin power_in line
+					(at 0 -12.7 90)
+					(length 2.54)
+					(name "PGND"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -174,53 +183,17 @@
 						)
 					)
 				)
-				(pin power_in line
-					(at -3.81 -22.86 90)
-					(length 3.81)
-					(name "GND"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "7"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_in line
-					(at 3.81 -22.86 90)
-					(length 3.81)
-					(name "EP"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "9"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
 				(pin input line
-					(at 15.24 11.43 180)
-					(length 3.81)
-					(name "BOOT"
+					(at 11.43 7.62 180)
+					(length 2.54)
+					(name "BST"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "1"
+					(number "6"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -229,27 +202,9 @@
 					)
 				)
 				(pin power_out line
-					(at 15.24 3.81 180)
-					(length 3.81)
+					(at 11.43 0 180)
+					(length 2.54)
 					(name "SW"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "8"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 15.24 -3.81 180)
-					(length 3.81)
-					(name "FB"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -265,16 +220,16 @@
 					)
 				)
 				(pin input line
-					(at 15.24 -11.43 180)
-					(length 3.81)
-					(name "COMP"
+					(at 11.43 -7.62 180)
+					(length 2.54)
+					(name "FB"
 						(effects
 							(font
 								(size 1.27 1.27)
 							)
 						)
 					)
-					(number "6"
+					(number "1"
 						(effects
 							(font
 								(size 1.27 1.27)
@@ -286,53 +241,34 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "Tie together GND and EP"
-		(exclude_from_sim no)
-		(at 148.844 131.064 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "b7a0014d-3dd7-4ed3-8850-3bd974826cc5")
-	)
 	(symbol
-		(lib_id "GS_Switching_Regulators:TPS54360DDAR")
-		(at 147.32 99.06 0)
+		(lib_id "sonar_lib:AP63301WU-7")
+		(at 148.59 93.98 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
 		(fields_autoplaced yes)
-		(uuid "cfe34dad-5ea2-43ff-8e2e-75d937a84e51")
+		(uuid "f739410c-f877-4df6-820d-0ec7f085ddb9")
 		(property "Reference" "U4"
-			(at 147.32 74.93 0)
+			(at 148.59 78.74 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Value" "TPS54360DDAR"
-			(at 147.32 77.47 0)
+		(property "Value" "AP63301WU-7"
+			(at 148.59 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 			)
 		)
-		(property "Footprint" "GS_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.29x3mm"
-			(at 147.32 66.04 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/C44377.pdf"
-			(at 147.32 58.42 0)
+		(property "Footprint" "Sonar:TSOT-23-6"
+			(at 148.59 63.5 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -340,8 +276,8 @@
 				(hide yes)
 			)
 		)
-		(property "Description" "2.5MHz Adjustable Buck Converter, 4.5V-60V Input Voltage, 3.5A Max Current"
-			(at 147.32 68.58 0)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C2158003.pdf"
+			(at 148.59 76.2 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -349,8 +285,8 @@
 				(hide yes)
 			)
 		)
-		(property "Manufacturer" "TI"
-			(at 147.32 73.66 0)
+		(property "Description" "500kHz Adjustable Buck Converter, 3A Max Current, 3.8V-32V Input Voltage"
+			(at 148.59 73.66 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -358,8 +294,8 @@
 				(hide yes)
 			)
 		)
-		(property "Mfr. Part #" "TPS54360DDAR"
-			(at 147.32 60.96 0)
+		(property "Manufacturer" "DIODES"
+			(at 148.59 58.42 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -367,8 +303,8 @@
 				(hide yes)
 			)
 		)
-		(property "LCSC ID" "C44377"
-			(at 147.32 63.5 0)
+		(property "Mfr. Part #" "AP63301WU-7"
+			(at 148.59 60.96 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -376,8 +312,8 @@
 				(hide yes)
 			)
 		)
-		(property "Package" "SOIC-8-EP"
-			(at 147.32 71.12 0)
+		(property "LCSC ID" "C2158003"
+			(at 148.59 71.12 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -385,32 +321,41 @@
 				(hide yes)
 			)
 		)
-		(pin "5"
-			(uuid "a04f75c4-b6ac-43b0-9c02-b74e9e2e6185")
+		(property "Package" "TSOT-23-6"
+			(at 148.59 68.58 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Spice Warning Override" "No SPICE model available"
+			(at 148.59 66.04 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
 		)
 		(pin "4"
-			(uuid "6bed9761-f315-4e89-a013-686b1a3c2396")
-		)
-		(pin "7"
-			(uuid "fc67b925-3df9-40f6-ab66-8d5c915d2074")
-		)
-		(pin "9"
-			(uuid "0d4f9c34-e700-4096-9fbd-70addfbe3bea")
-		)
-		(pin "3"
-			(uuid "ad0235b3-52dc-41b7-95d0-2da6c002ece6")
-		)
-		(pin "8"
-			(uuid "97b40972-50e4-4ee0-95aa-bccebc0f545a")
-		)
-		(pin "1"
-			(uuid "16616686-b2c9-4c77-ad68-6f0800e4d0aa")
+			(uuid "3a7b5d2b-7884-4d04-b99f-21e2716089b9")
 		)
 		(pin "2"
-			(uuid "d788ad55-ba97-4d64-a468-1054e3407382")
+			(uuid "0a5df5d7-bf4d-49f2-8d08-f5ba72c770ab")
+		)
+		(pin "1"
+			(uuid "c246f90a-58fd-4269-a433-597ce587c7d3")
+		)
+		(pin "5"
+			(uuid "a0a9bf5d-3719-4465-b748-ec5a5130f658")
 		)
 		(pin "6"
-			(uuid "5330e782-91dd-478b-aa17-b46130b74961")
+			(uuid "b351037d-795e-4cfd-ae92-29c967a44123")
+		)
+		(pin "3"
+			(uuid "e6aac8c1-fa23-4901-a71b-0cc88d7f7b7b")
 		)
 		(instances
 			(project ""

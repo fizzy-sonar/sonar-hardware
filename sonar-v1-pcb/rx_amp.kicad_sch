@@ -2652,7 +2652,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint_Probe"
+		(property "Value" "MIC_SIGNAL"
 			(at 113.284 108.204 0)
 			(effects
 				(font
@@ -2963,7 +2963,7 @@
 		(dnp no)
 		(uuid "3eda3297-f3fe-4452-b71e-1f67237b67a7")
 		(property "Reference" "R305"
-			(at 143.002 92.71 0)
+			(at 141.224 92.456 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -3951,7 +3951,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint_Probe"
+		(property "Value" "PRE_AMP_OUT"
 			(at 163.576 70.358 0)
 			(effects
 				(font
@@ -4101,7 +4101,7 @@
 		(dnp no)
 		(uuid "d49e2374-1b95-4a84-a6f8-bf2fb08b79ee")
 		(property "Reference" "C301"
-			(at 130.048 81.28 0)
+			(at 127.254 81.28 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4860,7 +4860,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "TestPoint_Probe"
+		(property "Value" "AMP_TO_ADC"
 			(at 222.25 70.8024 0)
 			(effects
 				(font

@@ -5398,8 +5398,8 @@
 		)
 	)
 	(sheet
-		(at 139.7 110.49)
-		(size 27.94 8.89)
+		(at 135.89 111.76)
+		(size 34.29 24.13)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -5413,8 +5413,8 @@
 			(color 255 128 143 1.0000)
 		)
 		(uuid "b540816d-de86-42bd-acdb-d7039b5ee686")
-		(property "Sheetname" "5V_to_-12V_inverting_buck_boost"
-			(at 139.7 109.7784 0)
+		(property "Sheetname" "Vin to -12V Inverting Buck Boost"
+			(at 135.89 111.0484 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5423,7 +5423,7 @@
 			)
 		)
 		(property "Sheetfile" "inverting_buck_boost.kicad_sch"
-			(at 139.7 119.9646 0)
+			(at 135.89 136.4746 0)
 			(effects
 				(font
 					(size 1.27 1.27)

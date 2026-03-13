@@ -1688,16 +1688,6 @@
 		)
 		(uuid "98adfaa7-1ea9-48df-92bb-3beeb1377ada")
 	)
-	(text "Add test points????"
-		(exclude_from_sim no)
-		(at 91.186 113.03 0)
-		(effects
-			(font
-				(size 2.032 2.032)
-			)
-		)
-		(uuid "99bee068-3a1c-4771-b2ac-b1d42c2dd97a")
-	)
 	(text "208mA max draw on \n+2.5V and -2.5V rails"
 		(exclude_from_sim no)
 		(at 72.898 55.626 0)
@@ -2442,7 +2432,7 @@
 	)
 	(wire
 		(pts
-			(xy 266.7 147.32) (xy 266.7 144.78)
+			(xy 266.7 154.94) (xy 266.7 157.48)
 		)
 		(stroke
 			(width 0)
@@ -2892,6 +2882,16 @@
 	)
 	(wire
 		(pts
+			(xy 247.65 129.54) (xy 247.65 132.08)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5a743b13-088c-4120-9212-0fa1a67b5da4")
+	)
+	(wire
+		(pts
 			(xy 135.89 34.29) (xy 138.43 34.29)
 		)
 		(stroke
@@ -3042,16 +3042,6 @@
 	)
 	(wire
 		(pts
-			(xy 247.65 120.65) (xy 247.65 123.19)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "6aae1dae-a1a8-4282-ac24-debaa9ea095b")
-	)
-	(wire
-		(pts
 			(xy 124.46 118.11) (xy 128.27 118.11)
 		)
 		(stroke
@@ -3192,16 +3182,6 @@
 	)
 	(wire
 		(pts
-			(xy 247.65 133.35) (xy 247.65 130.81)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7a2c677e-6f5b-4bfb-9b41-fb522bb482ad")
-	)
-	(wire
-		(pts
 			(xy 194.31 62.23) (xy 222.25 62.23)
 		)
 		(stroke
@@ -3209,6 +3189,16 @@
 			(type default)
 		)
 		(uuid "7af53eb1-9156-4be1-b377-034592807e66")
+	)
+	(wire
+		(pts
+			(xy 247.65 120.65) (xy 247.65 121.92)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "806de9f6-1cad-4559-8bda-9c1a427d4c57")
 	)
 	(bus
 		(pts
@@ -4412,7 +4402,7 @@
 	)
 	(wire
 		(pts
-			(xy 266.7 158.75) (xy 266.7 154.94)
+			(xy 266.7 146.05) (xy 266.7 147.32)
 		)
 		(stroke
 			(width 0)
@@ -4561,7 +4551,7 @@
 		(uuid "24b542b2-88b2-443b-9a37-72df6c44494d")
 	)
 	(label "standby"
-		(at 266.7 158.75 0)
+		(at 266.7 146.05 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4791,7 +4781,7 @@
 		(uuid "bfad219a-2311-4709-a4e2-ba7bf25b8360")
 	)
 	(label "range_select"
-		(at 247.65 133.35 0)
+		(at 247.65 120.65 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5177,7 +5167,7 @@
 	)
 	(hierarchical_label "3.3V"
 		(shape input)
-		(at 266.7 144.78 0)
+		(at 266.7 157.48 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -5364,7 +5354,7 @@
 	)
 	(hierarchical_label "3.3V"
 		(shape input)
-		(at 247.65 120.65 0)
+		(at 247.65 132.08 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -6045,15 +6035,16 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
-		(at 266.7 151.13 180)
+		(at 266.7 151.13 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
 		(dnp no)
+		(fields_autoplaced yes)
 		(uuid "35cc8f28-1fea-4fdd-96f7-d6510854f4d5")
 		(property "Reference" "R205"
-			(at 273.05 149.606 0)
+			(at 269.24 149.8599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6062,7 +6053,7 @@
 			)
 		)
 		(property "Value" "100k"
-			(at 273.05 152.908 0)
+			(at 269.24 152.3999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6071,7 +6062,7 @@
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 265.684 150.876 90)
+			(at 267.716 151.384 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6122,7 +6113,7 @@
 	)
 	(symbol
 		(lib_id "Device:R_US")
-		(at 247.65 127 180)
+		(at 247.65 125.73 0)
 		(unit 1)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6131,25 +6122,25 @@
 		(fields_autoplaced yes)
 		(uuid "3976d813-776f-4388-9f97-e477b70f6e26")
 		(property "Reference" "R202"
-			(at 250.19 125.7299 0)
+			(at 250.19 124.4599 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(property "Value" "100k"
-			(at 250.19 128.2699 0)
+			(at 250.19 126.9999 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify right)
+				(justify left)
 			)
 		)
 		(property "Footprint" "Resistor_SMD:R_0402_1005Metric"
-			(at 246.634 126.746 90)
+			(at 248.666 125.984 90)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6158,7 +6149,7 @@
 			)
 		)
 		(property "Datasheet" "~"
-			(at 247.65 127 0)
+			(at 247.65 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6167,7 +6158,7 @@
 			)
 		)
 		(property "Description" "Resistor, US symbol"
-			(at 247.65 127 0)
+			(at 247.65 125.73 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -7445,7 +7436,7 @@
 			(type solid)
 		)
 		(fill
-			(color 194 194 194 1.0000)
+			(color 0 0 0 0.0000)
 		)
 		(uuid "1e9737bb-54d3-46c6-89c7-bafd5d01cb9f")
 		(property "Sheetname" "rx_amp_7"
@@ -7543,7 +7534,7 @@
 			(type solid)
 		)
 		(fill
-			(color 194 194 194 1.0000)
+			(color 0 0 0 0.0000)
 		)
 		(uuid "4b88e5a9-a1a4-4236-ac8a-a515268f9e7e")
 		(property "Sheetname" "rx_amp_2"
@@ -7641,7 +7632,7 @@
 			(type solid)
 		)
 		(fill
-			(color 194 194 194 1.0000)
+			(color 0 0 0 0.0000)
 		)
 		(uuid "4baae0c7-5504-4fa5-b170-826798e08abe")
 		(property "Sheetname" "rx_amp_1"
@@ -7739,7 +7730,7 @@
 			(type solid)
 		)
 		(fill
-			(color 194 194 194 1.0000)
+			(color 0 0 0 0.0000)
 		)
 		(uuid "5fa345fd-8f82-4102-b4da-88393397ee2f")
 		(property "Sheetname" "rx_amp_5"
@@ -7837,7 +7828,7 @@
 			(type solid)
 		)
 		(fill
-			(color 194 194 194 1.0000)
+			(color 0 0 0 0.0000)
 		)
 		(uuid "92589eb0-14ab-438f-abf4-d7e391dbea95")
 		(property "Sheetname" "rx_amp_0"
@@ -7935,7 +7926,7 @@
 			(type solid)
 		)
 		(fill
-			(color 194 194 194 1.0000)
+			(color 0 0 0 0.0000)
 		)
 		(uuid "a69a1e19-7333-49c9-8cfe-abe95e31b9e6")
 		(property "Sheetname" "rx_amp_4"
@@ -8033,7 +8024,7 @@
 			(type solid)
 		)
 		(fill
-			(color 194 194 194 1.0000)
+			(color 0 0 0 0.0000)
 		)
 		(uuid "da58af52-59a2-42c6-b6e7-fabe3f18277b")
 		(property "Sheetname" "rx_amp_3"
@@ -8131,7 +8122,7 @@
 			(type solid)
 		)
 		(fill
-			(color 194 194 194 1.0000)
+			(color 0 0 0 0.0000)
 		)
 		(uuid "ef24f3d1-799c-40c0-a32b-fd2185333268")
 		(property "Sheetname" "rx_amp_6"

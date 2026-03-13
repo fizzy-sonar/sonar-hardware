@@ -14288,7 +14288,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Sonar:CONN80_DF40C-80DS_HIR"
+		(property "Footprint" "CONN80_DF40C-80DS_HIR"
 			(at 341.884 5.588 0)
 			(effects
 				(font
@@ -15094,7 +15094,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" "Sonar:CONN80_DF40C-80DS_HIR"
+		(property "Footprint" "CONN80_DF40C-80DS_HIR"
 			(at 341.884 114.808 0)
 			(effects
 				(font
@@ -16353,7 +16353,7 @@
 			(type solid)
 		)
 		(fill
-			(color 194 194 194 1.0000)
+			(color 0 0 0 0.0000)
 		)
 		(uuid "293969c4-9575-41aa-bb6a-e94ffb52e407")
 		(property "Sheetname" "eight_transducer_array2"
@@ -16637,7 +16637,7 @@
 			(type solid)
 		)
 		(fill
-			(color 194 194 194 1.0000)
+			(color 0 0 0 0.0000)
 		)
 		(uuid "d3b8d639-c387-46bd-9010-317ff5495a13")
 		(property "Sheetname" "eight_transducer_array1"
@@ -16839,7 +16839,7 @@
 			(type solid)
 		)
 		(fill
-			(color 194 194 194 1.0000)
+			(color 0 0 0 0.0000)
 		)
 		(uuid "d78844ef-eb5d-4b24-a5c3-8824db20c2bc")
 		(property "Sheetname" "eight_transducer_array"

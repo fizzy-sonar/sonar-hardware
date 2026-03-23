@@ -186,6 +186,126 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "Connector:TestPoint_Probe"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.762)
+				(hide yes)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(property "Reference" "TP"
+				(at 1.651 5.842 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Value" "TestPoint_Probe"
+				(at 1.651 4.064 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Footprint" ""
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Datasheet" "~"
+				(at 5.08 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "Description" "test point (alternative probe-style design)"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_keywords" "test point tp"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(property "ki_fp_filters" "Pin* Test*"
+				(at 0 0 0)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(hide yes)
+				)
+			)
+			(symbol "TestPoint_Probe_0_1"
+				(polyline
+					(pts
+						(xy 1.27 0.762) (xy 0 0) (xy 0.762 1.27) (xy 1.27 0.762)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type outline)
+					)
+				)
+				(polyline
+					(pts
+						(xy 1.397 0.635) (xy 0.635 1.397) (xy 2.413 3.175) (xy 3.175 2.413) (xy 1.397 0.635)
+					)
+					(stroke
+						(width 0)
+						(type default)
+					)
+					(fill
+						(type background)
+					)
+				)
+			)
+			(symbol "TestPoint_Probe_1_1"
+				(pin passive line
+					(at 0 0 90)
+					(length 0)
+					(name "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "sonar_lib:C_0603_100nF"
 			(pin_numbers
 				(hide yes)
@@ -2607,6 +2727,12 @@
 		(uuid "97c587b5-a25d-416d-95b0-2cef269ec8be")
 	)
 	(junction
+		(at 120.65 86.36)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "0c7d9e4a-e59b-49f3-af9c-d3bb478f865d")
+	)
+	(junction
 		(at 128.27 86.36)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2678,6 +2804,16 @@
 	)
 	(wire
 		(pts
+			(xy 120.65 86.36) (xy 114.3 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0df73af0-0bcb-4ea9-a861-34ae35e272e1")
+	)
+	(wire
+		(pts
 			(xy 163.83 109.22) (xy 166.37 109.22)
 		)
 		(stroke
@@ -2698,7 +2834,7 @@
 	)
 	(wire
 		(pts
-			(xy 128.27 86.36) (xy 114.3 86.36)
+			(xy 128.27 86.36) (xy 120.65 86.36)
 		)
 		(stroke
 			(width 0)
@@ -7725,7 +7861,7 @@
 			(uuid "a7991399-5881-4810-82bf-28b7fa11f3ec")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "L3501")
 					(unit 1)
@@ -7831,7 +7967,7 @@
 			(uuid "84e281d0-8e6c-477a-a49d-47c2029b4093")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "C3505")
 					(unit 1)
@@ -7937,7 +8073,7 @@
 			(uuid "60f559f2-1f47-4e64-8338-d8504585e11b")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "C3502")
 					(unit 1)
@@ -8044,7 +8180,7 @@
 			(uuid "994ef902-18c2-445d-9041-c86c378bce5f")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "C3506")
 					(unit 1)
@@ -8150,7 +8286,7 @@
 			(uuid "990ab124-bb27-41bd-83dc-f099792163a5")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "R3501")
 					(unit 1)
@@ -8253,7 +8389,7 @@
 			(uuid "d8f43a77-1228-4cd9-827c-1a5b1955caa1")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "D3501")
 					(unit 1)
@@ -8359,7 +8495,7 @@
 			(uuid "d0058e2c-811f-45b0-93e2-3e423c90d40b")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "C3501")
 					(unit 1)
@@ -8377,7 +8513,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "66d95657-04ab-4de8-9c7f-4ef2b6de7f6d")
-		(property "Reference" "U?"
+		(property "Reference" "U3501"
 			(at 146.05 74.93 0)
 			(effects
 				(font
@@ -8507,7 +8643,7 @@
 			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "U?")
+					(reference "U3501")
 					(unit 1)
 				)
 			)
@@ -8609,9 +8745,73 @@
 			(uuid "ed7dcffd-581b-434d-b682-8b6601672bc2")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "R3503")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 120.65 86.36 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "ac52ea00-fbca-4b82-b603-c7c443b12da3")
+		(property "Reference" "TP3501"
+			(at 121.92 78.74 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "-12V_EN"
+			(at 121.92 81.28 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 125.73 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 125.73 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 120.65 86.36 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "9b6f6014-b038-4ca8-900b-49771d8e3bdd")
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
+					(reference "TP3501")
 					(unit 1)
 				)
 			)
@@ -8715,7 +8915,7 @@
 			(uuid "3011d5a7-2cdc-44fc-a460-905b6abb95dc")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "R3504")
 					(unit 1)
@@ -8801,7 +9001,7 @@
 			(uuid "2594756a-92e9-48cc-a1b0-541d269ebf38")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "NT3501")
 					(unit 1)
@@ -8907,7 +9107,7 @@
 			(uuid "29c97f5b-ce07-46ba-9f74-487e8c0c823e")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "C3504")
 					(unit 1)
@@ -9013,7 +9213,7 @@
 			(uuid "9b4fecb7-0b2a-46df-a7b7-64c23dd0f6eb")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
 					(reference "C3503")
 					(unit 1)

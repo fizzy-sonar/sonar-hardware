@@ -1000,7 +1000,7 @@
 			(uuid "92f19227-729f-4968-85b3-5ac04fce35b1")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/6814f6cb-3c12-4399-b1d1-2b674ba47631"
 					(reference "TP3102")
 					(unit 1)
@@ -1067,7 +1067,7 @@
 			(uuid "28f23b43-9420-4c21-bd4e-86732fb29aec")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/6814f6cb-3c12-4399-b1d1-2b674ba47631"
 					(reference "TP3101")
 					(unit 1)

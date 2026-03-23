@@ -4,6 +4,11 @@
 	(generator_version "9.0")
 	(uuid "83cea4b3-7de7-4a48-b2c3-b1b06e548788")
 	(paper "A3")
+	(title_block
+		(title "Power")
+		(rev "1")
+		(comment 1 "George Sleen")
+	)
 	(lib_symbols
 		(symbol "Connector:TestPoint_Probe"
 			(pin_numbers
@@ -1466,197 +1471,6 @@
 			)
 			(embedded_fonts no)
 		)
-		(symbol "sonar_lib:LM337IMPX-TP"
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(property "Reference" "U"
-				(at 0 -10.16 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Value" "LM337IMPX-TP"
-				(at 0 -7.62 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Footprint" "Sonar:SOT-223"
-				(at 0 30.48 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Datasheet" "https://www.lcsc.com/datasheet/C41348207.pdf"
-				(at 0 15.24 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Description" "Adjustable Negative LDO, -1.2V - -37V Output Voltage, 1.5A Max Current"
-				(at 0 12.7 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Manufacturer" "TECH PUBLIC"
-				(at 0 17.78 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "MPN" "LM337IMPX-TP"
-				(at 0 20.32 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "LCSC ID" "C41348207"
-				(at 0 22.86 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "Package" "SOT-223-3"
-				(at 0 25.4 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "SPICE Warning Override" "No SPICE model available"
-				(at 0 27.94 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(property "ki_fp_filters" "*SOT-223*"
-				(at 0 0 0)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(hide yes)
-				)
-			)
-			(symbol "LM337IMPX-TP_0_1"
-				(rectangle
-					(start -6.35 5.08)
-					(end 6.35 -5.08)
-					(stroke
-						(width 0)
-						(type default)
-					)
-					(fill
-						(type background)
-					)
-				)
-			)
-			(symbol "LM337IMPX-TP_1_1"
-				(pin power_in line
-					(at -8.89 -2.54 0)
-					(length 2.54)
-					(name "VIN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at -8.89 -2.54 0)
-					(length 2.54)
-					(hide yes)
-					(name "VIN"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "4"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin input line
-					(at 0 7.62 270)
-					(length 2.54)
-					(name "ADJ"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin power_out line
-					(at 8.89 -2.54 180)
-					(length 2.54)
-					(name "VOUT"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "3"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "sonar_lib:R_0603_1.47M"
 			(pin_numbers
 				(hide yes)
@@ -1917,16 +1731,6 @@
 		)
 		(uuid "53e7ef9a-5815-4b80-acf8-66f30204c667")
 	)
-	(text "??? inverting buck boost"
-		(exclude_from_sim no)
-		(at 546.354 187.452 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "6b6c1756-63ff-4773-bb95-9bdb72713c2b")
-	)
 	(text "TPS7A20 looks sick as fuck for an LDO"
 		(exclude_from_sim no)
 		(at 623.57 163.576 0)
@@ -1964,6 +1768,7 @@
 			(font
 				(size 1.27 1.27)
 			)
+			(href "https://www.ti.com/lit/an/sbva042/sbva042.pdf?ts=1773012729035")
 		)
 		(uuid "a9038cb4-245f-48bb-8dd6-b9a9a20f1865")
 	)
@@ -1987,29 +1792,9 @@
 		)
 		(uuid "f2a561c7-4064-4c12-a1dd-056cce5beec8")
 	)
-	(text_box "Not actually 12V but figure out the dropout voltage on the LDO"
-		(exclude_from_sim no)
-		(at 182.88 43.18 0)
-		(size 30.48 10.16)
-		(margins 0.9525 0.9525 0.9525 0.9525)
-		(stroke
-			(width 0)
-			(type solid)
-		)
-		(fill
-			(type none)
-		)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left top)
-		)
-		(uuid "47f21e93-cb7f-446e-a72c-7126be50b8a3")
-	)
 	(text_box "R = 150k * ((1.213V - (-12V)) / (1.213V) - 1)\nR = 1.48M\nClosest match is 1.47M"
 		(exclude_from_sim no)
-		(at 165.1 199.39 0)
+		(at 152.4 201.93 0)
 		(size 52.07 7.62)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
@@ -2026,6 +1811,26 @@
 			(justify left top)
 		)
 		(uuid "7f630e2f-bf2e-46f3-9a36-909b05f3a208")
+	)
+	(text_box "Required Rails:\n\n10V: ADC HVDD\n5V: Op Amps + ADC AVDD\n3.3V: ADC DVDD\n2.75V: Microphones\n1.25V: ADC VREF\nGND\n-10V: ADC HVSS\n\nVin:\nUSB-C? (Ideally)\nBench power supply otherwise\n5V\n\nPer rail current estimate:\n"
+		(exclude_from_sim no)
+		(at 15.24 15.24 0)
+		(size 53.34 34.29)
+		(margins 0.9525 0.9525 0.9525 0.9525)
+		(stroke
+			(width 0)
+			(type solid)
+		)
+		(fill
+			(type none)
+		)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "fc3869ce-c2bb-4827-84b5-056bbde69dc0")
 	)
 	(junction
 		(at 716.28 68.58)
@@ -2853,16 +2658,6 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 176.53) (xy 195.58 176.53)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "7b41359e-4f80-4354-99e8-f99c0d690a11")
-	)
-	(wire
-		(pts
 			(xy 568.96 91.44) (xy 580.39 91.44)
 		)
 		(stroke
@@ -3163,6 +2958,16 @@
 	)
 	(wire
 		(pts
+			(xy 194.31 177.8) (xy 220.98 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a92fa6f6-abca-4af8-9951-92d980aee2eb")
+	)
+	(wire
+		(pts
 			(xy 661.67 52.07) (xy 671.83 52.07)
 		)
 		(stroke
@@ -3233,7 +3038,7 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 182.88) (xy 186.69 182.88)
+			(xy 194.31 184.15) (xy 207.01 184.15)
 		)
 		(stroke
 			(width 0)
@@ -3323,6 +3128,16 @@
 	)
 	(wire
 		(pts
+			(xy 260.35 177.8) (xy 254 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "ce29a4f2-f720-4cfb-8505-e89f0d773e32")
+	)
+	(wire
+		(pts
 			(xy 556.26 106.68) (xy 556.26 116.84)
 		)
 		(stroke
@@ -3403,7 +3218,7 @@
 	)
 	(wire
 		(pts
-			(xy 173.99 190.5) (xy 186.69 190.5)
+			(xy 194.31 191.77) (xy 207.01 191.77)
 		)
 		(stroke
 			(width 0)
@@ -3551,6 +3366,16 @@
 		)
 		(uuid "14f8edca-e467-430b-8915-859dda442a7a")
 	)
+	(label "-10V"
+		(at 260.35 177.8 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "1f979940-a286-4de0-b1a1-8809bf41fb7f")
+	)
 	(label "GND"
 		(at 684.53 64.77 270)
 		(effects
@@ -3591,6 +3416,16 @@
 		)
 		(uuid "4c82487a-5de3-445b-9808-41fc9697d710")
 	)
+	(label "-12V"
+		(at 200.66 177.8 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right bottom)
+		)
+		(uuid "87fee2b3-461f-419f-8773-934b1c24884b")
+	)
 	(label "GND"
 		(at 624.84 81.28 180)
 		(effects
@@ -3600,6 +3435,16 @@
 			(justify right bottom)
 		)
 		(uuid "8a2aed13-4b31-4b68-9ff9-69034f410a20")
+	)
+	(label "-12V"
+		(at 214.63 177.8 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left bottom)
+		)
+		(uuid "d5c0d22f-d16b-4fde-ae1f-5208e4f84f17")
 	)
 	(label "GND"
 		(at 736.6 185.42 270)
@@ -4061,7 +3906,7 @@
 			(uuid "24604b85-defd-442e-9c73-d4e464e376be")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(reference "C2903")
 					(unit 1)
@@ -4199,7 +4044,7 @@
 			(uuid "fcf35e6b-977f-427b-9122-f73b63fa9e11")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(reference "L2901")
 					(unit 1)
@@ -4483,125 +4328,6 @@
 		)
 	)
 	(symbol
-		(lib_id "sonar_lib:LM337IMPX-TP")
-		(at 204.47 173.99 0)
-		(unit 1)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(uuid "8041dc48-fefa-4cbd-8e97-ced3c6afb582")
-		(property "Reference" "U2906"
-			(at 204.47 181.61 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Value" "LM337IMPX-TP"
-			(at 204.47 184.15 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-			)
-		)
-		(property "Footprint" "Sonar:SOT-223"
-			(at 204.47 143.51 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Datasheet" "https://www.lcsc.com/datasheet/C41348207.pdf"
-			(at 204.47 158.75 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Description" "Adjustable Negative LDO, -1.2V - -37V Output Voltage, 1.5A Max Current"
-			(at 204.47 161.29 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Manufacturer" "TECH PUBLIC"
-			(at 204.47 156.21 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "MPN" "LM337IMPX-TP"
-			(at 204.47 153.67 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "LCSC ID" "C41348207"
-			(at 204.47 151.13 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "Package" "SOT-223-3"
-			(at 204.47 148.59 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(property "SPICE Warning Override" "No SPICE model available"
-			(at 204.47 146.05 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(hide yes)
-			)
-		)
-		(pin "4"
-			(uuid "e0dc981d-de27-4215-a7a1-864c551fb9e3")
-		)
-		(pin "1"
-			(uuid "dd07286e-4643-4a84-a9b0-6609252f691c")
-		)
-		(pin "3"
-			(uuid "e13044b8-fe3e-4440-872d-699efbaae982")
-		)
-		(pin "2"
-			(uuid "c157a7db-fd77-4e0a-a6b9-b1326b7f2afd")
-		)
-		(instances
-			(project ""
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
-					(reference "U2906")
-					(unit 1)
-				)
-			)
-		)
-	)
-	(symbol
 		(lib_id "Device:C")
 		(at 580.39 97.79 0)
 		(unit 1)
@@ -4742,7 +4468,7 @@
 	)
 	(symbol
 		(lib_id "sonar_lib:R_0603_1.47M")
-		(at 186.69 186.69 0)
+		(at 207.01 187.96 0)
 		(mirror y)
 		(unit 1)
 		(exclude_from_sim no)
@@ -4751,7 +4477,7 @@
 		(dnp no)
 		(uuid "8aa7b38e-81e7-4f39-bb6d-0b2eaa289aa5")
 		(property "Reference" "R2901"
-			(at 184.15 185.4199 0)
+			(at 204.47 186.6899 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4760,7 +4486,7 @@
 			)
 		)
 		(property "Value" "1.47M"
-			(at 184.15 187.9599 0)
+			(at 204.47 189.2299 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4769,7 +4495,7 @@
 			)
 		)
 		(property "Footprint" "Sonar:R_0603_1608Metric"
-			(at 186.69 164.592 0)
+			(at 207.01 165.862 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4778,7 +4504,7 @@
 			)
 		)
 		(property "Datasheet" "https://www.lcsc.com/datasheet/C166897.pdf"
-			(at 186.69 167.132 0)
+			(at 207.01 168.402 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4787,7 +4513,7 @@
 			)
 		)
 		(property "Description" "1.47M 1% Resistor, 100mW Max Power, 75V Max Voltage, 100ppm"
-			(at 186.436 159.766 0)
+			(at 206.756 161.036 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4796,7 +4522,7 @@
 			)
 		)
 		(property "Manufacturer" "RALEC"
-			(at 186.69 153.924 0)
+			(at 207.01 155.194 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4805,7 +4531,7 @@
 			)
 		)
 		(property "MPN" "RTT031474FTP"
-			(at 186.69 162.052 0)
+			(at 207.01 163.322 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4814,7 +4540,7 @@
 			)
 		)
 		(property "LCSC ID" "C166897"
-			(at 186.69 157.734 0)
+			(at 207.01 159.004 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4823,7 +4549,7 @@
 			)
 		)
 		(property "Package" "0603"
-			(at 186.69 155.702 0)
+			(at 207.01 156.972 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -4838,7 +4564,7 @@
 			(uuid "043ee5b2-6e74-4e1a-af8a-93585e1a0c9e")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(reference "R2901")
 					(unit 1)
@@ -4985,7 +4711,7 @@
 			(uuid "ecb0abcf-feab-4461-b1e7-569c3e0263d6")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(reference "U2902")
 					(unit 1)
@@ -5076,7 +4802,7 @@
 			(uuid "9fef6009-f238-425b-899d-73a17dc518d4")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(reference "U2903")
 					(unit 1)
@@ -5215,7 +4941,7 @@
 			(uuid "c32aa78e-61f6-4bb2-8e37-2a4bad386b2c")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(reference "SW2901")
 					(unit 1)
@@ -5562,7 +5288,7 @@
 			(uuid "f95bc65c-335b-4fca-b292-d199949332b0")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(reference "FB2901")
 					(unit 1)
@@ -5632,7 +5358,7 @@
 			(uuid "c9a19417-19df-438c-9b6a-d55c832dbbca")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(reference "C2913")
 					(unit 1)
@@ -5870,7 +5596,7 @@
 			(uuid "5517e5fa-f8ac-427c-8d02-56a7bed6b615")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(reference "U2905")
 					(unit 1)
@@ -5940,7 +5666,7 @@
 			(uuid "7eccec9b-130a-4ec1-b54d-c3ca666c6f7a")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(reference "C2908")
 					(unit 1)
@@ -5949,8 +5675,8 @@
 		)
 	)
 	(sheet
-		(at 139.7 83.82)
-		(size 27.94 7.62)
+		(at 161.29 71.12)
+		(size 30.48 22.86)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -5964,8 +5690,8 @@
 			(color 255 128 143 1.0000)
 		)
 		(uuid "3221bd23-5073-46fa-ae01-536305e89f25")
-		(property "Sheetname" "5V_to_12V_boost"
-			(at 139.7 83.1084 0)
+		(property "Sheetname" "Vin to 12V Boost"
+			(at 161.29 70.4084 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5974,7 +5700,7 @@
 			)
 		)
 		(property "Sheetfile" "5v_to_12v_boost.kicad_sch"
-			(at 139.7 92.0246 0)
+			(at 161.29 94.5646 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6073,7 +5799,79 @@
 		)
 	)
 	(sheet
-		(at 139.7 170.18)
+		(at 220.98 171.45)
+		(size 33.02 24.13)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 255 128 143 1.0000)
+		)
+		(uuid "9158f2d6-597a-4405-857f-4829a945af57")
+		(property "Sheetname" "-10V Negative LDO"
+			(at 220.98 170.7384 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "-10v_negative_ldo.kicad_sch"
+			(at 220.98 196.1646 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(pin "GND" input
+			(at 220.98 191.77 180)
+			(uuid "b497f409-17bf-4cb2-8490-0525bf85812e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Vin" input
+			(at 220.98 177.8 180)
+			(uuid "0e33ea3a-f0c1-4c88-8fbf-f3f22d2ac228")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Vout" output
+			(at 254 177.8 0)
+			(uuid "77d756c4-fa78-4fb0-8a3a-f727d866ad08")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
+					(page "38")
+				)
+			)
+		)
+	)
+	(sheet
+		(at 160.02 171.45)
 		(size 34.29 24.13)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6089,7 +5887,7 @@
 		)
 		(uuid "b540816d-de86-42bd-acdb-d7039b5ee686")
 		(property "Sheetname" "Vin to -12V Inverting Buck Boost"
-			(at 139.7 169.4684 0)
+			(at 160.02 170.7384 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6098,7 +5896,7 @@
 			)
 		)
 		(property "Sheetfile" "inverting_buck_boost.kicad_sch"
-			(at 139.7 194.8946 0)
+			(at 160.02 196.1646 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6107,7 +5905,7 @@
 			)
 		)
 		(pin "GND" input
-			(at 139.7 190.5 180)
+			(at 160.02 191.77 180)
 			(uuid "3fba0920-cb0b-4127-a61e-4f48e275a800")
 			(effects
 				(font
@@ -6117,7 +5915,7 @@
 			)
 		)
 		(pin "R_set_fb" passive
-			(at 173.99 182.88 0)
+			(at 194.31 184.15 0)
 			(uuid "3941c6d5-ad19-4ed4-9b85-78c24dd55f7b")
 			(effects
 				(font
@@ -6127,7 +5925,7 @@
 			)
 		)
 		(pin "R_set_out" passive
-			(at 173.99 190.5 0)
+			(at 194.31 191.77 0)
 			(uuid "0ad3927b-27a5-42b9-82ba-b7c53558a906")
 			(effects
 				(font
@@ -6137,7 +5935,7 @@
 			)
 		)
 		(pin "Vin" input
-			(at 139.7 176.53 180)
+			(at 160.02 177.8 180)
 			(uuid "469f783f-7dda-42da-ae4e-6435cfca07af")
 			(effects
 				(font
@@ -6147,7 +5945,7 @@
 			)
 		)
 		(pin "Vout" output
-			(at 173.99 176.53 0)
+			(at 194.31 177.8 0)
 			(uuid "a93d17d1-dd6a-4bc1-a6f8-04792d4df19d")
 			(effects
 				(font
@@ -6165,7 +5963,7 @@
 		)
 	)
 	(sheet
-		(at 186.69 58.42)
+		(at 213.36 71.12)
 		(size 25.4 22.86)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6180,8 +5978,8 @@
 			(color 255 128 143 1.0000)
 		)
 		(uuid "ce209eb9-a1b7-4871-a319-7b08a4d68f6c")
-		(property "Sheetname" "12V_to_10V_LDO"
-			(at 186.69 57.7084 0)
+		(property "Sheetname" "12V to 10V LDO"
+			(at 213.36 70.4084 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -6190,7 +5988,7 @@
 			)
 		)
 		(property "Sheetfile" "12v_to_10v_ldo.kicad_sch"
-			(at 186.69 81.8646 0)
+			(at 213.36 94.5646 0)
 			(effects
 				(font
 					(size 1.27 1.27)

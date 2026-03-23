@@ -13976,7 +13976,7 @@
 			(uuid "4babc19e-c925-4628-8267-95f6f70730c9")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
 					(reference "C1")
 					(unit 1)
@@ -14081,7 +14081,7 @@
 			(uuid "aeb6f9c1-5464-43ba-976a-835af4a04d96")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
 					(reference "R1")
 					(unit 1)
@@ -14558,7 +14558,7 @@
 			(uuid "4f3a01f4-1e8c-4095-8959-b02b18612b70")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
 					(reference "J101")
 					(unit 1)
@@ -14796,7 +14796,7 @@
 			(uuid "21c98965-7352-4efb-9123-da34a1f3ba8d")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
 					(reference "#PWR02")
 					(unit 1)
@@ -15058,7 +15058,7 @@
 			(uuid "a1f67eac-1ffd-4b48-91e8-92d28a42360c")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
 					(reference "#PWR01")
 					(unit 1)
@@ -15364,7 +15364,7 @@
 			(uuid "4f3a01f4-1e8c-4095-8959-b02b18612b71")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
 					(reference "J101")
 					(unit 2)
@@ -15600,7 +15600,7 @@
 			(uuid "416b4290-4ea2-4afb-a47f-1ab2b490aba6")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
 					(reference "TP1")
 					(unit 1)
@@ -15965,7 +15965,7 @@
 			(uuid "f6bd43f7-efac-4fde-b679-89f48b08427a")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
 					(reference "FB1")
 					(unit 1)
@@ -16086,7 +16086,7 @@
 			(uuid "fb857b3e-08b1-4d20-be21-1f936f19f5b2")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
 					(reference "USB1")
 					(unit 1)
@@ -16190,7 +16190,7 @@
 			(uuid "70e71afb-8765-4bb8-bc4a-a5893e71aed7")
 		)
 		(instances
-			(project ""
+			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
 					(reference "U1")
 					(unit 1)

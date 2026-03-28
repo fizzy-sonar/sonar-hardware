@@ -797,10 +797,6 @@
       "tx_transducer"
     ],
     [
-      "6814f6cb-3c12-4399-b1d1-2b674ba47631",
-      "5v_12v_boost"
-    ],
-    [
       "ddd4c64c-15a9-4941-99f5-db47bc249a62",
       "power_mux"
     ],

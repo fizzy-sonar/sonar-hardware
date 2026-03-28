@@ -2079,6 +2079,12 @@
 		(uuid "f8fee624-d238-4696-92ee-b0ae5ecb0d34")
 	)
 	(junction
+		(at 208.28 177.8)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "fa78e6b8-c752-4ce9-a26a-a81b379382d7")
+	)
+	(junction
 		(at 651.51 81.28)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -2908,6 +2914,16 @@
 	)
 	(wire
 		(pts
+			(xy 208.28 177.8) (xy 222.25 177.8)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "a4391284-045e-441e-bf82-26fd135a3dce")
+	)
+	(wire
+		(pts
 			(xy 626.11 91.44) (xy 638.81 91.44)
 		)
 		(stroke
@@ -2958,7 +2974,7 @@
 	)
 	(wire
 		(pts
-			(xy 194.31 177.8) (xy 220.98 177.8)
+			(xy 194.31 177.8) (xy 208.28 177.8)
 		)
 		(stroke
 			(width 0)
@@ -3128,7 +3144,7 @@
 	)
 	(wire
 		(pts
-			(xy 260.35 177.8) (xy 254 177.8)
+			(xy 261.62 177.8) (xy 255.27 177.8)
 		)
 		(stroke
 			(width 0)
@@ -3367,7 +3383,7 @@
 		(uuid "14f8edca-e467-430b-8915-859dda442a7a")
 	)
 	(label "-10V"
-		(at 260.35 177.8 180)
+		(at 261.62 177.8 180)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -3437,7 +3453,7 @@
 		(uuid "8a2aed13-4b31-4b68-9ff9-69034f410a20")
 	)
 	(label "-12V"
-		(at 214.63 177.8 0)
+		(at 215.9 177.8 0)
 		(effects
 			(font
 				(size 1.27 1.27)
@@ -4047,6 +4063,70 @@
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
 					(reference "L2901")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Connector:TestPoint_Probe")
+		(at 208.28 177.8 0)
+		(unit 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(uuid "5e1dcf50-b00e-4069-9eb3-2e117958f302")
+		(property "Reference" "TP2903"
+			(at 209.55 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "-12V"
+			(at 209.55 172.72 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 213.36 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Datasheet" "~"
+			(at 213.36 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(property "Description" "test point (alternative probe-style design)"
+			(at 208.28 177.8 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+		(pin "1"
+			(uuid "0752a943-3c85-42a8-a640-d1b6e82a3c33")
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
+					(reference "TP2903")
 					(unit 1)
 				)
 			)
@@ -5675,8 +5755,8 @@
 		)
 	)
 	(sheet
-		(at 161.29 71.12)
-		(size 30.48 22.86)
+		(at 160.02 71.12)
+		(size 34.29 22.86)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -5691,7 +5771,7 @@
 		)
 		(uuid "3221bd23-5073-46fa-ae01-536305e89f25")
 		(property "Sheetname" "Vin to 12V Boost"
-			(at 161.29 70.4084 0)
+			(at 160.02 70.4084 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5700,12 +5780,42 @@
 			)
 		)
 		(property "Sheetfile" "5v_to_12v_boost.kicad_sch"
-			(at 161.29 94.5646 0)
+			(at 160.02 94.5646 0)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
 				(justify left top)
+			)
+		)
+		(pin "GND" input
+			(at 160.02 90.17 180)
+			(uuid "8d3c97be-4318-4559-ae47-9f2ad2b0754a")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Vin" input
+			(at 160.02 74.93 180)
+			(uuid "24a60e40-d751-48a8-a5e9-f8113d5a4ac6")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "Vout" output
+			(at 194.31 74.93 0)
+			(uuid "ee8bc514-4414-4e96-a37d-a45b78b29dc3")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
 			)
 		)
 		(instances
@@ -5717,90 +5827,8 @@
 		)
 	)
 	(sheet
-		(at 502.92 91.44)
-		(size 27.94 26.67)
-		(exclude_from_sim no)
-		(in_bom yes)
-		(on_board yes)
-		(dnp no)
-		(fields_autoplaced yes)
-		(stroke
-			(width 0.1524)
-			(type solid)
-		)
-		(fill
-			(color 0 0 0 0.0000)
-		)
-		(uuid "6814f6cb-3c12-4399-b1d1-2b674ba47631")
-		(property "Sheetname" "5v_12v_boost"
-			(at 502.92 90.7284 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left bottom)
-			)
-		)
-		(property "Sheetfile" "5_to_10_boost.kicad_sch"
-			(at 502.92 118.6946 0)
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left top)
-			)
-		)
-		(pin "GND" input
-			(at 502.92 113.03 180)
-			(uuid "1df0a1d4-5522-42eb-8608-0bbc14b32f13")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "enable" input
-			(at 502.92 105.41 180)
-			(uuid "3be6c5a6-ce82-4f95-9e18-5703948a9fbf")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "VBUS" input
-			(at 502.92 96.52 180)
-			(uuid "7af8060d-05c2-4337-becd-12bac2606144")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "12V" output
-			(at 530.86 101.6 0)
-			(uuid "62dfecea-b758-4069-8715-17c9bfa91f81")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(instances
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687"
-					(page "31")
-				)
-			)
-		)
-	)
-	(sheet
-		(at 220.98 171.45)
-		(size 33.02 24.13)
+		(at 222.25 172.72)
+		(size 33.02 22.86)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -5815,7 +5843,7 @@
 		)
 		(uuid "9158f2d6-597a-4405-857f-4829a945af57")
 		(property "Sheetname" "-10V Negative LDO"
-			(at 220.98 170.7384 0)
+			(at 222.25 172.0084 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5824,7 +5852,7 @@
 			)
 		)
 		(property "Sheetfile" "-10v_negative_ldo.kicad_sch"
-			(at 220.98 196.1646 0)
+			(at 222.25 196.1646 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5833,7 +5861,7 @@
 			)
 		)
 		(pin "GND" input
-			(at 220.98 191.77 180)
+			(at 222.25 191.77 180)
 			(uuid "b497f409-17bf-4cb2-8490-0525bf85812e")
 			(effects
 				(font
@@ -5843,7 +5871,7 @@
 			)
 		)
 		(pin "Vin" input
-			(at 220.98 177.8 180)
+			(at 222.25 177.8 180)
 			(uuid "0e33ea3a-f0c1-4c88-8fbf-f3f22d2ac228")
 			(effects
 				(font
@@ -5853,7 +5881,7 @@
 			)
 		)
 		(pin "Vout" output
-			(at 254 177.8 0)
+			(at 255.27 177.8 0)
 			(uuid "77d756c4-fa78-4fb0-8a3a-f727d866ad08")
 			(effects
 				(font
@@ -5871,8 +5899,8 @@
 		)
 	)
 	(sheet
-		(at 160.02 171.45)
-		(size 34.29 24.13)
+		(at 160.02 172.72)
+		(size 34.29 22.86)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -5887,7 +5915,7 @@
 		)
 		(uuid "b540816d-de86-42bd-acdb-d7039b5ee686")
 		(property "Sheetname" "Vin to -12V Inverting Buck Boost"
-			(at 160.02 170.7384 0)
+			(at 160.02 172.0084 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5963,8 +5991,8 @@
 		)
 	)
 	(sheet
-		(at 213.36 71.12)
-		(size 25.4 22.86)
+		(at 222.25 71.12)
+		(size 33.02 22.86)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -5979,7 +6007,7 @@
 		)
 		(uuid "ce209eb9-a1b7-4871-a319-7b08a4d68f6c")
 		(property "Sheetname" "12V to 10V LDO"
-			(at 213.36 70.4084 0)
+			(at 222.25 70.4084 0)
 			(effects
 				(font
 					(size 1.27 1.27)
@@ -5988,7 +6016,7 @@
 			)
 		)
 		(property "Sheetfile" "12v_to_10v_ldo.kicad_sch"
-			(at 213.36 94.5646 0)
+			(at 222.25 94.5646 0)
 			(effects
 				(font
 					(size 1.27 1.27)

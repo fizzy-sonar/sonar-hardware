@@ -3074,7 +3074,7 @@
 	)
 	(wire
 		(pts
-			(xy 99.06 132.08) (xy 99.06 116.84)
+			(xy 99.06 127) (xy 99.06 116.84)
 		)
 		(stroke
 			(width 0)
@@ -3154,7 +3154,7 @@
 	)
 	(wire
 		(pts
-			(xy 207.01 124.46) (xy 207.01 132.08)
+			(xy 207.01 124.46) (xy 207.01 127)
 		)
 		(stroke
 			(width 0)
@@ -7649,16 +7649,6 @@
 		(uuid "4ad46615-fbd6-4f67-99c4-a4c14b18bdef")
 	)
 	(label "PGND"
-		(at 207.01 132.08 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "5857d344-fe45-4b8f-bac2-0e5a060cb416")
-	)
-	(label "PGND"
 		(at 163.83 132.08 90)
 		(effects
 			(font
@@ -7698,16 +7688,6 @@
 		)
 		(uuid "a9eefb1b-50b4-4228-90d8-f68027dce57d")
 	)
-	(label "PGND"
-		(at 99.06 132.08 90)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify left bottom)
-		)
-		(uuid "bf161ee0-fcf2-4e32-a7cd-6fd8ec356dd3")
-	)
 	(hierarchical_label "R_set_fb"
 		(shape passive)
 		(at 176.53 96.52 0)
@@ -7741,6 +7721,17 @@
 		)
 		(uuid "6680da81-c8c5-49e9-9971-a7dd8b247cf6")
 	)
+	(hierarchical_label "GND"
+		(shape input)
+		(at 207.01 127 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "8e9e948e-cfaf-4521-8a9b-d2f664561dfb")
+	)
 	(hierarchical_label "Vin"
 		(shape input)
 		(at 86.36 101.6 180)
@@ -7762,6 +7753,17 @@
 			(justify left)
 		)
 		(uuid "e64857a7-6c0a-436c-aedc-ad4d998d7337")
+	)
+	(hierarchical_label "GND"
+		(shape input)
+		(at 99.06 127 270)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "f8543ddc-5875-45bd-be4e-ab90040327c8")
 	)
 	(symbol
 		(lib_id "sonar_lib:L_1008_2.2uH")

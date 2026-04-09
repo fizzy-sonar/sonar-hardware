@@ -1951,6 +1951,12 @@
 			(uuid "e48a4342-13a7-46db-9159-dfc6e3c0b268")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "#PWR019")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "#PWR019")
@@ -2029,6 +2035,12 @@
 			(uuid "6769c700-7cf2-4951-9789-f991e1515bad")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "#PWR017")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "#PWR017")
@@ -2107,6 +2119,12 @@
 			(uuid "be7ecab6-cfeb-4ff1-97ff-ecbc333999d0")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "#PWR014")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "#PWR014")
@@ -2126,7 +2144,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "8e2a9bc8-aa40-463d-bd60-3250db971753")
-		(property "Reference" "C2"
+		(property "Reference" "C1"
 			(at 71.12 74.9299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2232,6 +2250,12 @@
 			(uuid "a34ecf2c-0f61-496b-8cea-b177f43aecf5")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "C1")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "C2")
@@ -2310,6 +2334,12 @@
 			(uuid "d10394e5-8830-4f18-b715-6cb2da9cd6f2")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "#PWR012")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "#PWR012")
@@ -2388,6 +2418,12 @@
 			(uuid "e2bf2789-efe7-493b-b818-a831586c130d")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "#PWR015")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "#PWR015")
@@ -2407,7 +2443,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ba63207d-8cdd-498d-bbb0-8bbe5d95bdb2")
-		(property "Reference" "U4"
+		(property "Reference" "U1"
 			(at 102.87 60.96 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2520,6 +2556,12 @@
 			(uuid "24fbcb32-657e-42d6-96aa-0008d0ae6028")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "U1")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "U4")
@@ -2598,6 +2640,12 @@
 			(uuid "e6d2f3e1-6f03-49c2-b3cd-45ac42c5fd02")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "#PWR09")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "#PWR09")
@@ -2617,7 +2665,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c75dc0ae-a67a-49dd-9a39-f0647fcfd3b5")
-		(property "Reference" "C5"
+		(property "Reference" "C2"
 			(at 139.7 74.9299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2723,6 +2771,12 @@
 			(uuid "8362e149-4fa7-4903-81ea-0ae6c8bb060e")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "C2")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "C5")
@@ -2743,7 +2797,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ce7e03ed-9e75-4c80-b5c6-56fdff3c6c5f")
-		(property "Reference" "R8"
+		(property "Reference" "R1"
 			(at 128.27 69.8499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2849,6 +2903,12 @@
 			(uuid "857c0a1f-8207-4273-9a37-ed549c086169")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "R1")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "R8")
@@ -2869,7 +2929,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d333ba90-468b-4286-9086-aa542ca5debf")
-		(property "Reference" "R7"
+		(property "Reference" "R2"
 			(at 128.27 77.4699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2975,6 +3035,12 @@
 			(uuid "1b04e14c-da55-4ae7-be78-7e844ee364ba")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "R2")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "R7")
@@ -3053,6 +3119,12 @@
 			(uuid "16720802-b80b-4637-b806-61f27b7ee0f4")
 		)
 		(instances
+			(project "tx-rx-dev-board"
+				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/a1ce93bf-af3c-4f98-981d-799fe49a13ba"
+					(reference "#PWR018")
+					(unit 1)
+				)
+			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/ee73137f-d5eb-4789-88c4-4482e951aa01"
 					(reference "#PWR018")

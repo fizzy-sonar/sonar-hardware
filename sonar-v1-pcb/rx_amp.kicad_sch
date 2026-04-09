@@ -814,6 +814,205 @@
 			)
 			(embedded_fonts no)
 		)
+		(symbol "GS_Capacitor_0603:C_0603_100nF"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "100nF"
+				(at 0.635 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "GS_Capacitors:C_0603_1608Metric"
+				(at 0 22.352 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://www.lcsc.com/datasheet/C14663.pdf"
+				(at 0 13.716 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "100nF 10% Unpolarized Capacitor, 50V Max Voltage, X7R"
+				(at 0 15.748 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "YAGEO"
+				(at 0 19.05 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "CC0603KRX7R9BB104"
+				(at 0 17.272 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC ID" "C14663"
+				(at 0 11.938 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Package" "0603"
+				(at 0 20.574 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "C_0603_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "C_0603_100nF_0_1"
+				(polyline
+					(pts
+						(xy -2.032 0.762) (xy 2.032 0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_0603_100nF_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 2.794)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "GS_Resistor_0603:R_0603_100k"
 			(pin_numbers
 				(hide yes)
@@ -3306,7 +3505,7 @@
 		)
 	)
 	(symbol
-		(lib_id "Device:C")
+		(lib_id "GS_Capacitor_0603:C_0603_100nF")
 		(at 29.21 50.8 0)
 		(unit 1)
 		(body_style 1)
@@ -3315,31 +3514,31 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(uuid "323beae3-a4db-46e2-a89a-a41363d09992")
+		(uuid "43696738-4c4c-4da5-9366-e430b03e74b8")
 		(property "Reference" "C5"
-			(at 22.352 49.784 0)
+			(at 25.4 49.5299 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
 		(property "Value" "100nF"
-			(at 20.828 51.816 0)
+			(at 25.4 52.0699 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
 				(font
 					(size 1.27 1.27)
 				)
-				(justify left)
+				(justify right)
 			)
 		)
-		(property "Footprint" "Capacitor_SMD:C_0402_1005Metric"
-			(at 30.1752 54.61 0)
+		(property "Footprint" "GS_Capacitors:C_0603_1608Metric"
+			(at 29.21 28.448 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3349,8 +3548,8 @@
 				)
 			)
 		)
-		(property "Datasheet" ""
-			(at 29.21 50.8 0)
+		(property "Datasheet" "https://www.lcsc.com/datasheet/C14663.pdf"
+			(at 29.21 37.084 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3360,8 +3559,8 @@
 				)
 			)
 		)
-		(property "Description" "Unpolarized capacitor"
-			(at 29.21 50.8 0)
+		(property "Description" "100nF 10% Unpolarized Capacitor, 50V Max Voltage, X7R"
+			(at 29.21 35.052 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3371,114 +3570,60 @@
 				)
 			)
 		)
-		(pin "1"
-			(uuid "0edbbbee-ba2c-4411-9d35-66b824611003")
+		(property "Manufacturer" "YAGEO"
+			(at 29.21 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CC0603KRX7R9BB104"
+			(at 29.21 33.528 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC ID" "C14663"
+			(at 29.21 38.862 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" "0603"
+			(at 29.21 30.226 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
 		)
 		(pin "2"
-			(uuid "8ed36c02-8151-413a-9dec-58c547fd5a1b")
+			(uuid "fd080a4a-138b-4b15-9c70-dab803e98212")
+		)
+		(pin "1"
+			(uuid "6262b6e2-25ef-4f73-850b-14f3af3756cf")
 		)
 		(instances
 			(project "tx-rx-dev-board"
 				(path "/ef969c50-8ad8-46a7-babe-de0c0ef3b48a/8d53b43c-3bc3-463d-a5d5-d0e4b6479875"
 					(reference "C5")
-					(unit 1)
-				)
-			)
-			(project "sonar"
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/293969c4-9575-41aa-bb6a-e94ffb52e407/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "C2702")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/293969c4-9575-41aa-bb6a-e94ffb52e407/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "C2402")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/293969c4-9575-41aa-bb6a-e94ffb52e407/4baae0c7-5504-4fa5-b170-826798e08abe"
-					(reference "C2102")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/293969c4-9575-41aa-bb6a-e94ffb52e407/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "C2502")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/293969c4-9575-41aa-bb6a-e94ffb52e407/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "C2002")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/293969c4-9575-41aa-bb6a-e94ffb52e407/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "C1902")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/293969c4-9575-41aa-bb6a-e94ffb52e407/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "C2302")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/293969c4-9575-41aa-bb6a-e94ffb52e407/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "C2802")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d3b8d639-c387-46bd-9010-317ff5495a13/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "C1502")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d3b8d639-c387-46bd-9010-317ff5495a13/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "C1202")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d3b8d639-c387-46bd-9010-317ff5495a13/4baae0c7-5504-4fa5-b170-826798e08abe"
-					(reference "C902")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d3b8d639-c387-46bd-9010-317ff5495a13/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "C1302")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d3b8d639-c387-46bd-9010-317ff5495a13/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "C802")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d3b8d639-c387-46bd-9010-317ff5495a13/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "C502")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d3b8d639-c387-46bd-9010-317ff5495a13/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "C1102")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d3b8d639-c387-46bd-9010-317ff5495a13/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "C1602")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/1e9737bb-54d3-46c6-89c7-bafd5d01cb9f"
-					(reference "C2602")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/4b88e5a9-a1a4-4236-ac8a-a515268f9e7e"
-					(reference "C702")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/4baae0c7-5504-4fa5-b170-826798e08abe"
-					(reference "C302")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/5fa345fd-8f82-4102-b4da-88393397ee2f"
-					(reference "C1802")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/92589eb0-14ab-438f-abf4-d7e391dbea95"
-					(reference "C602")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/a69a1e19-7333-49c9-8cfe-abe95e31b9e6"
-					(reference "C1402")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/da58af52-59a2-42c6-b6e7-fabe3f18277b"
-					(reference "C1002")
-					(unit 1)
-				)
-				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc/ef24f3d1-799c-40c0-a32b-fd2185333268"
-					(reference "C2202")
 					(unit 1)
 				)
 			)

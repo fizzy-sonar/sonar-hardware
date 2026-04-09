@@ -1,0 +1,4 @@
+(fp_lib_table
+	(version 7)
+	(lib (name "GS_Acoustic") (type "KiCad") (uri "${GS_FOOTPRINT_DIR}/GS_Acoustic.pretty") (options "") (descr ""))
+)

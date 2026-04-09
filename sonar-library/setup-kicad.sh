@@ -8,6 +8,12 @@ KICAD_VERSION="10.0"
 SONAR_SYMBOL_DIR="${REPO_ROOT}"
 SONAR_FOOTPRINT_DIR="${REPO_ROOT}"
 
+if pgrep -il "kicad" > /dev/null; then
+  echo "Error: KiCad appears to be running. Please close KiCad before running this setup script." >&2
+  echo "If KiCad remains open, it will overwrite the path assignments with empty variables on exit." >&2
+  exit 1
+fi
+
 normalize_windows_path_to_posix() {
   local raw="$1"
   if command -v cygpath >/dev/null 2>&1; then
@@ -66,7 +72,7 @@ Sets up sonar-library in KiCad by:
 Options:
   --config-dir DIR       Override KiCad config directory
                          (default: OS-specific, based on --kicad-version)
-  --kicad-version VER    KiCad version directory (default: 9.0)
+  --kicad-version VER    KiCad version directory (default: 10.0)
   -h, --help             Show this help
 USAGE
 }

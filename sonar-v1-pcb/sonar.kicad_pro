@@ -738,7 +738,7 @@
         "uuid": "f72ceae0-eee4-4385-b0e8-639846bcb5f2"
       }
     ],
-    "used_designators": "R8",
+    "used_designators": "C6,U5,R8",
     "variants": []
   },
   "sheets": [
@@ -859,8 +859,8 @@
       "power_supply"
     ],
     [
-      "43b3c482-e2f0-4b6c-ae84-751c8208aa65",
-      "tx_transducer"
+      "c6a046af-5387-4c6b-a77e-149ae78eccdc",
+      "TX Drive"
     ],
     [
       "c4a32afc-ff6d-4cbc-87e7-0f6509c82a14",

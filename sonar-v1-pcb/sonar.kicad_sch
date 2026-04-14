@@ -13215,16 +13215,6 @@
 		)
 		(uuid "2270b39c-3b25-4697-b1c7-9ea63fae1567")
 	)
-	(label "speaker_drive"
-		(at 231.14 218.44 180)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-			(justify right bottom)
-		)
-		(uuid "22c7c1ee-9d62-44e0-9921-e81cc07bbe1d")
-	)
 	(label "chip_select_frame_sync"
 		(at 237.49 156.21 180)
 		(effects
@@ -17122,8 +17112,8 @@
 		)
 	)
 	(sheet
-		(at 236.22 205.74)
-		(size 27.94 29.21)
+		(at 181.61 165.1)
+		(size 35.56 33.02)
 		(exclude_from_sim no)
 		(in_bom yes)
 		(on_board yes)
@@ -17134,11 +17124,11 @@
 			(type solid)
 		)
 		(fill
-			(color 0 0 0 0)
+			(color 157 224 255 1)
 		)
-		(uuid "43b3c482-e2f0-4b6c-ae84-751c8208aa65")
-		(property "Sheetname" "tx_transducer"
-			(at 236.22 205.0284 0)
+		(uuid "c6a046af-5387-4c6b-a77e-149ae78eccdc")
+		(property "Sheetname" "TX Drive"
+			(at 181.61 164.3884 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17148,8 +17138,8 @@
 				(justify left bottom)
 			)
 		)
-		(property "Sheetfile" "tx_transducer.kicad_sch"
-			(at 236.22 235.5346 0)
+		(property "Sheetfile" "20kHz-h-bridge.kicad_sch"
+			(at 181.61 198.7046 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -17157,46 +17147,6 @@
 					(size 1.27 1.27)
 				)
 				(justify left top)
-			)
-		)
-		(pin "10V" input
-			(at 236.22 212.09 180)
-			(uuid "5ca2bc1f-ff68-4ccf-acd0-b7cb9636f8f9")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "-10V" input
-			(at 236.22 215.9 180)
-			(uuid "8b1e27f0-be2b-49b9-8f97-ee37a8db6569")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "h_bridge_select_bus" input
-			(at 236.22 219.71 180)
-			(uuid "d5575690-2484-4178-9f01-e5428d852858")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "GND" input
-			(at 236.22 224.79 180)
-			(uuid "18398319-1bbf-48bd-bf65-d5d474257333")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
 			)
 		)
 		(instances

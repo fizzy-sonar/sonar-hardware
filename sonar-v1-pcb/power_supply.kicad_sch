@@ -1962,10 +1962,10 @@
 		)
 		(uuid "7f630e2f-bf2e-46f3-9a36-909b05f3a208")
 	)
-	(text_box "Required Rails:\n\n10V: ADC HVDD\n5V: Op Amps + ADC AVDD\n3.3V: ADC DVDD\n2.75V: Microphones\n1.25V: ADC VREF\nGND\n-10V: ADC HVSS\n\nVin:\nUSB-C? (Ideally)\nBench power supply otherwise\n5V\n\nPer rail current estimate:\n"
+	(text_box "Required Rails:\n\n12V: TX Drive\n10V: ADC HVDD\n5V: Op Amps + ADC AVDD\n3.3V: ADC DVDD\n2.75V: Microphones\n1.25V: ADC VREF\nGND\n-10V: ADC HVSS\n\nVin:\nUSB-C? (Ideally)\nBench power supply otherwise\n5V\n\nPer rail current estimate:\n"
 		(exclude_from_sim no)
 		(at 15.24 15.24 0)
-		(size 53.34 34.29)
+		(size 53.34 36.6624)
 		(margins 0.9525 0.9525 0.9525 0.9525)
 		(stroke
 			(width 0)
@@ -6567,7 +6567,7 @@
 		)
 	)
 	(sheet
-		(at 222.25 71.12)
+		(at 222.25 99.06)
 		(size 33.02 22.86)
 		(exclude_from_sim no)
 		(in_bom yes)
@@ -6583,7 +6583,7 @@
 		)
 		(uuid "ce209eb9-a1b7-4871-a319-7b08a4d68f6c")
 		(property "Sheetname" "12V to 10V LDO"
-			(at 222.25 70.4084 0)
+			(at 222.25 98.3484 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -6594,7 +6594,7 @@
 			)
 		)
 		(property "Sheetfile" "12v_to_10v_ldo.kicad_sch"
-			(at 222.25 94.5646 0)
+			(at 222.25 122.5046 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects

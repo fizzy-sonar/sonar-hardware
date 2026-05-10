@@ -14028,13 +14028,13 @@
 		(at 135.89 129.54 0)
 		(unit 1)
 		(body_style 1)
-		(exclude_from_sim no)
+		(exclude_from_sim yes)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "106260ed-e442-40b0-a969-64cff0255c25")
-		(property "Reference" "TP3"
+		(property "Reference" "TP5"
 			(at 137.16 121.92 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14093,7 +14093,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "TP3")
+					(reference "TP5")
 					(unit 1)
 				)
 			)
@@ -14111,7 +14111,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "183fb727-904b-447a-9ac9-3596cf3e2f87")
-		(property "Reference" "C1"
+		(property "Reference" "C2"
 			(at 64.77 138.4299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14219,7 +14219,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "C1")
+					(reference "C2")
 					(unit 1)
 				)
 			)
@@ -14558,14 +14558,14 @@
 		(at 341.63 25.4 0)
 		(unit 1)
 		(body_style 1)
-		(exclude_from_sim no)
+		(exclude_from_sim yes)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "300ab25b-ce57-4a1e-ba00-ac73966f932c")
-		(property "Reference" "J101"
+		(property "Reference" "J1"
 			(at 355.6 73.6599 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -14865,7 +14865,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "J101")
+					(reference "J1")
 					(unit 1)
 				)
 			)
@@ -14883,7 +14883,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "33995140-255f-426c-b107-f9bdedbf04d5")
-		(property "Reference" "#PWR011"
+		(property "Reference" "#PWR09"
 			(at 102.87 153.67 0)
 			(hide yes)
 			(show_name no)
@@ -14943,7 +14943,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "#PWR011")
+					(reference "#PWR09")
 					(unit 1)
 				)
 			)
@@ -14961,7 +14961,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4171067b-07bc-4c23-88ea-59036780d65f")
-		(property "Reference" "C4"
+		(property "Reference" "C3"
 			(at 81.28 138.4299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15069,7 +15069,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "C4")
+					(reference "C3")
 					(unit 1)
 				)
 			)
@@ -15087,7 +15087,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4d705300-753b-43f1-91ca-e8247bf83d21")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR04"
 			(at 53.34 210.82 0)
 			(hide yes)
 			(show_name no)
@@ -15147,7 +15147,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "#PWR02")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -15159,13 +15159,13 @@
 		(mirror y)
 		(unit 1)
 		(body_style 1)
-		(exclude_from_sim no)
+		(exclude_from_sim yes)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "554dace5-5616-4607-84b3-a22cb1d21dd5")
-		(property "Reference" "TP5"
+		(property "Reference" "TP1"
 			(at 59.69 190.5 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15224,7 +15224,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "TP5")
+					(reference "TP1")
 					(unit 1)
 				)
 			)
@@ -15242,7 +15242,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5f2fa604-52d1-461f-a0d7-b6956834730e")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR05"
 			(at 60.96 149.86 0)
 			(hide yes)
 			(show_name no)
@@ -15302,7 +15302,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "#PWR04")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -15319,7 +15319,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "735e93a0-02bf-4ad6-bfeb-5c5c80412579")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR01"
 			(at 48.26 210.82 0)
 			(hide yes)
 			(show_name no)
@@ -15379,7 +15379,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "#PWR05")
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
@@ -15397,7 +15397,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "73c5c03d-0758-4cd0-ad0b-d61ee9cf1e24")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR03"
 			(at 53.34 137.16 0)
 			(hide yes)
 			(show_name no)
@@ -15457,7 +15457,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "#PWR01")
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
@@ -15468,14 +15468,14 @@
 		(at 341.63 134.62 0)
 		(unit 2)
 		(body_style 1)
-		(exclude_from_sim no)
+		(exclude_from_sim yes)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "912a28c3-249a-47f7-a0cc-f0178407f610")
-		(property "Reference" "J101"
+		(property "Reference" "J1"
 			(at 355.6 182.8799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15775,7 +15775,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "J101")
+					(reference "J1")
 					(unit 2)
 				)
 			)
@@ -15793,7 +15793,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a599eb1f-aa3b-4eb4-85ce-b74f276cd616")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR02"
 			(at 53.34 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -15853,7 +15853,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "#PWR03")
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -15871,7 +15871,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b2028c0d-8efb-4802-9d48-62da83b7f58c")
-		(property "Reference" "C3"
+		(property "Reference" "C1"
 			(at 44.45 196.8499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -15979,7 +15979,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "C3")
+					(reference "C1")
 					(unit 1)
 				)
 			)
@@ -15990,13 +15990,13 @@
 		(at 91.44 129.54 0)
 		(unit 1)
 		(body_style 1)
-		(exclude_from_sim no)
+		(exclude_from_sim yes)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b8e4b0c2-85a3-4b5c-a51c-ff4ef0cd61dd")
-		(property "Reference" "TP1"
+		(property "Reference" "TP3"
 			(at 92.71 121.92 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16055,7 +16055,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "TP1")
+					(reference "TP3")
 					(unit 1)
 				)
 			)
@@ -16067,13 +16067,13 @@
 		(mirror x)
 		(unit 1)
 		(body_style 1)
-		(exclude_from_sim no)
+		(exclude_from_sim yes)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "bf19dfe1-90c7-4367-9be9-a0d9c06a0517")
-		(property "Reference" "TP2"
+		(property "Reference" "TP4"
 			(at 92.71 140.97 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16132,7 +16132,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "TP2")
+					(reference "TP4")
 					(unit 1)
 				)
 			)
@@ -16299,13 +16299,13 @@
 		(at 71.12 193.04 0)
 		(unit 1)
 		(body_style 1)
-		(exclude_from_sim no)
+		(exclude_from_sim yes)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "f20063f0-4cfe-481a-a5dc-8f93482bd8a5")
-		(property "Reference" "TP4"
+		(property "Reference" "TP2"
 			(at 77.47 190.5 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16364,7 +16364,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
-					(reference "TP4")
+					(reference "TP2")
 					(unit 1)
 				)
 			)
@@ -16470,6 +16470,39 @@
 		)
 		(property "Package" "0603"
 			(at 46.99 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Device" "R"
+			(at 69.85 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=+ 2=-"
+			(at 69.85 133.35 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Params" "r=0.1"
+			(at 69.85 133.35 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16605,6 +16638,61 @@
 				)
 			)
 		)
+		(property "Sim.Device" "V"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Type" "DC"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Name" "VBUS"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Params" "dc=5"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "A9=+ B9=+ A12=- B12=-"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "7"
 			(uuid "eb048d29-1240-4cf2-bf27-182fc598ebe8")
 		)
@@ -16640,7 +16728,7 @@
 		(at 48.26 102.87 0)
 		(unit 1)
 		(body_style 1)
-		(exclude_from_sim no)
+		(exclude_from_sim yes)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)

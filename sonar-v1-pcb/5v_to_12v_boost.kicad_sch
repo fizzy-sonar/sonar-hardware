@@ -463,7 +463,7 @@
 					)
 				)
 			)
-			(property "Description" "Schottky Diode, , 550mV Forward Drop at 3A, 40V Max Voltage, 3A Max Current, 500uA Reverse Leakage at 40V"
+			(property "Description" "Schottky Diode, 550mV Forward Drop at 3A, 40V Max Voltage, 3A Max Current, 500uA Reverse Leakage at 40V"
 				(at 0 17.78 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -16062,7 +16062,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0b7613d9-e426-42dc-bd65-132b20e90835")
-		(property "Reference" "C3302"
+		(property "Reference" "C140"
 			(at 119.38 96.5199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16170,7 +16170,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/3221bd23-5073-46fa-ae01-536305e89f25"
-					(reference "C3302")
+					(reference "C140")
 					(unit 1)
 				)
 			)
@@ -16188,7 +16188,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "317dd692-a871-4fa8-b217-0eed5d0b05d5")
-		(property "Reference" "L3301"
+		(property "Reference" "L2"
 			(at 153.67 85.09 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16294,7 +16294,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/3221bd23-5073-46fa-ae01-536305e89f25"
-					(reference "L3301")
+					(reference "L2")
 					(unit 1)
 				)
 			)
@@ -16312,7 +16312,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "36cf1467-c764-4ca7-b0fd-2ae180aaab97")
-		(property "Reference" "U3301"
+		(property "Reference" "U35"
 			(at 153.67 93.98 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16420,6 +16420,39 @@
 				)
 			)
 		)
+		(property "Sim.Device" "SUBCKT"
+			(at 153.67 72.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Name" "TPS55340_TRANS"
+			(at 153.67 72.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=SW_0 2=SW_1 15=PWPD 1=SW_2 3=VIN 4=EN 5=SS 6=SYNC 7=AGND 11=NC_0 12=PGND_0 13=PGND_1 14=PGND_2 11=NC_1 10=FREQ 9=FB 8=COMP"
+			(at 153.67 72.39 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "12"
 			(uuid "5f45f473-6fe0-439e-bf9f-f3464caacb87")
 		)
@@ -16468,7 +16501,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/3221bd23-5073-46fa-ae01-536305e89f25"
-					(reference "U3301")
+					(reference "U35")
 					(unit 1)
 				)
 			)
@@ -16486,7 +16519,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3b535f74-abe7-4a54-91c4-f63f9523885d")
-		(property "Reference" "D3301"
+		(property "Reference" "D1"
 			(at 180.6575 83.82 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16583,6 +16616,50 @@
 				)
 			)
 		)
+		(property "Sim.Device" "D"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Name" "DSchottky550"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Params" "is=1e-8 rs=0.02 n=1 cjo=200p"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "a9dbc661-2938-426b-a2af-015632bbd306")
 		)
@@ -16592,7 +16669,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/3221bd23-5073-46fa-ae01-536305e89f25"
-					(reference "D3301")
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -16610,7 +16687,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5158e6aa-a445-48d9-849b-373ca9c40f12")
-		(property "Reference" "NT3301"
+		(property "Reference" "NT1"
 			(at 140.97 161.29 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16694,7 +16771,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/3221bd23-5073-46fa-ae01-536305e89f25"
-					(reference "NT3301")
+					(reference "NT1")
 					(unit 1)
 				)
 			)
@@ -16712,7 +16789,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "550bfb43-6c3b-4416-b40d-d3f0823ba585")
-		(property "Reference" "R3303"
+		(property "Reference" "R140"
 			(at 195.58 109.2199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16820,7 +16897,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/3221bd23-5073-46fa-ae01-536305e89f25"
-					(reference "R3303")
+					(reference "R140")
 					(unit 1)
 				)
 			)
@@ -16838,7 +16915,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "907d9250-b3ed-405f-8bb4-7903f2cd4cb7")
-		(property "Reference" "C3301"
+		(property "Reference" "C141"
 			(at 119.38 124.4599 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -16946,7 +17023,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/3221bd23-5073-46fa-ae01-536305e89f25"
-					(reference "C3301")
+					(reference "C141")
 					(unit 1)
 				)
 			)
@@ -16965,7 +17042,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "94070bcc-ffcb-482b-af20-b04654dda153")
-		(property "Reference" "C3303"
+		(property "Reference" "C142"
 			(at 210.82 96.5199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17073,7 +17150,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/3221bd23-5073-46fa-ae01-536305e89f25"
-					(reference "C3303")
+					(reference "C142")
 					(unit 1)
 				)
 			)
@@ -17091,7 +17168,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ca8128d3-ecc5-477f-9b72-6ebb178ccfd0")
-		(property "Reference" "R3302"
+		(property "Reference" "R141"
 			(at 195.58 116.8399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17199,7 +17276,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/3221bd23-5073-46fa-ae01-536305e89f25"
-					(reference "R3302")
+					(reference "R141")
 					(unit 1)
 				)
 			)
@@ -17217,7 +17294,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dc0c4425-b226-4a6c-9585-f2358c1332f0")
-		(property "Reference" "R3301"
+		(property "Reference" "R139"
 			(at 130.81 124.4599 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -17325,7 +17402,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/3221bd23-5073-46fa-ae01-536305e89f25"
-					(reference "R3301")
+					(reference "R139")
 					(unit 1)
 				)
 			)

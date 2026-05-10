@@ -461,7 +461,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7884e683-f231-48cf-aa71-60323cceb3b7")
-		(property "Reference" "U5"
+		(property "Reference" "U34"
 			(at 148.59 69.85 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -612,7 +612,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/c6a046af-5387-4c6b-a77e-149ae78eccdc"
-					(reference "U5")
+					(reference "U34")
 					(unit 1)
 				)
 			)

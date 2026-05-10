@@ -3498,7 +3498,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "019f9fbb-12bc-449e-8b31-c31132c7513a")
-		(property "Reference" "C3801"
+		(property "Reference" "C150"
 			(at 132.08 58.4199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3606,7 +3606,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/9158f2d6-597a-4405-857f-4829a945af57"
-					(reference "C3801")
+					(reference "C150")
 					(unit 1)
 				)
 			)
@@ -3624,7 +3624,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "17b347b8-5de6-4090-83e6-05002834458c")
-		(property "Reference" "C3802"
+		(property "Reference" "C149"
 			(at 85.09 58.4199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3732,7 +3732,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/9158f2d6-597a-4405-857f-4829a945af57"
-					(reference "C3802")
+					(reference "C149")
 					(unit 1)
 				)
 			)
@@ -3750,7 +3750,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "657ed347-da3c-419f-a306-6292076e0fc1")
-		(property "Reference" "R3801"
+		(property "Reference" "R150"
 			(at 115.57 63.4999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3858,7 +3858,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/9158f2d6-597a-4405-857f-4829a945af57"
-					(reference "R3801")
+					(reference "R150")
 					(unit 1)
 				)
 			)
@@ -3876,7 +3876,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8041dc48-fefa-4cbd-8e97-ced3c6afb582")
-		(property "Reference" "U2906"
+		(property "Reference" "U39"
 			(at 100.33 76.2 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3999,7 +3999,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/9158f2d6-597a-4405-857f-4829a945af57"
-					(reference "U2906")
+					(reference "U39")
 					(unit 1)
 				)
 			)
@@ -4017,7 +4017,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "c361ca08-113e-435b-b35d-5ae5b849a0d0")
-		(property "Reference" "R3802"
+		(property "Reference" "R149"
 			(at 115.57 53.3399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4125,7 +4125,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/9158f2d6-597a-4405-857f-4829a945af57"
-					(reference "R3802")
+					(reference "R149")
 					(unit 1)
 				)
 			)

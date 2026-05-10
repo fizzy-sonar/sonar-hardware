@@ -11,205 +11,6 @@
 		(comment 1 "George Sleen")
 	)
 	(lib_symbols
-		(symbol "C_0603_22uF_1"
-			(pin_numbers
-				(hide yes)
-			)
-			(pin_names
-				(offset 0.254)
-			)
-			(exclude_from_sim no)
-			(in_bom yes)
-			(on_board yes)
-			(in_pos_files yes)
-			(duplicate_pin_numbers_are_jumpers no)
-			(property "Reference" "C"
-				(at 0.635 2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Value" "22uF"
-				(at 0.635 -2.54 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-					(justify left)
-				)
-			)
-			(property "Footprint" "Sonar:C_0603_1608Metric"
-				(at 0 22.352 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Datasheet" "https://www.lcsc.com/datasheet/C29519229.pdf"
-				(at 0 13.716 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Description" "22uF 20% Unpolarized Capacitor, 25V Max Voltage, X5S"
-				(at 0 15.748 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Manufacturer" "muRata"
-				(at 0 19.05 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "MPN" "GRM188C61E226ME01D"
-				(at 0 17.272 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "LCSC ID" "C29519229"
-				(at 0 11.938 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "Package" "0603"
-				(at 0 20.574 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_keywords" "cap capacitor"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(property "ki_fp_filters" "C_0603_*"
-				(at 0 0 0)
-				(show_name no)
-				(do_not_autoplace no)
-				(hide yes)
-				(effects
-					(font
-						(size 1.27 1.27)
-					)
-				)
-			)
-			(symbol "C_0603_22uF_1_0_1"
-				(polyline
-					(pts
-						(xy -2.032 0.762) (xy 2.032 0.762)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-				(polyline
-					(pts
-						(xy -2.032 -0.762) (xy 2.032 -0.762)
-					)
-					(stroke
-						(width 0.508)
-						(type default)
-					)
-					(fill
-						(type none)
-					)
-				)
-			)
-			(symbol "C_0603_22uF_1_1_1"
-				(pin passive line
-					(at 0 3.81 270)
-					(length 2.794)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "1"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-				(pin passive line
-					(at 0 -3.81 90)
-					(length 2.794)
-					(name ""
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-					(number "2"
-						(effects
-							(font
-								(size 1.27 1.27)
-							)
-						)
-					)
-				)
-			)
-			(embedded_fonts no)
-		)
 		(symbol "Connector:TestPoint_Probe"
 			(pin_numbers
 				(hide yes)
@@ -966,7 +767,7 @@
 					(justify left)
 				)
 			)
-			(property "Value" "100nF"
+			(property "Value" "22uF"
 				(at 0.635 -2.54 0)
 				(show_name no)
 				(do_not_autoplace no)
@@ -8103,7 +7904,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "161f9c7f-8c29-42e5-bcd7-9eaf17f39928")
-		(property "Reference" "L3501"
+		(property "Reference" "L3"
 			(at 166.37 119.3799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8211,7 +8012,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "L3501")
+					(reference "L3")
 					(unit 1)
 				)
 			)
@@ -8229,7 +8030,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "1bf6cbab-2bda-4cd2-8d39-9f67fac6de73")
-		(property "Reference" "C3505"
+		(property "Reference" "C146"
 			(at 195.58 96.5199 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8337,7 +8138,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "C3505")
+					(reference "C146")
 					(unit 1)
 				)
 			)
@@ -8355,7 +8156,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "25c36928-fbe7-4745-831d-fd466e79b40e")
-		(property "Reference" "C3502"
+		(property "Reference" "C143"
 			(at 102.87 111.7599 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8463,14 +8264,13 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "C3502")
+					(reference "C143")
 					(unit 1)
 				)
 			)
 		)
 	)
 	(symbol
-		(lib_name "C_0603_22uF_1")
 		(lib_id "sonar_lib:C_0603_22uF")
 		(at 207.01 120.65 0)
 		(unit 1)
@@ -8482,7 +8282,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "438426f2-71e7-4dba-ab3f-a692cf36e3b7")
-		(property "Reference" "C3506"
+		(property "Reference" "C148"
 			(at 210.82 119.3799 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8590,7 +8390,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "C3506")
+					(reference "C148")
 					(unit 1)
 				)
 			)
@@ -8608,7 +8408,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "44c22b02-663e-4830-bfab-5fb59f4e6714")
-		(property "Reference" "R3501"
+		(property "Reference" "R143"
 			(at 179.07 88.8999 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8716,7 +8516,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "R3501")
+					(reference "R143")
 					(unit 1)
 				)
 			)
@@ -8733,7 +8533,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "526bf594-8b00-436b-8b8c-c593e2e56c4d")
-		(property "Reference" "D3501"
+		(property "Reference" "D2"
 			(at 170.18 113.03 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8830,6 +8630,50 @@
 				)
 			)
 		)
+		(property "Sim.Device" "D"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Name" "DSchottky580"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Params" "is=1e-9 rs=0.05 n=1 cjo=80p"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Sim.Pins" "1=K 2=A"
+			(at 0 0 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
 		(pin "2"
 			(uuid "253e168a-5004-411a-bb9f-4d996b928a81")
 		)
@@ -8839,7 +8683,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "D3501")
+					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -8857,7 +8701,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "59bdfb41-bf99-4651-a905-c3ee37d67eef")
-		(property "Reference" "C3501"
+		(property "Reference" "C147"
 			(at 210.82 90.1699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8965,7 +8809,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "C3501")
+					(reference "C147")
 					(unit 1)
 				)
 			)
@@ -8983,7 +8827,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "66d95657-04ab-4de8-9c7f-4ef2b6de7f6d")
-		(property "Reference" "U3501"
+		(property "Reference" "U36"
 			(at 146.05 74.93 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9133,7 +8977,7 @@
 			)
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "U3501")
+					(reference "U36")
 					(unit 1)
 				)
 			)
@@ -9151,7 +8995,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "983fab0c-1f1b-4549-b3b2-d5d42cdf9d65")
-		(property "Reference" "R3503"
+		(property "Reference" "R142"
 			(at 106.68 80.01 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9257,7 +9101,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "R3503")
+					(reference "R142")
 					(unit 1)
 				)
 			)
@@ -9268,13 +9112,13 @@
 		(at 120.65 86.36 0)
 		(unit 1)
 		(body_style 1)
-		(exclude_from_sim no)
+		(exclude_from_sim yes)
 		(in_bom yes)
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "ac52ea00-fbca-4b82-b603-c7c443b12da3")
-		(property "Reference" "TP3501"
+		(property "Reference" "TP83"
 			(at 121.92 78.74 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9333,7 +9177,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "TP3501")
+					(reference "TP83")
 					(unit 1)
 				)
 			)
@@ -9351,7 +9195,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "af0eca05-8311-4e13-9edc-85a2349233d0")
-		(property "Reference" "R3504"
+		(property "Reference" "R144"
 			(at 194.31 104.1399 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9459,7 +9303,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "R3504")
+					(reference "R144")
 					(unit 1)
 				)
 			)
@@ -9477,7 +9321,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cbcb56ee-73d0-4f14-97c7-7f1e2a1a5dcc")
-		(property "Reference" "NT3501"
+		(property "Reference" "NT2"
 			(at 146.05 156.21 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9561,7 +9405,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "NT3501")
+					(reference "NT2")
 					(unit 1)
 				)
 			)
@@ -9579,7 +9423,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d75241c4-f641-4567-bd34-293b9f9c6e49")
-		(property "Reference" "C3504"
+		(property "Reference" "C144"
 			(at 118.11 90.1699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9687,7 +9531,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "C3504")
+					(reference "C144")
 					(unit 1)
 				)
 			)
@@ -9705,7 +9549,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "dd2fe48a-b2a3-4166-9187-4b8000f1e31d")
-		(property "Reference" "C3503"
+		(property "Reference" "C145"
 			(at 121.92 111.7599 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9813,7 +9657,7 @@
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/0971c334-b681-41ae-ad35-a89520df0687/b540816d-de86-42bd-acdb-d7039b5ee686"
-					(reference "C3503")
+					(reference "C145")
 					(unit 1)
 				)
 			)

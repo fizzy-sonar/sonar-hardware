@@ -8337,6 +8337,52 @@
 		)
 	)
 	(sheet
+		(at 71.12 91.44)
+		(size 26.67 13.97)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "c60168c5-7d14-41de-b041-a35381d1e481")
+		(property "Sheetname" "quad_rx_pre_amp"
+			(at 71.12 90.7284 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "quad_rx_pre_amp.kicad_sch"
+			(at 71.12 105.9946 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/d78844ef-eb5d-4b24-a5c3-8824db20c2bc"
+					(page "40")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 22.86 81.28)
 		(size 22.86 13.97)
 		(exclude_from_sim no)

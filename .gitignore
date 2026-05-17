@@ -1,0 +1,18 @@
+# KiCad user-local / auto-generated artifacts
+*.kicad_prl
+*-backups/
+*.bak
+*.kicad_sch-bak
+*.kicad_pcb-bak
+
+# KiCad lock files (created while project is open)
+~*.lck
+
+# KiCad fp-info cache
+fp-info-cache
+
+# VS Code Local History
+.history/
+
+# macOS
+.DS_Store

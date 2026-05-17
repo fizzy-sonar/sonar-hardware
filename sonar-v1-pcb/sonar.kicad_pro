@@ -745,7 +745,7 @@
         "uuid": "f72ceae0-eee4-4385-b0e8-639846bcb5f2"
       }
     ],
-    "used_designators": "U29-33,U41-59,D3-4,C22,C41,C44,C47,C50,C53,C56,C59,C62,C65,C68,C71,C74,C93,C96,C99,C102,C105,C108,C111,C114,C117,C120,C123-139,C153-258,R153-300",
+    "used_designators": "TP79-82,TP84-116,U3,U5-15,U29-33,U41-62,C22,C41,C44,C47,C50,C53,C56,C59,C62,C65,C68,C71,C74,C93,C96,C99,C102,C105,C108,C111,C114,C117,C120,C123-139,C153-283,D3-4,MK25-39,R26-27,R31-32,R36-37,R41-42,R46-47,R51-52,R56-57,R61-62,R66-67,R71-72,R76-77,R86-87,R91-92,R96-97,R101-102,R106-107,R111-112,R116-117,R153-386",
     "variants": []
   },
   "sheets": [
@@ -904,9 +904,73 @@
     [
       "ee73137f-d5eb-4789-88c4-4482e951aa01",
       "2.75V LDO"
+    ],
+    [
+      "c60168c5-7d14-41de-b041-a35381d1e481",
+      "quad_rx_pre_amp"
+    ],
+    [
+      "a0041b33-2fab-4d85-85c2-e95af41911f3",
+      "mems_rx_0"
+    ],
+    [
+      "253db105-3b8e-4233-9cc1-5f80e4fb5e84",
+      "mems_rx_1"
+    ],
+    [
+      "253db105-3b8e-4233-9cc1-5f80e4fb5e84",
+      "mems_rx_1"
+    ],
+    [
+      "253db105-3b8e-4233-9cc1-5f80e4fb5e84",
+      "mems_rx_1"
+    ],
+    [
+      "817bcd7a-53f9-40db-ba76-fc7ca1a3119e",
+      "mems_rx_2"
+    ],
+    [
+      "423cc9a5-fd5f-471f-a924-8dd8430a1df6",
+      "mems_rx_3"
+    ],
+    [
+      "817bcd7a-53f9-40db-ba76-fc7ca1a3119e",
+      "mems_rx_2"
+    ],
+    [
+      "423cc9a5-fd5f-471f-a924-8dd8430a1df6",
+      "mems_rx_3"
+    ],
+    [
+      "817bcd7a-53f9-40db-ba76-fc7ca1a3119e",
+      "mems_rx_2"
+    ],
+    [
+      "423cc9a5-fd5f-471f-a924-8dd8430a1df6",
+      "mems_rx_3"
+    ],
+    [
+      "c60168c5-7d14-41de-b041-a35381d1e481",
+      "quad_rx_pre_amp"
+    ],
+    [
+      "a0041b33-2fab-4d85-85c2-e95af41911f3",
+      "mems_rx_0"
+    ],
+    [
+      "c60168c5-7d14-41de-b041-a35381d1e481",
+      "quad_rx_pre_amp"
+    ],
+    [
+      "a0041b33-2fab-4d85-85c2-e95af41911f3",
+      "mems_rx_0"
     ]
   ],
-  "text_variables": {},
+  "text_variables": {
+    "R_GAIN_HIGH_1": "40k",
+    "R_GAIN_HIGH_2": "60k",
+    "R_GAIN_TARGET": "20k"
+  },
   "tuning_profiles": {
     "meta": {
       "version": 0

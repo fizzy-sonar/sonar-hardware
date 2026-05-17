@@ -32,6 +32,16 @@
           "trace_type": 257
         }
       ]
+    },
+    {
+      "analysis": "OP",
+      "commands": [
+        ".op",
+        ".kicad adjustpaths",
+        ".save all",
+        ".probe alli",
+        ".probe allp"
+      ]
     }
   ],
   "user_defined_signals": [],

@@ -10,6 +10,205 @@
 		(comment 1 "George Sleen")
 	)
 	(lib_symbols
+		(symbol "GS_Capacitor_0603:C_0603_22nF"
+			(pin_numbers
+				(hide yes)
+			)
+			(pin_names
+				(offset 0.254)
+			)
+			(exclude_from_sim no)
+			(in_bom yes)
+			(on_board yes)
+			(in_pos_files yes)
+			(duplicate_pin_numbers_are_jumpers no)
+			(property "Reference" "C"
+				(at 0.635 2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Value" "22nF"
+				(at 0.635 -2.54 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+					(justify left)
+				)
+			)
+			(property "Footprint" "GS_Capacitors:C_0603_1608Metric"
+				(at 0 22.352 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C21122"
+				(at 0 13.716 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Description" "22nF 10% Unpolarized Capacitor, 50V Max Voltage, X7R"
+				(at 0 15.748 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Manufacturer" "Samsung Electro-Mechanics"
+				(at 0 19.05 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "MPN" "CL10B223KB8NNNC"
+				(at 0 17.272 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "LCSC ID" "C21122"
+				(at 0 11.938 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "Package" "0603"
+				(at 0 20.574 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_keywords" "cap capacitor"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(property "ki_fp_filters" "C_0603_*"
+				(at 0 0 0)
+				(show_name no)
+				(do_not_autoplace no)
+				(hide yes)
+				(effects
+					(font
+						(size 1.27 1.27)
+					)
+				)
+			)
+			(symbol "C_0603_22nF_0_1"
+				(polyline
+					(pts
+						(xy -2.032 0.762) (xy 2.032 0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+				(polyline
+					(pts
+						(xy -2.032 -0.762) (xy 2.032 -0.762)
+					)
+					(stroke
+						(width 0.508)
+						(type default)
+					)
+					(fill
+						(type none)
+					)
+				)
+			)
+			(symbol "C_0603_22nF_1_1"
+				(pin passive line
+					(at 0 3.81 270)
+					(length 2.794)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "1"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+				(pin passive line
+					(at 0 -3.81 90)
+					(length 2.794)
+					(name ""
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+					(number "2"
+						(effects
+							(font
+								(size 1.27 1.27)
+							)
+						)
+					)
+				)
+			)
+			(embedded_fonts no)
+		)
 		(symbol "GS_H_Bridges:DRV8876PWPR"
 			(exclude_from_sim no)
 			(in_bom yes)
@@ -449,9 +648,29 @@
 			(embedded_fonts no)
 		)
 	)
+	(wire
+		(pts
+			(xy 180.34 86.36) (xy 167.64 86.36)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "0bc24f17-6d21-4e15-a6a2-b2063a3caed5")
+	)
+	(wire
+		(pts
+			(xy 180.34 78.74) (xy 167.64 78.74)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "3cb395b8-eda8-4336-8ba8-666c7011cbf4")
+	)
 	(symbol
 		(lib_id "GS_H_Bridges:DRV8876PWPR")
-		(at 148.59 104.14 0)
+		(at 147.32 102.87 0)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -462,7 +681,7 @@
 		(fields_autoplaced yes)
 		(uuid "7884e683-f231-48cf-aa71-60323cceb3b7")
 		(property "Reference" "U34"
-			(at 148.59 69.85 0)
+			(at 147.32 68.58 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -472,7 +691,7 @@
 			)
 		)
 		(property "Value" "DRV8876PWPR"
-			(at 148.59 72.39 0)
+			(at 147.32 71.12 0)
 			(show_name no)
 			(do_not_autoplace no)
 			(effects
@@ -482,7 +701,7 @@
 			)
 		)
 		(property "Footprint" "GS_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask2.46x2.31mm"
-			(at 148.59 53.34 0)
+			(at 147.32 52.07 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -493,7 +712,7 @@
 			)
 		)
 		(property "Datasheet" "https://lcsc.com/product-detail/Motor-Drivers_Texas-Instruments-Texas-Instruments-DRV8876PWPR_C575551.html"
-			(at 148.59 43.18 0)
+			(at 147.32 41.91 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -504,7 +723,7 @@
 			)
 		)
 		(property "Description" "H-Bridge wih Integrated Current Sense and Regulation, 4.5V - 37V Input Voltage Range, 6A Max Current"
-			(at 148.59 45.72 0)
+			(at 147.32 44.45 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -515,7 +734,7 @@
 			)
 		)
 		(property "Manufacturer" "TI"
-			(at 148.59 40.64 0)
+			(at 147.32 39.37 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -526,7 +745,7 @@
 			)
 		)
 		(property "MPN" "DRV8876PWPR"
-			(at 148.59 50.8 0)
+			(at 147.32 49.53 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -537,7 +756,7 @@
 			)
 		)
 		(property "LCSC ID" "C575551"
-			(at 148.59 55.88 0)
+			(at 147.32 54.61 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -548,7 +767,7 @@
 			)
 		)
 		(property "Package" "HTSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL-EP"
-			(at 148.59 48.26 0)
+			(at 147.32 46.99 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -613,6 +832,132 @@
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/c6a046af-5387-4c6b-a77e-149ae78eccdc"
 					(reference "U34")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "GS_Capacitor_0603:C_0603_22nF")
+		(at 180.34 82.55 0)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "b28396ed-dbc5-4610-8d8f-661e97fcbee1")
+		(property "Reference" "C6"
+			(at 184.15 81.2799 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Value" "22nF"
+			(at 184.15 83.8199 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(property "Footprint" "GS_Capacitors:C_0603_1608Metric"
+			(at 180.34 60.198 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" "https://datasheet.lcsc.com/datasheet/pdf/02336ea48ea44ca18c72517dd3cb7b47.pdf?productCode=C21122"
+			(at 180.34 68.834 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "22nF 10% Unpolarized Capacitor, 50V Max Voltage, X7R"
+			(at 180.34 66.802 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Manufacturer" "Samsung Electro-Mechanics"
+			(at 180.34 63.5 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "MPN" "CL10B223KB8NNNC"
+			(at 180.34 65.278 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "LCSC ID" "C21122"
+			(at 180.34 70.612 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Package" "0603"
+			(at 180.34 61.976 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "6627e11a-1f88-46b4-869c-2aaf9a6dc1ee")
+		)
+		(pin "1"
+			(uuid "3c02a54e-33b8-4d0c-a7b6-ee201669e252")
+		)
+		(instances
+			(project "sonar"
+				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2/c6a046af-5387-4c6b-a77e-149ae78eccdc"
+					(reference "C6")
 					(unit 1)
 				)
 			)

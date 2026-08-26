@@ -1,15 +1,15 @@
 ---
 id: T-012
 title: Prune power tree to four rails
-status: ready
+status: in-progress
 phase: P2
 tier: mid        # KiCad power-tree edits
 priority: 2
-assignee:
+assignee: codex/terra-t012
 depends_on: [T-002]
 needs_human: false
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 ## Goal
 **2026-08-25 scope update (D011)**: rails are now 5 V, 3.3 VD, optional mic rail (1.8 V?) per T-008, 12 V TX. No 3.3 VA opamp rail. Original text below kept for history.

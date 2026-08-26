@@ -11,6 +11,17 @@ supporting library.
 | `sonar-v1-pcb/`    | Main Sonar v1 PCB (transducer array, power supply, RX amp) |
 | `tx-rx-dev-board/` | Development board for testing TX/RX circuitry              |
 
+## Host reference pipeline
+
+The Python host reference for T-021 lives under `host/`:
+
+- `PYTHONPATH=host python3 -m unittest discover -s tests -q`
+- `python3 host/demo.py`
+- `python3 host/benchmark.py`
+
+`host/demo.py` generates a synthetic point-target capture, writes an `.npy` raw
+capture, and emits an SVG range/bearing artifact under `host/artifacts/`.
+
 ## Setup
 
 Run the setup script to register the shared library with KiCad:

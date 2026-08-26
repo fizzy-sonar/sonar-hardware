@@ -1,11 +1,11 @@
 ---
 id: T-020
 title: Vivado gateware — PDM capture + FT232H streaming (Cmod A7-35T)
-status: ready
+status: in-progress
 phase: P5
 tier: top        # novel HDL + Vivado constraints + testbenches
 priority: 2
-assignee:
+assignee: codex/sol-t020
 depends_on: []
 needs_human: false
 created: 2026-08-25

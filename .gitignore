@@ -20,5 +20,6 @@ fp-info-cache
 # Python analysis caches
 __pycache__/
 *.py[cod]
+host/artifacts/
 
 /build/

@@ -9,7 +9,7 @@ int main(void) {
     const uint8_t expected[] = {0x55, 0x55, 0x55}; /* odd channels only */
     uint8_t frame[3]; sonar_pack_frame(frame, 0x555555); assert(!memcmp(frame, expected, 3));
     assert(sonar_unpack_frame(frame) == 0x555555);
-    const uint32_t pio_words[] = {0x000001, 0x800000}; uint8_t repacked[6];
+    const uint32_t pio_words[] = {0x001000, 0x000800}; uint8_t repacked[6];
     sonar_repack_pio_words(repacked, pio_words, 2);
     assert(!memcmp(repacked, (uint8_t[]){1, 0, 0, 0, 0, 0x80}, 6));
     const uint8_t payload[] = {0x01, 0x00, 0x80, 0xfe, 0xff, 0x7f};

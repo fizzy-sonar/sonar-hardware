@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by codex/terra-t009 — T-009 re-verified independently (all host proofs re-run, byte-identical round trip) and closed out; ready to merge._
+_Last updated: 2026-08-26 by codex/terra-t021 — T-021 close-out re-verified: suite green via the ticket-sanctioned unittest fallback (pytest uninstallable offline), demo and benchmark pass._
 
 ## Now
 - **Phases open for agent work: P1, P2, and P5.** T-002/T-008 are done and CP-B
@@ -9,6 +9,14 @@ _Last updated: 2026-08-26 by codex/terra-t009 — T-009 re-verified independentl
   result; T-011/T-012/T-013 and P5 may proceed.
 - Architecture locked (see PLAN.md v2): 24 PDM ultrasonic mics → Cmod A7-35T +
   FT232H USB streaming → Python DSP; Pico 2 snapshot v0; TX via DRV8876 + connector.
+- **T-021 done:** host reference pipeline now has strict SNP1/SNR1 parsers, buffered
+  ingest, `.npy`/ring storage, 24-channel CIC+FIR decimation, per-channel
+  calibration, chirp/matched filter/beamforming, deterministic synthetic recovery
+  tests, demo artifact generation, and a synthetic in-memory ingest benchmark at
+  4042.582 MB/s versus the 9.216 MB/s contract (re-run 2026-08-26:
+  3888.015 MB/s, PASS). Physical FT232H/libusb capture is still untested; `pytest`
+  is uninstallable in the offline sandbox, so the ticket-sanctioned `unittest`
+  fallback (5/5 OK) is the verification of record.
 - **T-001 done:** reference case gives +27.1 dB person margin at 10 m and 20.2 m
   zero-margin range. ICS-41352 adds only 0.15 dB total noise in the stated ambient
   context; keep D011 through the quantitative T-016 bake-off. Wideband TX
@@ -46,7 +54,7 @@ _Last updated: 2026-08-26 by codex/terra-t009 — T-009 re-verified independentl
 | T-007 buy list + Vivado-host options | **cheap** | **review**; Joshua purchase/host choices remain |
 | T-006 kicad-cli check harness | **cheap** | **done**; baseline recorded |
 | T-009 Pico 2 snapshot firmware | **mid** | **done (host-verified)**; physical integration waits on pins/SDK/board |
-| T-021 host software | mid | benchmark pyftdi ingest early |
+| T-021 host software | mid | **done**; physical FT232H/libusb still untested |
 | T-020 Vivado gateware | **top** | TB layer can parameterize 3.072/4.8 MHz now; synthesis waits on host |
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
 | T-016 mic coupon bake-off | mid | **ready**; agent package ends at human CP-BM purchase/bench/release gate |
@@ -87,6 +95,15 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/terra-t021: resumed the killed T-021 session; audited the
+  pipeline against the DoD/D012 scope (all present), re-ran verification fresh
+  (unittest 5/5 OK, demo recovers target, benchmark 421x contract), confirmed pytest
+  is uninstallable offline; no code changes needed.
+- 2026-08-26 — codex/sol-t021: replaced the stale host stub with strict packet and
+  stream parsing, buffered ingest, real multichannel DSP/calibration/beamforming,
+  deterministic synthetic recovery tests, demo artifact generation, and a synthetic
+  in-memory benchmark above the 9.216 MB/s contract; `pytest` unavailable locally,
+  `unittest` verification passed.
 - 2026-08-26 — codex/terra-t009: T-009 close-out. No code changes; re-ran full
   host verification (C/Python tests, 49,152-frame synthetic capture byte-identical,
   287.3 dB tone recovery, ruff/diff clean); verification output pasted in ticket
@@ -94,6 +111,7 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
 - 2026-08-26 — codex/t009-final-repair: repaired T-009's single-SM PIO timing,
   DMA/IRQ sequencing, direct TinyUSB CDC, clock quantization/counters, GPIO guards,
   backpressure tests, and stale architecture claims; hardware remains unvalidated.
+
 - 2026-08-25 — codex/sol-t008: repaired independent-review findings by making SPH
   provisional, defining quantitative D011/T-001 thresholds, adding T-016/CP-BM,
   and blocking only T-010's physical MPN/footprint freeze; no KiCad file edited.

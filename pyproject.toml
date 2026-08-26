@@ -1,0 +1,14 @@
+[project]
+name="sonar-host"
+version="0.1.0"
+requires-python=">=3.11"
+dependencies=["numpy==2.3.2"]
+[project.optional-dependencies]
+ftdi=["pyftdi==0.57.1"]
+[tool.pytest.ini_options]
+testpaths=["tests"]
+pythonpath=["host"]
+[tool.ruff]
+line-length=100
+[tool.ruff.lint]
+ignore=["F401"]

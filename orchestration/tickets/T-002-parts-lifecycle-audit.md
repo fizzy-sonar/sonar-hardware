@@ -1,10 +1,10 @@
 ---
 id: T-002
 title: Part availability & lifecycle audit
-status: ready
+status: in-progress
 phase: P1
 priority: 1
-assignee:
+assignee: codex/t002
 depends_on: []
 needs_human: false
 created: 2026-08-25

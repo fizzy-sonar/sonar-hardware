@@ -1,15 +1,15 @@
 ---
 id: T-013
 title: Connect the h-bridge; TX connector
-status: ready
+status: in-progress
 phase: P2
 tier: mid        # KiCad edits, small scope
 priority: 3
-assignee:
+assignee: codex/terra-t013
 depends_on: [T-002]
 needs_human: false
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 ## Goal
 Give 20kHz-h-bridge.kicad_sch real hierarchical ports (defect #4), wire control lines to the digital sheet, add the off-board TX connector + optional series-L/snubber footprints (DNP-able).

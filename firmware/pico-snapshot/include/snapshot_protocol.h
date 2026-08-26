@@ -15,7 +15,9 @@
 
 typedef struct {
     uint32_t sequence;
+    /* Ultrasonic frame periods only; stopped clocks and standard mode do not count. */
     uint64_t first_frame;
+    /* Actual quantized clock, rounded to the nearest hertz. */
     uint32_t clock_hz;
     uint16_t channels;
     uint16_t data_lines;

@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-25 by codex/sol-t008 — independent T-008 review repaired the physical mic-release gate._
+_Last updated: 2026-08-26 by codex/t009-final-repair — T-009 firmware and claims independently repaired._
 
 ## Now
 - **Phases open for agent work: P1, P2, and P5.** T-002/T-008 are done and CP-B
@@ -20,11 +20,13 @@ _Last updated: 2026-08-25 by codex/sol-t008 — independent T-008 review repaire
   175/499/0, rx_amp_sim 1/0/0, txrx_dev 1/0/0 (violations/unconnected/footprints).
 - **T-007 review:** click-ready dev-hardware list and Vivado host comparison
   delivered; Joshua must choose reseller, host, and purchase timing.
-- **T-009 done (simulation-only):** RP2350 Pico SDK source, host SNP1 receiver,
-  CRC/bit-packing tests, and deterministic synthetic PDM-to-decimation/spectrogram
-  proof are committed. No Pico SDK is installed in the agent environment and no
-  physical PIO/DMA/USB/microphone validation is claimed; T-011 still owns exact
-  header GPIO assignment and T-021 owns canonical packet-format adoption.
+- **T-009 done (host-verified, hardware pending):** one finite PIO SM generates
+  clock and samples both DDR edges; one-shot DMA capture buffers alternate between
+  commands after standard/ultrasonic drains. Direct TinyUSB CDC, quantized clock
+  reporting, ultrasonic-only frame counters, GPIO guards, packet/CRC checks, and
+  partial-write/backpressure tests pass. No Pico SDK or hardware is present, so no
+  PIO assembly/ARM build, enumeration, waveform, mic, or physical throughput is
+  claimed. T-011 owns board pins; T-021 owns canonical packet-format adoption.
 - **T-008 done (electrical baseline only):** provisional SPH0641LU4H-1 at
   3.072 MHz, 24 mics paired onto 12 DATA lines, 3.3 V CDCLVC1112 clock tree, and
   9.216 MB/s raw contract v1. D011's final MPN/footprint is **not released**.
@@ -43,7 +45,7 @@ _Last updated: 2026-08-25 by codex/sol-t008 — independent T-008 review repaire
 | T-002 parts & lifecycle audit | **cheap** | **done**; matrix committed; unlocks T-008 |
 | T-007 buy list + Vivado-host options | **cheap** | **review**; Joshua purchase/host choices remain |
 | T-006 kicad-cli check harness | **cheap** | **done**; baseline recorded |
-| T-009 Pico 2 snapshot firmware | **mid** | **done (simulation-only)**; hardware integration waits on pins/SDK/board |
+| T-009 Pico 2 snapshot firmware | **mid** | **done (host-verified)**; physical integration waits on pins/SDK/board |
 | T-021 host software | mid | benchmark pyftdi ingest early |
 | T-020 Vivado gateware | **top** | TB layer can parameterize 3.072/4.8 MHz now; synthesis waits on host |
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
@@ -85,6 +87,9 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/t009-final-repair: repaired T-009's single-SM PIO timing,
+  DMA/IRQ sequencing, direct TinyUSB CDC, clock quantization/counters, GPIO guards,
+  backpressure tests, and stale architecture claims; hardware remains unvalidated.
 - 2026-08-25 — codex/sol-t008: repaired independent-review findings by making SPH
   provisional, defining quantitative D011/T-001 thresholds, adding T-016/CP-BM,
   and blocking only T-010's physical MPN/footprint freeze; no KiCad file edited.

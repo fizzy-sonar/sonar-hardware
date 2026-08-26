@@ -41,3 +41,12 @@ round-trip, Python compilation, and `git diff --check` passed.
 - `PICO_SDK_PATH` is unset here. Therefore no Pico firmware configuration/build,
   PIO/DMA timing, GPIO waveform, USB behavior, or microphone capture was tested.
   The repository source tells a board-equipped agent exactly how to build it.
+
+## 2026-08-26 correction
+
+The architecture wording above is historical and superseded by
+`2026-08-26-codex-t009-final-repair.md`. The repaired implementation is one finite
+DDR side-set SM, an independent discard DMA sink, and one-shot alternation between
+two capture buffers; it is not separate clock/sample programs, chained DMA, or a
+continuous ping-pong stream. That entry records the repaired timing, USB ownership,
+counter semantics, tests, and remaining physical blockers.

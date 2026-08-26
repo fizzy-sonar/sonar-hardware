@@ -1,15 +1,15 @@
 ---
 id: T-011
 title: Digital sheet — Cmod A7-35T socket, FT232H, headers
-status: ready
+status: in-progress
 phase: P2
 tier: top        # pin-budget audit across 3 interfaces; highest-consequence errors
 priority: 1
-assignee:
+assignee: codex/sol-t011
 depends_on: [T-002, T-008]
 needs_human: false
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 ## Goal
 Create `digital.kicad_sch` per D012 (ratified):

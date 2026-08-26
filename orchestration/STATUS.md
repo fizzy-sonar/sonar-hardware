@@ -4,8 +4,8 @@ _Last updated: 2026-08-26 by claude/orchestrator — T-011 live gate caught a re
 
 ## Now
 - **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5
-  agent work is landed: T-009/T-021/T-012/T-013 done, T-011 audited (one 60-s
-  human fetch gates done), T-016 at review (CP-BM), T-020 simulator milestone
+  agent work is landed: T-009/T-021/T-012/T-013 done, T-011 done (live-gate defect found +
+  repaired + re-verified), T-016 at review (CP-BM), T-020 simulator milestone
   done (bitstream waits on Vivado host). Remaining: Joshua's CP-B/CP-BM reviews,
   T-007 purchases/host choice, then T-010 (unblocked by CP-BM) → T-014 → T-015
   (cross-family review) → CP-C. Optional/non-gating: T-005 EDA spike.
@@ -103,7 +103,7 @@ _Last updated: 2026-08-26 by claude/orchestrator — T-011 live gate caught a re
 | T-006 kicad-cli check harness | **cheap** | **done**; baseline recorded |
 | T-009 Pico 2 snapshot firmware | **mid** | **done (host-verified)**; physical integration waits on pins/SDK/board |
 | T-021 host software | mid | **done**; physical FT232H/libusb still untested |
-| T-020 Vivado gateware | **top** | **in-progress**; `gateware/` simulator milestone done, `make test` PASS (9/9, Icarus 13.0); bitstream waits on Vivado host + T-011 XDC |
+| T-020 Vivado gateware | **top** | **in-progress**; `gateware/` simulator milestone done, `make test` PASS (9/9, Icarus 13.0); real XDC landed (T-011 done); bitstream waits only on the Vivado host |
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
 | T-016 mic coupon bake-off | mid | **review**; agent package delivered + verified; Joshua's CP-BM checklist in `coupons/mic-bakeoff/docs/order-package.md` |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |

@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by codex/terra-t012 — T-012 power tree pruned to 5V/3V3_D/3V3_MIC/12V and ERC-clean; rails table in orchestration/rails.md._
+_Last updated: 2026-08-26 by codex/terra-t013 — T-013 TX hookup done: DRV8876 fully wired, TX Drive sheet ERC-clean, off-board connector J50, TX waveform limits in orchestration/tx-limits.md for T-020._
 
 ## Now
 - **Phases open for agent work: P1, P2, and P5.** T-002/T-008 are done and CP-B
@@ -58,6 +58,15 @@ _Last updated: 2026-08-26 by codex/terra-t012 — T-012 power tree pruned to 5V/
   corrected. **The audit sandbox also had no network**: one live fetch of the
   Digilent master XDC + reference manual (instructions at top of pinmap.md, ~60 s
   for Joshua in a browser) is the only remaining gate before T-011 → done.
+- **T-013 done:** TX Drive sheet rewritten with real hierarchical ports
+  (TX_EN/TX_PH/TX_NSLEEP/TX_PMODE/TX_NFAULT) bridged on the top sheet to the
+  digital sheet's global labels; DRV8876 fully wired (VM=+12V, charge pump,
+  VREF=3.3V, ~1.95A trip, nFAULT pull-up); off-board transducer on J50 screw
+  terminal via 0R series elements + DNP RC snubber. Project ERC 377->347, TX
+  Drive section at zero messages; drive path netlist-verified (OUT1/2 -> R173/174
+  -> J50). MA40S4S 20Vpp/40kHz limit enforced via documented gateware envelope
+  (orchestration/tx-limits.md, amplitude cap 187/256). CP-C verify items: PMODE/
+  IMODE straps, CPH-CPL 47nF. `pcb drc` still SIGABRTs in the sandbox (exit 134).
 - **T-012 done:** power tree pruned to four rails (5V mux output, +3.3V buck,
   3V3_MIC filtered branch at >=100 mA per T-008, +12V TX boost) and fully
   ERC-clean (project ERC 456/339/117 -> 377/298/79; power sheets at zero
@@ -73,6 +82,10 @@ _Last updated: 2026-08-26 by codex/terra-t012 — T-012 power tree pruned to 5V/
   2026-08-26 terra-t016: new KiCad files added under `coupons/mic-bakeoff/` on
   branch agent/T-016-mic-bakeoff (no existing project files touched); reload
   before opening if KiCad had the repo open.
+  2026-08-26 terra-t013: 20kHz-h-bridge.kicad_sch rewritten, sonar.kicad_sch
+  (TX Drive sheet pins + labels) and sonar_lib.kicad_sym (DRV8876PWPR,
+  C_0603_22nF, R_0603_0R added) changed on branch agent/T-013-tx-hookup.
+  Reload KiCad.
 
 ## Work queue — launch ready tickets on the tier shown (routing table in README.md)
 
@@ -89,7 +102,7 @@ _Last updated: 2026-08-26 by codex/terra-t012 — T-012 power tree pruned to 5V/
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
 | T-011 digital sheet | **top** | audited offline, fixes applied; **needs 60-s human live master-XDC diff** then done |
 | T-012 power tree | mid | **done**; rails table in `orchestration/rails.md`; CP-C reviews |
-| T-013 TX hookup | mid | **ready**; independent of mic release |
+| T-013 TX hookup | mid | **done**; TX Drive sheet ERC-clean, J50 connector, limits doc |
 
 T-007 is **in review** (buy list repaired; Joshua choices remain).
 
@@ -127,6 +140,9 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/terra-t013: T-013 done — TX hookup, hier ports, J50
+  connector, tx-limits.md; verification + gotchas in the ticket Log and journal
+  2026-08-26-codex-terra-t013-tx.md.
 - 2026-08-26 — codex/terra-t012: T-012 done — four-rail power tree,
   ERC-clean power subtree, rails.md; gotchas + verification in journal
   2026-08-26-codex-terra-t012-power.md and the ticket Log.

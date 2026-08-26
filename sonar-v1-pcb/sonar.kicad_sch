@@ -14262,6 +14262,56 @@
 				(justify left top)
 			)
 		)
+		(pin "TX_EN" input
+			(at 181.61 170.18 180)
+			(uuid "13dbd8c8-d61c-448d-9f72-aff891593089")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "TX_PH" input
+			(at 181.61 175.26 180)
+			(uuid "d6e680ff-89f6-4f15-88da-c797065dc370")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "TX_NSLEEP" input
+			(at 181.61 180.34 180)
+			(uuid "627b7264-56e3-4626-9d54-76ef4d4cfc7c")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "TX_PMODE" input
+			(at 181.61 185.42 180)
+			(uuid "ce5d6d48-f828-483b-b2af-bb15eced43a7")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+		(pin "TX_NFAULT" output
+			(at 217.17 170.18 0)
+			(uuid "2eeb78ce-550b-4345-923c-d24ae91305d9")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
 		(instances
 			(project "sonar"
 				(path "/f72ceae0-eee4-4385-b0e8-639846bcb5f2"
@@ -14813,6 +14863,167 @@
 				)
 			)
 		)
+	)
+	(wire
+		(pts
+			(xy 181.61 170.18) (xy 173.99 170.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "98c0a45b-9c77-4a69-8a6b-2bf8025f6d0c")
+	)
+	(global_label "TX_EN"
+		(shape input)
+		(at 173.99 170.18 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "b9448026-4c62-4804-a729-7632ffb748eb")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 173.99 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 181.61 175.26) (xy 173.99 175.26)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "22158cae-02df-422b-a78e-eb8511f30c47")
+	)
+	(global_label "TX_PH"
+		(shape input)
+		(at 173.99 175.26 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "73b6c624-3313-45f3-96ed-32c4f1263399")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 173.99 175.26 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 181.61 180.34) (xy 173.99 180.34)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "89b65b06-163c-44a9-89e0-87620b59af04")
+	)
+	(global_label "TX_NSLEEP"
+		(shape input)
+		(at 173.99 180.34 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "81281d75-f165-439b-836d-9502923ae16a")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 173.99 180.34 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 181.61 185.42) (xy 173.99 185.42)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "5861e788-7028-4652-be16-643124378580")
+	)
+	(global_label "TX_PMODE"
+		(shape input)
+		(at 173.99 185.42 180)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "171a7005-7370-421f-9442-be78290529e9")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 173.99 185.42 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(wire
+		(pts
+			(xy 217.17 170.18) (xy 224.79 170.18)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "4932ab82-2c57-4213-a689-647dd954ee2e")
+	)
+	(global_label "TX_NFAULT"
+		(shape output)
+		(at 224.79 170.18 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "29351db3-7605-45b0-95b0-4d2fbd0112db")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 224.79 170.18 0)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(hide yes)
+			)
+		)
+	)
+	(text "TX: digital sheet -> TX_EN/TX_PH/TX_NSLEEP/TX_PMODE, TX_NFAULT back.\nDRV8876 VM = +12V; off-board transducer on J50 (D007).\nWaveform limits: orchestration/tx-limits.md"
+		(exclude_from_sim no)
+		(at 181.61 201.93 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left top)
+		)
+		(uuid "6a243333-cef3-4930-bea6-e07a7b71a319")
 	)
 	(sheet_instances
 		(path "/"

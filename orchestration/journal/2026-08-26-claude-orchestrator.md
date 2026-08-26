@@ -39,3 +39,22 @@ conflicts (union semantics), and merged each branch to main with --no-ff.
 
 Nothing is `ready` and unblocked except optional T-005 (non-gating). Wait for
 Joshua: CP-BM (T-016 order package), T-007 purchases, T-011 live XDC diff, CP-B.
+
+## Addendum — unsandboxed harness run (host side)
+
+`./scripts/check.sh` run unsandboxed on merged main (2026-08-26 ~15:52 PDT): all
+commands completed; `kicad-cli pcb drc` works fine outside the agent sandbox (the
+SIGABRT/exit-134 was environmental). sonar ERC = 347 messages (matches T-013's
+post-fix count — integration consistent); sonar DRC = 175 violations, identical to
+the T-006 baseline (the .kicad_pcb predates the v2 schematic rework; layout is a
+later phase). Reports in `build/sonar-erc.rpt`, `build/sonar-drc.rpt`.
+
+## Addendum — T-011 live gate FAILED and is being repaired
+
+The live Digilent fetch (orchestrator, networked) disproved the offline pinmap
+transcription: master XDC GPIO labels skip pio15/16/24/25; reference manual §8:
+44 digital + pins 15/16 analog (XADC divider) + pin 24=VU, pin 25=GND (no DIP 3V3).
+Every pinmap row from position 15 up was on the wrong DIP position; the current
+sheet would have put FT_D2/FT_D3 on VU/GND. codex/sol-t011 is regenerating the
+sheet/pinmap/XDC from the corrected generator table. Evidence: /tmp XDC + Wayback
+manual; a reproducible check script lands under scripts/ with the fix.

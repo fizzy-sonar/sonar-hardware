@@ -1,15 +1,15 @@
 ---
 id: T-016
 title: Quantitative PDM microphone coupon bake-off + MPN release
-status: ready
+status: in-progress
 phase: P2
 tier: mid        # coupon EDA package, calibrated analysis, and release report
 priority: 1
-assignee:
+assignee: codex/terra-t016
 depends_on: [T-001, T-002, T-008]
 needs_human: true
 created: 2026-08-25
-updated: 2026-08-25
+updated: 2026-08-26
 ---
 ## Goal
 Complete the physical SPH0641LU4H-1 versus ICS-41352 bake-off required by D011,

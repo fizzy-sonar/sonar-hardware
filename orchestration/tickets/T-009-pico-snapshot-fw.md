@@ -1,7 +1,7 @@
 ---
 id: T-009
 title: Pico 2 snapshot-mode capture firmware (v0)
-status: in-progress
+status: done
 phase: P5
 tier: mid        # RP2350 PIO/DMA firmware + host receiver
 priority: 1
@@ -35,3 +35,25 @@ Synthetic-pattern capture matches expected bitstream exactly; throughput math
 
 ## Log
 - 2026-08-25 claude (fable): created per ratified D012.
+- 2026-08-25 codex/terra-t009: completed the sim-allowed DoD on
+  `agent/T-009-pico-snapshot-fw`. Added `firmware/pico-snapshot/`: Pico SDK CMake
+  source with separate PIO clock/sample definitions, ping-pong DMA-window design,
+  SRAM-safe default (two 16,384-frame capture windows; 224 KiB temporary+packed
+  buffer allocation), CDC framing, and an explicit Pico Plus 2 PSRAM boundary.
+  Actual header GPIO assignment and final PIO/DMA configuration remain T-011
+  hardware integration work; no hardware result is claimed.
+- 2026-08-25 codex/terra-t009: proposed the shared little-endian `SNP1` v1 frame
+  to T-021/root: 48-byte magic/version/header-length/flags/capture-ID/frame-counter/
+  clock/channel+line count/frame+payload lengths/payload CRC-32/header CRC-32 header,
+  followed by lossless 3-byte logical PDM frames. CH00..CH23 map directly to the
+  contract's rising/falling paired-edge order. T-021 owns canonical
+  `docs/packet-format.md` and may ratify or amend this proposal.
+- 2026-08-25 codex/terra-t009: host verification passed with no third-party Python
+  dependencies (`uv` project): C protocol/repacking test; Python framing/CRC test;
+  deterministic 49,152-frame (16.000 ms, 147,456-byte) synthetic GPIO-independent
+  28 kHz PDM capture; decimation by 24 to 128 ksample/s; 28 kHz versus 45 kHz
+  power ratio 287.3 dB; and CDC receiver validation/byte-identical saved output.
+  `git diff --check` passed. `PICO_SDK_PATH` is unset in this environment, therefore
+  firmware CMake configuration/build could not be run; the source includes an
+  offline import file and states the exact SDK build command. No physical hardware,
+  PIO/DMA timing, USB throughput, or microphone capture has been validated.

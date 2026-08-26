@@ -5,7 +5,7 @@
 void sonar_repack_pio_words(uint8_t *, const uint32_t *, uint32_t);
 
 int main(void) {
-    assert(PDM_DISCARD_FRAMES == 30720u);
+    assert(PDM_DISCARD_FRAMES == 30720u); assert(sonar_pio_divider(150000000,3072000)>8.13f && sonar_pio_divider(150000000,3072000)<8.14f);
     const uint8_t expected[] = {0x55, 0x55, 0x55}; /* odd channels only */
     uint8_t frame[3]; sonar_pack_frame(frame, 0x555555); assert(!memcmp(frame, expected, 3));
     assert(sonar_unpack_frame(frame) == 0x555555);

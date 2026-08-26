@@ -12,9 +12,9 @@ _Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nomina
   small-target margin are the remaining CP-B acoustic risks.
 - **T-002 done:** parts/lifecycle matrix delivered; ICS-41352 versus SPH0641LU4H
   bake-off remains for T-008. EOL/NRND and missing T5838/JLC evidence are flagged.
-- **T-006 done:** KiCad CLI harness added; host KiCad 10 found and ERC baselines
-  measured. Headless DRC crashes are surfaced as hard failures (exit 1), not
-  hidden as baseline violations.
+- **T-006 done:** KiCad CLI harness added with repo-local cache and hard-failure
+  semantics. Approved unsandboxed runs pass end-to-end; baseline DRC is sonar
+  175/499/0, rx_amp_sim 1/0/0, txrx_dev 1/0/0 (violations/unconnected/footprints).
 - **KiCad open?** Unknown — check before hand-editing `.kicad_sch` (README rules).
 
 ## Ready tickets — launch each on the tier shown (routing table in README.md)

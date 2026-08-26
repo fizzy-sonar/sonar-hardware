@@ -34,10 +34,10 @@ Run it twice; identical output; paste summary in Log.
   `bash -n scripts/check.sh` passed. Baseline ERC reports: sonar 512 (352 errors,
   160 warnings), rx_amp_sim
   32 (10 errors, 22 warnings), txrx_dev 76 (9 errors, 67 warnings). DRC commands
-  aborted with KiCad exit 134 in this headless sandbox; the repaired harness now
-  reports these as hard tool failures and exits 1. ERC exit 5 is soft-accepted as
-  the observed baseline violation code. Netlist/PDF/SVG/BOM exports completed for
-  all three projects. Two full runs returned exit 1 (three DRC crashes each), with
-  identical summaries; `XDG_CACHE_HOME=build/xdg-cache` removed the prior
-  no-writable-cache condition, but DRC still aborts 134 after Fontconfig config
-  warnings. `git diff --check` passed.
+  aborted with KiCad exit 134 in the sandbox; the repaired harness reports these
+  as hard tool failures and exits 1. ERC/DRC exit 5 is soft-accepted as the
+  observed baseline violation code. In two approved unsandboxed macOS runs,
+  overall exit was 0 both times with identical summaries: all ERC and DRC commands
+  returned baseline code 5 and all exports returned 0. DRC baselines were sonar
+  175 violations + 499 unconnected pads + 0 footprint errors; rx_amp_sim 1 + 0 +
+  0; txrx_dev 1 + 0 + 0. `XDG_CACHE_HOME=build/xdg-cache` remains enabled.

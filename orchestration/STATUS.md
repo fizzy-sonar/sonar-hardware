@@ -3,7 +3,7 @@
 _Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nominally PDM-SNR-gated._
 
 ## Now
-- **Phases open for agent work: P1 and P5.** P2 unlocks when T-002 + T-008 are done.
+- **Phases open for agent work: P1 and P5.** P2 unlocks when T-008 is done (T-002 complete).
 - Architecture locked (see PLAN.md v2): 24 PDM ultrasonic mics → Cmod A7-35T +
   FT232H USB streaming → Python DSP; Pico 2 snapshot v0; TX via DRV8876 + connector.
 - **T-001 done:** reference case gives +27.1 dB person margin at 10 m and 20.2 m
@@ -18,13 +18,13 @@ _Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nomina
 
 | Ticket | Tier | Notes |
 |---|---|---|
-| T-002 parts & lifecycle audit | **cheap** | in-progress (codex); unlocks T-008 |
+| T-002 parts & lifecycle audit | **cheap** | **done**; matrix committed; unlocks T-008 |
 | T-007 buy list + Vivado-host options | **cheap** | ends at `review` for Joshua to purchase |
 | T-006 kicad-cli check harness | **cheap** | shell scripting |
 | T-009 Pico 2 snapshot firmware | mid | PIO/DMA; the first-echoes path |
 | T-021 host software | mid | benchmark pyftdi ingest early |
 | T-020 Vivado gateware | **top** | TB layer needs no Vivado host — start there |
-| T-008 PDM RX design | **top** | unlocks after T-002 |
+| T-008 PDM RX design | **top** | **ready**; T-002 complete and matrix available |
 
 Optional/non-gating: T-005 EDA spike (mid). T-001 done 2026-08-25.
 **The three `cheap` tickets do not need a reasoning model — launch them small.**

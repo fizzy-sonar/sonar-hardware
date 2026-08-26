@@ -1,0 +1,39 @@
+# AP63301WU-7 — Diodes Inc. 3.8–32 V, 3 A synchronous buck, TSOT-26.
+# Hand-authored local component (the diodeinc registry, which would normally
+# supply this, is unreachable offline; writing one by hand took ~10 min).
+#
+# Pin names match sonar-v1-pcb/sonar_lib.kicad_sym "AP63301WU-7":
+#   VIN EN BST SW PGND FB
+
+load("@stdlib/io.zen", "io")
+load("@stdlib/interfaces.zen", "Net", "Power", "Ground")
+
+VIN = io("VIN", Power)  # input rail
+EN = io("EN", Net)  # enable, active high
+BST = io("BST", Net)  # bootstrap, 100 nF to SW
+SW = io("SW", Net)  # switch node to inductor
+PGND = io("PGND", Ground)  # power ground
+FB = io("FB", Net)  # feedback divider tap
+
+Component(
+    name="U",
+    part=builtin.Part(
+        mpn="AP63301WU-7",
+        manufacturer="Diodes Incorporated",
+    ),
+    # Symbol/footprint would be File(...) refs into the repo's KiCad libs
+    # (sonar_lib.kicad_sym / package_TO_SOT_SMD.pretty TSOT-26). Paths left as
+    # placeholders because this file cannot be built in the sandbox.
+    symbol=Symbol("../symbols/AP63301WU-7.kicad_sym"),
+    footprint=File("../footprints/TSOT-26.kicad_mod"),
+    prefix="U",
+    pins={
+        "VIN": VIN,
+        "EN": EN,
+        "BST": BST,
+        "SW": SW,
+        "PGND": PGND,
+        "FB": FB,
+    },
+    type="buck_regulator",
+)

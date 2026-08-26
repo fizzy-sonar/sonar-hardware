@@ -1,0 +1,9 @@
+"""
+power_supply
+"""
+
+Board(
+    name="power_supply",
+    layout_path="layout",
+    layers=4,
+)

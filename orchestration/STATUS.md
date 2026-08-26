@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by claude/orchestrator — T-011 live gate caught a real DIP-position defect (offline table + offline audit both wrong); repaired and re-verified 44/44 against the live Digilent master XDC + reference manual; T-011 done._
+_Last updated: 2026-08-26 by codex/terra-t005 — T-005 EDA spike (Zener) executed: NO-GO for v1, ticket at review; changes uncommitted on branch agent/T-005-eda-spike for orchestrator commit._
 
 ## Now
 - **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5
@@ -8,7 +8,7 @@ _Last updated: 2026-08-26 by claude/orchestrator — T-011 live gate caught a re
   repaired + re-verified), T-016 at review (CP-BM), T-020 simulator milestone
   done (bitstream waits on Vivado host). Remaining: Joshua's CP-B/CP-BM reviews,
   T-007 purchases/host choice, then T-010 (unblocked by CP-BM) → T-014 → T-015
-  (cross-family review) → CP-C. Optional/non-gating: T-005 EDA spike.
+  (cross-family review) → CP-C. T-005 EDA spike: **NO-GO for v1, at review** — see `spikes/eda-zener/REPORT.md`.
 - Architecture locked (see PLAN.md v2): 24 PDM ultrasonic mics → Cmod A7-35T +
   FT232H USB streaming → Python DSP; Pico 2 snapshot v0; TX via DRV8876 + connector.
 - **T-021 done:** host reference pipeline now has strict SNP1/SNR1 parsers, buffered
@@ -113,7 +113,7 @@ _Last updated: 2026-08-26 by claude/orchestrator — T-011 live gate caught a re
 
 T-007 is **in review** (buy list repaired; Joshua choices remain).
 
-Optional/non-gating: T-005 EDA spike (mid). T-001 done 2026-08-25.
+T-005 EDA spike (mid): **review** — verdict NO-GO for v1 (D008 stands); importer fails on all 3 real inputs; build/layout/BOM sandbox-blocked (hardlink EPERM, honestly documented); 30-min unsandboxed confirmation step in the REPORT. T-001 done 2026-08-25.
 **The three `cheap` tickets do not need a reasoning model — launch them small.**
 
 ## Cost note (2026-08-25)
@@ -147,6 +147,11 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/terra-t005: T-005 EDA spike (diodeinc/pcb Zener) → NO-GO for v1;
+  report `spikes/eda-zener/REPORT.md`, hand port + raw importer outputs under
+  `spikes/eda-zener/`; ticket at review; sandbox blocked git — ALL changes
+  uncommitted on branch agent/T-005-eda-spike, orchestrator commits. Journal:
+  2026-08-26-codex-terra-t005-eda-spike.md.
 - 2026-08-26 — codex/sol-t011 (repair): live-source gate FAILED the pin table;
   re-mapped DIP positions (15/16 analog NC, 24=VU←+5V, 25=GND), reverted the
   wrong audit CC "resolution" (T-008's list was right), added

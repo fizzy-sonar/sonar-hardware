@@ -1,11 +1,11 @@
 ---
 id: T-007
 title: Buy-now list for Joshua (dev hardware + Vivado host)
-status: ready
+status: in-progress
 phase: P1
 tier: cheap        # web research + price table
 priority: 1
-assignee:
+assignee: codex/luna-t007
 depends_on: []
 needs_human: true
 created: 2026-08-25

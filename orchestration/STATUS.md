@@ -12,6 +12,8 @@ _Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nomina
   small-target margin are the remaining CP-B acoustic risks.
 - **T-002 done:** parts/lifecycle matrix delivered; ICS-41352 versus SPH0641LU4H
   bake-off remains for T-008. EOL/NRND and missing T5838/JLC evidence are flagged.
+- **T-007 review:** click-ready dev-hardware list and Vivado host comparison
+  delivered; Joshua must choose reseller, host, and purchase timing.
 - **KiCad open?** Unknown — check before hand-editing `.kicad_sch` (README rules).
 
 ## Ready tickets — launch each on the tier shown (routing table in README.md)
@@ -19,12 +21,13 @@ _Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nomina
 | Ticket | Tier | Notes |
 |---|---|---|
 | T-002 parts & lifecycle audit | **cheap** | **done**; matrix committed; unlocks T-008 |
-| T-007 buy list + Vivado-host options | **cheap** | ends at `review` for Joshua to purchase |
 | T-006 kicad-cli check harness | **cheap** | shell scripting |
 | T-009 Pico 2 snapshot firmware | mid | PIO/DMA; the first-echoes path |
 | T-021 host software | mid | benchmark pyftdi ingest early |
 | T-020 Vivado gateware | **top** | TB layer needs no Vivado host — start there |
 | T-008 PDM RX design | **top** | **ready**; T-002 complete and matrix available |
+
+T-007 is **in review** (buy list repaired; Joshua choices remain).
 
 Optional/non-gating: T-005 EDA spike (mid). T-001 done 2026-08-25.
 **The three `cheap` tickets do not need a reasoning model — launch them small.**

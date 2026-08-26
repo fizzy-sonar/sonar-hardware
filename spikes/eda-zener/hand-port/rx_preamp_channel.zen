@@ -1,0 +1,36 @@
+# One channel of the legacy 4-mic analog preamp tile
+# (sonar-v1-pcb/quad_rx_pre_amp.kicad_sch). NOTE: per D011 the v1 array is
+# digital PDM — this tile is superseded; ported here only because T-005 names it.
+#
+# This is exactly the case code-first authoring wins: KiCad needs 4 sheet
+# instances + textvars (${R_GAIN_TARGET} etc.); here it is one parameterized
+# module instantiated 4x. UNVERIFIED (see ../REPORT.md §Blocked).
+#
+# KiCad's own importer cannot read the multi-instance tile at all:
+#   pcb import ../../sonar-v1-pcb/quad_rx_pre_amp.kicad_sch preamp_import
+#   -> "Error: Failed to parse KiCad netlist: Ambiguous KiCad component
+#      identities: refdes C177 maps to paths ..." (one per repeated instance)
+
+load("@stdlib/io.zen", "input", "output")
+load("@stdlib/interfaces.zen", "Net", "Power", "Ground")
+load("@stdlib/units.zen", "Resistance")
+
+Resistor = Module("@stdlib/generics/Resistor.zen")
+Capacitor = Module("@stdlib/generics/Capacitor.zen")
+# stdlib OperationalAmplifier is deprecated and Single-only (SOIC8); a real port
+# needs a quad op-amp component package (e.g. OPA4xxx, SOIC-14) authored like
+# ap63301.zen. Placeholder load:
+QuadOpamp = Module("quad_opamp.zen")  # not written in this spike
+
+vin = input("vin", Net)  # from mic coupling network
+vout = output("vout", Net)  # to next gain stage
+vp = input("vp", Power)  # analog rail
+vn = input("vn", Ground)
+gain_r = config(Resistance, default=Resistance("1kOhm"), help="replaces KiCad textvar ${R_GAIN_*}")
+
+nin = Net("nin")  # inverting node
+
+QuadOpamp(name="U", IN_P=vin, IN_N=nin, OUT=vout, VP=vp, VN=vn)
+Resistor(name="R_GAIN", value=gain_r, package="0603", P1=nin, P2=vn)
+Resistor(name="R_FB", value="10kOhm 1%", package="0603", P1=nin, P2=vout)
+Capacitor(name="C_FB", value="4.7nF 10%", package="0603", dielectric="C0G", P1=nin, P2=vout)

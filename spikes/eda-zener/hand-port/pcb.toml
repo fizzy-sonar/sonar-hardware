@@ -1,0 +1,13 @@
+# T-005 spike hand-port workspace. UNVERIFIED: `pcb build` could not run in the
+# agent sandbox (see ../REPORT.md). Syntax follows the bundled stdlib 0.4.36.
+[workspace]
+pcb-version = "0.4"
+# No registry/vendor deps: everything here is stdlib generics + local modules.
+
+[board]
+name = "power_supply"
+path = "power_supply.zen"
+description = "Sonar v1 power tree fragment: 5V -> 3.3V buck (AP63301) + 3V3_MIC filter branch."
+
+[access]
+allow = ["*"]

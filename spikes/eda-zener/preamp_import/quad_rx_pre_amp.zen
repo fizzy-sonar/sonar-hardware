@@ -1,0 +1,9 @@
+"""
+quad_rx_pre_amp
+"""
+
+Board(
+    name="quad_rx_pre_amp",
+    layout_path="layout",
+    layers=4,
+)

@@ -1,0 +1,60 @@
+load("bom/match_generics.zen", "assign_house_parts")
+
+Part = builtin.Part
+
+Hint = struct(
+    near=lambda a, b: "near({}, {})".format(a, b),
+    right=lambda a, b: "right({}, {})".format(a, b),
+    left=lambda a, b: "left({}, {})".format(a, b),
+    above=lambda a, b: "above({}, {})".format(a, b),
+    below=lambda a, b: "below({}, {})".format(a, b),
+)
+
+
+def Layout(
+    name: str,
+    path: str | None = None,
+    hints: list | None = None,
+    modifiers: list | None = None,
+    bom_profile=assign_house_parts,
+) -> None:
+    """Helper function to create a layout object"""
+
+    # Only register at root
+    if len(builtin.current_module_path()) == 0:
+        # Register user modifiers first so they can override the BOM profile.
+        if modifiers:
+            for modifier in modifiers:
+                builtin.add_component_modifier(modifier)
+
+        if bom_profile:
+            builtin.add_component_modifier(bom_profile)
+
+    if path:
+        builtin.add_property("layout_path", Path(path, allow_not_exist=True))
+    builtin.add_property("layout_name", name)
+    if hints:
+        builtin.add_property("layout_hints", hints)
+
+
+def Simulation(
+    name: str,
+    setup: str | None = None,
+    modifiers: list | None = None,
+    bom_profile=assign_house_parts,
+) -> None:
+    """Helper function to create a simulations object"""
+
+    # `name` is explicitly not used, but kept for consistency and future compatibility
+
+    builtin.set_sim_setup(content=setup)
+
+    # Only register at root, matching Layout().
+    if len(builtin.current_module_path()) == 0:
+        # Register user modifiers first so they can override the BOM profile.
+        if modifiers:
+            for modifier in modifiers:
+                builtin.add_component_modifier(modifier)
+
+        if bom_profile:
+            builtin.add_component_modifier(bom_profile)

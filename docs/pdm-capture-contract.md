@@ -1,13 +1,14 @@
-# PDM capture contract v1
+# PDM capture contract v1 (provisional SPH baseline)
 
-_Status: v1, 2026-08-25. Owners: T-008 defines the electrical/sample contract;
-T-020 implements and testbench-checks it; T-009 and T-021 consume it._
+_Status: v1 provisional, 2026-08-25. Owners: T-008 defines the electrical/sample
+baseline; T-016 freezes the physical MPN/rate after the D011 bake-off; T-020
+implements and testbench-checks it; T-009 and T-021 consume it._
 
 ## Normative configuration
 
 | Item | v1 value |
 |---|---:|
-| Microphone | Syntiant `SPH0641LU4H-1` |
+| Microphone | Provisional: Syntiant `SPH0641LU4H-1`; not a BOM/footprint release |
 | Channels / physical data lines | 24 / 12, one SELECT-low + one SELECT-high mic per line |
 | Mic clock | 3.072000 MHz nominal, 50% duty cycle |
 | Electrical level | 3.3 V LVCMOS; no pull-up/down on shared PDM data |
@@ -24,6 +25,14 @@ earlier consequence text assigning CIC/FIR to the FPGA is therefore stale for th
 FT232H path. CIC in fabric remains optional only for the later DNP 100M RMII path.
 This is an ordering clarification between ratified decisions, not an architecture
 deviation.
+
+D011's physical part choice is not closed by this contract. T-016 must compare the
+SPH baseline with ICS-41352 quantitatively before T-010 freezes a footprint. T-020
+shall keep clock/rate constants parameterized and test both 3.072 MHz and the
+4.8 MHz alternate, while treating the table above as the v1 default. If T-016
+releases ICS, this contract must be revised before the production default freezes;
+the 4.8 MHz raw payload would be 115.2 Mb/s (14.4 MB/s), and host decimation/output
+rate must be reselected rather than silently retaining the SPH-only values.
 
 The 3.072 MHz point is inside the Syntiant datasheet's 3.072–4.8 MHz Ultrasonic
 Mode and is the exact condition used for its ultrasonic current and response data.
@@ -125,6 +134,11 @@ START_STANDARD_HZ  = 1_536_000
 START_STANDARD_MS  = 50
 ULTRASONIC_SETTLE_MS = 10
 ```
+
+The testbench must override the clock parameter to 4,800,000 Hz and prove the same
+12-line/24-channel edge ordering plus a 115,200,000 bit/s raw payload calculation.
+That alternate test is readiness for T-016's outcome, not authorization to change
+the v1 default or to bypass the MPN release gate.
 
 ## Primary sources checked 2026-08-25
 

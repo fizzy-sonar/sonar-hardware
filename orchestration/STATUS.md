@@ -1,23 +1,29 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-25 by codex/sol-t008 — T-008 complete; P2 ticket dependencies are cleared._
+_Last updated: 2026-08-25 by codex/sol-t008 — independent T-008 review repaired the physical mic-release gate._
 
 ## Now
-- **Phases open for agent work: P1, P2, and P5.** T-002 and T-008 are done; CP-B
-  review and physical mic bake-off remain before the P1 exit gate.
+- **Phases open for agent work: P1, P2, and P5.** T-002/T-008 are done and CP-B
+  still reviews the analysis/bake-off thresholds. T-016 is ready for an agent to
+  prepare the coupon/order/test package. Only T-010 is blocked on its physical
+  result; T-011/T-012/T-013 and P5 may proceed.
 - Architecture locked (see PLAN.md v2): 24 PDM ultrasonic mics → Cmod A7-35T +
   FT232H USB streaming → Python DSP; Pico 2 snapshot v0; TX via DRV8876 + connector.
 - **T-001 done:** reference case gives +27.1 dB person margin at 10 m and 20.2 m
   zero-margin range. ICS-41352 adds only 0.15 dB total noise in the stated ambient
-  context; keep D011 through the T-002/T-008 bake-off. Wideband TX calibration and
-  small-target margin are the remaining CP-B acoustic risks.
-- **T-002 done:** parts/lifecycle matrix delivered; ICS-41352 versus SPH0641LU4H
-  bake-off plan is now in T-008. EOL/NRND and missing T5838/JLC evidence are flagged.
-- **T-008 done:** SPH0641LU4H-1 selected provisionally at 3.072 MHz; 24 mics pair
-  onto 12 DATA lines through a 3.3 V CDCLVC1112 clock tree. Contract v1 fixes
-  9.216 MB/s raw capture and 128 ksample/s host output. Physical SPH-versus-ICS
-  coupons gate mic release at CP-C; SPH 3.3 V current and clock input capacitance
-  are explicit evidence gaps.
+  context; keep D011 through the quantitative T-016 bake-off. Wideband TX
+  calibration and small-target margin remain CP-B acoustic risks.
+- **T-002 done:** parts/lifecycle matrix delivered. ICS-41352 is NRND; missing
+  candidate/JLC evidence remains explicit rather than being treated as stock.
+- **T-008 done (electrical baseline only):** provisional SPH0641LU4H-1 at
+  3.072 MHz, 24 mics paired onto 12 DATA lines, 3.3 V CDCLVC1112 clock tree, and
+  9.216 MB/s raw contract v1. D011's final MPN/footprint is **not released**.
+- **T-016 ready / human gate at CP-BM:** agent prepares separate 12-unit-per-MPN
+  coupon designs, sourcing/order package, calibrated runbook, and analysis. Joshua
+  alone authorizes/places coupon orders, operates/provides bench data, ratifies the
+  MPN, and closes the ticket. No coupon source or spend is currently authorized.
+  SPH 3.3 V max current, clock-input capacitance/load, and allowable PCB-port
+  misregistration remain nonblocking evidence gaps to characterize, not invent.
 - **KiCad open?** Unknown — check before hand-editing `.kicad_sch` (README rules).
 
 ## Work queue — launch ready tickets on the tier shown (routing table in README.md)
@@ -29,8 +35,13 @@ _Last updated: 2026-08-25 by codex/sol-t008 — T-008 complete; P2 ticket depend
 | T-006 kicad-cli check harness | **cheap** | **in progress**; shell scripting |
 | T-009 Pico 2 snapshot firmware | mid | PIO/DMA; the first-echoes path |
 | T-021 host software | mid | benchmark pyftdi ingest early |
-| T-020 Vivado gateware | **top** | TB layer needs no Vivado host — start there |
-| T-008 PDM RX design | **top** | **done**; unlocks T-010/T-011/T-012 |
+| T-020 Vivado gateware | **top** | TB layer can parameterize 3.072/4.8 MHz now; synthesis waits on host |
+| T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
+| T-016 mic coupon bake-off | mid | **ready**; agent package ends at human CP-BM purchase/bench/release gate |
+| T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
+| T-011 digital sheet | **top** | **ready**; common pin map/returned clock can proceed |
+| T-012 power tree | mid | **ready**; carry >=100 mA provisional mic rail |
+| T-013 TX hookup | mid | **ready**; independent of mic release |
 
 Optional/non-gating: T-005 EDA spike (mid). T-001 done 2026-08-25.
 **The three `cheap` tickets do not need a reasoning model — launch them small.**
@@ -46,16 +57,25 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
 ## Blockers
 - Vivado synthesis (part of T-020) waits on the Vivado host purchase/decision (T-007
   item 7). The T-020 testbench layer is NOT blocked — start there.
+- T-010, T-014's microphone line, and CP-C are blocked on T-016. After its agent
+  package reaches `review`, the exact remaining human gate is: Joshua approves and
+  places/pays for coupons, provides/operates the calibrated bench capture, and
+  ratifies the resulting exact MPN/footprint release. Agents do not perform those
+  actions and no order is authorized yet.
 
 ## Notes for Joshua
 - When T-007's buy list lands (status: review): purchase, and pick mini-PC vs cloud
-  VM for Vivado. Everything else is agent-executable to CP-B/CP-C.
+  VM for Vivado. Separately, do nothing on microphone coupons until T-016 reaches
+  `review` with a checked order/runbook package; CP-BM will ask explicitly then.
 - MA40S4S is 40 kHz-only; a 12 V full bridge also exceeds its published
   continuous-square Vpp limit. T-013 must enforce the selected transducer's limit.
 - The orchestration baseline and T-001 are committed. Joshua's pre-existing
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-25 — codex/sol-t008: repaired independent-review findings by making SPH
+  provisional, defining quantitative D011/T-001 thresholds, adding T-016/CP-BM,
+  and blocking only T-010's physical MPN/footprint freeze; no KiCad file edited.
 - 2026-08-25 — codex/sol-t008: completed PDM mic selection/electrical design,
   paired-edge timing and current budgets, physical bake-off/calibration plan, and
   capture contract v1; no KiCad file edited.

@@ -12,11 +12,11 @@
 
 ## Delivered
 
-- Selected SPH0641LU4H-1 at 3.072 MHz: it remains in Syntiant's current portfolio,
-  that clock is its documented Ultrasonic Mode lower bound and the exact point of
-  its current/typical-response evidence, and it minimizes raw bandwidth. ICS-41352
-  remains the lower-current, better-noise-documented bake-off reference but is NRND
-  with no TDK inventory indication.
+- Selected SPH0641LU4H-1 at 3.072 MHz as the provisional electrical baseline: it
+  remains in Syntiant's current portfolio, that clock is its documented Ultrasonic
+  Mode lower bound and the exact point of its current/typical-response evidence,
+  and it minimizes raw bandwidth. ICS-41352 remains the lower-current, better-
+  noise-documented bake-off reference but is NRND with no TDK inventory indication.
 - Kept paired capture: 24 microphones on 12 shared DATA nets, even channels sampled
   rising and odd channels falling. The 162.760 ns / 55.83 um pair offset is carried
   explicitly into host calibration instead of being hidden.
@@ -60,5 +60,39 @@ available on this branch at verification time.
    map.
 2. T-020 copies the contract constants into its sampler testbench and proves edge
    ordering plus placed timing. T-021 implements host decimation/calibration.
-3. Before CP-C, build the two four-mic coupons and perform the documented calibrated
-   SPH0641-versus-ICS41352 sweep. T-014 confirms the JLC/LCSC/Global Parts paths.
+3. Superseded by the independent-review repair below: T-016 now requires three
+   four-mic coupons per MPN, a quantitative sweep, and an explicit CP-BM human gate.
+
+## Independent-review repair
+
+The independent review returned **PASS WITH REQUIRED FIXES**: commit `1b974ce`
+had a sound electrical baseline but prematurely treated SPH as the selected tile
+while deferring a qualitative two-coupon comparison. There was no `needs_human`
+purchase/bench ticket before CP-C, so that sequence could not legally release the
+MPN under D011.
+
+The repair keeps SPH/3.072 MHz as a provisional T-011/T-020 baseline and creates
+T-016 for the physical decision. The gate now requires 12 non-cherry-picked devices
+per candidate, calibrated/reseated 20–32 kHz response and input-referred noise,
+<=3 dB T-001 penalty, bounded channel/bin spread, intended-mode comparative SNR,
+electrical/timing/current/port/overload checks, and explicit pass/fallback branches.
+The SPH and ICS footprints remain separate; compatibility was not inferred.
+This explicitly supersedes the earlier session note proposing only two coupons.
+
+T-016 is agent-executable through a checked coupon design, source/order package,
+runbook, and analysis suite. It then stops at `review`. At CP-BM Joshua alone must
+authorize/place/pay for coupons, provide or operate the calibrated bench, and
+ratify the exact MPN/footprint. No coupon source, price, order, or spend is claimed
+by this session. T-010 and the production mic BOM wait on that result; T-011,
+T-012, T-013, and parameterized T-020 work can proceed.
+
+The review also retained the nonblocking primary-evidence gaps: no SPH 3.3 V
+ultrasonic maximum current, no clock-input capacitance/load value, and no published
+allowable PCB-hole-to-SPH-port misregistration tolerance. Measurements characterize
+the design but do not turn those absences into manufacturer guarantees.
+
+Repair verification re-ran the PDM electrical assertions, independently asserted
+T-001's 20.180 m baseline and 18.905 m result after the allowed 3.00 dB penalty,
+passed Ruff check/format and Python compilation for both analysis scripts, passed
+the ticket status/dependency audit, and passed unstaged/staged diff checks. Exact
+output is in the T-008 Log. No KiCad file was edited.

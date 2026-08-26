@@ -1,7 +1,7 @@
 ---
 id: T-011
 title: Digital sheet — Cmod A7-35T socket, FT232H, headers
-status: backlog
+status: ready
 phase: P2
 tier: top        # pin-budget audit across 3 interfaces; highest-consequence errors
 priority: 1
@@ -40,3 +40,6 @@ manual by a second agent session.
 ## Log
 - 2026-08-25 claude (fable): ticket created from architecture review.
 - 2026-08-25 claude (fable): rewritten for ratified D012 (was SODIMM/i5).
+- 2026-08-25 codex/sol-t008: marked ready after T-002/T-008 completion. The common
+  paired interface and clock-capable feedback pin can proceed before T-016; keep
+  the mic clock parameterized until the physical MPN release.

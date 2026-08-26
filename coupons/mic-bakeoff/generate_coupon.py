@@ -25,6 +25,7 @@ Dimension provenance (primary datasheets, local PDF copies):
   The map lives in BUFFER_PIN_MAP below and MUST be confirmed against the TI
   CDCLVC11xx datasheet before ordering (see README pre-order checklist).
 """
+
 from __future__ import annotations
 
 import uuid
@@ -116,15 +117,21 @@ J1_POS = (64.0, 15.0)  # 2x5 2.54 mm header
 
 
 # --- Footprint emitters ------------------------------------------------------------
-def _fp_text(kind: str, text: str, x: float, y: float, layer: str, hide: bool = False) -> str:
+def _fp_text(
+    kind: str, text: str, x: float, y: float, layer: str, hide: bool = False
+) -> str:
     h = "\n\t\t(hide yes)" if hide else ""
     return (
         f'\t(fp_text {kind} "{text}" (at {x} {y} 0) (layer "{layer}"){h}\n'
-        "\t\t(effects (font (size 1.0 1.0) (thickness 0.15)))\n\t\t(uuid \"" + uid() + '")\n\t)'
+        '\t\t(effects (font (size 1.0 1.0) (thickness 0.15)))\n\t\t(uuid "'
+        + uid()
+        + '")\n\t)'
     )
 
 
-def _annulus_polys(r_out: float, r_in: float, seg: int = 16) -> list[list[tuple[float, float]]]:
+def _annulus_polys(
+    r_out: float, r_in: float, seg: int = 16
+) -> list[list[tuple[float, float]]]:
     import math as _m
 
     polys = []
@@ -135,7 +142,10 @@ def _annulus_polys(r_out: float, r_in: float, seg: int = 16) -> list[list[tuple[
             for i in range(seg + 1)
         ]
         inner = [
-            (r_in * _m.cos(a0 + _m.pi - _m.pi * i / seg), r_in * _m.sin(a0 + _m.pi - _m.pi * i / seg))
+            (
+                r_in * _m.cos(a0 + _m.pi - _m.pi * i / seg),
+                r_in * _m.sin(a0 + _m.pi - _m.pi * i / seg),
+            )
             for i in range(seg + 1)
         ]
         polys.append(outer + inner)
@@ -162,7 +172,9 @@ def emit_mic_footprint(spec: dict) -> str:
     prim = []
     for poly in polys:
         pts = " ".join(f"(xy {px:.4f} {py:.4f})" for px, py in poly)
-        prim.append(f"\t\t(gr_poly (pts {pts}) (stroke (width 0) (type solid)) (fill yes))")
+        prim.append(
+            f"\t\t(gr_poly (pts {pts}) (stroke (width 0) (type solid)) (fill yes))"
+        )
     lines.append(
         f'\t(pad "3" smd custom (at 0 0) (size {ro * 2:.3f} {ro * 2:.3f}) '
         f'(layers "F.Cu" "F.Paste" "F.Mask")\n'
@@ -179,26 +191,28 @@ def emit_mic_footprint(spec: dict) -> str:
     x0, y0 = bcx - bw / 2, bcy - bh / 2
     x1, y1 = bcx + bw / 2, bcy + bh / 2
     lines.append(
-        f'\t(fp_rect (start {x0:.3f} {y0:.3f}) (end {x1:.3f} {y1:.3f}) '
+        f"\t(fp_rect (start {x0:.3f} {y0:.3f}) (end {x1:.3f} {y1:.3f}) "
         f'(stroke (width 0.05) (type solid)) (fill no) (layer "F.Fab") (uuid "{uid()}"))'
     )
     cw, ch, (ccx, ccy) = spec["courtyard"]
     lines.append(
-        f'\t(fp_rect (start {ccx - cw / 2:.3f} {ccy - ch / 2:.3f}) (end {ccx + cw / 2:.3f} {ccy + ch / 2:.3f}) '
+        f"\t(fp_rect (start {ccx - cw / 2:.3f} {ccy - ch / 2:.3f}) (end {ccx + cw / 2:.3f} {ccy + ch / 2:.3f}) "
         f'(stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))'
     )
     lines.append(
-        f'\t(fp_rect (start {x0 - 0.12:.3f} {y0 - 0.12:.3f}) (end {x1 + 0.12:.3f} {y1 + 0.12:.3f}) '
+        f"\t(fp_rect (start {x0 - 0.12:.3f} {y0 - 0.12:.3f}) (end {x1 + 0.12:.3f} {y1 + 0.12:.3f}) "
         f'(stroke (width 0.12) (type solid)) (fill no) (layer "F.SilkS") (uuid "{uid()}"))'
     )
     p1 = spec["pads"][0]
     lines.append(
-        f'\t(fp_circle (center {p1[2]:.3f} {p1[3] + 0.65:.3f}) (end {p1[2] + 0.2:.3f} {p1[3] + 0.65:.3f}) '
+        f"\t(fp_circle (center {p1[2]:.3f} {p1[3] + 0.65:.3f}) (end {p1[2] + 0.2:.3f} {p1[3] + 0.65:.3f}) "
         f'(stroke (width 0.15) (type solid)) (fill yes) (layer "F.SilkS") (uuid "{uid()}"))'
     )
     lines.append(
         '\t(fp_text user "NO COPPER/MASK/PASTE IN PORT" (at 0 -4.8 0) (layer "User.2")\n'
-        "\t\t(effects (font (size 0.8 0.8) (thickness 0.12)))\n\t\t(uuid \"" + uid() + '")\n\t)'
+        '\t\t(effects (font (size 0.8 0.8) (thickness 0.12)))\n\t\t(uuid "'
+        + uid()
+        + '")\n\t)'
     )
     lines.append(")")
     return "\n".join(lines) + "\n"
@@ -288,7 +302,14 @@ def emit_mounting_hole() -> str:
 
 
 # --- Symbol library ----------------------------------------------------------------
-def sym_def(name: str, ref: str, pins: list[tuple[str, str, float, float, float, str]], w: float, h: float, prefix: str = "") -> str:
+def sym_def(
+    name: str,
+    ref: str,
+    pins: list[tuple[str, str, float, float, float, str]],
+    w: float,
+    h: float,
+    prefix: str = "",
+) -> str:
     """pins: (number, pname, rel_x, rel_y, angle_deg, etype). Box centred at 0."""
     lines = [
         f'\t\t(symbol "{prefix}{name}"',
@@ -300,14 +321,14 @@ def sym_def(name: str, ref: str, pins: list[tuple[str, str, float, float, float,
         '\t\t\t(property "Datasheet" "" (at 0 0 0) (hide yes) (effects (font (size 1.27 1.27))))',
         '\t\t\t(property "Description" "" (at 0 0 0) (hide yes) (effects (font (size 1.27 1.27))))',
         f'\t\t\t(symbol "{name}_0_1"',
-        f'\t\t\t\t(rectangle (start {-w / 2} {h / 2}) (end {w / 2} {-h / 2})',
+        f"\t\t\t\t(rectangle (start {-w / 2} {h / 2}) (end {w / 2} {-h / 2})",
         "\t\t\t\t\t(stroke (width 0.254) (type default)) (fill (type background)))",
         "\t\t\t)",
         f'\t\t\t(symbol "{name}_1_1"',
     ]
     for num, pname, x, y, ang, etype in pins:
         lines.append(
-            f'\t\t\t\t(pin {etype} line (at {x} {y} {ang}) (length 2.54)'
+            f"\t\t\t\t(pin {etype} line (at {x} {y} {ang}) (length 2.54)"
             f' (name "{pname}" (effects (font (size 1.0 1.0))))'
             f' (number "{num}" (effects (font (size 1.0 1.0)))))'
         )
@@ -345,7 +366,13 @@ def buffer_sym_pins() -> list[tuple[str, str, float, float, float, str]]:
 
 
 def rc_sym(name: str, ref: str) -> str:
-    return sym_def(name, ref, [("1", "1", -2.54, 0.0, 0, "passive"), ("2", "2", 2.54, 0.0, 180, "passive")], 3.0, 1.6)
+    return sym_def(
+        name,
+        ref,
+        [("1", "1", -2.54, 0.0, 0, "passive"), ("2", "2", 2.54, 0.0, 180, "passive")],
+        3.0,
+        1.6,
+    )
 
 
 SYMBOL_DEFS = {
@@ -354,11 +381,27 @@ SYMBOL_DEFS = {
     "R": ("R_T016", "R", []),
     "C": ("C_T016", "C", []),
     "TP": ("TP_T016", "TP", [("1", "1", 0.0, 0.0, 0, "passive")]),
-    "JP": ("JUMPER_T016", "JP", [("1", "1", -2.54, 0.0, 0, "passive"), ("2", "2", 2.54, 0.0, 180, "passive")]),
-    "J1": ("CONN_2X05_T016", "J", [
-        (str(c * 5 + r + 1), f"P{c * 5 + r + 1}", -6.35 if c == 0 else 6.35, 5.08 - r * 2.54, 0 if c == 0 else 180, "passive")
-        for c in range(2) for r in range(5)
-    ]),
+    "JP": (
+        "JUMPER_T016",
+        "JP",
+        [("1", "1", -2.54, 0.0, 0, "passive"), ("2", "2", 2.54, 0.0, 180, "passive")],
+    ),
+    "J1": (
+        "CONN_2X05_T016",
+        "J",
+        [
+            (
+                str(c * 5 + r + 1),
+                f"P{c * 5 + r + 1}",
+                -6.35 if c == 0 else 6.35,
+                5.08 - r * 2.54,
+                0 if c == 0 else 180,
+                "passive",
+            )
+            for c in range(2)
+            for r in range(5)
+        ],
+    ),
 }
 
 
@@ -366,14 +409,45 @@ SYMBOL_DEFS = {
 SYM_META = {
     "MIC": ("PDM_MIC_T016", "M", mic_sym_pins(), 12.7, 7.62),
     "BUF": ("CDCLVC1112PWR_T016", "U", buffer_sym_pins(), 25.4, 33.02),
-    "R": ("R_T016", "R", [("1", "1", -2.54, 0.0, 0, "passive"), ("2", "2", 2.54, 0.0, 180, "passive")], 3.0, 1.6),
-    "C": ("C_T016", "C", [("1", "1", -2.54, 0.0, 0, "passive"), ("2", "2", 2.54, 0.0, 180, "passive")], 3.0, 1.6),
+    "R": (
+        "R_T016",
+        "R",
+        [("1", "1", -2.54, 0.0, 0, "passive"), ("2", "2", 2.54, 0.0, 180, "passive")],
+        3.0,
+        1.6,
+    ),
+    "C": (
+        "C_T016",
+        "C",
+        [("1", "1", -2.54, 0.0, 0, "passive"), ("2", "2", 2.54, 0.0, 180, "passive")],
+        3.0,
+        1.6,
+    ),
     "TP": ("TP_T016", "TP", [("1", "1", -2.54, 0.0, 0, "passive")], 2.0, 2.0),
-    "JP": ("JUMPER_T016", "JP", [("1", "1", -2.54, 0.0, 0, "passive"), ("2", "2", 2.54, 0.0, 180, "passive")], 3.0, 1.6),
-    "J1": ("CONN_2X05_T016", "J", [
-        (str(n), f"P{n}", -6.35 if n % 2 == 1 else 6.35, 5.08 - ((n - 1) // 2) * 2.54, 0 if n % 2 == 1 else 180, "passive")
-        for n in range(1, 11)
-    ], 12.7, 12.7),
+    "JP": (
+        "JUMPER_T016",
+        "JP",
+        [("1", "1", -2.54, 0.0, 0, "passive"), ("2", "2", 2.54, 0.0, 180, "passive")],
+        3.0,
+        1.6,
+    ),
+    "J1": (
+        "CONN_2X05_T016",
+        "J",
+        [
+            (
+                str(n),
+                f"P{n}",
+                -6.35 if n % 2 == 1 else 6.35,
+                5.08 - ((n - 1) // 2) * 2.54,
+                0 if n % 2 == 1 else 180,
+                "passive",
+            )
+            for n in range(1, 11)
+        ],
+        12.7,
+        12.7,
+    ),
 }
 
 
@@ -388,7 +462,9 @@ class Schematic:
         self.project = ""
         self.root_uuid = uid()
 
-    def place(self, kind: str, ref: str, value: str, footprint: str, x: float, y: float) -> dict[str, tuple[float, float]]:
+    def place(
+        self, kind: str, ref: str, value: str, footprint: str, x: float, y: float
+    ) -> dict[str, tuple[float, float]]:
         name, _, pins, _, _ = SYM_META[kind]
         # KiCad symbol-lib coordinates have +y UP; schematic coordinates +y DOWN.
         pin_xy = {num: (x + dx, y - dy) for num, _, dx, dy, _, _ in pins}
@@ -423,12 +499,14 @@ class Schematic:
         self.items.append("\n".join(lines))
         return pin_xy
 
-    def stub_label(self, x: float, y: float, outward: tuple[float, float], net: str) -> None:
+    def stub_label(
+        self, x: float, y: float, outward: tuple[float, float], net: str
+    ) -> None:
         ex, ey = x + outward[0] * 2.54, y + outward[1] * 2.54
         ang = 0 if outward[0] >= 0 else 180
         justify = "left bottom" if outward[0] >= 0 else "right bottom"
         self.items.append(
-            f'\t(wire (pts (xy {x:.2f} {y:.2f}) (xy {ex:.2f} {ey:.2f}))\n'
+            f"\t(wire (pts (xy {x:.2f} {y:.2f}) (xy {ex:.2f} {ey:.2f}))\n"
             '\t\t(stroke (width 0) (type default)) (uuid "' + uid() + '"))'
         )
         self.items.append(
@@ -463,11 +541,25 @@ def build_schematic(variant: str, project: str) -> str:
             px, py = pins[num]
             outward = (-1.0, 0.0) if px < x else (1.0, 0.0)
             sch.stub_label(px, py, outward, net)
-        cpins = sch.place("C", f"C{i + 1}", "100nF C0G 0603", "coupon:C_0603_T016", g(x + 15.24), 60.96)
+        cpins = sch.place(
+            "C",
+            f"C{i + 1}",
+            "100nF C0G 0603",
+            "coupon:C_0603_T016",
+            g(x + 15.24),
+            60.96,
+        )
         sch.stub_label(*cpins["1"], (-1.0, 0.0), "+3V3_MIC")
         sch.stub_label(*cpins["2"], (1.0, 0.0), "GND")
 
-    upins = sch.place("BUF", "U1", "CDCLVC1112PWR (PIN MAP UNVERIFIED)", "coupon:TSSOP-24_4.4x7.8mm_P0.65mm_T016", 69.85, 129.54)
+    upins = sch.place(
+        "BUF",
+        "U1",
+        "CDCLVC1112PWR (PIN MAP UNVERIFIED)",
+        "coupon:TSSOP-24_4.4x7.8mm_P0.65mm_T016",
+        69.85,
+        129.54,
+    )
     for n in range(1, 25):
         px, py = upins[str(n)]
         outward = (-1.0, 0.0) if n <= 12 else (1.0, 0.0)
@@ -475,7 +567,14 @@ def build_schematic(variant: str, project: str) -> str:
         if name in ("Y2", "Y3", "Y4", "Y5", "Y6", "Y7", "Y8", "Y9", "Y10", "Y11", "NC"):
             sch.no_connect(px, py)
         else:
-            net = {"CLKIN": "CLK_IN", "1G": "CLK_EN", "Y0": "CLK_Y0", "Y1": "CLK_FBR", "GND": "GND", "VDD": "+3V3_MIC"}[name]
+            net = {
+                "CLKIN": "CLK_IN",
+                "1G": "CLK_EN",
+                "Y0": "CLK_Y0",
+                "Y1": "CLK_FBR",
+                "GND": "GND",
+                "VDD": "+3V3_MIC",
+            }[name]
             sch.stub_label(px, py, outward, net)
 
     discretes = [
@@ -493,43 +592,94 @@ def build_schematic(variant: str, project: str) -> str:
         ("JP", "JP1", "JUMPER (current break)", 120.65, 120.65, "+3V3_MIC", "+3V3_IN"),
     ]
     for kind, ref, val, x, y, n1, n2 in discretes:
-        pins = sch.place(kind, ref, val, f"coupon:{'C' if kind == 'C' else 'R'}_0603_T016" if kind in "RC" else "coupon:PINHEADER_1X02_T016", x, y)
+        pins = sch.place(
+            kind,
+            ref,
+            val,
+            f"coupon:{'C' if kind == 'C' else 'R'}_0603_T016"
+            if kind in "RC"
+            else "coupon:PINHEADER_1X02_T016",
+            x,
+            y,
+        )
         sch.stub_label(*pins["1"], (-1.0, 0.0), n1)
         sch.stub_label(*pins["2"], (1.0, 0.0), n2)
 
-    j1 = sch.place("J1", "J1", "Conn_02x05 bench header", "coupon:PINHEADER_2X05_T016", 160.02, 129.54)
-    j1_nets = {"1": "+3V3_IN", "2": "GND", "3": "D0", "4": "D1", "5": "GND", "6": "CLK_IN", "7": "CLK_EN", "8": "GND", "9": "CLK_FB", "10": "GND"}
+    j1 = sch.place(
+        "J1",
+        "J1",
+        "Conn_02x05 bench header",
+        "coupon:PINHEADER_2X05_T016",
+        160.02,
+        129.54,
+    )
+    j1_nets = {
+        "1": "+3V3_IN",
+        "2": "GND",
+        "3": "D0",
+        "4": "D1",
+        "5": "GND",
+        "6": "CLK_IN",
+        "7": "CLK_EN",
+        "8": "GND",
+        "9": "CLK_FB",
+        "10": "GND",
+    }
     for num, net in j1_nets.items():
         px, py = j1[num]
         outward = (-1.0, 0.0) if int(num) % 2 == 1 else (1.0, 0.0)
         sch.stub_label(px, py, outward, net)
 
-    tp_defs = [("TP1", "+3V3_MIC", 120.65, 105.41), ("TP2", "CLK_ST", 120.65, 110.49), ("TP3", "CLK_ST", 120.65, 115.57),
-               ("TP4", "D0", 135.89, 100.33), ("TP5", "D1", 135.89, 105.41), ("TP6", "CLK_FB", 135.89, 110.49)]
+    tp_defs = [
+        ("TP1", "+3V3_MIC", 120.65, 105.41),
+        ("TP2", "CLK_ST", 120.65, 110.49),
+        ("TP3", "CLK_ST", 120.65, 115.57),
+        ("TP4", "D0", 135.89, 100.33),
+        ("TP5", "D1", 135.89, 105.41),
+        ("TP6", "CLK_FB", 135.89, 110.49),
+    ]
     for ref, net, x, y in tp_defs:
         pins = sch.place("TP", ref, f"TP {net}", "coupon:TP_1.5mm_T016", x, y)
         sch.stub_label(*pins["1"], (-1.0, 0.0), net)
 
-    sch.text(30, 40, f"T-016 PDM mic bake-off coupon, variant {variant} ({spec['mpn']}). "
-             "Four mics on one CDCLVC1112PWR output = worst-case four-load branch. "
-             "No pulls on D0/D1. 0.50 mm NPTH acoustic ports. Buffer pin map UNVERIFIED - see README.")
+    sch.text(
+        30,
+        40,
+        f"T-016 PDM mic bake-off coupon, variant {variant} ({spec['mpn']}). "
+        "Four mics on one CDCLVC1112PWR output = worst-case four-load branch. "
+        "No pulls on D0/D1. 0.50 mm NPTH acoustic ports. Buffer pin map UNVERIFIED - see README.",
+    )
 
     lib_syms = "\n".join(
-        sym_def(meta[0], meta[1], meta[2], meta[3], meta[4], prefix="coupon-symbols:") for meta in SYM_META.values()
+        sym_def(meta[0], meta[1], meta[2], meta[3], meta[4], prefix="coupon-symbols:")
+        for meta in SYM_META.values()
     )
     body = "\n".join(sch.items)
     return (
-        "(kicad_sch\n\t(version 20260306)\n\t(generator \"eeschema\")\n\t(generator_version \"10.0\")\n"
+        '(kicad_sch\n\t(version 20260306)\n\t(generator "eeschema")\n\t(generator_version "10.0")\n'
         f'\t(uuid "{sch.root_uuid}")\n\t(paper "A4")\n'
-        "\t(lib_symbols\n" + lib_syms + "\n\t)\n"
-        + body + "\n"
+        "\t(lib_symbols\n" + lib_syms + "\n\t)\n" + body + "\n"
         '\t(sheet_instances (path "/" (page "1")))\n\t(embedded_fonts no)\n)\n'
     )
 
 
 # --- PCB emitter ---------------------------------------------------------------------
-NETS = ["", "GND", "+3V3_IN", "+3V3_MIC", "CLK_IN", "CLK_EN", "CLK_Y0", "CLK_ST",
-        "CLK_FBR", "CLK_FB", "D0M", "D0", "D1M", "D1"]
+NETS = [
+    "",
+    "GND",
+    "+3V3_IN",
+    "+3V3_MIC",
+    "CLK_IN",
+    "CLK_EN",
+    "CLK_Y0",
+    "CLK_ST",
+    "CLK_FBR",
+    "CLK_FB",
+    "D0M",
+    "D0",
+    "D1M",
+    "D1",
+]
 NET_ID = {name: i for i, name in enumerate(NETS)}
 
 
@@ -537,17 +687,34 @@ class Pcb:
     def __init__(self) -> None:
         self.items: list[str] = []
 
-    def seg(self, x0: float, y0: float, x1: float, y1: float, net: str, layer: str = "F.Cu", w: float = 0.2) -> None:
+    def seg(
+        self,
+        x0: float,
+        y0: float,
+        x1: float,
+        y1: float,
+        net: str,
+        layer: str = "F.Cu",
+        w: float = 0.2,
+    ) -> None:
         self.items.append(
-            f'\t(segment (start {x0:.3f} {y0:.3f}) (end {x1:.3f} {y1:.3f}) (width {w}) '
+            f"\t(segment (start {x0:.3f} {y0:.3f}) (end {x1:.3f} {y1:.3f}) (width {w}) "
             f'(layer "{layer}") (net {NET_ID[net]}) (uuid "{uid()}"))'
         )
 
-    def path(self, pts: list[tuple[float, float]], net: str, layer: str = "F.Cu", w: float = 0.2) -> None:
+    def path(
+        self,
+        pts: list[tuple[float, float]],
+        net: str,
+        layer: str = "F.Cu",
+        w: float = 0.2,
+    ) -> None:
         for a, b in zip(pts, pts[1:]):
             self.seg(a[0], a[1], b[0], b[1], net, layer, w)
 
-    def via(self, x: float, y: float, net: str, size: float = 0.6, drill: float = 0.3) -> None:
+    def via(
+        self, x: float, y: float, net: str, size: float = 0.6, drill: float = 0.3
+    ) -> None:
         self.items.append(
             f'\t(via (at {x:.3f} {y:.3f}) (size {size}) (drill {drill}) (layers "F.Cu" "B.Cu") '
             f'(net {NET_ID[net]}) (uuid "{uid()}"))'
@@ -561,7 +728,9 @@ class Pcb:
             f"\t\t(polygon (pts (xy 0.5 0.5) (xy {BOARD_W - 0.5} 0.5) (xy {BOARD_W - 0.5} {BOARD_H - 0.5}) (xy 0.5 {BOARD_H - 0.5})))\n\t)"
         )
 
-    def fp_0603(self, ref: str, value: str, x: float, y: float, rot: int, n1: str, n2: str) -> None:
+    def fp_0603(
+        self, ref: str, value: str, x: float, y: float, rot: int, n1: str, n2: str
+    ) -> None:
         pads = []
         for num, (dx, dy), net in ((1, (-0.5, 0.0), n1), (2, (0.5, 0.0), n2)):
             w, h = 0.9, 1.0
@@ -580,7 +749,9 @@ class Pcb:
             + f'\n\t\t(fp_rect (start -1.0 -0.75) (end 1.0 0.75) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))\n\t)'
         )
 
-    def fp_mic(self, spec: dict, ref: str, x: float, y: float, nets: dict[int, str]) -> None:
+    def fp_mic(
+        self, spec: dict, ref: str, x: float, y: float, nets: dict[int, str]
+    ) -> None:
         lines = [
             f'\t(footprint "coupon:{spec["name"]}" (layer "F.Cu") (uuid "{uid()}")',
             f"\t\t(at {x} {y} 0)",
@@ -599,7 +770,9 @@ class Pcb:
         prim = []
         for poly in _annulus_polys(ro, ri):
             pts = " ".join(f"(xy {px:.4f} {py:.4f})" for px, py in poly)
-            prim.append(f"\t\t\t(gr_poly (pts {pts}) (stroke (width 0) (type solid)) (fill yes))")
+            prim.append(
+                f"\t\t\t(gr_poly (pts {pts}) (stroke (width 0) (type solid)) (fill yes))"
+            )
         lines.append(
             f'\t\t(pad "3" smd custom (at 0 0) (size {ro * 2:.3f} {ro * 2:.3f}) (layers "F.Cu" "F.Paste" "F.Mask")\n'
             f'\t\t\t(net {NET_ID["GND"]} "GND")\n'
@@ -617,12 +790,12 @@ class Pcb:
         )
         cw, ch, (ccx, ccy) = spec["courtyard"]
         lines.append(
-            f'\t\t(fp_rect (start {ccx - cw / 2:.3f} {ccy - ch / 2:.3f}) (end {ccx + cw / 2:.3f} {ccy + ch / 2:.3f}) '
+            f"\t\t(fp_rect (start {ccx - cw / 2:.3f} {ccy - ch / 2:.3f}) (end {ccx + cw / 2:.3f} {ccy + ch / 2:.3f}) "
             f'(stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))'
         )
         p1 = spec["pads"][0]
         lines.append(
-            f'\t\t(fp_circle (center {p1[2]:.3f} {p1[3] + 0.65:.3f}) (end {p1[2] + 0.2:.3f} {p1[3] + 0.65:.3f}) '
+            f"\t\t(fp_circle (center {p1[2]:.3f} {p1[3] + 0.65:.3f}) (end {p1[2] + 0.2:.3f} {p1[3] + 0.65:.3f}) "
             f'(stroke (width 0.15) (type solid)) (fill yes) (layer "F.SilkS") (uuid "{uid()}"))'
         )
         lines.append("\t)")
@@ -651,7 +824,16 @@ class Pcb:
             + f'\n\t\t(fp_circle (center -4.15 3.1) (end -3.95 3.1) (stroke (width 0.15) (type solid)) (fill yes) (layer "F.SilkS") (uuid "{uid()}"))\n\t)'
         )
 
-    def fp_header(self, ref: str, value: str, x: float, y: float, rows: int, cols: int, nets: dict[int, str]) -> None:
+    def fp_header(
+        self,
+        ref: str,
+        value: str,
+        x: float,
+        y: float,
+        rows: int,
+        cols: int,
+        nets: dict[int, str],
+    ) -> None:
         pads = []
         for c in range(cols):
             for r in range(rows):
@@ -671,7 +853,9 @@ class Pcb:
             + "\n\t)"
         )
 
-    def fp_tp(self, ref: str, x: float, y: float, net: str, bottom: bool = False) -> None:
+    def fp_tp(
+        self, ref: str, x: float, y: float, net: str, bottom: bool = False
+    ) -> None:
         cu = "B.Cu" if bottom else "F.Cu"
         mask = "B.Mask" if bottom else "F.Mask"
         silk = "B.SilkS" if bottom else "F.SilkS"
@@ -708,12 +892,26 @@ def build_pcb(variant: str) -> str:
     for i, mx in enumerate(MIC_X):
         sel_net = "GND" if i % 2 == 0 else "+3V3_MIC"
         data_net = "D0M" if i < 2 else "D1M"
-        pcb.fp_mic(spec, f"M{i + 1}", mx, MIC_Y, {1: data_net, 2: sel_net, 3: "GND", 4: "CLK_ST", 5: "+3V3_MIC"})
+        pcb.fp_mic(
+            spec,
+            f"M{i + 1}",
+            mx,
+            MIC_Y,
+            {1: data_net, 2: sel_net, 3: "GND", 4: "CLK_ST", 5: "+3V3_MIC"},
+        )
         r_merge_x = 20.0 if i < 2 else 44.0
         pad1_x = r_merge_x - 0.5
         if variant == "SPH":
             # CLK: vertical right of the GND ring, 45-degree entry into pad 4 bottom.
-            pcb.path([(mx + 1.4, TRUNK_Y), (mx + 1.4, 18.9), (mx + 0.9, 19.15), (mx + 0.9, 19.32)], "CLK_ST")
+            pcb.path(
+                [
+                    (mx + 1.4, TRUNK_Y),
+                    (mx + 1.4, 18.9),
+                    (mx + 0.9, 19.15),
+                    (mx + 0.9, 19.32),
+                ],
+                "CLK_ST",
+            )
             pcb.path([(mx + 1.15, 20.335), (mx + 1.8, 20.335)], "+3V3_MIC")
             pcb.via(mx + 1.8, 20.335, "+3V3_MIC")
             pcb.path([(mx - 1.15, 19.513), (mx - 1.8, 19.513)], sel_net)
@@ -722,17 +920,27 @@ def build_pcb(variant: str) -> str:
             pcb.via(mx - 1.4, 18.5, "GND")
             # Hard-tie the annular GND ring to a stitch via (do not rely on pour contact).
             pcb.path([(mx - 0.56, 17.58), (mx - 0.55, 16.5)], "GND", w=0.3)
-            pcb.fp_0603(f"C{i + 1}", "100nF C0G", mx + 3.6, 18.0, 270, "+3V3_MIC", "GND")
+            pcb.fp_0603(
+                f"C{i + 1}", "100nF C0G", mx + 3.6, 18.0, 270, "+3V3_MIC", "GND"
+            )
             pcb.path([(mx + 3.6, 17.05), (mx + 3.6, 16.6)], "+3V3_MIC")
             pcb.via(mx + 3.6, 16.5, "+3V3_MIC")
             data_x = mx - 0.8375
             if i % 2 == 0:
-                pcb.path([(data_x, 20.55), (data_x, 22.3), (pad1_x, 22.3), (pad1_x, 22.55)], data_net)
+                pcb.path(
+                    [(data_x, 20.55), (data_x, 22.3), (pad1_x, 22.3), (pad1_x, 22.55)],
+                    data_net,
+                )
             else:
-                pcb.path([(data_x, 20.55), (data_x, 23.8), (pad1_x, 23.8), (pad1_x, 23.45)], data_net)
+                pcb.path(
+                    [(data_x, 20.55), (data_x, 23.8), (pad1_x, 23.8), (pad1_x, 23.45)],
+                    data_net,
+                )
         else:  # ICS
             # CLK: around the left of the GND ring, entry into pad 4 from the left.
-            pcb.path([(mx - 1.4, TRUNK_Y), (mx - 1.4, 19.15), (mx + 1.05, 19.15)], "CLK_ST")
+            pcb.path(
+                [(mx - 1.4, TRUNK_Y), (mx - 1.4, 19.15), (mx + 1.05, 19.15)], "CLK_ST"
+            )
             pcb.path([(mx + 1.252, 16.85), (mx + 1.252, 16.1)], "+3V3_MIC")
             pcb.via(mx + 1.252, 16.1, "+3V3_MIC")
             pcb.path([(mx + 2.28, 18.837), (mx + 2.9, 18.837)], sel_net)
@@ -742,26 +950,58 @@ def build_pcb(variant: str) -> str:
             # Hard-tie the annular GND ring to a stitch via (do not rely on pour contact).
             pcb.path([(mx - 0.56, 17.58), (mx - 0.55, 16.5)], "GND", w=0.3)
             pcb.via(mx + 0.55, 16.35, "GND")
-            pcb.fp_0603(f"C{i + 1}", "100nF C0G", mx - 2.5, 18.0, 270, "+3V3_MIC", "GND")
+            pcb.fp_0603(
+                f"C{i + 1}", "100nF C0G", mx - 2.5, 18.0, 270, "+3V3_MIC", "GND"
+            )
             pcb.path([(mx - 2.5, 17.05), (mx - 2.5, 16.6)], "+3V3_MIC")
             pcb.via(mx - 2.5, 16.5, "+3V3_MIC")
             data_x = mx + 2.074
             ex_x = mx + 3.55
             if i % 2 == 0:
-                pcb.path([(data_x + 0.23, 17.162), (ex_x, 17.162), (ex_x, 22.3),
-                          (pad1_x, 22.3), (pad1_x, 22.55)], data_net)
+                pcb.path(
+                    [
+                        (data_x + 0.23, 17.162),
+                        (ex_x, 17.162),
+                        (ex_x, 22.3),
+                        (pad1_x, 22.3),
+                        (pad1_x, 22.55),
+                    ],
+                    data_net,
+                )
             else:
-                pcb.path([(data_x + 0.23, 17.162), (ex_x, 17.162), (ex_x, 23.8),
-                          (pad1_x, 23.8), (pad1_x, 23.45)], data_net)
+                pcb.path(
+                    [
+                        (data_x + 0.23, 17.162),
+                        (ex_x, 17.162),
+                        (ex_x, 23.8),
+                        (pad1_x, 23.8),
+                        (pad1_x, 23.45),
+                    ],
+                    data_net,
+                )
 
     # Inter-mic GND stitching vias keep the mid-row pour stitched to In1/B.Cu.
     for vx in (21.0, 33.0, 45.0):
         pcb.via(vx, 15.5, "GND")
 
     # --- Clock buffer area ---
-    pcb.fp_tssop24(*U1_POS, {1: "CLK_IN", 2: "CLK_EN", 3: "GND", 4: "CLK_Y0", 5: "CLK_FBR",
-                             10: "GND", 11: "+3V3_MIC", 15: "GND", 16: "+3V3_MIC", 20: "GND",
-                             21: "+3V3_MIC", 22: "+3V3_MIC"})
+    pcb.fp_tssop24(
+        *U1_POS,
+        {
+            1: "CLK_IN",
+            2: "CLK_EN",
+            3: "GND",
+            4: "CLK_Y0",
+            5: "CLK_FBR",
+            10: "GND",
+            11: "+3V3_MIC",
+            15: "GND",
+            16: "+3V3_MIC",
+            20: "GND",
+            21: "+3V3_MIC",
+            22: "+3V3_MIC",
+        },
+    )
     # Y0 source resistor, then the clock trunk with stubs to all four mics.
     pcb.fp_0603("R0", "10R", 16.5, 11.8, 0, "CLK_Y0", "CLK_ST")
     pcb.path([(8.375, 11.0), (8.375, 11.8), (15.55, 11.8)], "CLK_Y0")
@@ -799,9 +1039,14 @@ def build_pcb(variant: str) -> str:
     pcb.fp_tp("TP3", 53.5, TRUNK_Y, "CLK_ST")
 
     # --- U1 decoupling + bulk caps; VDD via below each cap, GND into the pour ---
-    for cx, ref, val in ((6.5, "C5", "100nF C0G"), (8.9, "C6", "100nF C0G"),
-                         (11.3, "C7", "100nF C0G"), (13.7, "C8", "100nF C0G"),
-                         (16.1, "C9", "1uF"), (18.5, "C10", "10uF")):
+    for cx, ref, val in (
+        (6.5, "C5", "100nF C0G"),
+        (8.9, "C6", "100nF C0G"),
+        (11.3, "C7", "100nF C0G"),
+        (13.7, "C8", "100nF C0G"),
+        (16.1, "C9", "1uF"),
+        (18.5, "C10", "10uF"),
+    ):
         pcb.fp_0603(ref, val, cx, 2.0, 0, "+3V3_MIC", "GND")
         pcb.seg(cx - 0.5, 2.45, cx - 0.5, 2.9, "+3V3_MIC")
         pcb.via(cx - 0.5, 3.2, "+3V3_MIC")
@@ -817,22 +1062,54 @@ def build_pcb(variant: str) -> str:
     pcb.seg(60.5, 17.54, 62.73, 17.54, "D0")
     pcb.seg(44.95, 23.0, 46.6, 23.0, "D1")
     pcb.via(46.6, 23.0, "D1")
-    pcb.path([(46.6, 23.0), (46.6, 24.2), (66.5, 24.2), (66.5, 16.1), (63.9, 16.1)], "D1", layer="B.Cu")
+    pcb.path(
+        [(46.6, 23.0), (46.6, 24.2), (66.5, 24.2), (66.5, 16.1), (63.9, 16.1)],
+        "D1",
+        layer="B.Cu",
+    )
     pcb.fp_tp("TP5", 50.0, 24.2, "D1", bottom=True)
     pcb.via(63.9, 16.1, "D1")
     pcb.path([(63.9, 16.1), (65.27, 16.1), (65.27, 17.54)], "D1")
 
     # --- Bench header, current-break jumper, rail test point ---
-    pcb.fp_header("J1", "Bench 2x05", 62.73, 20.08, 5, 2,
-                  {1: "+3V3_IN", 2: "GND", 3: "D0", 4: "D1", 5: "GND",
-                   6: "CLK_IN", 7: "CLK_EN", 8: "GND", 9: "CLK_FB", 10: "GND"})
+    pcb.fp_header(
+        "J1",
+        "Bench 2x05",
+        62.73,
+        20.08,
+        5,
+        2,
+        {
+            1: "+3V3_IN",
+            2: "GND",
+            3: "D0",
+            4: "D1",
+            5: "GND",
+            6: "CLK_IN",
+            7: "CLK_EN",
+            8: "GND",
+            9: "CLK_FB",
+            10: "GND",
+        },
+    )
     pcb.fp_header("JP1", "JUMPER", 58.73, 25.5, 1, 2, {1: "+3V3_MIC", 2: "+3V3_IN"})
     pcb.path([(62.73, 20.08), (62.73, 25.5), (61.27, 25.5)], "+3V3_IN")
     pcb.seg(57.88, 25.5, 56.9, 25.5, "+3V3_MIC")
     pcb.fp_tp("TP1", 56.9, 25.5, "+3V3_MIC")
 
     # --- Clock input from header via bottom layer ---
-    pcb.path([(65.27, 15.0), (65.27, 13.7), (14.2, 13.7), (14.2, 14.6), (6.0, 14.6), (6.0, 12.6)], "CLK_IN", layer="B.Cu")
+    pcb.path(
+        [
+            (65.27, 15.0),
+            (65.27, 13.7),
+            (14.2, 13.7),
+            (14.2, 14.6),
+            (6.0, 14.6),
+            (6.0, 12.6),
+        ],
+        "CLK_IN",
+        layer="B.Cu",
+    )
     pcb.via(6.0, 12.6, "CLK_IN")
     pcb.path([(6.0, 12.6), (6.0, 10.3), (6.3, 10.3)], "CLK_IN")
 
@@ -841,8 +1118,12 @@ def build_pcb(variant: str) -> str:
 
     pcb.silk_text(35, 27.5, f"T-016 {spec['mpn']} coupon  rev A")
     pcb.silk_text(35, 25.9, "no wash; ports stay bare", layer="F.SilkS")
-    pcb.silk_text(35, 4.0, "4L 1.6mm JLC04161H-7628 intent; 4x 0.50mm NPTH ports: no plate/cu/mask/paste; ENIG",
-                  layer="Cmts.User")
+    pcb.silk_text(
+        35,
+        4.0,
+        "4L 1.6mm JLC04161H-7628 intent; 4x 0.50mm NPTH ports: no plate/cu/mask/paste; ENIG",
+        layer="Cmts.User",
+    )
 
     pcb.items.append(
         '\t(gr_rect (start 0 0) (end 70 30) (stroke (width 0.05) (type solid)) (fill no) (layer "Edge.Cuts") '
@@ -853,26 +1134,45 @@ def build_pcb(variant: str) -> str:
     pcb.zone("+3V3_MIC", "In2.Cu")
     pcb.zone("GND", "B.Cu")
 
-    layers = "\n".join([
-        '\t\t(0 "F.Cu" signal)', '\t\t(1 "In1.Cu" signal)', '\t\t(2 "In2.Cu" signal)',
-        '\t\t(31 "B.Cu" signal)', '\t\t(32 "B.Adhes" user "B.Adhes")', '\t\t(33 "F.Adhes" user "F.Adhes")',
-        '\t\t(34 "B.Paste" user "B.Paste")', '\t\t(35 "F.Paste" user "F.Paste")',
-        '\t\t(36 "B.SilkS" user "B.Silkscreen")', '\t\t(37 "F.SilkS" user "F.Silkscreen")',
-        '\t\t(38 "B.Mask" user "B.Mask")', '\t\t(39 "F.Mask" user "F.Mask")',
-        '\t\t(40 "Dwgs.User" user "User.Drawings")', '\t\t(41 "Cmts.User" user "User.Comments")',
-        '\t\t(42 "Eco1.User" user "User.Eco1")', '\t\t(43 "Eco2.User" user "User.Eco2")',
-        '\t\t(44 "Edge.Cuts" user)', '\t\t(45 "Margin" user)', '\t\t(46 "B.CrtYd" user "B.Courtyard")',
-        '\t\t(47 "F.CrtYd" user "F.Courtyard")', '\t\t(48 "B.Fab" user "B.Fab")',
-        '\t\t(49 "F.Fab" user "F.Fab")', '\t\t(50 "User.1" user)', '\t\t(51 "User.2" user)',
-    ])
+    layers = "\n".join(
+        [
+            '\t\t(0 "F.Cu" signal)',
+            '\t\t(1 "In1.Cu" signal)',
+            '\t\t(2 "In2.Cu" signal)',
+            '\t\t(31 "B.Cu" signal)',
+            '\t\t(32 "B.Adhes" user "B.Adhes")',
+            '\t\t(33 "F.Adhes" user "F.Adhes")',
+            '\t\t(34 "B.Paste" user "B.Paste")',
+            '\t\t(35 "F.Paste" user "F.Paste")',
+            '\t\t(36 "B.SilkS" user "B.Silkscreen")',
+            '\t\t(37 "F.SilkS" user "F.Silkscreen")',
+            '\t\t(38 "B.Mask" user "B.Mask")',
+            '\t\t(39 "F.Mask" user "F.Mask")',
+            '\t\t(40 "Dwgs.User" user "User.Drawings")',
+            '\t\t(41 "Cmts.User" user "User.Comments")',
+            '\t\t(42 "Eco1.User" user "User.Eco1")',
+            '\t\t(43 "Eco2.User" user "User.Eco2")',
+            '\t\t(44 "Edge.Cuts" user)',
+            '\t\t(45 "Margin" user)',
+            '\t\t(46 "B.CrtYd" user "B.Courtyard")',
+            '\t\t(47 "F.CrtYd" user "F.Courtyard")',
+            '\t\t(48 "B.Fab" user "B.Fab")',
+            '\t\t(49 "F.Fab" user "F.Fab")',
+            '\t\t(50 "User.1" user)',
+            '\t\t(51 "User.2" user)',
+        ]
+    )
     netdefs = "\n".join(f'\t(net {i} "{n}")' for i, n in enumerate(NETS))
     items = "\n".join(pcb.items)
     return (
         '(kicad_pcb (version 20260206) (generator "pcbnew") (generator_version "10.0")\n'
-        "\t(general (thickness 1.6) (legacy_teardrops no))\n\t(paper \"A4\")\n"
+        '\t(general (thickness 1.6) (legacy_teardrops no))\n\t(paper "A4")\n'
         "\t(layers\n" + layers + "\n\t)\n"
         "\t(setup\n\t\t(pad_to_mask_clearance 0)\n\t)\n"
-        + netdefs + "\n" + items + "\n)\n"
+        + netdefs
+        + "\n"
+        + items
+        + "\n)\n"
     )
 
 
@@ -895,7 +1195,9 @@ def _kicad_pro(name: str) -> str:
     import json
 
     ref = json.loads(
-        (Path(__file__).resolve().parents[2] / "rx_amp_sim" / "rx_amp_sim.kicad_pro").read_text()
+        (
+            Path(__file__).resolve().parents[2] / "rx_amp_sim" / "rx_amp_sim.kicad_pro"
+        ).read_text()
     )
     ref["meta"]["filename"] = f"{name}.kicad_pro"
     return json.dumps(ref, indent=2) + "\n"
@@ -907,27 +1209,45 @@ def write_variant(variant: str) -> Path:
     d = OUT / name
     (d / "libs" / "coupon.pretty").mkdir(parents=True, exist_ok=True)
     (d / f"{name}.kicad_pro").write_text(_kicad_pro(name), encoding="utf-8")
-    (d / f"{name}.kicad_sch").write_text(build_schematic(variant, name), encoding="utf-8")
+    (d / f"{name}.kicad_sch").write_text(
+        build_schematic(variant, name), encoding="utf-8"
+    )
     (d / f"{name}.kicad_pcb").write_text(build_pcb(variant), encoding="utf-8")
     (d / "fp-lib-table").write_text(FP_LIB_TABLE, encoding="utf-8")
     (d / "sym-lib-table").write_text(SYM_LIB_TABLE, encoding="utf-8")
 
     pretty = d / "libs" / "coupon.pretty"
-    (pretty / f"{spec['name']}.kicad_mod").write_text(emit_mic_footprint(spec), encoding="utf-8")
-    (pretty / "C_0603_T016.kicad_mod").write_text(emit_smd0603("C_0603_T016"), encoding="utf-8")
-    (pretty / "R_0603_T016.kicad_mod").write_text(emit_smd0603("R_0603_T016"), encoding="utf-8")
-    (pretty / "TSSOP-24_4.4x7.8mm_P0.65mm_T016.kicad_mod").write_text(emit_tssop24(), encoding="utf-8")
-    (pretty / "PINHEADER_2X05_T016.kicad_mod").write_text(emit_pinheader(5, 2, "PINHEADER_2X05_T016"), encoding="utf-8")
-    (pretty / "PINHEADER_1X02_T016.kicad_mod").write_text(emit_pinheader(1, 2, "PINHEADER_1X02_T016"), encoding="utf-8")
+    (pretty / f"{spec['name']}.kicad_mod").write_text(
+        emit_mic_footprint(spec), encoding="utf-8"
+    )
+    (pretty / "C_0603_T016.kicad_mod").write_text(
+        emit_smd0603("C_0603_T016"), encoding="utf-8"
+    )
+    (pretty / "R_0603_T016.kicad_mod").write_text(
+        emit_smd0603("R_0603_T016"), encoding="utf-8"
+    )
+    (pretty / "TSSOP-24_4.4x7.8mm_P0.65mm_T016.kicad_mod").write_text(
+        emit_tssop24(), encoding="utf-8"
+    )
+    (pretty / "PINHEADER_2X05_T016.kicad_mod").write_text(
+        emit_pinheader(5, 2, "PINHEADER_2X05_T016"), encoding="utf-8"
+    )
+    (pretty / "PINHEADER_1X02_T016.kicad_mod").write_text(
+        emit_pinheader(1, 2, "PINHEADER_1X02_T016"), encoding="utf-8"
+    )
     (pretty / "TP_1.5mm_T016.kicad_mod").write_text(emit_testpoint(), encoding="utf-8")
-    (pretty / "MountingHole_2.2mm_T016.kicad_mod").write_text(emit_mounting_hole(), encoding="utf-8")
+    (pretty / "MountingHole_2.2mm_T016.kicad_mod").write_text(
+        emit_mounting_hole(), encoding="utf-8"
+    )
 
     sym_defs = "\n".join(
-        sym_def(meta[0], meta[1], meta[2], meta[3], meta[4]) for meta in SYM_META.values()
+        sym_def(meta[0], meta[1], meta[2], meta[3], meta[4])
+        for meta in SYM_META.values()
     )
     (d / "coupon-symbols.kicad_sym").write_text(
         '(kicad_symbol_lib (version 20231120) (generator "t016-coupon-generator") (generator_version "1.0")\n'
-        + sym_defs + ")\n",
+        + sym_defs
+        + ")\n",
         encoding="utf-8",
     )
     return d

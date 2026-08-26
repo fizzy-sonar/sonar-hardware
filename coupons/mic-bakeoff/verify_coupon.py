@@ -17,6 +17,7 @@ kicad-cli pcb drc cannot run in this sandbox (SIGABRT on any board; the T-006
 harness needed approved unsandboxed runs), so this geometric audit plus the
 kicad-cli ERC + gerber/drill/pos exports are the executable evidence here.
 """
+
 from __future__ import annotations
 
 import math
@@ -60,13 +61,31 @@ def collect_copper(board):
             if track.GetClass() == "VIA" or track.Type() == pcbnew.PCB_VIA_T:
                 pos = track.GetPosition()
                 for layer in ("F.Cu", "B.Cu"):
-                    copper[layer].append((net, "", "circle", mm(pos.x), mm(pos.y), mm(track.GetWidth()) / 2))
+                    copper[layer].append(
+                        (
+                            net,
+                            "",
+                            "circle",
+                            mm(pos.x),
+                            mm(pos.y),
+                            mm(track.GetWidth()) / 2,
+                        )
+                    )
                 continue
             s, e = track.GetStart(), track.GetEnd()
             layer = track.GetLayerName()
             if layer in copper:
                 copper[layer].append(
-                    (net, "", "seg", mm(s.x), mm(s.y), mm(e.x), mm(e.y), mm(track.GetWidth()) / 2)
+                    (
+                        net,
+                        "",
+                        "seg",
+                        mm(s.x),
+                        mm(s.y),
+                        mm(e.x),
+                        mm(e.y),
+                        mm(track.GetWidth()) / 2,
+                    )
                 )
     for fp in board.GetFootprints():
         rot = fp.GetOrientation().AsDegrees()
@@ -82,7 +101,7 @@ def collect_copper(board):
             shape = pad.GetShape()
             on_f = pad.IsOnLayer(pcbnew.F_Cu)
             on_b = pad.IsOnLayer(pcbnew.B_Cu)
-            layers = [l for l, on in (("F.Cu", on_f), ("B.Cu", on_b)) if on]
+            layers = [ln for ln, on in (("F.Cu", on_f), ("B.Cu", on_b)) if on]
             ref = fp.GetReference()
             if shape in (pcbnew.PAD_SHAPE_CIRCLE, pcbnew.PAD_SHAPE_CUSTOM):
                 # custom: annular GND ring; outer circle is the conservative extent
@@ -133,7 +152,12 @@ def rect_seg(rect, s) -> float:
     for px, py in ((sx0, sy0), (sx1, sy1)):
         if x0 <= px <= x1 and y0 <= py <= y1:
             return 0.0
-    edges = [((x0, y0), (x1, y0)), ((x1, y0), (x1, y1)), ((x1, y1), (x0, y1)), ((x0, y1), (x0, y0))]
+    edges = [
+        ((x0, y0), (x1, y0)),
+        ((x1, y0), (x1, y1)),
+        ((x1, y1), (x0, y1)),
+        ((x0, y1), (x0, y0)),
+    ]
     d = min(seg_seg(s, (e[0][0], e[0][1], e[1][0], e[1][1])) for e in edges)
     return d
 
@@ -150,6 +174,7 @@ def pt_seg(px, py, s) -> float:
 def seg_seg(a, b) -> float:
     def ccw(p, q, r):
         return (q[1] - p[1]) * (r[0] - q[0]) - (q[0] - p[0]) * (r[1] - q[1])
+
     p1, p2 = (a[0], a[1]), (a[2], a[3])
     p3, p4 = (b[0], b[1]), (b[2], b[3])
     d1, d2 = ccw(p3, p4, p1), ccw(p3, p4, p2)
@@ -157,8 +182,10 @@ def seg_seg(a, b) -> float:
     if ((d1 > 0) != (d2 > 0)) and ((d3 > 0) != (d4 > 0)):
         return 0.0
     return min(
-        pt_seg(p1[0], p1[1], b), pt_seg(p2[0], p2[1], b),
-        pt_seg(p3[0], p3[1], a), pt_seg(p4[0], p4[1], a),
+        pt_seg(p1[0], p1[1], b),
+        pt_seg(p2[0], p2[1], b),
+        pt_seg(p3[0], p3[1], a),
+        pt_seg(p4[0], p4[1], a),
     )
 
 
@@ -169,7 +196,9 @@ def verify_variant(variant: str) -> None:
     pcbnew.ZONE_FILLER(board).Fill(board.Zones())
     board.BuildConnectivity()
     unconn = board.GetConnectivity().GetUnconnectedCount(False)
-    check(unconn == 0, f"{variant}: connectivity after zone fill ({unconn} unconnected)")
+    check(
+        unconn == 0, f"{variant}: connectivity after zone fill ({unconn} unconnected)"
+    )
 
     copper = collect_copper(board)
     for layer, items in copper.items():
@@ -184,10 +213,14 @@ def verify_variant(variant: str) -> None:
                 if d < worst[0]:
                     worst = (d, (na, ga, nb, gb))
                 if d < MIN_GAP_MM - 1e-6:
-                    print(f"    VIOLATION {variant} {layer}: {items[i][1]} {na} {ga} vs {items[j][1]} {nb} {gb} gap={d:.3f}")
-        check(worst[0] >= MIN_GAP_MM - 1e-6,
-              f"{variant}: {layer} min different-net copper gap "
-              f"{worst[0]:.3f} mm >= {MIN_GAP_MM} mm")
+                    print(
+                        f"    VIOLATION {variant} {layer}: {items[i][1]} {na} {ga} vs {items[j][1]} {nb} {gb} gap={d:.3f}"
+                    )
+        check(
+            worst[0] >= MIN_GAP_MM - 1e-6,
+            f"{variant}: {layer} min different-net copper gap "
+            f"{worst[0]:.3f} mm >= {MIN_GAP_MM} mm",
+        )
 
     # Acoustic ports: four 0.50 mm NPTH at mic centres; ring interior copper-free.
     npth = []
@@ -195,28 +228,46 @@ def verify_variant(variant: str) -> None:
         if fp.GetReference().startswith("M") and fp.GetReference()[1:].isdigit():
             for pad in fp.Pads():
                 if pad.GetDrillSize().x > 0 and not pad.IsOnCopperLayer():
-                    npth.append((fp.GetReference(), mm(pad.GetDrillSize().x), pad_abs(pad)))
+                    npth.append(
+                        (fp.GetReference(), mm(pad.GetDrillSize().x), pad_abs(pad))
+                    )
     # np_thru_hole pads with no copper
     holes = []
     for fp in board.GetFootprints():
         for pad in fp.Pads():
             if pad.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH:
                 pos = pad.GetPosition()
-                holes.append((fp.GetReference(), mm(pad.GetDrillSize().x), mm(pos.x), mm(pos.y)))
+                holes.append(
+                    (fp.GetReference(), mm(pad.GetDrillSize().x), mm(pos.x), mm(pos.y))
+                )
     mic_holes = [h for h in holes if h[0].startswith("M")]
-    check(len(mic_holes) == 4 and all(abs(h[1] - 0.5) < 1e-6 for h in mic_holes),
-          f"{variant}: exactly 4x 0.50 mm NPTH acoustic ports ({len(mic_holes)} found)")
+    check(
+        len(mic_holes) == 4 and all(abs(h[1] - 0.5) < 1e-6 for h in mic_holes),
+        f"{variant}: exactly 4x 0.50 mm NPTH acoustic ports ({len(mic_holes)} found)",
+    )
     expected_x = [15.0, 27.0, 39.0, 51.0]
     got_x = sorted(h[2] for h in mic_holes)
-    check(all(abs(g - e) < 1e-6 for g, e in zip(got_x, expected_x)) and
-          all(abs(h[3] - 18.0) < 1e-6 for h in mic_holes),
-          f"{variant}: ports at mic centres ({got_x})")
+    check(
+        all(abs(g - e) < 1e-6 for g, e in zip(got_x, expected_x))
+        and all(abs(h[3] - 18.0) < 1e-6 for h in mic_holes),
+        f"{variant}: ports at mic centres ({got_x})",
+    )
 
     # Header pin map (J1 bench connector).
     j1 = next(fp for fp in board.GetFootprints() if fp.GetReference() == "J1")
     pin_net = {pad.GetPadName(): pad.GetNetname() for pad in j1.Pads()}
-    expected = {"1": "+3V3_IN", "2": "GND", "3": "D0", "4": "D1", "5": "GND",
-                "6": "CLK_IN", "7": "CLK_EN", "8": "GND", "9": "CLK_FB", "10": "GND"}
+    expected = {
+        "1": "+3V3_IN",
+        "2": "GND",
+        "3": "D0",
+        "4": "D1",
+        "5": "GND",
+        "6": "CLK_IN",
+        "7": "CLK_EN",
+        "8": "GND",
+        "9": "CLK_FB",
+        "10": "GND",
+    }
     check(pin_net == expected, f"{variant}: J1 pin/net map {pin_net == expected}")
 
     # Mic pad-1 (DATA) quadrant: datasheet PCB-side orientation.
@@ -237,8 +288,10 @@ def verify_variant(variant: str) -> None:
     check(ok, f"{variant}: mic pad 1 (DATA) in datasheet quadrant {quadrant}")
 
     holes_mount = [h for h in holes if not h[0].startswith("M")]
-    check(len(holes_mount) == 4 and all(abs(h[1] - 2.2) < 1e-6 for h in holes_mount),
-          f"{variant}: 4x M2 mounting holes")
+    check(
+        len(holes_mount) == 4 and all(abs(h[1] - 2.2) < 1e-6 for h in holes_mount),
+        f"{variant}: 4x M2 mounting holes",
+    )
 
 
 def main() -> int:

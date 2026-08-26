@@ -7,6 +7,7 @@ boards; see T-006 harness notes) so zone filling is done here via pcbnew and
 verification lives in verify_coupon.py. Run from the repo root:
     KiCad python: /Applications/KiCad/.../python3.9 coupons/mic-bakeoff/fab_export.py
 """
+
 from __future__ import annotations
 
 import subprocess
@@ -22,7 +23,9 @@ CLI_CANDIDATES = [
     "/Applications/KiCad.app/Contents/MacOS/kicad-cli",
     "kicad-cli",
 ]
-LAYERS = "F.Cu,In1.Cu,In2.Cu,B.Cu,F.Paste,B.Paste,F.Mask,B.Mask,F.SilkS,B.SilkS,Edge.Cuts"
+LAYERS = (
+    "F.Cu,In1.Cu,In2.Cu,B.Cu,F.Paste,B.Paste,F.Mask,B.Mask,F.SilkS,B.SilkS,Edge.Cuts"
+)
 
 
 def find_cli() -> str:
@@ -52,21 +55,54 @@ def main() -> None:
         gerb = outdir / "gerbers"
         gerb.mkdir(exist_ok=True)
         subprocess.run(
-            [cli, "pcb", "export", "gerbers", "-l", LAYERS, "-o", str(gerb), str(filled)],
-            check=True, capture_output=True,
+            [
+                cli,
+                "pcb",
+                "export",
+                "gerbers",
+                "-l",
+                LAYERS,
+                "-o",
+                str(gerb),
+                str(filled),
+            ],
+            check=True,
+            capture_output=True,
         )
         subprocess.run(
             [cli, "pcb", "export", "drill", "-o", str(gerb), str(filled)],
-            check=True, capture_output=True,
+            check=True,
+            capture_output=True,
         )
         subprocess.run(
-            [cli, "pcb", "export", "pos", "--side", "front", "-o", str(outdir / f"{name}-pos.csv"), str(filled)],
-            check=True, capture_output=True,
+            [
+                cli,
+                "pcb",
+                "export",
+                "pos",
+                "--side",
+                "front",
+                "-o",
+                str(outdir / f"{name}-pos.csv"),
+                str(filled),
+            ],
+            check=True,
+            capture_output=True,
         )
         subprocess.run(
-            [cli, "pcb", "export", "svg", "-l",
-             "F.Cu,In1.Cu,In2.Cu,B.Cu,F.SilkS,Edge.Cuts", "-o", str(outdir / f"{name}-filled.svg"), str(filled)],
-            check=True, capture_output=True,
+            [
+                cli,
+                "pcb",
+                "export",
+                "svg",
+                "-l",
+                "F.Cu,In1.Cu,In2.Cu,B.Cu,F.SilkS,Edge.Cuts",
+                "-o",
+                str(outdir / f"{name}-filled.svg"),
+                str(filled),
+            ],
+            check=True,
+            capture_output=True,
         )
         print(f"{name}: fab package written to {outdir}")
 

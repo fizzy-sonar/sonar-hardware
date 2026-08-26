@@ -6,24 +6,35 @@ phase: P2
 tier: mid        # KiCad schematic edits from a settled design
 priority: 1
 assignee:
-depends_on: [T-002, T-008]
+depends_on: [T-002, T-008, T-016]
 needs_human: false
 created: 2026-08-25
 updated: 2026-08-25
 ---
 ## Goal
-**2026-08-25 scope update (D011)**: rebuild as PDM tiles from T-008 (mics + clock + data pairing), NOT preamps/ADCs. Original text below kept for history.
-
-Replace the mixed 8× rx_amp + 1× quad_rx_pre_amp structure with: 8 mics → 2× quad preamp (T-003 values) → 2× ADC (D002), TDM out. Delete the legacy rx_amp path and the parallel-bus labels.
+Rebuild `eight_transducer_array.kicad_sch` as the D011 PDM microphone-array sheet:
+released digital microphones, clock fanout/termination, paired DATA nets, 3.3 V mic
+rail/decoupling, SELECT straps, and bottom-port keepouts. Delete the superseded
+preamp/ADC/TDM path and legacy parallel-bus labels.
 
 ## Context
-Defect #1/#2/#5 in PLAN.md §1. Blocked until CP-A ratifies D002 and T-005 reports (D008 gate).
+D011/D012 are binding; `docs/pdm-rx-design.md` defines the provisional electrical
+topology and logical channel map. **Do not freeze or place a microphone MPN or
+footprint until T-016 is done.** T-016's release record supplies the exact MPN,
+manufacturer land-pattern revision, clock rate, and any required contract update.
+This deliberate dependency lets T-011/T-012/T-013 proceed while the physical
+coupon comparison and Joshua-only CP-BM actions are outstanding.
 
 ## Definition of Done
-Sheet ERC-clean in isolation; hierarchical ports match the new digital sheet (T-011); no dangling rails.
+Sheet ERC-clean in isolation; only T-016's released MPN/footprint appears; all 24
+ports and keepouts follow the released geometry; hierarchical ports and channel
+map match T-011; no dangling rails.
 
 ## Verification
 `scripts/check.sh` ERC section; screenshot/PDF in build/ for CP-C.
 
 ## Log
 - 2026-08-25 claude (fable): ticket created from architecture review.
+- 2026-08-25 codex/sol-t008: independent T-008 review removed the premature SPH
+  footprint freeze. Added T-016 as a hard dependency and rewrote the obsolete
+  analog goal/context for D011. No KiCad file was edited.

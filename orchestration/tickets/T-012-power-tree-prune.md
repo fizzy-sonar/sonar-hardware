@@ -1,7 +1,7 @@
 ---
 id: T-012
 title: Prune power tree to four rails
-status: backlog
+status: ready
 phase: P2
 tier: mid        # KiCad power-tree edits
 priority: 2
@@ -27,3 +27,6 @@ check.sh ERC; rails table reviewed at CP-C.
 
 ## Log
 - 2026-08-25 claude (fable): ticket created from architecture review.
+- 2026-08-25 codex/sol-t008: marked ready after T-002 completion. Use T-008's
+  provisional 3.3 V / >=100 mA mic-rail allocation; T-016 may require an increase
+  from measured current but does not block unrelated power-tree work.

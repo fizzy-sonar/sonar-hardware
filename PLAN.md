@@ -63,9 +63,11 @@ mics ──12 data + clk──► FPGA (IDDR → pack → 64KB FIFO) ──FT245
 Phases/gates: `orchestration/ROADMAP.md`. Open now: **P1** (T-001 link-budget model,
 T-002 parts audit, T-006 kicad-cli harness, T-007 buy list, then T-008 PDM RX design)
 and **P5** (T-009 Pico snapshot fw, T-020 Vivado gateware, T-021 host software).
-**P2** schematic rework unlocks after T-002 + T-008. Human checkpoints: CP-B analysis
-review, CP-C schematic sign-off, CP-D spend approval, CP-E bench sessions (CP-A done
-2026-08-25).
+**P2** schematic rework unlocks after T-002 + T-008, except T-010's microphone
+MPN/footprint freeze waits on the quantitative T-016 coupon release. Human
+checkpoints: CP-B analysis/gate review, CP-BM coupon purchase + calibrated mic
+release, CP-C schematic sign-off, CP-D production spend approval, CP-E bring-up
+bench sessions (CP-A done 2026-08-25).
 
 Key analysis anchor (T-001 to formalize): sonar-equation margin ≈ 90 − 40·log10(r) − r
 dB → ~+40 dB on a person at 10 m; architecture is not SNR-gated; model sets TX drive
@@ -84,8 +86,10 @@ if PDM ultrasonic noise disappoints.
 
 ## 5. Risks & watch items
 
-1. **Mic ultrasonic response unspecified** — T-002 pulls the Syntiant/Knowles app
-   note; per-channel cal absorbs variation; bake-off in T-008.
+1. **Mic ultrasonic response unspecified** — T-008 defines the provisional SPH
+   electrical baseline and quantitative acceptance thresholds; T-016 physically
+   compares SPH/ICS coupons and gates the final MPN/footprint. Per-channel
+   calibration absorbs only variation inside that release envelope.
 2. **PDM noise in the ultrasonic band** (D011's known cost, ~3–6 dB) — T-001
    quantifies; CP-B is the revisit gate.
 3. **Sustained USB ingest on macOS** (9–14.4 MB/s through pyftdi into Python) —

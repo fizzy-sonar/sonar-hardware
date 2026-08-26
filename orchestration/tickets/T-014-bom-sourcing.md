@@ -6,7 +6,7 @@ phase: P2
 tier: cheap        # BOM table + LCSC stock lookup
 priority: 2
 assignee:
-depends_on: [T-010, T-011, T-012, T-013]
+depends_on: [T-010, T-011, T-012, T-013, T-016]
 needs_human: false
 created: 2026-08-25
 updated: 2026-08-25
@@ -25,3 +25,5 @@ Re-run stock check on a second day before CP-D; both snapshots in Log.
 
 ## Log
 - 2026-08-25 claude (fable): ticket created from architecture review.
+- 2026-08-25 codex/sol-t008: added explicit T-016 dependency so production BOM
+  sourcing cannot map a provisional microphone/footprint.

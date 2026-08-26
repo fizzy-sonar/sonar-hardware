@@ -1,7 +1,7 @@
 ---
 id: T-013
 title: Connect the h-bridge; TX connector
-status: backlog
+status: ready
 phase: P2
 tier: mid        # KiCad edits, small scope
 priority: 3
@@ -25,3 +25,5 @@ check.sh ERC.
 
 ## Log
 - 2026-08-25 claude (fable): ticket created from architecture review.
+- 2026-08-25 codex/sol-t008: marked ready after T-002 completion; mic coupon/MPN
+  release in T-016 does not affect the TX hookup.

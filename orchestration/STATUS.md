@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by codex/sol-t011-audit — T-011 pin audit done offline; discrepancies resolved; U50→U60 collision fixed; one live master-XDC fetch (human, ~60 s) gates T-011 done._
+_Last updated: 2026-08-26 by codex/terra-t012 — T-012 power tree pruned to 5V/3V3_D/3V3_MIC/12V and ERC-clean; rails table in orchestration/rails.md._
 
 ## Now
 - **Phases open for agent work: P1, P2, and P5.** T-002/T-008 are done and CP-B
@@ -58,8 +58,18 @@ _Last updated: 2026-08-26 by codex/sol-t011-audit — T-011 pin audit done offli
   corrected. **The audit sandbox also had no network**: one live fetch of the
   Digilent master XDC + reference manual (instructions at top of pinmap.md, ~60 s
   for Joshua in a browser) is the only remaining gate before T-011 → done.
+- **T-012 done:** power tree pruned to four rails (5V mux output, +3.3V buck,
+  3V3_MIC filtered branch at >=100 mA per T-008, +12V TX boost) and fully
+  ERC-clean (project ERC 456/339/117 -> 377/298/79; power sheets at zero
+  messages). Sequencing (12V after 3V3_D), bulk caps, rail test points, and the
+  bring-up rails table are in `orchestration/rails.md`. Seven legacy converter
+  sheets deleted. `pcb drc` still SIGABRTs in the sandbox (exit 134) — ERC is
+  the gate; DRC re-run unsandboxed remains open.
 - **KiCad open?** Unknown. **KiCad files changed on disk 2026-08-26 (sonar.kicad_sch,
   new digital.kicad_sch) — Joshua: reload KiCad before opening the project.**
+  2026-08-26 terra-t012: power-tree files rewritten/deleted on branch
+  agent/T-012-power-tree (power_supply, 5v_to_12v_boost, ideal_diode,
+  sonar.kicad_sch, sonar_lib.kicad_sym; 7 legacy sheets deleted). Reload KiCad.
   2026-08-26 terra-t016: new KiCad files added under `coupons/mic-bakeoff/` on
   branch agent/T-016-mic-bakeoff (no existing project files touched); reload
   before opening if KiCad had the repo open.
@@ -78,7 +88,7 @@ _Last updated: 2026-08-26 by codex/sol-t011-audit — T-011 pin audit done offli
 | T-016 mic coupon bake-off | mid | **review**; agent package delivered + verified; Joshua's CP-BM checklist in `coupons/mic-bakeoff/docs/order-package.md` |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
 | T-011 digital sheet | **top** | audited offline, fixes applied; **needs 60-s human live master-XDC diff** then done |
-| T-012 power tree | mid | **ready**; carry >=100 mA provisional mic rail |
+| T-012 power tree | mid | **done**; rails table in `orchestration/rails.md`; CP-C reviews |
 | T-013 TX hookup | mid | **ready**; independent of mic release |
 
 T-007 is **in review** (buy list repaired; Joshua choices remain).
@@ -117,6 +127,9 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/terra-t012: T-012 done — four-rail power tree,
+  ERC-clean power subtree, rails.md; gotchas + verification in journal
+  2026-08-26-codex-terra-t012-power.md and the ticket Log.
 - 2026-08-26 — codex/sol-t011-audit: offline pin audit complete; discrepancies
   resolved; U50→U60 fixed; contract doc corrected; live master-XDC fetch is the
   last gate. See ticket log + journal addendum.

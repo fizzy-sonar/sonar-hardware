@@ -51,7 +51,7 @@ When adding a part: prefer the shared `sonar-library` if the part is reusable; o
 
 `sonar.kicad_sch` is the top-level sheet; the rest are hierarchical sub-sheets pulled in from it. Roughly grouped:
 
-- **Power tree**: `power_supply.kicad_sch`, `5_to_10_boost.kicad_sch`, `5v_to_12v_boost.kicad_sch`, `inverting_buck_boost.kicad_sch` (active; `_OLD` is the prior revision kept around), `-10v_negative_ldo.kicad_sch`, `2.75V_ldo.kicad_sch`, `12v_to_10v_ldo.kicad_sch`, `5V_in_adjustable_buck.kicad_sch`, `ideal_diode.kicad_sch`, `power_mux.kicad_sch`
+- **Power tree** (T-012, pruned 2026-08-26 to 5 V / 3V3_D / 3V3_MIC / 12 V per D011): `power_supply.kicad_sch` (3V3_D buck + mic-rail filter live on this sheet), `5v_to_12v_boost.kicad_sch`, `power_mux.kicad_sch`, `ideal_diode.kicad_sch`. Deleted: `5_to_10_boost`, `inverting_buck_boost(_OLD)`, `-10v_negative_ldo`, `2.75V_ldo`, `12v_to_10v_ldo`, `5V_in_adjustable_buck`. Rail table: `orchestration/rails.md`.
 - **TX**: `20kHz-h-bridge.kicad_sch` (driver) → `eight_transducer_array.kicad_sch` / `tx_transducer.kicad_sch`
 - **RX**: `rx_amp.kicad_sch`
 

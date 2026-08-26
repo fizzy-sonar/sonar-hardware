@@ -23,12 +23,19 @@ echo "build: $BUILD"
 
 failures=0
 run() {
-  label=$1; shift
+  label=$1; kind=$2; expected=$3; output=$4; shift 4
   echo "== $label"
   "$@" >"$BUILD/$label.stdout" 2>"$BUILD/$label.stderr"
   rc=$?
   echo "exit=$rc"
-  [ "$rc" -eq 0 ] || failures=$((failures + 1))
+  if [ "$rc" -eq 0 ]; then
+    [ -e "$output" ] || { echo "HARNESS_ERROR: missing output $output"; failures=$((failures + 1)); }
+  elif [ "$kind" = baseline ] && [ "$rc" -eq "$expected" ]; then
+    echo "baseline violation exit accepted: $rc"
+  else
+    echo "HARNESS_ERROR: unexpected $kind exit $rc"
+    failures=$((failures + 1))
+  fi
 }
 
 # Top-level sheets are sufficient: KiCad follows hierarchical sheet references.
@@ -38,12 +45,11 @@ for pair in \
   "txrx_dev tx-rx-dev-board/src/tx-rx-dev-board.kicad_sch"; do
   name=${pair%% *}; sheet=${pair#* }
   [ -f "$ROOT/$sheet" ] || continue
-  run "${name}_erc" "$CLI" sch erc --severity-all --exit-code-violations \
-    -o "$BUILD/${name}-erc.rpt" "$ROOT/$sheet"
-  run "${name}_netlist" "$CLI" sch export netlist -o "$BUILD/${name}.net" "$ROOT/$sheet"
-  run "${name}_pdf" "$CLI" sch export pdf -o "$BUILD/${name}.pdf" "$ROOT/$sheet"
-  run "${name}_svg" "$CLI" sch export svg -o "$BUILD/${name}-svg" "$ROOT/$sheet"
-  run "${name}_bom" "$CLI" sch export bom -o "$BUILD/${name}-bom.csv" "$ROOT/$sheet"
+  run "${name}_erc" baseline 5 "$BUILD/${name}-erc.rpt" "$CLI" sch erc --severity-all --exit-code-violations -o "$BUILD/${name}-erc.rpt" "$ROOT/$sheet"
+  run "${name}_netlist" export 0 "$BUILD/${name}.net" "$CLI" sch export netlist -o "$BUILD/${name}.net" "$ROOT/$sheet"
+  run "${name}_pdf" export 0 "$BUILD/${name}.pdf" "$CLI" sch export pdf -o "$BUILD/${name}.pdf" "$ROOT/$sheet"
+  run "${name}_svg" export 0 "$BUILD/${name}-svg" "$CLI" sch export svg -o "$BUILD/${name}-svg" "$ROOT/$sheet"
+  run "${name}_bom" export 0 "$BUILD/${name}-bom.csv" "$CLI" sch export bom -o "$BUILD/${name}-bom.csv" "$ROOT/$sheet"
 done
 
 for pair in \
@@ -52,14 +58,12 @@ for pair in \
   "txrx_dev tx-rx-dev-board/src/tx-rx-dev-board.kicad_pcb"; do
   name=${pair%% *}; pcb=${pair#* }
   [ -f "$ROOT/$pcb" ] || continue
-  run "${name}_drc" "$CLI" pcb drc --severity-all --exit-code-violations \
-    -o "$BUILD/${name}-drc.rpt" "$ROOT/$pcb"
+  run "${name}_drc" baseline 5 "$BUILD/${name}-drc.rpt" "$CLI" pcb drc --severity-all --exit-code-violations -o "$BUILD/${name}-drc.rpt" "$ROOT/$pcb"
 done
 
 if [ "$failures" -gt 0 ]; then
-  echo "SUMMARY: $failures tool/design command(s) non-zero; reports remain in build/." 
-  echo "Non-zero ERC/DRC is a baseline design violation, not a harness failure."
-  exit 0
+  echo "SUMMARY: $failures harness/tool failures; baseline ERC/DRC violations were soft-accepted."
+  exit 1
 fi
 echo "SUMMARY: all invoked KiCad commands completed successfully."
 exit 0

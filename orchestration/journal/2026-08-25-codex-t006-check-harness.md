@@ -3,5 +3,6 @@
 Implemented `scripts/check.sh` and `scripts/README.md`. Outputs are deterministic
 and ignored under `build/`; no design files were changed. The harness distinguishes
 missing kicad-cli (exit 2) from ERC/DRC baseline violations (reports plus exit 0).
-The sandbox lacks the host KiCad binary, so both verification runs recorded the
-same missing-tool failure rather than inventing design error counts.
+KiCad 10 was found at the standard macOS app path. ERC baselines were measured;
+headless DRC crashed with exit 134, and the repaired harness now returns exit 1
+for those tool failures. Two runs returned exit 1 with identical summaries.

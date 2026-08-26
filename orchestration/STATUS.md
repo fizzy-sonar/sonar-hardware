@@ -8,7 +8,7 @@ _Last updated: 2026-08-26 by claude/orchestrator — T-011 live-gate repair veri
   repaired + re-verified), T-016 at review (CP-BM), T-020 simulator milestone
   done (bitstream waits on Vivado host). Remaining: Joshua's CP-B/CP-BM reviews,
   T-007 purchases/host choice, then T-010 (unblocked by CP-BM) → T-014 → T-015
-  (cross-family review) → CP-C. T-005 EDA spike: **NO-GO for v1, at review** — see `spikes/eda-zener/REPORT.md`.
+  (cross-family review) → CP-C. T-005 EDA spike: **done, NO-GO for v1** (host `pcb build` confirmed the boundary) — see `spikes/eda-zener/REPORT.md`.
 - Architecture locked (see PLAN.md v2): 24 PDM ultrasonic mics → Cmod A7-35T +
   FT232H USB streaming → Python DSP; Pico 2 snapshot v0; TX via DRV8876 + connector.
 - **T-021 done:** host reference pipeline now has strict SNP1/SNR1 parsers, buffered
@@ -113,7 +113,7 @@ _Last updated: 2026-08-26 by claude/orchestrator — T-011 live-gate repair veri
 
 T-007 is **in review** (buy list repaired; Joshua choices remain).
 
-T-005 EDA spike (mid): **review** — verdict NO-GO for v1 (D008 stands); importer fails on all 3 real inputs; build/layout/BOM sandbox-blocked (hardlink EPERM, honestly documented); 30-min unsandboxed confirmation step in the REPORT. T-001 done 2026-08-25.
+T-005 EDA spike (mid): **done** — NO-GO for v1 (D008 stands); importer fails on all 3 real inputs; host-side `pcb build` run by orchestrator confirmed the hand-written-IC boundary. T-001 done 2026-08-25.
 **The three `cheap` tickets do not need a reasoning model — launch them small.**
 
 ## Cost note (2026-08-25)

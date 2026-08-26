@@ -3,10 +3,12 @@
 _Last updated: 2026-08-26 by codex/terra-t013 — T-013 TX hookup done: DRV8876 fully wired, TX Drive sheet ERC-clean, off-board connector J50, TX waveform limits in orchestration/tx-limits.md for T-020._
 
 ## Now
-- **Phases open for agent work: P1, P2, and P5.** T-002/T-008 are done and CP-B
-  still reviews the analysis/bake-off thresholds. T-016 is ready for an agent to
-  prepare the coupon/order/test package. Only T-010 is blocked on its physical
-  result; T-011/T-012/T-013 and P5 may proceed.
+- **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5
+  agent work is landed: T-009/T-021/T-012/T-013 done, T-011 audited (one 60-s
+  human fetch gates done), T-016 at review (CP-BM), T-020 simulator milestone
+  done (bitstream waits on Vivado host). Remaining: Joshua's CP-B/CP-BM reviews,
+  T-007 purchases/host choice, then T-010 (unblocked by CP-BM) → T-014 → T-015
+  (cross-family review) → CP-C. Optional/non-gating: T-005 EDA spike.
 - Architecture locked (see PLAN.md v2): 24 PDM ultrasonic mics → Cmod A7-35T +
   FT232H USB streaming → Python DSP; Pico 2 snapshot v0; TX via DRV8876 + connector.
 - **T-021 done:** host reference pipeline now has strict SNP1/SNR1 parsers, buffered

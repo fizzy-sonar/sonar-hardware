@@ -36,8 +36,10 @@ _v2: 2026-08-25, after Joshua's go-ahead. The **authoritative decision registry 
   ingest for long captures.
 - **TX** (D007): DRV8876 h-bridge, transducer **off-board via connector** (MA40S4S @
   40 kHz narrowband, piezo horn tweeter for 20–32 kHz chirps); 12 V boost rail, TX only.
-- **Power**: USB-C(power-only)/XT60 → ideal-diode mux → 3.3 VD (+1.8 V mic rail if
-  T-008's mic needs it), 12 V TX boost. All other rails from the old tree deleted.
+- **Power** (T-012 done): USB-C(power-only)/XT60 → ideal-diode mux → 5 V →
+  3.3 VD buck (+3.3V) with a filtered 3V3_MIC branch (≥100 mA, T-008 — 3.3 V chosen
+  over 1.8 V for direct LVCMOS33 compatibility), 12 V TX boost. All other rails
+  from the old tree deleted. Rail table: `orchestration/rails.md`.
 - **EDA** (D008): KiCad + `kicad-cli` ERC/DRC/PDF/BOM in CI. diodeinc-pcb spike
   optional, non-gating (T-005). **Mfg** (D009): JLCPCB full turnkey, LCSC-first,
   Global Parts for the rest — no home soldering. **Population** (D010): all 24
@@ -48,7 +50,7 @@ _v2: 2026-08-25, after Joshua's go-ahead. The **authoritative decision registry 
 24 PDM mics (5×5−center) · clock buffer/fanout · DIP-48 socket (Cmod) · FT232H
 breakout header · generic PDM header (Pico v0 ribbon; one platform attached at a
 time) · DNP RMII PHY + MagJack + 50 MHz osc · DRV8876 + TX connector · USB-C 5 V +
-XT60 + mux · 3.3 V (+1.8 V?) regs + 12 V boost · LEDs, test points. ~4-layer,
+XT60 + mux · 3.3 V regs + 3V3_MIC branch + 12 V boost · LEDs, test points. ~4-layer,
 roughly 150 placements. Authoritative pin table: `orchestration/pinmap.md` (T-011).
 
 ```

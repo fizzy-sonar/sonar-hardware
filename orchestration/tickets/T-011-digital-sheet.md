@@ -3,6 +3,7 @@ id: T-011
 title: Digital sheet — Cmod A7-35T socket, FT232H, headers
 status: backlog
 phase: P2
+tier: top        # pin-budget audit across 3 interfaces; highest-consequence errors
 priority: 1
 assignee:
 depends_on: [T-002, T-008]

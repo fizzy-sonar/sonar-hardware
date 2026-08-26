@@ -3,6 +3,7 @@ id: T-006
 title: kicad-cli check harness + CI
 status: ready
 phase: P1
+tier: cheap        # shell scripting against kicad-cli
 priority: 2
 assignee:
 depends_on: []

@@ -3,6 +3,7 @@ id: T-014
 title: Full BOM with LCSC mapping
 status: backlog
 phase: P2
+tier: cheap        # BOM table + LCSC stock lookup
 priority: 2
 assignee:
 depends_on: [T-010, T-011, T-012, T-013]

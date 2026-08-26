@@ -3,6 +3,7 @@ id: T-002
 title: Part availability & lifecycle audit
 status: in-progress
 phase: P1
+tier: cheap        # web research + datasheet lookup + table building
 priority: 1
 assignee: codex/t002
 depends_on: []

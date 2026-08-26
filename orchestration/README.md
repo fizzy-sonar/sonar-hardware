@@ -25,6 +25,30 @@ agent, this file is your protocol. Architecture context lives in `/PLAN.md`.
 6. **Verify**: run the ticket's Verification commands (and `scripts/check.sh` once it exists). Paste real output into the ticket's Log. Unverified work is not done.
 7. **Close out** (even mid-task): append a dated entry to the ticket Log (what you did, what's left, exact next step); update `STATUS.md`; add/extend today's `journal/` entry; commit. Assume the next session is a different agent with zero memory — write for them.
 
+## Model / tier routing (cost discipline)
+
+Codex/Claude/Kimi budgets are metered by tokens, and the top reasoning tiers burn
+3–5× faster than the mid tiers for the same wall-clock work. Match the tier to the
+ticket — most tickets here are research and scripting, not deep reasoning.
+
+| Tier | Use for | Tickets |
+|---|---|---|
+| **Cheap/fast** (Luna-class, Haiku, Kimi) | Web research, datasheet lookup, BOM tables, shell scripting, doc formatting | T-002, T-006, T-007, buy-list refreshes, journal/STATUS upkeep |
+| **Mid** (Terra-class, Sonnet) | Ordinary code with tests: Python DSP, firmware, KiCad edits | T-001, T-009, T-021, T-010, T-012, T-013 |
+| **Top** (Sol-class @ high reasoning, Opus/Fable) | Timing/physics analysis, novel HDL, adversarial review | T-008, T-020, T-011 pin audit, T-015 cross-review |
+
+Rules of thumb:
+- Never run a web-research ticket on a top-tier reasoning model. It is the single
+  biggest source of wasted budget in this project.
+- **Session hygiene is budget**: the protocol above exists so a session is
+  orient → claim → work → close out (~30–50 k context). A session ballooning past
+  ~150 k usually means context was re-derived that the ticket/journal should have
+  carried — fix the ticket, don't buy more tokens.
+- If one provider hits a rate limit, **switch providers, don't stop**: this layer is
+  deliberately provider-agnostic (`AGENTS.md` and `CLAUDE.md` both route here).
+- T-015 (design review) must use a *different* model family than the one that
+  authored the schematics — cross-family review catches more than a bigger model does.
+
 ## Hard rules
 
 - **Never spend money or place orders.** Purchases, board orders, and account signups are Joshua-only; tickets that end in a purchase produce a ready-to-click list and set `needs_human: true`.

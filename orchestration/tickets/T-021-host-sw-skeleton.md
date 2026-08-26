@@ -3,6 +3,7 @@ id: T-021
 title: Host software skeleton (Python)
 status: ready
 phase: P5
+tier: mid        # Python DSP package with tests
 priority: 2
 assignee:
 depends_on: []

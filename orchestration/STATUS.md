@@ -12,15 +12,28 @@ _Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nomina
   small-target margin are the remaining CP-B acoustic risks.
 - **KiCad open?** Unknown — check before hand-editing `.kicad_sch` (README rules).
 
-## Ready tickets (pick lowest priority number first)
-- T-002 parts & lifecycle audit (P1, prio 1)
-- T-007 buy list incl. Vivado-host options (P1, prio 1, needs_human at the end)
-- T-009 Pico 2 snapshot firmware (P5, prio 1)
-- T-006 kicad-cli check harness (P1, prio 2)
-- T-020 Vivado gateware — TB layer needs no Vivado host (P5, prio 2)
-- T-021 host software — benchmark pyftdi ingest early (P5, prio 2)
-- T-008 PDM RX design — unlocks after T-002
-- (optional, non-gating: T-005 EDA spike)
+## Ready tickets — launch each on the tier shown (routing table in README.md)
+
+| Ticket | Tier | Notes |
+|---|---|---|
+| T-002 parts & lifecycle audit | **cheap** | in-progress (codex); unlocks T-008 |
+| T-007 buy list + Vivado-host options | **cheap** | ends at `review` for Joshua to purchase |
+| T-006 kicad-cli check harness | **cheap** | shell scripting |
+| T-009 Pico 2 snapshot firmware | mid | PIO/DMA; the first-echoes path |
+| T-021 host software | mid | benchmark pyftdi ingest early |
+| T-020 Vivado gateware | **top** | TB layer needs no Vivado host — start there |
+| T-008 PDM RX design | **top** | unlocks after T-002 |
+
+Optional/non-gating: T-005 EDA spike (mid). T-001 done 2026-08-25.
+**The three `cheap` tickets do not need a reasoning model — launch them small.**
+
+## Cost note (2026-08-25)
+Joshua burned ~25% of a weekly Codex budget in the architecture-exploration session
+(the most token-hungry phase). P1/P5 tickets are bounded by comparison. See the
+**Model / tier routing** table in `orchestration/README.md` — running T-002/T-006/
+T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
+*weekly* cap is hit before the week ends under the new ticket workflow, escalate
+(credits first, then the 5× tier); the 5-hour cap alone is pacing, not a blocker.
 
 ## Blockers
 - Vivado synthesis (part of T-020) waits on the Vivado host purchase/decision (T-007

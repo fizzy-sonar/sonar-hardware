@@ -3,6 +3,7 @@ id: T-007
 title: Buy-now list for Joshua (dev hardware + Vivado host)
 status: ready
 phase: P1
+tier: cheap        # web research + price table
 priority: 1
 assignee:
 depends_on: []

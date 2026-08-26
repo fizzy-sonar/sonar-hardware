@@ -3,6 +3,7 @@ id: T-001
 title: Link-budget / minimum-detectable-signal model
 status: done
 phase: P1
+tier: mid        # physics + numpy modelling; ordinary code with plots
 priority: 1
 assignee: codex
 depends_on: []

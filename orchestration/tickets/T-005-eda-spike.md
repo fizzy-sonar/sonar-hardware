@@ -3,6 +3,7 @@ id: T-005
 title: EDA spike: diodeinc/pcb (Zener) go/no-go
 status: backlog
 phase: P1
+tier: mid        # optional spike; tool evaluation
 priority: 5
 assignee:
 depends_on: []

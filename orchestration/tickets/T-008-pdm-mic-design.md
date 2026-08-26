@@ -3,6 +3,7 @@ id: T-008
 title: PDM mic selection + RX electrical design
 status: ready
 phase: P1
+tier: top        # PDM timing/skew analysis, clock-tree design from datasheets
 priority: 1
 assignee:
 depends_on: [T-002]

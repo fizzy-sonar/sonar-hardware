@@ -3,6 +3,7 @@ id: T-XXX
 title:
 status: backlog
 phase: P1
+tier: mid            # cheap | mid | top — see orchestration/README.md routing table
 priority: 3          # 1 = do first
 assignee:
 depends_on: []

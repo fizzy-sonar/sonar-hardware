@@ -3,6 +3,7 @@ id: T-012
 title: Prune power tree to four rails
 status: backlog
 phase: P2
+tier: mid        # KiCad power-tree edits
 priority: 2
 assignee:
 depends_on: [T-002]

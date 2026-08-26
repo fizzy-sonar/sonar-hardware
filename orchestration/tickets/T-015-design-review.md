@@ -3,6 +3,7 @@ id: T-015
 title: P2 design review package
 status: backlog
 phase: P2
+tier: top        # adversarial cross-review — MUST be a different model family than the author
 priority: 4
 assignee:
 depends_on: [T-010, T-011, T-012, T-013, T-014]

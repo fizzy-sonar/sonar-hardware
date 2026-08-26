@@ -3,6 +3,7 @@ id: T-013
 title: Connect the h-bridge; TX connector
 status: backlog
 phase: P2
+tier: mid        # KiCad edits, small scope
 priority: 3
 assignee:
 depends_on: [T-002]

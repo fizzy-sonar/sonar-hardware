@@ -3,6 +3,7 @@ id: T-010
 title: Rebuild eight_transducer_array sheet
 status: backlog
 phase: P2
+tier: mid        # KiCad schematic edits from a settled design
 priority: 1
 assignee:
 depends_on: [T-002, T-008]

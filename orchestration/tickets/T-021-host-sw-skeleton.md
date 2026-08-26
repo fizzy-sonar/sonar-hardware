@@ -1,11 +1,11 @@
 ---
 id: T-021
 title: Host software skeleton (Python)
-status: ready
+status: in-progress
 phase: P5
 tier: mid        # Python DSP package with tests
 priority: 2
-assignee:
+assignee: codex/terra-t021
 depends_on: []
 needs_human: false
 created: 2026-08-25

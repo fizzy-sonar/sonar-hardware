@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by codex/sol-t021 — T-021 host software repaired to a real verified reference pipeline._
+_Last updated: 2026-08-26 by codex/terra-t021 — T-021 close-out re-verified: suite green via the ticket-sanctioned unittest fallback (pytest uninstallable offline), demo and benchmark pass._
 
 ## Now
 - **Phases open for agent work: P1, P2, and P5.** T-002/T-008 are done and CP-B
@@ -13,8 +13,10 @@ _Last updated: 2026-08-26 by codex/sol-t021 — T-021 host software repaired to 
   ingest, `.npy`/ring storage, 24-channel CIC+FIR decimation, per-channel
   calibration, chirp/matched filter/beamforming, deterministic synthetic recovery
   tests, demo artifact generation, and a synthetic in-memory ingest benchmark at
-  4042.582 MB/s versus the 9.216 MB/s contract. Physical FT232H/libusb capture is
-  still untested, and the local Python environment did not have `pytest` installed.
+  4042.582 MB/s versus the 9.216 MB/s contract (re-run 2026-08-26:
+  3888.015 MB/s, PASS). Physical FT232H/libusb capture is still untested; `pytest`
+  is uninstallable in the offline sandbox, so the ticket-sanctioned `unittest`
+  fallback (5/5 OK) is the verification of record.
 - **T-001 done:** reference case gives +27.1 dB person margin at 10 m and 20.2 m
   zero-margin range. ICS-41352 adds only 0.15 dB total noise in the stated ambient
   context; keep D011 through the quantitative T-016 bake-off. Wideband TX
@@ -86,6 +88,10 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/terra-t021: resumed the killed T-021 session; audited the
+  pipeline against the DoD/D012 scope (all present), re-ran verification fresh
+  (unittest 5/5 OK, demo recovers target, benchmark 421x contract), confirmed pytest
+  is uninstallable offline; no code changes needed.
 - 2026-08-26 — codex/sol-t021: replaced the stale host stub with strict packet and
   stream parsing, buffered ingest, real multichannel DSP/calibration/beamforming,
   deterministic synthetic recovery tests, demo artifact generation, and a synthetic

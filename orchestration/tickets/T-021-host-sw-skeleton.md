@@ -68,3 +68,43 @@ range-bearing plot from synthetic data.
 
   Physical FT232H/libusb I/O remains untested, and `pytest` itself was unavailable in
   the local Python environment even though the suite passes under `unittest`.
+- 2026-08-26 codex/terra-t021: resumed after the killed session; audited all four
+  prior commits against the Definition of Done and the 2026-08-25 D012 scope update
+  (pyftdi ingest boundary in `transport.py`, CIC+FIR PDM decimation in `dsp.py`,
+  versioned `docs/packet-format.md` v1 — all present and coherent). Re-ran the full
+  verification fresh. `pytest` is still genuinely unavailable: no network in this
+  sandbox (`pip install pytest` fails with DNS/connect errors, escalation denied),
+  no pytest in any local interpreter (3.13 framework, 3.11/3.12 user), empty pip
+  cache — so the ticket's sanctioned `unittest` fallback is the verification of
+  record. Real output:
+
+  ```text
+  $ python3 -m pytest -q
+  /Library/Frameworks/Python.framework/Versions/3.13/bin/python3: No module named pytest
+
+  $ PYTHONPATH=host python3 -m unittest discover -s tests -q
+  ----------------------------------------------------------------------
+  Ran 5 tests in 0.742s
+
+  OK
+
+  $ python3 host/demo.py
+  truth_range_m=4.200
+  estimated_range_m=4.202
+  truth_bearing_deg=12.00
+  estimated_bearing_deg=10.00
+  plot_artifact=host/artifacts/t021-demo.svg
+  capture_npy=host/artifacts/t021-demo-capture.npy
+
+  $ python3 host/benchmark.py
+  T-021 synthetic ingest benchmark: 3888.015 MB/s vs target 9.216 MB/s (421.88x) => PASS
+  ```
+
+  DoD status: suite green (5/5 via the ticket-sanctioned fallback; tests are
+  `unittest.TestCase`-based so `pytest` will collect them unchanged once installed);
+  synthetic point target recovered within tolerance (range error 0.002 m vs 0.18 m
+  budget, bearing 2.0° vs 2.0° budget — the demo bearing grid is 2°); packet format
+  doc versioned (SNP1/SNR1 v1). Ticket stays `done`.
+  Next step: on any host with network, `pip install pytest && python3 -m pytest -q`
+  for the literal pytest-green record; physical FT232H/libusb capture remains the
+  open hardware test.

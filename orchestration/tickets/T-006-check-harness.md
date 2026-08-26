@@ -38,4 +38,6 @@ Run it twice; identical output; paste summary in Log.
   reports these as hard tool failures and exits 1. ERC exit 5 is soft-accepted as
   the observed baseline violation code. Netlist/PDF/SVG/BOM exports completed for
   all three projects. Two full runs returned exit 1 (three DRC crashes each), with
-  identical summaries; `git diff --check` passed.
+  identical summaries; `XDG_CACHE_HOME=build/xdg-cache` removed the prior
+  no-writable-cache condition, but DRC still aborts 134 after Fontconfig config
+  warnings. `git diff --check` passed.

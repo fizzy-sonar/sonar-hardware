@@ -4,6 +4,10 @@ set -u -o pipefail
 ROOT=$(CDPATH= cd -- "$(dirname -- "$0")/.." && pwd)
 BUILD="$ROOT/build"
 mkdir -p "$BUILD"
+# KiCad's headless SVG/PDF/DRC path uses Fontconfig; keep its cache writable and
+# deterministic inside ignored build/ rather than changing HOME or user state.
+export XDG_CACHE_HOME="$BUILD/xdg-cache"
+mkdir -p "$XDG_CACHE_HOME/fontconfig"
 
 find_kicad_cli() {
   if command -v kicad-cli >/dev/null 2>&1; then command -v kicad-cli; return; fi

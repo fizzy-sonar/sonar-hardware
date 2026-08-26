@@ -5,4 +5,7 @@ and ignored under `build/`; no design files were changed. The harness distinguis
 missing kicad-cli (exit 2) from ERC/DRC baseline violations (reports plus exit 0).
 KiCad 10 was found at the standard macOS app path. ERC baselines were measured;
 headless DRC crashed with exit 134, and the repaired harness now returns exit 1
-for those tool failures. Two runs returned exit 1 with identical summaries.
+for those tool failures. The harness now sets writable repo-local
+`build/xdg-cache`; the no-writable-cache error is gone, but DRC still aborts 134
+with Fontconfig configuration warnings. Two runs returned exit 1 with identical
+summaries.

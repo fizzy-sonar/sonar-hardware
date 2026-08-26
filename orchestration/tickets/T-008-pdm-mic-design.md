@@ -154,3 +154,47 @@ $ git diff --check
 $ git diff --cached --check
 [no output; exit 0]
 ```
+
+- 2026-08-25 codex/sol-t008 final bounded review repair: the remaining reviewer
+  defect was undefined `U95`. `docs/pdm-rx-design.md` and T-016 now carry identical
+  executable definitions: fixed SPH/ICS pairing, hierarchical reseat/unit/coupon
+  medians and maximum deviations, linear addition with the reported <=1.0 dB
+  fixture `k=2` term, and exact absolute/integrated/per-bin threshold use. The
+  12-device-per-MPN set is explicitly a heuristic engineering screen, not
+  production-population or 90th-percentile qualification. No other scope changed.
+
+Final estimator-focused verification (exact output):
+
+```text
+$ <synthetic 3-coupon x 4-unit x 3-reseat hierarchy assertions>
+U95 example: m=1.50, R=0.05, V=0.10, C=0.20, U_fixture_k2=0.80, U95=1.15
+Integrated guard: 2.65 dB <= 3.00 dB (SPH tie gate)
+Per-bin examples: 5.65 dB passes; 6.15 dB fails the 6.00 dB spectral gate
+
+$ cmp <canonical estimator blocks>
+Canonical U95 estimator blocks are byte-identical.
+
+$ python3 analysis/pdm_rx_timing.py
+[all assertions passed; exact numeric output unchanged from the blocks above]
+
+$ <T-001 20.18 m / 18.91 m assertions>
+T-001 threshold assertions passed.
+
+$ ruff check analysis/pdm_rx_timing.py analysis/link_budget.py
+All checks passed!
+
+$ ruff format --check analysis/pdm_rx_timing.py analysis/link_budget.py
+2 files already formatted
+
+$ python3 -m py_compile analysis/pdm_rx_timing.py analysis/link_budget.py
+[no output; exit 0]
+
+$ <T-016 state and T-010 dependency assertions>
+Orchestration gate assertions passed.
+
+$ git diff --check
+[no output; exit 0]
+
+$ git diff --cached --check
+[no output; exit 0]
+```

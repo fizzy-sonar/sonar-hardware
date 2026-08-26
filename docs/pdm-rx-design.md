@@ -232,9 +232,81 @@ T-021 may continue on the common electrical/interface baseline.
   supply, decimator revision, and calibration provenance. Acquire at least three
   independent reseats per channel, with a time-gated calibrated 20–32 kHz sweep in
   bins no wider than 500 Hz and three TX-off noise records through the same host
-  pipeline. Differential 20–32 kHz band-SNR expanded uncertainty must be <=1.0 dB
-  (k=2); before/after reference drift must be <=0.5 dB magnitude and <=5 degrees
+  pipeline. The fixture budget must report its expanded `k=2` term for every
+  absolute and paired decision bin and integrated-band metric; each must be
+  <=1.0 dB. Before/after reference drift must be <=0.5 dB magnitude and <=5 degrees
   phase. Otherwise the comparison is fixture-invalid, not a microphone failure.
+
+<!-- T016-U95-ESTIMATOR-BEGIN -->
+### Exact v1 screening estimator
+
+The 12 devices per MPN (three coupons × four sites) are a heuristic engineering
+screen chosen to expose assembly, four-load-clock, unit, and coupon effects. They
+do **not** estimate or qualify a production-population 90th percentile. Population
+qualification is outside Sonar v1; it would require a separately justified larger
+sample across production lots, assemblies, and environmental corners.
+
+Use indices candidate `c`, coupon `q=1..3`, fixed site `u=1..4`, reseat
+`r=1..3`, and decision bin `b`. Predeclare a one-to-one SPH/ICS pairing for the
+same `(q,u,r)` fixture block before seeing results, bracket the pair with the same
+reference calibration, and alternate acquisition order. Never re-pair to improve a
+result. A missing member makes that block incomplete; the release dataset still
+needs all 12 valid devices per MPN and three reseats.
+
+Raw response/noise records may use bins <=500 Hz. Form each non-overlapping 1 kHz
+decision-bin SNR and the separate 20–32 kHz matched-filter SNR by summing calibrated
+signal and noise in **linear power first**, using the same D001 chirp weighting and
+host decimator, then convert the ratio to dB. The integrated-band statistic is
+formed from the integrated powers; it is not an average of bin dB values.
+
+For any scalar dB screen metric `x[q,u,r]` (evaluated separately for each bin or
+for the integrated band), calculate these deterministic hierarchical statistics:
+
+```text
+m_unit[q,u] = median_r(x[q,u,r])
+m_coupon[q] = median_u(m_unit[q,u])
+m           = median_q(m_coupon[q])
+
+R = max_q,u,r |x[q,u,r]    - m_unit[q,u]|   # observed reseat term
+V = max_q,u   |m_unit[q,u] - m_coupon[q]|   # observed unit/site term
+C = max_q     |m_coupon[q] - m|             # observed coupon term
+
+U95 = U_fixture_k2 + R + V + C
+```
+
+`U_fixture_k2` is the fixture/calibration budget's expanded `k=2` term for that
+same metric and bin/band; it includes calibration, reference/source bracketing, and
+acquisition-floor effects but excludes `R`, `V`, and `C`. It must be reported
+and <=1.0 dB everywhere used by a release decision. Add the four nonnegative terms
+linearly—do not root-sum-square them—because no independence or distribution is
+claimed. `U95` is therefore a conservative v1 **screening guard band**, not a
+measured 95% population interval; the name only preserves the selection-rule
+notation associated with the stated `k=2` fixture term.
+
+For each candidate's absolute T-001 input, let `x` be its input-referred self-noise
+level in dB SPL for the evaluated bin. The screened curve is `N_screen[b] = m[b] +
+U95_noise[b]`; feed that curve to T-001, which adds its ambient term separately.
+If ambient/floor subtraction is unresolved, use the unsubtracted DUT-equivalent
+noise as `x` (a conservative upper screen value), not zero.
+
+For the paired comparison, compute `d[q,u,r,b] = SNR_ICS[q,u,r,b] -
+SNR_SPH[q,u,r,b]`; positive loss means SPH is worse. Apply the same hierarchy to
+`d`: `L[b]=m[b]` and `U95_loss[b]` is its guard. Compute `L_band` and
+`U95_loss_band` again from each paired record's integrated 20–32 kHz SNR; do not
+derive them by averaging per-bin losses or guards.
+
+Thresholds consume the guarded values exactly as follows:
+
+```text
+absolute link gate: T-001(N_screen[b]) must meet 24.09 dB at 10 m and 18.91 m range
+SPH tie/review gate: L_band + U95_loss_band compared with 3.0 dB and 6.0 dB
+spectral-hole gate: L[b] + U95_loss[b] <= 6.0 dB in every 1 kHz decision bin
+```
+
+Report `m`, `R`, `V`, `C`, `U_fixture_k2`, `U95`, and the guarded value
+for every candidate/bin and for the integrated comparison so T-016 analysis is
+reproducible.
+<!-- T016-U95-ESTIMATOR-END -->
 
 ### Normative response/noise and T-001 thresholds
 
@@ -242,13 +314,12 @@ For each unit, derive complex pressure-to-code response `H_i(f)`. Divide its TX-
 output-noise PSD by `|H_i(f)|^2`, then subtract the simultaneously measured ambient
 and acquisition-floor PSD **in linear power** to estimate input-referred receiver
 self-noise. If the subtraction is not resolvable within the uncertainty budget,
-use its upper confidence bound; never clamp an unresolved result to an optimistic
-zero. T-001 adds its 30 dB SPL ambient separately, so the analysis must not count
-fixture ambient twice. Integrate 20–32 kHz in linear power and retain the per-
-frequency curves so a resonance/null cannot be hidden by one band average.
+use the unsubtracted DUT-equivalent noise as the conservative screen value; never
+clamp an unresolved result to an optimistic zero. T-001 adds its 30 dB SPL ambient
+separately, so the analysis must not count fixture ambient twice. Retain the
+per-frequency curves so a resonance/null cannot be hidden by one band average.
 
-Build each candidate's conservative T-001 input from the empirical per-frequency
-90th percentile of all 12 input-referred-noise curves, not a typical datasheet plot.
+Build `N_screen` with the exact estimator above, not a datasheet-typical curve.
 Re-run T-001's fixed person/reference case. A candidate passes the link gate only
 when both conditions hold:
 
@@ -260,20 +331,18 @@ when both conditions hold:
 The same 3.00 dB cap leaves T-001's nominal 10 m small-target margin at >=4.1 dB
 instead of its 7.1 dB reference value.
 
-After one scalar gain normalization per unit, the empirical 90th-to-10th percentile
-band-integrated receive-quality spread must be <=3.0 dB, and no unit or 500 Hz bin
-may be >6.0 dB worse than its candidate median. Report phase/delay spread and
-three-reseat repeatability for later calibration. Reseated response must repeat
-within 0.5 dB RMS magnitude / 5 degrees RMS phase, with no single-bin excursion
-over 1.0 dB / 10 degrees. The candidate's spread may not exceed the other
-candidate's spread by >1.0 dB.
+After one scalar gain normalization per unit, use each unit's three-reseat median.
+The observed maximum-minus-minimum band-integrated receive-quality spread across
+the 12 units must be <=3.0 dB, and no unit's 1 kHz decision bin may be >6.0 dB worse
+than its candidate's hierarchical median. Report phase/delay spread. Reseated
+response must repeat within 0.5 dB RMS magnitude / 5 degrees RMS phase, with no
+single-bin excursion over 1.0 dB / 10 degrees. One candidate's observed unit spread
+may not exceed the other's by >1.0 dB. These are sample-screen results, not
+population-tolerance estimates.
 
-Also compute intended-mode matched-filter receive-SNR loss
-`L = median_SNR_ICS(4.8 MHz) - median_SNR_SPH(3.072 MHz)` using the same calibrated
-20–32 kHz chirp and host decimator. In every 1 kHz bin, `SPH loss + U95` must be
-<=6.0 dB. These are engineering release thresholds tied to T-001/D011, not claimed
-manufacturer limits; the SPH-at-4.8 MHz run is diagnostic and cannot replace the
-intended-mode comparison.
+Use the exact paired `L_band + U95_loss_band` and per-bin
+`L[b] + U95_loss[b]` estimators above. The SPH-at-4.8 MHz run is diagnostic and
+cannot replace the intended SPH-3.072/ICS-4.8 comparison.
 
 ### Hard electrical, load, and port gates
 
@@ -305,13 +374,14 @@ intended-mode comparison.
 
 1. If SPH passes every hard gate and ICS fails a hard gate in an otherwise valid,
    complete comparison, release SPH and record the ICS failure.
-2. If both pass and `L + U95 <=3.0 dB`, release SPH; lifecycle breaks a
-   non-material acoustic tie. If `3.0 < L + U95 <=6.0 dB`, do not auto-select:
-   present the acoustic/lifecycle trade to Joshua in the component-choice record.
-3. If SPH fails and ICS passes, or both pass and `L + U95 >6.0 dB`, prepare a
-   component-choice decision for Joshua that explicitly exposes ICS's NRND/
-   orderability risk. Do not silently substitute ICS or retain the 3.072 MHz
-   capture contract.
+2. If both pass and `L_band + U95_loss_band <=3.0 dB`, release SPH; lifecycle
+   breaks a non-material acoustic tie. If
+   `3.0 < L_band + U95_loss_band <=6.0 dB`, do not auto-select: present the
+   acoustic/lifecycle trade to Joshua in the component-choice record.
+3. If SPH fails and ICS passes, or both pass and
+   `L_band + U95_loss_band >6.0 dB`, prepare a component-choice decision for
+   Joshua that explicitly exposes ICS's NRND/orderability risk. Do not silently
+   substitute ICS or retain the 3.072 MHz capture contract.
 4. If only one exact MPN is sourceable/testable, the bake-off is inconclusive under
    D011. Joshua must ratify a documented waiver before any release.
 5. If neither passes, freeze neither MPN/footprint. Reopen the D011 candidate set

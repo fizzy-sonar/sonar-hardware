@@ -55,9 +55,8 @@ available on this branch at verification time.
 
 ## Next steps
 
-1. T-010 instantiates the documented tile using the exact Syntiant land pattern;
-   T-011 assigns `PDM_CLK_FB` to a clock-capable Cmod pin and preserves the channel
-   map.
+1. T-010 instantiates only T-016's released MPN/footprint; T-011 assigns
+   `PDM_CLK_FB` to a clock-capable Cmod pin and preserves the channel map.
 2. T-020 copies the contract constants into its sampler testbench and proves edge
    ordering plus placed timing. T-021 implements host decimation/calibration.
 3. Superseded by the independent-review repair below: T-016 now requires three
@@ -96,3 +95,23 @@ T-001's 20.180 m baseline and 18.905 m result after the allowed 3.00 dB penalty,
 passed Ruff check/format and Python compilation for both analysis scripts, passed
 the ticket status/dependency audit, and passed unstaged/staged diff checks. Exact
 output is in the T-008 Log. No KiCad file was edited.
+
+## Final U95 estimator repair
+
+A final reviewer found that the selection rules used `U95` without defining a
+reproducible estimator. The design and T-016 ticket now contain identical normative
+blocks. For each bin and the separately integrated band, analysis takes hierarchical
+medians over three reseats, four fixed unit sites, and three coupons; derives
+worst-observed reseat, unit/site, and coupon deviations; and linearly adds those to
+the fixture's reported <=1.0 dB `k=2` term. The sum is deliberately a conservative
+screening guard, not a statistical 95% population interval.
+
+SPH/ICS loss is paired by predeclared coupon/site/reseat fixture blocks. Absolute
+T-001 input uses the guarded candidate noise curve; selection uses guarded
+integrated matched-filter loss; the spectral-hole check uses independently guarded
+1 kHz bins. The 12 devices per MPN are explicitly only a v1 engineering screen for
+assembly, four-load, unit, and coupon effects. Population qualification would need
+a separately justified larger multi-lot/environmental sample and is outside v1.
+Focused synthetic assertions exercised the 3.0/6.0 dB pass boundaries, and an
+extraction/compare check proved the two canonical estimator blocks byte-identical;
+the T-008 Log records exact output with the full regression checks.

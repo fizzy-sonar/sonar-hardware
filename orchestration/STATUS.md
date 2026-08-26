@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by codex/t009-final-repair — T-009 firmware and claims independently repaired._
+_Last updated: 2026-08-26 by codex/terra-t009 — T-009 re-verified independently (all host proofs re-run, byte-identical round trip) and closed out; ready to merge._
 
 ## Now
 - **Phases open for agent work: P1, P2, and P5.** T-002/T-008 are done and CP-B
@@ -87,6 +87,10 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/terra-t009: T-009 close-out. No code changes; re-ran full
+  host verification (C/Python tests, 49,152-frame synthetic capture byte-identical,
+  287.3 dB tone recovery, ruff/diff clean); verification output pasted in ticket
+  Log; ticket stays `done`; branch ready for orchestrator merge.
 - 2026-08-26 — codex/t009-final-repair: repaired T-009's single-SM PIO timing,
   DMA/IRQ sequencing, direct TinyUSB CDC, clock quantization/counters, GPIO guards,
   backpressure tests, and stale architecture claims; hardware remains unvalidated.

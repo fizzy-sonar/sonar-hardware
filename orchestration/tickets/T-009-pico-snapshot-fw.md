@@ -88,3 +88,33 @@ Synthetic-pattern capture matches expected bitstream exactly; throughput math
   the known sandbox-only macOS DRC aborts (exit 134), then passed fully in the
   approved unsandboxed run: ERC/DRC baseline exits were 5 and every export exited
   0. No KiCad source was edited.
+- 2026-08-26 codex/terra-t009 (close-out, independent re-verification on
+  agent/T-009-pico-snapshot-fw, tip 49afac0): no code changes needed; DoD already
+  met. Re-ran the full host proof and pasted actual output below. All commands run
+  from `firmware/pico-snapshot/` with `UV_CACHE_DIR=build/uv-cache`:
+  - `uv run python tests/test_firmware_contract.py` → exit 0
+  - `uv run python tests/test_sim.py` → exit 0
+  - `cc -std=c11 -Wall -Wextra -Werror -Iinclude src/capture_core.c
+    src/snapshot_protocol.c src/pdm_dma.c tests/test_protocol.c -o
+    build/test_protocol && ./build/test_protocol` → exit 0 (warning-clean)
+  - `cc -std=c11 -Wall -Wextra -Werror -Iinclude src/cdc_transport.c
+    tests/test_cdc_transport.c -o build/test_cdc_transport &&
+    ./build/test_cdc_transport` → exit 0 (warning-clean)
+  - `uv run python host/simulate.py` →
+    `synthetic capture: 49152 frames, 147456 payload bytes`;
+    `channel 0 28000 Hz tone/off-tone power ratio: 287.3 dB`; exit 0; writes
+    `build/synthetic_spectrogram.pgm` (decimation by 24 to 128 ksample/s).
+  - `uv run python host/receiver.py build/synthetic.snp1 build/validated.snp1` →
+    `valid SNP1 capture=7 frames=49152 clock=3072000 Hz`; exit 0.
+  - `cmp build/synthetic.snp1 build/validated.snp1` → BYTE-IDENTICAL
+    (synthetic-pattern capture matches expected bitstream exactly).
+  - `uv run ruff check .` → `All checks passed!`; `git diff --check` clean.
+  Throughput math, logged (README §"RP2350 capture design", confirmed against
+  source constants): window = 16,384 frames × 3 B = 48 KiB packed = 5.333 ms at
+  3.072 MHz; raw line rate 9.216 MB/s; RAM = 2×(64 KiB DMA window + 48 KiB packed)
+  = 224 KiB of RP2350's 520 KiB SRAM (~296 KiB left for SDK/USB/stacks); USB
+  Full-Speed bulk ceiling 1.216 MB/s → ≥40.4 ms drain per window → snapshot duty
+  cycling mandatory (not continuous streaming). Firmware build remains gated on
+  `PICO_SDK_PATH` (absent here; CMake stops with the repo's explicit missing-SDK
+  error — see `build/cmake-missing-sdk.log`). Physical PIO/DMA/USB/mic validation
+  waits on T-007 purchases; T-011 owns the real header pin map.

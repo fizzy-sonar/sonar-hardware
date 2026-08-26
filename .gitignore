@@ -16,3 +16,7 @@ fp-info-cache
 
 # macOS
 .DS_Store
+
+# Python analysis caches
+__pycache__/
+*.py[cod]

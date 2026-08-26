@@ -1,0 +1,25 @@
+transmitter,frequency_khz,target,target_strength_db,source_level_db_spl_at_1m,absorption_db_per_m,total_noise_db_spl,max_range_m
+Representative wideband piezo placeholder,20,wall,20.0,104.00,0.5242,32.03,43.93
+Representative wideband piezo placeholder,20,person,-10.0,104.00,0.5242,32.03,24.79
+Representative wideband piezo placeholder,20,small object,-30.0,104.00,0.5242,32.03,14.55
+Representative wideband piezo placeholder,25,wall,20.0,104.00,0.7316,32.06,34.36
+Representative wideband piezo placeholder,25,person,-10.0,104.00,0.7316,32.06,20.18
+Representative wideband piezo placeholder,25,small object,-30.0,104.00,0.7316,32.06,12.35
+Representative wideband piezo placeholder,32,wall,20.0,104.00,1.0163,32.38,26.73
+Representative wideband piezo placeholder,32,person,-10.0,104.00,1.0163,32.38,16.23
+Representative wideband piezo placeholder,32,small object,-30.0,104.00,1.0163,32.38,10.29
+Representative wideband piezo placeholder,40,wall,20.0,104.00,1.3182,33.23,21.67
+Representative wideband piezo placeholder,40,person,-10.0,104.00,1.3182,33.23,13.44
+Representative wideband piezo placeholder,40,small object,-30.0,104.00,1.3182,33.23,8.71
+Murata MA40S4S narrowband,20,wall,20.0,,0.5242,32.03,
+Murata MA40S4S narrowband,20,person,-10.0,,0.5242,32.03,
+Murata MA40S4S narrowband,20,small object,-30.0,,0.5242,32.03,
+Murata MA40S4S narrowband,25,wall,20.0,,0.7316,32.06,
+Murata MA40S4S narrowband,25,person,-10.0,,0.7316,32.06,
+Murata MA40S4S narrowband,25,small object,-30.0,,0.7316,32.06,
+Murata MA40S4S narrowband,32,wall,20.0,77.37,1.0163,32.38,17.33
+Murata MA40S4S narrowband,32,person,-10.0,77.37,1.0163,32.38,8.58
+Murata MA40S4S narrowband,32,small object,-30.0,77.37,1.0163,32.38,4.42
+Murata MA40S4S narrowband,40,wall,20.0,110.17,1.3182,33.23,23.48
+Murata MA40S4S narrowband,40,person,-10.0,110.17,1.3182,33.23,15.04
+Murata MA40S4S narrowband,40,small object,-30.0,110.17,1.3182,33.23,10.08

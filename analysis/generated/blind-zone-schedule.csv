@@ -1,0 +1,7 @@
+chirp_duration_ms,time_bandwidth_product,pulse_compression_gain_db,blind_zone_tx_only_m,blind_zone_wideband_0p25ms_guard_m,blind_zone_narrowband_1ms_guard_m,configured_guard_ms,blind_zone_configured_guard_m
+0.50,6.00,7.78,0.086,0.129,0.258,1.000,0.258
+1.00,12.00,10.79,0.172,0.215,0.344,1.000,0.344
+2.00,24.00,13.80,0.344,0.387,0.516,1.000,0.516
+4.00,48.00,16.81,0.688,0.731,0.860,1.000,0.860
+6.67,80.04,19.03,1.147,1.190,1.319,1.000,1.319
+8.00,96.00,19.82,1.376,1.419,1.548,1.000,1.548

@@ -1,7 +1,7 @@
 ---
 id: T-011
 title: Digital sheet — Cmod A7-35T socket, FT232H, headers
-status: in-progress
+status: done
 phase: P2
 tier: top        # pin-budget audit across 3 interfaces; highest-consequence errors
 priority: 1
@@ -211,3 +211,9 @@ manual by a second agent session.
   pristine ones -> environmental sandbox issue (unchanged, per T-006 note).
   Top-sheet patch idempotent (0 changes on re-run). T-011 remains IN-PROGRESS
   until the orchestrator re-verifies; nothing committed (orchestrator commits).
+- 2026-08-26 claude/orchestrator: independent re-verification of the repair ran
+  `python3 scripts/check_pinmap_vs_xdc.py /tmp/cmod-a7-master.xdc` (live Digilent
+  master XDC, fetched 2026-08-26): PASS — 44/44 positions (position+pio label+pkg
+  pin+IO name+bank+CC flag), special positions 15/16 analog NC and 24=VU/25=GND,
+  PDM_CLK_FB/FT_CLKOUT/ETH_REF_CLK all clock-capable. Reference manual §8 confirmed
+  44 digital + 2 analog + 2 power (no DIP 3V3). Live-fetch gate closed; ticket done.

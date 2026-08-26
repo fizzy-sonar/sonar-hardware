@@ -12,6 +12,8 @@ _Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nomina
   small-target margin are the remaining CP-B acoustic risks.
 - **T-002 done:** parts/lifecycle matrix delivered; ICS-41352 versus SPH0641LU4H
   bake-off remains for T-008. EOL/NRND and missing T5838/JLC evidence are flagged.
+- **T-006 done:** KiCad CLI check harness added; host binary unavailable in this
+  sandbox, so baseline ERC/DRC counts await a host run.
 - **KiCad open?** Unknown — check before hand-editing `.kicad_sch` (README rules).
 
 ## Ready tickets — launch each on the tier shown (routing table in README.md)

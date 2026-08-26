@@ -18,5 +18,6 @@ int main(void) {
     sonar_snapshot_header_t decoded; assert(sonar_snapshot_decode_header(&decoded, wire));
     assert(decoded.sequence == 42 && decoded.first_frame == 1234 && decoded.payload_crc32 == h.payload_crc32);
     wire[10] ^= 1; assert(!sonar_snapshot_decode_header(&decoded, wire));
+    h.frame_count = UINT32_MAX; h.payload_bytes = 0; assert(!sonar_snapshot_encode_header(wire, &h));
     return 0;
 }

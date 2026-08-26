@@ -29,7 +29,7 @@ uint32_t sonar_crc32(const uint8_t *bytes, size_t size) {
 
 bool sonar_snapshot_encode_header(uint8_t out[SONAR_SNAPSHOT_HEADER_BYTES],
                                   const sonar_snapshot_header_t *h) {
-    if (!out || !h || h->channels != SONAR_CHANNELS || h->data_lines != SONAR_DATA_LINES ||
+    if (!out || !h || h->frame_count > UINT32_MAX / SONAR_BYTES_PER_FRAME || h->channels != SONAR_CHANNELS || h->data_lines != SONAR_DATA_LINES ||
         h->payload_bytes != h->frame_count * SONAR_BYTES_PER_FRAME) return false;
     memset(out, 0, SONAR_SNAPSHOT_HEADER_BYTES);
     memcpy(out, SONAR_SNAPSHOT_MAGIC, 4); out[4] = SONAR_SNAPSHOT_VERSION; out[5] = SONAR_SNAPSHOT_HEADER_BYTES;
@@ -41,11 +41,11 @@ bool sonar_snapshot_encode_header(uint8_t out[SONAR_SNAPSHOT_HEADER_BYTES],
 
 bool sonar_snapshot_decode_header(sonar_snapshot_header_t *out, const uint8_t in[SONAR_SNAPSHOT_HEADER_BYTES]) {
     if (!out || !in || memcmp(in, SONAR_SNAPSHOT_MAGIC, 4) || in[4] != SONAR_SNAPSHOT_VERSION ||
-        in[5] != SONAR_SNAPSHOT_HEADER_BYTES || get32(in + 40) != sonar_crc32(in, 40)) return false;
+        in[5] != SONAR_SNAPSHOT_HEADER_BYTES || get32(in + 44) != 0 || get32(in + 40) != sonar_crc32(in, 40)) return false;
     out->sequence = get32(in + 8); out->first_frame = get64(in + 12); out->clock_hz = get32(in + 20);
     out->channels = get16(in + 24); out->data_lines = get16(in + 26); out->frame_count = get32(in + 28);
     out->payload_bytes = get32(in + 32); out->payload_crc32 = get32(in + 36);
-    return out->channels == SONAR_CHANNELS && out->data_lines == SONAR_DATA_LINES &&
+    return out->frame_count <= UINT32_MAX / SONAR_BYTES_PER_FRAME && out->channels == SONAR_CHANNELS && out->data_lines == SONAR_DATA_LINES &&
            out->payload_bytes == out->frame_count * SONAR_BYTES_PER_FRAME;
 }
 

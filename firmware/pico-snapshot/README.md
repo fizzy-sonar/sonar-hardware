@@ -64,7 +64,7 @@ No Python packages are required; use the pinned project interpreter:
 ```sh
 cd firmware/pico-snapshot
 uv run python tests/test_sim.py
-cc -std=c11 -Wall -Wextra -Werror -Iinclude src/snapshot_protocol.c tests/test_protocol.c -o build/test_protocol
+cc -std=c11 -Wall -Wextra -Werror -Iinclude src/snapshot_protocol.c src/pdm_dma.c tests/test_protocol.c -o build/test_protocol
 ./build/test_protocol
 uv run python host/simulate.py
 uv run python host/receiver.py build/synthetic.snp1 build/validated.snp1

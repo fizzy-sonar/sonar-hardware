@@ -1,11 +1,11 @@
 ---
 id: T-006
 title: kicad-cli check harness + CI
-status: ready
+status: in-progress
 phase: P1
 tier: cheap        # shell scripting against kicad-cli
 priority: 2
-assignee:
+assignee: codex/luna-t006
 depends_on: []
 needs_human: false
 created: 2026-08-25

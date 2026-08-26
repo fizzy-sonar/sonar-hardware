@@ -1,7 +1,7 @@
 ---
 id: T-005
 title: EDA spike: diodeinc/pcb (Zener) go/no-go
-status: review
+status: done
 phase: P1
 tier: mid        # optional spike; tool evaluation
 priority: 5
@@ -47,3 +47,10 @@ Report exists; build commands in it actually run; verdict stated in the first li
   never executable; orchestrator can confirm in 30 min on an unsandboxed+networked host:
   `cd spikes/eda-zener/hand-port && pcb build .` then close. Git: sandbox blocks worktree
   .git writes — ALL changes left uncommitted for the orchestrator; no push/merge attempted.
+- 2026-08-26 claude/orchestrator: ran the remaining host-side step. `pcb` is
+  installed (~/.local/bin/pcb); `pcb build .` in spikes/eda-zener/hand-port/
+  executes and fails exactly as the spike predicted: `File not found:
+  quad_opamp.zen` at rx_preamp_channel.zen:23 ("not written in this spike") —
+  generics resolve, but real ICs require the network registry (unreachable in
+  sandbox) or hand-written modules. Decision: NO-GO for diodeinc/pcb as the Sonar
+  authoring tool under D008/D009 (KiCad + JLC turnkey remain). Ticket done.

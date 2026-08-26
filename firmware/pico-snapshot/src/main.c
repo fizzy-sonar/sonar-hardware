@@ -5,6 +5,7 @@
 #include "hardware/pio.h"
 #include "tusb.h"
 #include "snapshot_protocol.h"
+#include "capture_config.h"
 #include "pdm_capture.pio.h"
 
 /* SRAM default: two 48 KiB windows (16,384 logical frames = 5.33 ms each).
@@ -25,7 +26,8 @@ extern void sonar_repack_pio_words(uint8_t *, const uint32_t *, uint32_t);
 #define PDM_CLK_GPIO 255u
 #define PDM_DATA_GPIO 255u
 #endif
-static int dma_chan, sm; static volatile int completed = -1; static int active;
+static int dma_chan, sm; static volatile int completed = -1; static int active; static uint64_t logical_frame;
+static void set_clock(uint32_t hz,bool on){pio_sm_set_enabled(pio0,sm,false);pio_sm_set_clkdiv(pio0,sm,sonar_pio_divider(clock_get_hz(clk_sys),hz));if(on)pio_sm_set_enabled(pio0,sm,true);}
 static void __isr dma_done(void) { dma_hw->ints0 = 1u << dma_chan; completed = active; }
 static void configure_pio_dma(void) {
     PIO pio = pio0;
@@ -33,14 +35,15 @@ static void configure_pio_dma(void) {
     uint off = pio_add_program(pio, &pdm_sample_program); sm = pio_claim_unused_sm(pio, true);
     pio_gpio_init(pio, PDM_CLK_GPIO); for (uint i=0;i<12;i++) pio_gpio_init(pio,PDM_DATA_GPIO+i);
     pio_sm_config c=pdm_sample_program_get_default_config(off); sm_config_set_sideset_pins(&c,PDM_CLK_GPIO); sm_config_set_in_pins(&c,PDM_DATA_GPIO);
-    sm_config_set_in_shift(&c,false,true,24); sm_config_set_clkdiv(&c,(float)clock_get_hz(clk_sys)/(3072000.0f*4.0f));
+    sm_config_set_in_shift(&c,false,true,24); sm_config_set_clkdiv(&c,sonar_pio_divider(clock_get_hz(clk_sys),PDM_STANDARD_HZ));
     pio_sm_set_consecutive_pindirs(pio,sm,PDM_CLK_GPIO,1,true); pio_sm_init(pio,sm,off,&c);
     dma_chan=dma_claim_unused_channel(true); dma_channel_config d=dma_channel_get_default_config(dma_chan); channel_config_set_transfer_data_size(&d,DMA_SIZE_32); channel_config_set_read_increment(&d,false); channel_config_set_write_increment(&d,true); channel_config_set_dreq(&d,pio_get_dreq(pio,sm,false));
     dma_channel_configure(dma_chan,&d,dma_words[0],&pio->rxf[sm],WINDOW_FRAMES,false); dma_channel_set_irq0_enabled(dma_chan,true); irq_set_exclusive_handler(DMA_IRQ_0,dma_done); irq_set_enabled(DMA_IRQ_0,true);
 }
 static void arm_capture(void) { active ^= 1; completed=-1; dma_channel_set_write_addr(dma_chan,dma_words[active],false); dma_channel_set_trans_count(dma_chan,WINDOW_FRAMES,false); pio_sm_clear_fifos(pio0,sm); pio_sm_restart(pio0,sm); pio_sm_set_enabled(pio0,sm,true); dma_start_channel_mask(1u<<dma_chan); }
+static void startup_mics(void){set_clock(PDM_STANDARD_HZ,true);sleep_ms(PDM_STANDARD_MS);set_clock(PDM_STANDARD_HZ,false);sleep_us(2);set_clock(PDM_ULTRASONIC_HZ,true);sleep_ms(PDM_SETTLE_MS);logical_frame=PDM_DISCARD_FRAMES;pio_sm_set_enabled(pio0,sm,false);}
 static void cdc_write_snapshot(const uint8_t *payload, uint32_t frames) {
-    sonar_snapshot_header_t h = {.sequence = sequence++, .first_frame = 0,
+    sonar_snapshot_header_t h = {.sequence = sequence++, .first_frame = logical_frame,
         .clock_hz = 3072000, .channels = SONAR_CHANNELS, .data_lines = SONAR_DATA_LINES,
         .frame_count = frames, .payload_bytes = frames * SONAR_BYTES_PER_FRAME,
         .payload_crc32 = sonar_crc32(payload, frames * SONAR_BYTES_PER_FRAME)};
@@ -50,6 +53,6 @@ static void cdc_write_snapshot(const uint8_t *payload, uint32_t frames) {
     for(int j=0;j<2;j++) for(uint32_t n=0;n<sizes[j];){ tud_task(); uint32_t w=tud_cdc_write(parts[j]+n,sizes[j]-n); n+=w; if(w) tud_cdc_write_flush(); }
 }
 int main(void) {
-    stdio_init_all(); tusb_init(); configure_pio_dma();
-    while (true) { tud_task(); int ch=getchar_timeout_us(0); if(ch=='C' && completed<0) arm_capture(); if(completed>=0){int i=completed; completed=-1; pio_sm_set_enabled(pio0,sm,false); sonar_repack_pio_words(window[i],dma_words[i],WINDOW_FRAMES); cdc_write_snapshot(window[i],WINDOW_FRAMES);} }
+    stdio_init_all(); tusb_init(); configure_pio_dma(); startup_mics();
+    while (true) { tud_task(); int ch=getchar_timeout_us(0); if(ch=='C' && completed<0) arm_capture(); if(completed>=0){int i=completed; completed=-1; pio_sm_set_enabled(pio0,sm,false); sonar_repack_pio_words(window[i],dma_words[i],WINDOW_FRAMES); cdc_write_snapshot(window[i],WINDOW_FRAMES); logical_frame+=WINDOW_FRAMES;} }
 }

@@ -45,9 +45,16 @@ The FPGA supplies `PDM_CLK_SRC` to the board clock buffer. The buffer returns on
 matched output as `PDM_CLK_FB`; the IDDR must use that returned clock, not an
 unconstrained copy of the clock-generator net. `PDM_CLK_FB` must land on an
 MRCC/SRCC-capable Cmod pin; T-011 assigns the exact pin. Digilent's official Cmod
-A7 XDC confirms multiple clock-capable GPIOs, including `pio3`, `pio5`, `pio8`,
-`pio18`, `pio19`, `pio36`, `pio37`, `pio38`, `pio40`, `pio43`, `pio46`, `pio47`,
-and `pio48`.
+A7 XDC confirms multiple clock-capable GPIOs; the corrected clock-capable set on
+the 48-pin DIP is `pio3`, `pio5`, `pio8`, `pio16`, `pio17`, `pio32`, `pio33`,
+`pio34`, `pio36`, `pio39`, `pio42`, `pio43`, and `pio44` (every DIP GPIO whose
+IO-name contains MRCC/SRCC). An earlier version of this paragraph also listed
+`pio18/19/37/38/40/46/47/48`; the T-011 second-agent audit (2026-08-26) found
+that list corrupt — `pio46/47/48` are the DIP power positions (the master XDC
+GPIO section stops at `pio44`; the DIP carries exactly 44 user I/O) — and
+resolved the discrepancy against the IO-name-derived set now in
+`orchestration/pinmap.md`. A live re-diff against the master XDC remains
+outstanding (no network in either agent sandbox); see pinmap.md.
 
 Syntiant explicitly says not to power up or wake directly into Ultrasonic Mode.
 The implementation shall use this sequence:

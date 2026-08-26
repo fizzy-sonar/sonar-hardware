@@ -7,13 +7,23 @@ Single source of truth for the Cmod A7-35T pin assignment. Regenerates:
   - gateware/constraints/sonar_cmod_a7.xdc    (T-020 starting constraints)
   - orchestration/pinmap.md                   (authoritative audited pin table)
 
-PROVENANCE WARNING: the pio->package-pin mapping below is transcribed OFFLINE from
-the Digilent Cmod-A7-Master.xdc / Cmod A7 reference manual *from memory* (this
-machine has no network access), cross-anchored against the clock-capable pin list
-documented in docs/pdm-capture-contract.md (fetched from the live master XDC by
-T-008). Clock-critical nets use only pins where BOTH sources agree (pio3/5/8/36/43).
-All PACKAGE_PIN and IO-bank strings MUST be re-verified against the Digilent master
-XDC + reference manual by the T-011 second-agent audit before T-020 synthesis.
+PROVENANCE: the pio->package-pin mapping below is transcribed OFFLINE from the
+Digilent Cmod-A7-Master.xdc / Cmod A7 reference manual (no network on either the
+authoring or the 2026-08-26 audit machine - both sandboxes block DNS/TCP and the
+approval policy forbids escalation). Second-agent audit (codex/sol-t011-audit,
+2026-08-26) found the table internally self-consistent (every MRCC/SRCC IO-name
+string matches its clock-capable flag) and matching the auditor's independent
+recall of the master XDC 48/48; the T-008 clock-capable list in
+docs/pdm-capture-contract.md was found corrupt (it claims pio46/47/48 as
+clock-capable, but those DIP positions are the power pins - the master XDC GPIO
+section stops at pio44 - so its contested pio18/19/37/38/40 entries lose
+authority) and has been corrected there. Clock-critical nets use only pins where
+BOTH sources agree (pio3/5/8/36/43), so no net assignment changed.
+STILL OUTSTANDING before T-020 synthesis: one live fetch of
+https://github.com/Digilent/digilent-xdc/blob/master/Cmod-A7-Master.xdc and the
+Cmod A7 reference manual pinout table (60-second human paste-check is enough) to
+confirm the table byte-for-byte, the DIP position<->pio identity mapping, and the
+power-pin positions 45=GND/46=3V3/47=VU/48=GND.
 
 Run from repo root:  python3 scripts/gen_digital_sheet.py
 """
@@ -32,8 +42,8 @@ def fmt(v): return f"{v:.2f}".rstrip('0').rstrip('.')
 # ---------------------------------------------------------------------------
 # PIN TABLE -- single source of truth.
 # (pio, dip_pin, pkg, io_name, bank, cc, net, fpga_dir, group, note)
-#   cc: "yes"=both sources agree clock-capable, "recalled"=only offline-recalled
-#       XDC says CC, "t008"=only T-008's documented list says CC, ""=not CC.
+#   cc: "yes"=clock-capable (MRCC/SRCC in IO name; T-008 list resolved as corrupt in
+#       the 2026-08-26 audit, see pinmap.md), ""=not CC.
 # ---------------------------------------------------------------------------
 PINS = [
  ("pio1",  1,"M3","IO_L8N_T1_AD14N_35",      35,"",        "TX_EN",       "out",  "tx",  "DRV8876 EN/IN1 (T-013)"),
@@ -51,10 +61,10 @@ PINS = [
  ("pio13",13,"L1","IO_L6N_T0_VREF_35",       35,"",        "PDM_D3",      "in",   "pdm", "CH06/CH07 = M21/M31"),
  ("pio14",14,"L2","IO_L5N_T0_AD13N_35",      35,"",        "PDM_D4",      "in",   "pdm", "CH08/CH09 = M02/M12"),
  ("pio15",15,"M1","IO_L9N_T1_DQS_AD7N_35",   35,"",        "PDM_D5",      "in",   "pdm", "CH10/CH11 = M32/M42"),
- ("pio16",16,"N3","IO_L12P_T1_MRCC_35",      35,"recalled","PDM_D6",      "in",   "pdm", "CH12/CH13 = M03/M13"),
- ("pio17",17,"P3","IO_L12N_T1_MRCC_35",      35,"recalled","PDM_D7",      "in",   "pdm", "CH14/CH15 = M23/M33"),
- ("pio18",18,"M2","IO_L9P_T1_DQS_AD7P_35",   35,"t008",    "PDM_D8",      "in",   "pdm", "CH16/CH17 = M04/M14"),
- ("pio19",19,"N1","IO_L10N_T1_AD15N_35",     35,"t008",    "PDM_D9",      "in",   "pdm", "CH18/CH19 = M24/M34"),
+ ("pio16",16,"N3","IO_L12P_T1_MRCC_35",      35,"yes", "PDM_D6",      "in",   "pdm", "CH12/CH13 = M03/M13"),
+ ("pio17",17,"P3","IO_L12N_T1_MRCC_35",      35,"yes", "PDM_D7",      "in",   "pdm", "CH14/CH15 = M23/M33"),
+ ("pio18",18,"M2","IO_L9P_T1_DQS_AD7P_35",   35,"", "PDM_D8",      "in",   "pdm", "CH16/CH17 = M04/M14"),
+ ("pio19",19,"N1","IO_L10N_T1_AD15N_35",     35,"", "PDM_D9",      "in",   "pdm", "CH18/CH19 = M24/M34"),
  ("pio20",20,"N2","IO_L10P_T1_AD15P_35",     35,"",        "PDM_D10",     "in",   "pdm", "CH20/CH21 = M40/M41"),
  ("pio21",21,"P1","IO_L19N_T3_VREF_35",      35,"",        "PDM_D11",     "in",   "pdm", "CH22/CH23 = M43/M44"),
  ("pio22",22,"R3","IO_L2P_T0_34",            34,"",        "FT_D0",       "inout","ft",  ""),
@@ -67,19 +77,19 @@ PINS = [
  ("pio29",29,"V2","IO_L5P_T0_34",            34,"",        "FT_D7",       "inout","ft",  ""),
  ("pio30",30,"W3","IO_L6N_T0_VREF_34",       34,"",        "FT_RXF_N",    "in",   "ft",  "ACBUS0"),
  ("pio31",31,"V3","IO_L6P_T0_34",            34,"",        "FT_TXE_N",    "in",   "ft",  "ACBUS1"),
- ("pio32",32,"W5","IO_L12P_T1_MRCC_34",      34,"recalled","FT_RD_N",     "out",  "ft",  "ACBUS2"),
- ("pio33",33,"V4","IO_L11N_T1_SRCC_34",      34,"recalled","FT_WR_N",     "out",  "ft",  "ACBUS3"),
- ("pio34",34,"U4","IO_L11P_T1_SRCC_34",      34,"recalled","FT_OE_N",     "out",  "ft",  "ACBUS6"),
+ ("pio32",32,"W5","IO_L12P_T1_MRCC_34",      34,"yes", "FT_RD_N",     "out",  "ft",  "ACBUS2"),
+ ("pio33",33,"V4","IO_L11N_T1_SRCC_34",      34,"yes", "FT_WR_N",     "out",  "ft",  "ACBUS3"),
+ ("pio34",34,"U4","IO_L11P_T1_SRCC_34",      34,"yes", "FT_OE_N",     "out",  "ft",  "ACBUS6"),
  ("pio35",35,"V5","IO_L16N_T2_34",           34,"",        "ETH_TXD0",    "out",  "eth", ""),
  ("pio36",36,"W4","IO_L12N_T1_MRCC_34",      34,"yes",     "PDM_CLK_FB",  "in",   "pdm", "RETURNED CLOCK - clock-capable pin mandatory (T-008)"),
- ("pio37",37,"U5","IO_L16P_T2_34",           34,"t008",    "ETH_TXD1",    "out",  "eth", ""),
- ("pio38",38,"U2","IO_L9N_T1_DQS_34",        34,"t008",    "ETH_TX_EN",   "out",  "eth", ""),
- ("pio39",39,"W6","IO_L13N_T2_MRCC_34",      34,"recalled","ETH_RXD0",    "in",   "eth", ""),
- ("pio40",40,"U3","IO_L9P_T1_DQS_34",        34,"t008",    "ETH_RXD1",    "in",   "eth", ""),
+ ("pio37",37,"U5","IO_L16P_T2_34",           34,"", "ETH_TXD1",    "out",  "eth", ""),
+ ("pio38",38,"U2","IO_L9N_T1_DQS_34",        34,"", "ETH_TX_EN",   "out",  "eth", ""),
+ ("pio39",39,"W6","IO_L13N_T2_MRCC_34",      34,"yes", "ETH_RXD0",    "in",   "eth", ""),
+ ("pio40",40,"U3","IO_L9P_T1_DQS_34",        34,"", "ETH_RXD1",    "in",   "eth", ""),
  ("pio41",41,"U7","IO_L19P_T3_34",           34,"",        "ETH_CRS_DV",  "in",   "eth", ""),
- ("pio42",42,"W7","IO_L13P_T2_MRCC_34",      34,"recalled","ETH_RX_ER",   "in",   "eth", ""),
+ ("pio42",42,"W7","IO_L13P_T2_MRCC_34",      34,"yes", "ETH_RX_ER",   "in",   "eth", ""),
  ("pio43",43,"U8","IO_L14P_T2_SRCC_34",      34,"yes",     "FT_CLKOUT",   "in",   "ft",  "60 MHz sync-FIFO clock; SRCC_34"),
- ("pio44",44,"V8","IO_L14N_T2_SRCC_34",      34,"recalled","TX_NSLEEP",   "out",  "tx",  "DRV8876 nSLEEP (T-013)"),
+ ("pio44",44,"V8","IO_L14N_T2_SRCC_34",      34,"yes", "TX_NSLEEP",   "out",  "tx",  "DRV8876 nSLEEP (T-013)"),
  ("pio45",45,"--","(power)",                   0,"",        "GND",         "pwr",  "pwr", "socket power pin (recalled position - VERIFY)"),
  ("pio46",46,"--","(power)",                   0,"",        "CMOD_3V3",    "pwr",  "pwr", "module 3V3 rail pin (recalled - VERIFY); NC default, SJ1 DNP"),
  ("pio47",47,"--","(power)",                   0,"",        "CMOD_VU",     "pwr",  "pwr", "module VU/USB-5V pin (recalled - VERIFY); NC default, SJ2 DNP"),
@@ -270,7 +280,8 @@ def build():
     sh.text("Sonar v1 - Digital sheet (T-011, D012): Cmod A7-35T DIP-48 socket, FT232H sync-FIFO header, generic PDM header, DNP RMII provision, TX control, test points.", 25.4, 12.7, 1.524, bold=True)
     sh.text("AUTHORITATIVE PIN TABLE: orchestration/pinmap.md (generated by scripts/gen_digital_sheet.py).\n"
             "Clock-capable pins: PDM_CLK_FB=pio36 (MRCC), FT_CLKOUT=pio43 (SRCC), ETH_REF_CLK=pio3 (MRCC) - all double-sourced.\n"
-            "Package pins are offline transcriptions of the Digilent Cmod-A7-Master.xdc - audit against the live master XDC before T-020 synthesis.", 25.4, 18.5)
+            "Package pins: offline transcription of the Digilent Cmod-A7-Master.xdc, audited offline by a second agent 2026-08-26;\n"
+            "live master-XDC diff still required before T-020 synthesis (see orchestration/pinmap.md).", 25.4, 18.5)
     sh.text("POWER STRATEGY (decided, T-011): the Cmod A7 powers itself from its own micro-USB. The board does not power the module and the\n"
             "module does not power the board: CMOD_3V3 / CMOD_VU default to no-connect. SJ1/SJ2 are DNP solder-jumper rework options\n"
             "(SJ1: module 3V3 <-> board +3.3V; SJ2: module VU <-> board 5V - fit only with T-012 review, never as a paralleled-regulator hack).\n"
@@ -339,15 +350,15 @@ def build():
             "Signals + GND only: both platforms are self-powered; the mic rail 3V3_MIC stays on the array sheet (T-010/T-012).", 262, 218)
 
     # ---- DNP Ethernet provision ---------------------------------------------
-    sh.text("DNP ETHERNET PROVISION (D012 amendment b): U50 LAN8720A + J43 HR911105A MagJack + X1 50 MHz osc + R400-R403/C400-C406 are ALL DNP on v1.\n"
+    sh.text("DNP ETHERNET PROVISION (D012 amendment b): U60 LAN8720A + J43 HR911105A MagJack + X1 50 MHz osc + R400-R403/C400-C406 are ALL DNP on v1.\n"
             "100M RMII carries only the decimated stream (raw PDM needs the FT232H). Populate-and-learn milestone, never a respin.\n"
             "MODE[2:0]/PHYAD0 strap levels (RXD0/RXD1/CRS_DV/RXER pins) are sampled at nRST release - Artix-7 config-time weak pull-ups can\n"
             "override the PHY's internal strap pulls; determine strap resistors from the LAN8720A datasheet at populate time.\n"
             "TCT to +3.3V / RCT decoupled per LAN8720A voltage-mode reference - verify against the chosen PHY+jack datasheets at populate.", 285, 25)
     u = sh.symbol("Interface_Ethernet", "Interface_Ethernet.kicad_sym",
-                  "LAN8720A", "U50", "LAN8720A", 340, 115, dnp=True,
+                  "LAN8720A", "U60", "LAN8720A", 340, 115, dnp=True,
                   fp="Package_DFN_QFN:QFN-24-1EP_4x4mm_P0.5mm_EP2.5x2.5mm")
-    U50 = {  # pin -> (action, net)
+    U60 = {  # pin -> (action, net)  # ref U60: U50 collides with legacy array-sheet U50
         "1": ("pwr", "+3.3V"), "6": ("label", "ETH_VDDCR"), "9": ("pwr", "+3.3V"),
         "19": ("pwr", "+3.3V"), "25": ("pwr", "GND"),
         "4": ("nc", None), "14": ("nc", None),
@@ -360,7 +371,7 @@ def build():
         "22": ("label", "ETH_RXN"), "23": ("label", "ETH_RXP"),
         "24": ("label", "ETH_RBIAS"), "2": ("label", "ETH_INTSEL"), "3": ("label", "ETH_REGOFF"),
     }
-    for num, (act, net) in U50.items():
+    for num, (act, net) in U60.items():
         a = u[num]
         if act == "nc": sh.stub_nc(a)
         elif act == "pwr": sh.stub_power(a, net, f"#PWR47{num}")
@@ -610,9 +621,12 @@ def write_xdc(path):
     L.append("## GENERATED by scripts/gen_digital_sheet.py - edit the generator or pinmap, not this file.")
     L.append("##")
     L.append("## PROVENANCE: PACKAGE_PIN values transcribed offline from the Digilent")
-    L.append("## Cmod-A7-Master.xdc (no network on the authoring machine). Cross-anchored to the")
-    L.append("## clock-capable list in docs/pdm-capture-contract.md. VERIFY against the live")
-    L.append("## Digilent master XDC / Cmod A7 reference manual before first bitstream (T-011 audit).")
+    L.append("## Cmod-A7-Master.xdc (no network on the authoring OR the audit machine).")
+    L.append("## Second-agent audit 2026-08-26: table is self-consistent, matches the auditor's")
+    L.append("## independent recall 48/48, and the corrupt T-008 clock-capable list was resolved")
+    L.append("## against this table (see orchestration/pinmap.md). One live fetch of the master XDC")
+    L.append("## + Cmod A7 reference manual pinout is STILL REQUIRED before first bitstream.")
+    L.append("## URL: https://github.com/Digilent/digilent-xdc/blob/master/Cmod-A7-Master.xdc")
     L.append("##")
     L.append("## VCCO: all user banks (14/15/16/34/35) are fixed at 3.3V on the Cmod A7 -> LVCMOS33.")
     L.append("")
@@ -672,29 +686,41 @@ def write_pinmap(path):
     L.append("")
     L.append("_GENERATED by `scripts/gen_digital_sheet.py` from its PIN TABLE - edit the generator, not this file._")
     L.append("")
-    L.append("Status: **v1 baseline, pending second-agent audit** (T-011 Verification). Every FPGA")
+    L.append("Status: **v1 baseline; second-agent audit done 2026-08-26 (offline, discrepancies**")
+    L.append("**resolved); one live primary-source fetch still outstanding** (see below). Every FPGA")
     L.append("signal lands here; T-020's XDC (`gateware/constraints/sonar_cmod_a7.xdc`) is generated")
     L.append("from the same table. Architecture per D011/D012 (ratified); electrical baseline per")
     L.append("`docs/pdm-rx-design.md` + `docs/pdm-capture-contract.md`.")
     L.append("")
     L.append("## Provenance and audit status")
     L.append("")
-    L.append("This machine had **no network access** during authoring. The pio->package-pin mapping")
-    L.append("is transcribed from memory of the Digilent `Cmod-A7-Master.xdc` and Cmod A7 reference")
-    L.append("manual, cross-anchored to the clock-capable pio list documented in")
-    L.append("`docs/pdm-capture-contract.md` (which T-008 fetched from the live master XDC).")
+    L.append("**No network on either machine**: the authoring session and the second-agent audit")
+    L.append("session (codex/sol-t011-audit, 2026-08-26) both ran in sandboxes with DNS/TCP blocked")
+    L.append("and approval policy `Never`, so the pio->package-pin mapping below is an offline")
+    L.append("transcription of the Digilent `Cmod-A7-Master.xdc` / Cmod A7 reference manual that has")
+    L.append("NOT yet been diffed byte-for-byte against the live sources.")
     L.append("")
-    L.append("- **Double-sourced clock-capable pins** (both the recalled mapping and the T-008 list")
-    L.append("  agree): **pio3, pio5, pio8, pio36, pio43**. All three clock-critical nets are assigned")
-    L.append("  to these: `PDM_CLK_FB`=pio36, `FT_CLKOUT`=pio43, `ETH_REF_CLK`=pio3.")
-    L.append("- **Known discrepancy to resolve in the audit**: the T-008 list also calls pio18/19/37/38/40/")
-    L.append("  46/47/48 clock-capable, while the recalled mapping puts MRCC/SRCC on pio16/17/32/33/34/39/42/44")
-    L.append("  and treats DIP positions 45-48 as power pins (making pio46-48-as-CC impossible if pio")
-    L.append("  numbering equals DIP position numbering). The auditor must establish ground truth from")
-    L.append("  the Digilent master XDC + reference manual and regenerate; only pin *assignments* on")
-    L.append("  non-clock nets would shuffle if the discrepancy resolves against the recall.")
-    L.append("- Also audit: DIP positions of the power pins (45=GND, 46=3V3, 47=VU, 48=GND assumed),")
-    L.append("  the 0.1in/15.24mm DIP-48 footprint choice, and the Adafruit FT232H header pin order.")
+    L.append("Audit evidence gathered 2026-08-26 (see ticket T-011 Log for the full report):")
+    L.append("")
+    L.append("- The table is internally self-consistent: every IO-name string containing MRCC/SRCC is")
+    L.append("  flagged clock-capable and vice versa; bank suffixes match the bank column 48/48.")
+    L.append("- The auditor's independent recall of the master XDC agrees 48/48 on pio->pkg-pin and")
+    L.append("  IO-name. (Caveat: correlated recall from shared training data is weak corroboration -")
+    L.append("  this is why the live fetch remains required.)")
+    L.append("- **Discrepancy RESOLVED**: the T-008 clock-capable list in `docs/pdm-capture-contract.md`")
+    L.append("  (pio3,5,8,18,19,36,37,38,40,43,46,47,48) is corrupt: pio46/47/48 are the DIP power")
+    L.append("  positions (the master XDC GPIO section stops at pio44; the Cmod A7 has exactly 44 user")
+    L.append("  I/O on the DIP), so that list's contested entries (pio18/19/37/38/40) lose authority.")
+    L.append("  The clock-capable set is the IO-name-derived one: pio3,5,8,16,17 (banks 16/35) and")
+    L.append("  pio32,33,34,36,39,42,43,44 (bank 34). `docs/pdm-capture-contract.md` has been corrected.")
+    L.append("- **No net assignment changed**: all three clock-critical nets sit on pins both sources")
+    L.append("  agreed on (`PDM_CLK_FB`=pio36 MRCC_34, `FT_CLKOUT`=pio43 SRCC_34, `ETH_REF_CLK`=pio3")
+    L.append("  MRCC_16), so the resolution cannot perturb the design.")
+    L.append("")
+    L.append("**Still outstanding (blocks T-020 synthesis, ~60 s for a human with a browser)**: fetch")
+    L.append("https://github.com/Digilent/digilent-xdc/blob/master/Cmod-A7-Master.xdc and the Cmod A7")
+    L.append("reference manual pinout table; confirm the 48-row table, the DIP-position<->pio identity")
+    L.append("mapping, and the power-pin positions (45=GND, 46=3V3, 47=VU, 48=GND).")
     L.append("")
     L.append("## Budget summary")
     L.append("")
@@ -717,10 +743,11 @@ def write_pinmap(path):
     L.append("| pio | DIP pin | pkg pin* | IO name* | Bank | Clock-capable | Net | FPGA dir | Notes |")
     L.append("|---|---|---|---|---|---|---|---|---|")
     for p in PINS:
-        cc = {"yes": "**YES (2-src)**", "recalled": "recalled", "t008": "T-008 only", "": ""}[p[5]]
+        cc = {"yes": "YES", "": ""}[p[5]]
         L.append(f"| {p[0]} | {p[1]} | {p[2]} | {p[3]} | {p[4] if p[4] else '-'} | {cc} | `{p[6]}` | {p[7]} | {p[9]} |")
     L.append("")
-    L.append("\\* pkg pin / IO name: offline transcription - **verify against the Digilent master XDC** (audit).")
+    L.append("\\* pkg pin / IO name: offline transcription, second-agent-audited offline 2026-08-26;")
+    L.append("  **live master-XDC diff still required before T-020 synthesis.**")
     L.append("")
     L.append("## On-module resources (not on the DIP socket)")
     L.append("")

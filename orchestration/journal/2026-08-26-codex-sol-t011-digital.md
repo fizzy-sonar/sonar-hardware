@@ -35,3 +35,28 @@ and verified byte-identical from scratch.
 2. Orchestrator commit of the T-011 worktree.
 3. T-020 can start testbench work against the XDC, treating pin numbers as provisional
    until the audit lands.
+
+---
+
+## Addendum — codex/sol-t011-audit (second session, same day): pin audit
+
+- **No network in this sandbox either** (DNS/TCP blocked, escalation denied). The
+  mandated live fetch of the Digilent master XDC / reference manual / FT232H /
+  LAN8720A datasheets was impossible again; audit ran on independent recall +
+  self-consistency + KiCad-10 library symbols + kicad-cli netlist. The live
+  60-second fetch remains the only open verification item (pinmap.md header).
+- Resolved both flagged discrepancies analytically: T-008's clock-capable list is
+  corrupt (pio46/47/48 are DIP power pins → its pio18/19/37/38/40 claims lose
+  authority); CC set = IO-name-derived {pio3,5,8,16,17,32,33,34,36,39,42,43,44};
+  pio16/17 confirmed MRCC_35. **No net assignments changed** (all clock-critical
+  nets were double-sourced). Corrected docs/pdm-capture-contract.md.
+- **Found and fixed a real defect**: LAN8720A ref U50 collided with legacy array-
+  sheet U50 (SOT-23-5) — ERC-clean but netlist/BOM-ambiguous. Renamed to U60 in
+  the generator, regenerated all outputs, re-ran harness: /digital/ ERC section
+  still zero violations, project error count unchanged (339).
+- Netlist cross-check (parsed build/sonar.net): J40 48/48, J41 20/20, J42 26/26,
+  U60 25/25 all match the pin table; J42 channel map matches the capture contract
+  all 12 rows; XDC↔table consistent; bank suffixes/IO-names consistent 44/44.
+- Uncommitted (policy); orchestrator commits this worktree. Next: the human
+  live-fetch check at the top of orchestration/pinmap.md, then T-011 → done.
+

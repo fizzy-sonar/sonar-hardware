@@ -1,0 +1,17 @@
+; One SM side-sets the clock and samples both DDR edges. The CPU puts
+; frame_count-1 into TX before each one-shot run. After the last falling sample,
+; the program wraps to PULL and stalls with the clock low. RX autopush is 24 bits.
+.program pdm_sample
+.side_set 1
+.wrap_target
+    pull block side 0
+    mov x, osr side 0
+frame:
+    ; Five high cycles. SELECT-low is sampled two cycles after the rising edge.
+    nop side 1 [1]
+    in pins, 12 side 1 [2]
+    ; Five low cycles. SELECT-high is sampled two cycles after the falling edge.
+    nop side 0 [1]
+    in pins, 12 side 0
+    jmp x-- frame side 0 [1]
+.wrap

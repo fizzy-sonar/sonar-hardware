@@ -1,0 +1,4 @@
+(fp_lib_table
+  (version 7)
+  (lib (name "coupon") (type "KiCad") (uri "${KIPRJMOD}/libs/coupon.pretty") (options "") (descr "T-016 coupon footprints"))
+)

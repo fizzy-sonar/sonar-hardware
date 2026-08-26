@@ -1,0 +1,4 @@
+(sym_lib_table
+  (version 7)
+  (lib (name "coupon-symbols") (type "KiCad") (uri "${KIPRJMOD}/coupon-symbols.kicad_sym") (options "") (descr "T-016 coupon symbols"))
+)

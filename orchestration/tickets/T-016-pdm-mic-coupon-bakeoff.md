@@ -1,7 +1,7 @@
 ---
 id: T-016
 title: Quantitative PDM microphone coupon bake-off + MPN release
-status: in-progress
+status: review
 phase: P2
 tier: mid        # coupon EDA package, calibrated analysis, and release report
 priority: 1
@@ -228,6 +228,36 @@ baseline before T-010 starts.
 - `git diff --check` and ticket-dependency audit pass; exact output is pasted here.
 
 ## Log
+- 2026-08-26 codex/terra-t016: agent-executable package delivered on
+  branch agent/T-016-mic-bakeoff. Deliverables: `coupons/mic-bakeoff/` with
+  separate SPH and ICS coupon KiCad projects (datasheet-anchored land patterns:
+  Knowles Rev B sheet 10 for SPH; TDK DS-000048 Figures 3+16+18 for ICS),
+  data-driven generator, fab export pipeline, runbook, fixture drawing,
+  raw-data schema, capture config, order package, sourcing evidence;
+  `analysis/pdm_bakeoff.py` implements the exact normative estimator (verified
+  byte-identical in ticket and T-008 doc, sha256
+  7408e0ae89c82afdaa6d0fc579436230bc4322ca008317742494f46c25cf4b3b), all gates,
+  and all five selection branches.
+- Verification (2026-08-26, real output):
+  `./coupons/mic-bakeoff/check_coupons.sh` exit 0. Both variants: zone-filled
+  connectivity 0 unconnected; min different-net copper gap 0.145-0.150 mm
+  (>= 0.127 target); 4x 0.50 mm NPTH at mic centres; J1 pin map and mic pad-1
+  datasheet quadrants asserted; ERC shows only the 4 reviewed waivers per
+  variant (2x pin_to_pin on the intentional SELECT-paired DATA merge, 2x
+  power_pin_not_driven); gerber/drill/pos export runs end-to-end with zones
+  filled; analysis selftest passes all synthetic threshold and selection-branch
+  checks including T-001 wiring (27.09 dB / 20.18 m reproduced); ruff and
+  `git diff --check` clean.
+- Caveats for CP-BM: (1) CDCLVC1112PWR pin map UNVERIFIED (TI datasheet not
+  reachable offline) — pre-order checklist step 1; (2) `kicad-cli pcb drc`
+  SIGABRTs in this sandbox even on known-good boards — re-run unsandboxed
+  before ordering (pre-order checklist step 2); (3) distributor stock/prices
+  could not be re-checked offline — carried forward dated 2026-08-25 evidence,
+  re-verify at order time; ICS-41352 NRND/no-stock remains a material risk.
+- Exact next step: Joshua's CP-BM — run the pre-order checklist in
+  `coupons/mic-bakeoff/docs/order-package.md`, then approve/place/pay for
+  coupons, provide/operate the calibrated bench per `docs/runbook.md`, and
+  ratify the MPN/footprint release record. Only Joshua moves this to done.
 - 2026-08-25 codex/sol-t008: created from the independent T-008 review. No coupon
   vendor/source, price, or spend authorization is implied. Exact next step: an
   agent claims T-016, prepares both coupon/order/test packages, and moves it to

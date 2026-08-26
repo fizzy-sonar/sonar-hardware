@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by codex/sol-t020 — T-020 simulator milestone committed and re-verified; bitstream still gated on the Vivado host and T-011 pin map._
+_Last updated: 2026-08-26 by codex/terra-t016 — T-016 coupon/order/test package delivered, ticket at `review` (CP-BM human gate)._
 
 ## Now
 - **Phases open for agent work: P1, P2, and P5.** T-002/T-008 are done and CP-B
@@ -38,13 +38,21 @@ _Last updated: 2026-08-26 by codex/sol-t020 — T-020 simulator milestone commit
 - **T-008 done (electrical baseline only):** provisional SPH0641LU4H-1 at
   3.072 MHz, 24 mics paired onto 12 DATA lines, 3.3 V CDCLVC1112 clock tree, and
   9.216 MB/s raw contract v1. D011's final MPN/footprint is **not released**.
-- **T-016 ready / human gate at CP-BM:** agent prepares separate 12-unit-per-MPN
-  coupon designs, sourcing/order package, calibrated runbook, and analysis. Joshua
-  alone authorizes/places coupon orders, operates/provides bench data, ratifies the
-  MPN, and closes the ticket. No coupon source or spend is currently authorized.
-  SPH 3.3 V max current, clock-input capacitance/load, and allowable PCB-port
+- **T-016 at `review` / human gate at CP-BM:** separate SPH and ICS coupon
+  designs, sourcing/order package, runbook, fixture drawing, raw-data schema,
+  and the deterministic analyzer are delivered and verified
+  (`coupons/mic-bakeoff/check_coupons.sh` exit 0). Caveats called out in the
+  ticket Log: CDCLVC1112PWR pin map UNVERIFIED (offline); `kicad-cli pcb drc`
+  must be re-run unsandboxed (it SIGABRTs in the agent sandbox even on
+  known-good boards); distributor stock/prices need re-checking at order time.
+  Joshua alone runs the pre-order checklist, authorizes/places coupon orders,
+  operates/provides bench data, ratifies the MPN, and closes the ticket. SPH
+  3.3 V max current, clock-input capacitance/load, and allowable PCB-port
   misregistration remain nonblocking evidence gaps to characterize, not invent.
 - **KiCad open?** Unknown — check before hand-editing `.kicad_sch` (README rules).
+  2026-08-26 terra-t016: new KiCad files added under `coupons/mic-bakeoff/` on
+  branch agent/T-016-mic-bakeoff (no existing project files touched); reload
+  before opening if KiCad had the repo open.
 
 ## Work queue — launch ready tickets on the tier shown (routing table in README.md)
 
@@ -57,7 +65,7 @@ _Last updated: 2026-08-26 by codex/sol-t020 — T-020 simulator milestone commit
 | T-021 host software | mid | **done**; physical FT232H/libusb still untested |
 | T-020 Vivado gateware | **top** | **in-progress**; `gateware/` simulator milestone done, `make test` PASS (9/9, Icarus 13.0); bitstream waits on Vivado host + T-011 XDC |
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
-| T-016 mic coupon bake-off | mid | **ready**; agent package ends at human CP-BM purchase/bench/release gate |
+| T-016 mic coupon bake-off | mid | **review**; agent package delivered + verified; Joshua's CP-BM checklist in `coupons/mic-bakeoff/docs/order-package.md` |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
 | T-011 digital sheet | **top** | **ready**; common pin map/returned clock can proceed |
 | T-012 power tree | mid | **ready**; carry >=100 mA provisional mic rail |
@@ -99,6 +107,9 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/terra-t016: T-016 coupon bake-off package (designs,
+  analysis, runbook, order package) delivered and verified; ticket → review;
+  CP-BM gate is Joshua's.
 - 2026-08-26 — codex/sol-t020: recovered the killed session's uncommitted
   `gateware/` work, committed it in four logical commits, re-ran `make test`
   (all PASS). Ticket stays in-progress on the Vivado-host/T-011 gates. Sandbox

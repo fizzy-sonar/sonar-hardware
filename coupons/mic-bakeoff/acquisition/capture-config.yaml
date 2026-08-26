@@ -1,0 +1,31 @@
+# T-016 bench capture configuration (consumed by the bench host; the constants
+# match docs/pdm-capture-contract.md v1)
+capture:
+  pdm_data_lines: 2            # coupon: D0, D1 (production: 12)
+  channels: 4                  # coupon: M1..M4 (production: 24)
+  frame: even=rising SELECT-low, odd=falling SELECT-high (contract v1)
+  host_decimation: 24
+  host_sample_rate_hz: 128000
+  required_passband_hz: [20000, 40000]
+  raw_format: lossless frames, monotonically increasing frame counter
+startup_sequence:              # Syntiant: never wake directly into ultrasonic mode
+  - hold clock disabled while rails settle
+  - 1536000 Hz for >= 50 ms
+  - glitchless switch to target rate (disable, reselect, re-enable)
+  - discard first 10 ms at target rate
+candidates:
+  SPH0641LU4H-1:
+    clock_hz: 3072000
+    duty_limits_pct: [48.0, 52.0]
+  ICS-41352:
+    clock_hz: 4800000
+diagnostic:
+  SPH0641LU4H-1_at_4800000: {}  # clock-rate control run; diagnostic only
+records:
+  per_channel_per_reseat:
+    - time-gated calibrated sweep 20-32 kHz, bins <= 500 Hz
+    - 3x TX-off noise records through the same PDM/host decimator
+  reseats_per_channel: 3
+  log_fields: [candidate_mpn, source_lot, coupon_serial, unit_site, reseat_index,
+               temperature_c, humidity_pct, fixture_pose, clock_hz, supply_v,
+               decimator_rev, calibration_provenance, raw_file_sha256]

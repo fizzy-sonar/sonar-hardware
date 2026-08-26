@@ -44,17 +44,20 @@ Nyquist frequency and therefore retains the required 40 kHz upper band.
 The FPGA supplies `PDM_CLK_SRC` to the board clock buffer. The buffer returns one
 matched output as `PDM_CLK_FB`; the IDDR must use that returned clock, not an
 unconstrained copy of the clock-generator net. `PDM_CLK_FB` must land on an
-MRCC/SRCC-capable Cmod pin; T-011 assigns the exact pin. Digilent's official Cmod
-A7 XDC confirms multiple clock-capable GPIOs; the corrected clock-capable set on
-the 48-pin DIP is `pio3`, `pio5`, `pio8`, `pio16`, `pio17`, `pio32`, `pio33`,
-`pio34`, `pio36`, `pio39`, `pio42`, `pio43`, and `pio44` (every DIP GPIO whose
-IO-name contains MRCC/SRCC). An earlier version of this paragraph also listed
-`pio18/19/37/38/40/46/47/48`; the T-011 second-agent audit (2026-08-26) found
-that list corrupt — `pio46/47/48` are the DIP power positions (the master XDC
-GPIO section stops at `pio44`; the DIP carries exactly 44 user I/O) — and
-resolved the discrepancy against the IO-name-derived set now in
-`orchestration/pinmap.md`. A live re-diff against the master XDC remains
-outstanding (no network in either agent sandbox); see pinmap.md.
+MRCC/SRCC-capable Cmod pin; T-011 assigns it to `pio40` (pkg W4,
+IO_L12N_T1_MRCC_34). The clock-capable set on the 48-pin DIP, computed from the
+LIVE Digilent master XDC IO-names (orchestrator fetch, 2026-08-26), is `pio3`,
+`pio5`, `pio8`, `pio18`, `pio19` (banks 16/35) and `pio36`, `pio37`, `pio38`,
+`pio40`, `pio43`, `pio46`, `pio47`, `pio48` (bank 34). Honest history: this is
+T-008's ORIGINAL list, restored. The T-011 offline second-agent audit
+(2026-08-26) had declared it corrupt, claiming `pio46/47/48` are DIP power
+positions — but that audit trusted the mis-transcribed pin table, which had
+invented power pins at positions 45-48. The live master XDC shows the GPIO
+section runs `pio[01]..pio[48]` skipping only `pio15/16/24/25` (15/16 = XADC
+analog-only, 24 = VU, 25 = GND), so `pio46/47/48` are real bank-34 GPIOs and
+`pio18/19/37/38/40` are genuinely clock-capable. The offline "resolution" was a
+correlated-recall error and is reverted; see `orchestration/pinmap.md`
+provenance and `scripts/check_pinmap_vs_xdc.py`.
 
 Syntiant explicitly says not to power up or wake directly into Ultrasonic Mode.
 The implementation shall use this sequence:
@@ -150,7 +153,7 @@ the v1 default or to bypass the MPN release gate.
 ## Primary sources checked 2026-08-25
 
 - [Syntiant SPH0641LU4H-1 datasheet](https://static1.squarespace.com/static/6488b0b8150a045d2d112999/t/674f6a2fc6aa4452caafc777/1733259031446/SPH0641LU4H-1_More_Rev_B-1.pdf): clock modes, current, interface timing, edge assignment, startup restrictions, and typical ultrasonic response.
-- [Digilent Cmod A7 master XDC](https://github.com/Digilent/digilent-xdc/blob/master/Cmod-A7-Master.xdc): LVCMOS33 and clock-capable pin evidence. Exact project pin assignment remains T-011's job.
+- [Digilent Cmod A7 master XDC](https://github.com/Digilent/digilent-xdc/blob/master/Cmod-A7-Master.xdc): LVCMOS33 and clock-capable pin evidence; **live-fetched 2026-08-26** and re-parsed by `scripts/check_pinmap_vs_xdc.py` (44/44). Project pin assignment: `orchestration/pinmap.md` (T-011).
 - [AMD DS181 v1.27.1](https://docs.amd.com/v/u/en-US/ds181_Artix_7_Data_Sheet): Artix-7 input timing and CPG236 package skew.
 
 The Syntiant-hosted PDF currently contains broken template fields for document code,

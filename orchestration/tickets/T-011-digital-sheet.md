@@ -1,7 +1,7 @@
 ---
 id: T-011
 title: Digital sheet — Cmod A7-35T socket, FT232H, headers
-status: in-progress
+status: done
 phase: P2
 tier: top        # pin-budget audit across 3 interfaces; highest-consequence errors
 priority: 1
@@ -178,3 +178,42 @@ manual by a second agent session.
   Exact next step: human (or network-enabled agent) does the 60-second live
   master-XDC + reference-manual diff listed at the top of pinmap.md; if clean,
   move T-011 to done and release the XDC to T-020.
+- 2026-08-26 codex/sol-t011 (repair session): **LIVE-SOURCE GATE FAILED — table
+  repaired.** Orchestrator fetched the primary sources live; the master XDC GPIO
+  section is pio[01]..pio[48] SKIPPING pio15/16/24/25, and reference manual sec. 8:
+  44 digital I/O, pins 15/16 = voltage-divided XADC analog (not 3.3V digital),
+  pin 24 = VU, pin 25 = GND, NO 3V3 pin on the DIP. The offline table had all
+  net↔pkg pairings valid but rows 15-44 on wrong DIP positions (+2 for 15-21,
+  +4 for 22-44) with FT_D2/FT_D3 on the VU/GND positions and fictional power pins
+  at 45-48. The prior offline audit's "48/48 recall match" and its "T-008 CC list
+  is corrupt" resolution were correlated-recall errors — REVERTED; true MRCC/SRCC
+  set = {3,5,8,18,19,36,37,38,40,43,46,47,48} = T-008's original list
+  (docs/pdm-capture-contract.md restored with honest note).
+  Fix (single source: scripts/gen_digital_sheet.py PIN TABLE): re-map N->N (1-14),
+  N->N+2 (15-21), N->N+4 (22-44); positions 15/16 NC (analog note), 24=VU tied to
+  carrier +5V (new power strategy: carrier 5V powers the module; SJ1/SJ2 and the
+  fictional CMOD_3V3 pin removed), 25=GND (only module GND). Regenerated
+  pinmap.md + digital.kicad_sch + sonar_cmod_a7.xdc; pinmap provenance rewritten
+  honestly. Brief-vs-table note: PDM_CLK_FB is on pkg W4 (true pio40, MRCC_34),
+  not W5 as the brief parenthesized — W5 (pio36, also MRCC_34) carries FT_RD_N;
+  FT_CLKOUT=pio47 (U8, SRCC_34), ETH_REF_CLK=pio3 (A16, MRCC_16): all CC.
+  New reproducible gate committed: scripts/check_pinmap_vs_xdc.py parses the
+  live-fetched XDC and asserts the table. REAL OUTPUT (this machine, 2026-08-26):
+    true MRCC/SRCC pio set: [3, 5, 8, 18, 19, 36, 37, 38, 40, 43, 46, 47, 48]
+    PASS: 44/44 DIP positions match the live master XDC (position + pio label +
+    pkg pin + IO name + bank + CC flag); special positions 15/16/24/25 =
+    [15, 16, 24, 25]; PDM_CLK_FB/FT_CLKOUT/ETH_REF_CLK all clock-capable.
+  ERC (scripts/check.sh, kicad-cli 10.0.1): sonar 455 msgs / 339 err (was
+  456/339); **/digital/ section: ZERO violations**; netlist/PDF/SVG/BOM exit 0.
+  Netlist cross-check (build/sonar.net): J40 = exactly 46 connected pins (44 I/O
+  + pin24=+5V + pin25=GND), 13/13 spot checks PASS incl. 15/16 NC;
+  CMOD_3V3/CMOD_VU absent. pcb drc SIGABRTs (exit 134) on ALL projects incl.
+  pristine ones -> environmental sandbox issue (unchanged, per T-006 note).
+  Top-sheet patch idempotent (0 changes on re-run). T-011 remains IN-PROGRESS
+  until the orchestrator re-verifies; nothing committed (orchestrator commits).
+- 2026-08-26 claude/orchestrator: independent re-verification of the repair ran
+  `python3 scripts/check_pinmap_vs_xdc.py /tmp/cmod-a7-master.xdc` (live Digilent
+  master XDC, fetched 2026-08-26): PASS — 44/44 positions (position+pio label+pkg
+  pin+IO name+bank+CC flag), special positions 15/16 analog NC and 24=VU/25=GND,
+  PDM_CLK_FB/FT_CLKOUT/ETH_REF_CLK all clock-capable. Reference manual §8 confirmed
+  44 digital + 2 analog + 2 power (no DIP 3V3). Live-fetch gate closed; ticket done.

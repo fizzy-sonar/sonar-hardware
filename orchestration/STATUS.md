@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by codex/terra-t013 — T-013 TX hookup done: DRV8876 fully wired, TX Drive sheet ERC-clean, off-board connector J50, TX waveform limits in orchestration/tx-limits.md for T-020._
+_Last updated: 2026-08-26 by claude/orchestrator — T-011 live gate caught a real DIP-position defect (offline table + offline audit both wrong); repaired and re-verified 44/44 against the live Digilent master XDC + reference manual; T-011 done._
 
 ## Now
 - **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5
@@ -51,16 +51,21 @@ _Last updated: 2026-08-26 by codex/terra-t013 — T-013 TX hookup done: DRV8876 
   operates/provides bench data, ratifies the MPN, and closes the ticket. SPH
   3.3 V max current, clock-input capacitance/load, and allowable PCB-port
   misregistration remain nonblocking evidence gaps to characterize, not invent.
-- **T-011 audited offline (2026-08-26, codex/sol-t011-audit):** both flagged
-  discrepancies RESOLVED (T-008 CC list corrupt — pio46/47/48 are DIP power pins;
-  pio16/17 are the real MRCC_35 pair; pio18/19/37/38/40 not CC; no net assignments
-  changed); LAN8720A ref collision U50→U60 found and fixed in the generator, all
-  outputs regenerated, ERC re-run clean on /digital/; netlist cross-check
-  J40 48/48, J41 20/20, J42 26/26, U60 25/25 PASS; capture-contract CC list
-  corrected. **The audit sandbox also had no network**: one live fetch of the
-  Digilent master XDC + reference manual (instructions at top of pinmap.md, ~60 s
-  for Joshua in a browser) is the only remaining gate before T-011 → done.
-- **T-013 done:** TX Drive sheet rewritten with real hierarchical ports
+- **T-011 live-source gate FAILED, then repaired (2026-08-26, codex/sol-t011):**
+  the orchestrator's live fetch of the Digilent master XDC + reference manual
+  showed the offline pin table was WRONG on DIP positions — truth is
+  pio[01]..pio[48] skipping pio15/16 (XADC analog-only) and pio24/25 (VU/GND; no
+  3V3 pin exists). All net↔package-pin pairings were already valid; the fix was
+  a pure position re-map (N→N 1-14, N→N+2 15-21, N→N+4 22-44), position 24=VU←
+  carrier +5V (new power strategy; SJ1/SJ2 and the fictional CMOD_3V3 pin
+  removed), 25=GND, 15/16 NC. The prior offline audit's "T-008 CC list corrupt"
+  resolution was a correlated-recall error — REVERTED; true CC set =
+  {3,5,8,18,19,36,37,38,40,43,46,47,48} (T-008 was right; contract doc restored).
+  All outputs regenerated; reproducible gate committed:
+  `scripts/check_pinmap_vs_xdc.py` → PASS 44/44 vs the live XDC; ERC /digital/
+  section zero violations. **T-011 stays in-progress until orchestrator
+  re-verifies.**
+- **UNCOMMITTED WORK WARNING:** T-011 repair changes are in the working tree,
   (TX_EN/TX_PH/TX_NSLEEP/TX_PMODE/TX_NFAULT) bridged on the top sheet to the
   digital sheet's global labels; DRV8876 fully wired (VM=+12V, charge pump,
   VREF=3.3V, ~1.95A trip, nFAULT pull-up); off-board transducer on J50 screw
@@ -102,7 +107,7 @@ _Last updated: 2026-08-26 by codex/terra-t013 — T-013 TX hookup done: DRV8876 
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
 | T-016 mic coupon bake-off | mid | **review**; agent package delivered + verified; Joshua's CP-BM checklist in `coupons/mic-bakeoff/docs/order-package.md` |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
-| T-011 digital sheet | **top** | audited offline, fixes applied; **needs 60-s human live master-XDC diff** then done |
+| T-011 digital sheet | **top** | **done**; live-gate repair verified 44/44 vs live master XDC; `scripts/check_pinmap_vs_xdc.py` is the reproducible gate |
 | T-012 power tree | mid | **done**; rails table in `orchestration/rails.md`; CP-C reviews |
 | T-013 TX hookup | mid | **done**; TX Drive sheet ERC-clean, J50 connector, limits doc |
 
@@ -142,15 +147,20 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/sol-t011 (repair): live-source gate FAILED the pin table;
+  re-mapped DIP positions (15/16 analog NC, 24=VU←+5V, 25=GND), reverted the
+  wrong audit CC "resolution" (T-008's list was right), added
+  scripts/check_pinmap_vs_xdc.py (PASS 44/44 vs live XDC), ERC /digital/ clean.
+  See ticket log + journal addendum 2.
+- 2026-08-26 — codex/sol-t011-audit: offline pin audit — SUPERSEDED: its
+  "confirmation" and CC-list resolution were correlated-recall errors (caught by
+  the live gate). Real fixes it made that stand: U50→U60 refdes collision.
 - 2026-08-26 — codex/terra-t013: T-013 done — TX hookup, hier ports, J50
   connector, tx-limits.md; verification + gotchas in the ticket Log and journal
   2026-08-26-codex-terra-t013-tx.md.
 - 2026-08-26 — codex/terra-t012: T-012 done — four-rail power tree,
   ERC-clean power subtree, rails.md; gotchas + verification in journal
   2026-08-26-codex-terra-t012-power.md and the ticket Log.
-- 2026-08-26 — codex/sol-t011-audit: offline pin audit complete; discrepancies
-  resolved; U50→U60 fixed; contract doc corrected; live master-XDC fetch is the
-  last gate. See ticket log + journal addendum.
 - 2026-08-26 — codex/sol-t011: T-011 digital sheet/pinmap/XDC delivered; ERC-clean
   digital sheet; DF40/adc_bus removed; git sandbox-blocked (orchestrator must commit);
   pin audit pending. See journal + ticket log.

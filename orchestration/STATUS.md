@@ -1,9 +1,10 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nominally PDM-SNR-gated._
+_Last updated: 2026-08-25 by codex/sol-t008 — T-008 complete; P2 ticket dependencies are cleared._
 
 ## Now
-- **Phases open for agent work: P1 and P5.** P2 unlocks when T-008 is done (T-002 complete).
+- **Phases open for agent work: P1, P2, and P5.** T-002 and T-008 are done; CP-B
+  review and physical mic bake-off remain before the P1 exit gate.
 - Architecture locked (see PLAN.md v2): 24 PDM ultrasonic mics → Cmod A7-35T +
   FT232H USB streaming → Python DSP; Pico 2 snapshot v0; TX via DRV8876 + connector.
 - **T-001 done:** reference case gives +27.1 dB person margin at 10 m and 20.2 m
@@ -11,20 +12,25 @@ _Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nomina
   context; keep D011 through the T-002/T-008 bake-off. Wideband TX calibration and
   small-target margin are the remaining CP-B acoustic risks.
 - **T-002 done:** parts/lifecycle matrix delivered; ICS-41352 versus SPH0641LU4H
-  bake-off remains for T-008. EOL/NRND and missing T5838/JLC evidence are flagged.
+  bake-off plan is now in T-008. EOL/NRND and missing T5838/JLC evidence are flagged.
+- **T-008 done:** SPH0641LU4H-1 selected provisionally at 3.072 MHz; 24 mics pair
+  onto 12 DATA lines through a 3.3 V CDCLVC1112 clock tree. Contract v1 fixes
+  9.216 MB/s raw capture and 128 ksample/s host output. Physical SPH-versus-ICS
+  coupons gate mic release at CP-C; SPH 3.3 V current and clock input capacitance
+  are explicit evidence gaps.
 - **KiCad open?** Unknown — check before hand-editing `.kicad_sch` (README rules).
 
-## Ready tickets — launch each on the tier shown (routing table in README.md)
+## Work queue — launch ready tickets on the tier shown (routing table in README.md)
 
 | Ticket | Tier | Notes |
 |---|---|---|
 | T-002 parts & lifecycle audit | **cheap** | **done**; matrix committed; unlocks T-008 |
-| T-007 buy list + Vivado-host options | **cheap** | ends at `review` for Joshua to purchase |
-| T-006 kicad-cli check harness | **cheap** | shell scripting |
+| T-007 buy list + Vivado-host options | **cheap** | **in progress**; ends at `review` for Joshua to purchase |
+| T-006 kicad-cli check harness | **cheap** | **in progress**; shell scripting |
 | T-009 Pico 2 snapshot firmware | mid | PIO/DMA; the first-echoes path |
 | T-021 host software | mid | benchmark pyftdi ingest early |
 | T-020 Vivado gateware | **top** | TB layer needs no Vivado host — start there |
-| T-008 PDM RX design | **top** | **ready**; T-002 complete and matrix available |
+| T-008 PDM RX design | **top** | **done**; unlocks T-010/T-011/T-012 |
 
 Optional/non-gating: T-005 EDA spike (mid). T-001 done 2026-08-25.
 **The three `cheap` tickets do not need a reasoning model — launch them small.**
@@ -50,6 +56,9 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-25 — codex/sol-t008: completed PDM mic selection/electrical design,
+  paired-edge timing and current budgets, physical bake-off/calibration plan, and
+  capture contract v1; no KiCad file edited.
 - 2026-08-25 — codex: completed T-001 ISO/manufacturer-backed link-budget model,
   plots, microphone comparison, and blind-zone schedule; see journal and ticket log.
 - 2026-08-25 — claude (fable): architecture review → decisions → orchestration →

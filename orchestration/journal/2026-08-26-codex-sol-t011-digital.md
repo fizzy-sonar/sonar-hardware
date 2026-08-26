@@ -60,3 +60,46 @@ and verified byte-identical from scratch.
 - Uncommitted (policy); orchestrator commits this worktree. Next: the human
   live-fetch check at the top of orchestration/pinmap.md, then T-011 → done.
 
+
+---
+
+## Addendum 2 — codex/sol-t011 (third session, same day): live-source gate FAILED; repair
+
+- The orchestrator fetched the primary sources live (`/tmp/cmod-a7-master.xdc` +
+  reference manual sec. 8 / fig. 8.1) and the gate **FAILED the pin table**: the
+  master XDC GPIO section is `pio[01]..pio[48]` SKIPPING `pio15/16/24/25`;
+  positions 15/16 are XADC analog-only (3.3V→1V divider), 24 = VU (module 5 V
+  in/out), 25 = GND (the only module GND); there is **no 3V3 pin** on the DIP.
+  The offline transcription had every net on a *valid package pin* but rows 15–44
+  on the *wrong DIP positions* (+2 for 15–21, +4 for 22–44), FT_D2/FT_D3 sat on
+  the VU/GND positions, and power pins were invented at 45–48.
+- The previous offline audit's "confirmation" and its "T-008 CC list is corrupt"
+  resolution were **correlated-recall errors**; reverted. True MRCC/SRCC set from
+  the live XDC IO-names = {3,5,8,18,19,36,37,38,40,43,46,47,48} — T-008's
+  original list was correct; `docs/pdm-capture-contract.md` restored with an
+  honest note.
+- Fix (single source = `scripts/gen_digital_sheet.py` PIN TABLE): re-map N→N
+  (1–14), N→N+2 (15–21), N→N+4 (22–44); net↔pkg pairings unchanged; positions
+  15/16 NC (analog note), 24 = VU ← carrier +5V, 25 = GND; fictional CMOD_3V3
+  pin and SJ1/SJ2 jumpers deleted; power strategy revised: **carrier +5V powers
+  the module via VU** (don't also power module USB without a backfeed check).
+  Regenerated pinmap.md + digital.kicad_sch + sonar_cmod_a7.xdc.
+- New reproducible gate: `scripts/check_pinmap_vs_xdc.py` parses the live-fetched
+  XDC and asserts 44/44 on position+label+pkg+IO-name+bank+CC. Output:
+  `PASS: 44/44 DIP positions match the live master XDC ...; special positions
+  15/16/24/25 = [15, 16, 24, 25]; PDM_CLK_FB/FT_CLKOUT/ETH_REF_CLK all
+  clock-capable.` True CC set printed: [3,5,8,18,19,36,37,38,40,43,46,47,48].
+  Note: PDM_CLK_FB is on pkg W4 (= true pio40, MRCC_34), not W5 as the repair
+  brief parenthesized — W5/pio36 (also MRCC_34) now carries FT_RD_N; both CC.
+- Verification: `scripts/check.sh` — sonar ERC 455 msgs / 339 err (was 456/339;
+  delta = removed SJ/power-flag noise), **/digital/ section: 0 violations**;
+  netlist/PDF/SVG/BOM exports all exit 0. Netlist cross-check of build/sonar.net:
+  J40 has exactly 46 connected pins (44 I/O + pin24=+5V + pin25=GND), 13/13 spot
+  checks PASS incl. 15/16 NC; CMOD_3V3/CMOD_VU gone from netlist. `pcb drc` still
+  SIGABRTs (exit 134) on ALL projects incl. untouched ones — environmental
+  sandbox issue, unchanged; needs the approved unsandboxed run per T-006.
+- Status: T-011 stays **in-progress** until the orchestrator re-verifies. Files
+  changed (uncommitted; orchestrator commits): scripts/gen_digital_sheet.py,
+  scripts/check_pinmap_vs_xdc.py (new), orchestration/pinmap.md,
+  sonar-v1-pcb/digital.kicad_sch, gateware/constraints/sonar_cmod_a7.xdc,
+  docs/pdm-capture-contract.md, ticket log, STATUS.md, this journal.

@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by codex/sol-t011-audit — T-011 pin audit done offline; discrepancies resolved; U50→U60 collision fixed; one live master-XDC fetch (human, ~60 s) gates T-011 done._
+_Last updated: 2026-08-26 by codex/sol-t011 (repair) — T-011 live-source gate FAILED the pin table (offline transcription + offline audit were both wrong); table re-mapped and verified 44/44 against the live master XDC; T-011 remains in-progress pending orchestrator re-verify._
 
 ## Now
 - **Phases open for agent work: P1, P2, and P5.** T-002/T-008 are done and CP-B
@@ -29,18 +29,25 @@ _Last updated: 2026-08-26 by codex/sol-t011-audit — T-011 pin audit done offli
   MPN, and closes the ticket. No coupon source or spend is currently authorized.
   SPH 3.3 V max current, clock-input capacitance/load, and allowable PCB-port
   misregistration remain nonblocking evidence gaps to characterize, not invent.
-- **T-011 audited offline (2026-08-26, codex/sol-t011-audit):** both flagged
-  discrepancies RESOLVED (T-008 CC list corrupt — pio46/47/48 are DIP power pins;
-  pio16/17 are the real MRCC_35 pair; pio18/19/37/38/40 not CC; no net assignments
-  changed); LAN8720A ref collision U50→U60 found and fixed in the generator, all
-  outputs regenerated, ERC re-run clean on /digital/; netlist cross-check
-  J40 48/48, J41 20/20, J42 26/26, U60 25/25 PASS; capture-contract CC list
-  corrected. **The audit sandbox also had no network**: one live fetch of the
-  Digilent master XDC + reference manual (instructions at top of pinmap.md, ~60 s
-  for Joshua in a browser) is the only remaining gate before T-011 → done.
-- **UNCOMMITTED WORK WARNING:** the T-011 sandbox blocked all git writes (approval
-  policy Never) — branch agent/T-011-digital-sheet has a complete working tree that
-  the ORCHESTRATOR MUST COMMIT (`git add -A` in that worktree). Nothing was pushed.
+- **T-011 live-source gate FAILED, then repaired (2026-08-26, codex/sol-t011):**
+  the orchestrator's live fetch of the Digilent master XDC + reference manual
+  showed the offline pin table was WRONG on DIP positions — truth is
+  pio[01]..pio[48] skipping pio15/16 (XADC analog-only) and pio24/25 (VU/GND; no
+  3V3 pin exists). All net↔package-pin pairings were already valid; the fix was
+  a pure position re-map (N→N 1-14, N→N+2 15-21, N→N+4 22-44), position 24=VU←
+  carrier +5V (new power strategy; SJ1/SJ2 and the fictional CMOD_3V3 pin
+  removed), 25=GND, 15/16 NC. The prior offline audit's "T-008 CC list corrupt"
+  resolution was a correlated-recall error — REVERTED; true CC set =
+  {3,5,8,18,19,36,37,38,40,43,46,47,48} (T-008 was right; contract doc restored).
+  All outputs regenerated; reproducible gate committed:
+  `scripts/check_pinmap_vs_xdc.py` → PASS 44/44 vs the live XDC; ERC /digital/
+  section zero violations. **T-011 stays in-progress until orchestrator
+  re-verifies.**
+- **UNCOMMITTED WORK WARNING:** T-011 repair changes are in the working tree,
+  deliberately uncommitted (ticket rule) — the ORCHESTRATOR COMMITS after
+  re-verify (`git add -A` covers: gen_digital_sheet.py, check_pinmap_vs_xdc.py,
+  pinmap.md, digital.kicad_sch, sonar_cmod_a7.xdc, pdm-capture-contract.md,
+  ticket/STATUS/journal). Nothing was pushed.
 - **KiCad open?** Unknown. **KiCad files changed on disk 2026-08-26 (sonar.kicad_sch,
   new digital.kicad_sch) — Joshua: reload KiCad before opening the project.**
 
@@ -57,7 +64,7 @@ _Last updated: 2026-08-26 by codex/sol-t011-audit — T-011 pin audit done offli
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
 | T-016 mic coupon bake-off | mid | **ready**; agent package ends at human CP-BM purchase/bench/release gate |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
-| T-011 digital sheet | **top** | audited offline, fixes applied; **needs 60-s human live master-XDC diff** then done |
+| T-011 digital sheet | **top** | live gate failed→repaired; verified 44/44 vs live XDC; **orchestrator re-verify** then done |
 | T-012 power tree | mid | **ready**; carry >=100 mA provisional mic rail |
 | T-013 TX hookup | mid | **ready**; independent of mic release |
 
@@ -93,9 +100,14 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
-- 2026-08-26 — codex/sol-t011-audit: offline pin audit complete; discrepancies
-  resolved; U50→U60 fixed; contract doc corrected; live master-XDC fetch is the
-  last gate. See ticket log + journal addendum.
+- 2026-08-26 — codex/sol-t011 (repair): live-source gate FAILED the pin table;
+  re-mapped DIP positions (15/16 analog NC, 24=VU←+5V, 25=GND), reverted the
+  wrong audit CC "resolution" (T-008's list was right), added
+  scripts/check_pinmap_vs_xdc.py (PASS 44/44 vs live XDC), ERC /digital/ clean.
+  See ticket log + journal addendum 2.
+- 2026-08-26 — codex/sol-t011-audit: offline pin audit — SUPERSEDED: its
+  "confirmation" and CC-list resolution were correlated-recall errors (caught by
+  the live gate). Real fixes it made that stand: U50→U60 refdes collision.
 - 2026-08-26 — codex/sol-t011: T-011 digital sheet/pinmap/XDC delivered; ERC-clean
   digital sheet; DF40/adc_bus removed; git sandbox-blocked (orchestrator must commit);
   pin audit pending. See journal + ticket log.

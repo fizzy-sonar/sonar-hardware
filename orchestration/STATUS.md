@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-25 by codex/sol-t008 — independent T-008 review repaired the physical mic-release gate._
+_Last updated: 2026-08-26 by codex/sol-t020 — T-020 simulator milestone committed and re-verified; bitstream still gated on the Vivado host and T-011 pin map._
 
 ## Now
 - **Phases open for agent work: P1, P2, and P5.** T-002/T-008 are done and CP-B
@@ -40,7 +40,7 @@ _Last updated: 2026-08-25 by codex/sol-t008 — independent T-008 review repaire
 | T-006 kicad-cli check harness | **cheap** | **done**; baseline recorded |
 | T-009 Pico 2 snapshot firmware | mid | PIO/DMA; the first-echoes path |
 | T-021 host software | mid | benchmark pyftdi ingest early |
-| T-020 Vivado gateware | **top** | TB layer can parameterize 3.072/4.8 MHz now; synthesis waits on host |
+| T-020 Vivado gateware | **top** | **in-progress**; `gateware/` simulator milestone done, `make test` PASS (9/9, Icarus 13.0); bitstream waits on Vivado host + T-011 XDC |
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
 | T-016 mic coupon bake-off | mid | **ready**; agent package ends at human CP-BM purchase/bench/release gate |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
@@ -63,7 +63,11 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
 
 ## Blockers
 - Vivado synthesis (part of T-020) waits on the Vivado host purchase/decision (T-007
-  item 7). The T-020 testbench layer is NOT blocked — start there.
+  item 7). The T-020 testbench layer is DONE (2026-08-26): dual-rate sampler/packer/
+  FIFO/FT245/UART-snapshot/TX-chirp sims all pass; `build_bitstream.tcl` refuses an
+  unpinned bitstream until T-011 publishes `constraints/sonar_cmod_a7.xdc`. Remaining
+  T-020 DoD: batch build + utilization/timing/CDC + UNISIM/BRAM proofs on the host,
+  real XDC from T-011, hardware FT232H/UART demo.
 - T-010, T-014's microphone line, and CP-C are blocked on T-016. After its agent
   package reaches `review`, the exact remaining human gate is: Joshua approves and
   places/pays for coupons, provides/operates the calibrated bench capture, and
@@ -80,6 +84,12 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/sol-t020: recovered the killed session's uncommitted
+  `gateware/` work, committed it in four logical commits, re-ran `make test`
+  (all PASS). Ticket stays in-progress on the Vivado-host/T-011 gates. Sandbox
+  blocked worktree git writes, so commits are staged as
+  `t020-gateware-commits.bundle` in the worktree — orchestrator fetches it per
+  the ticket Log / journal before integrating.
 - 2026-08-25 — codex/sol-t008: repaired independent-review findings by making SPH
   provisional, defining quantitative D011/T-001 thresholds, adding T-016/CP-BM,
   and blocking only T-010's physical MPN/footprint freeze; no KiCad file edited.

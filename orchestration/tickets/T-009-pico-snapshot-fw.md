@@ -1,11 +1,11 @@
 ---
 id: T-009
 title: Pico 2 snapshot-mode capture firmware (v0)
-status: ready
+status: in-progress
 phase: P5
 tier: mid        # RP2350 PIO/DMA firmware + host receiver
 priority: 1
-assignee:
+assignee: codex/terra-t009
 depends_on: []
 needs_human: false
 created: 2026-08-25

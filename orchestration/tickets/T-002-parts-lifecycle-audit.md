@@ -1,7 +1,7 @@
 ---
 id: T-002
 title: Part availability & lifecycle audit
-status: in-progress
+status: done
 phase: P1
 tier: cheap        # web research + datasheet lookup + table building
 priority: 1
@@ -28,3 +28,4 @@ Matrix committed; every row has a dated source link; recommendation defensible i
 ## Log
 - 2026-08-25 claude (fable): D012 ratified — ADC/opamp rows now historical-only (skip unless trivial); add rows: Cmod A7-35T, FT232H breakout, LAN8720 module, Pico 2 / Pico Plus 2, DIP-48 socket.
 - 2026-08-25 claude (fable): ticket created from architecture review.
+- 2026-08-25 codex/luna: delivered `orchestration/parts-matrix.md`. Audited D011 primary PDM rows (ICS-41350/41352, SPH0641LU4H, T5838), D012 platform rows, SODIMM rejection, and historical analog rows. Added dated manufacturer/vendor links, lifecycle/orderability observations, ultrasonic specs, recommendations, and Knowles AN-17/AN24 findings. Public qty-30 prices and LCSC/JLC turnkey status were not reliably exposed; matrix flags these for CP-C recheck. Verification: `git diff --check` passed; all matrix rows contain dated source links.

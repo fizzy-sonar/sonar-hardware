@@ -10,6 +10,8 @@ _Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nomina
   zero-margin range. ICS-41352 adds only 0.15 dB total noise in the stated ambient
   context; keep D011 through the T-002/T-008 bake-off. Wideband TX calibration and
   small-target margin are the remaining CP-B acoustic risks.
+- **T-002 done:** parts/lifecycle matrix delivered; ICS-41352 versus SPH0641LU4H
+  bake-off remains for T-008. EOL/NRND and missing T5838/JLC evidence are flagged.
 - **KiCad open?** Unknown — check before hand-editing `.kicad_sch` (README rules).
 
 ## Ready tickets — launch each on the tier shown (routing table in README.md)

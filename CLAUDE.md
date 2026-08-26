@@ -64,3 +64,10 @@ When adding a part: prefer the shared `sonar-library` if the part is reusable; o
 - When you hand-edit `.kicad_sch` / `.kicad_pcb` (e.g. mass property changes), close KiCad first; KiCad will silently overwrite on save otherwise.
 - Footprints live in `sonar-library/sonar-library.pretty/` (reusable) and `sonar-v1-pcb/libs/Sonar.pretty/` (project-only). 3D `.step` files for shared parts go in `sonar-library/3d-models/`.
 - License is GPL v3.0 for the whole repo.
+
+## Orchestration (multi-agent workflow)
+
+All engineering work is agent-executed and coordinated through `orchestration/`
+(protocol in `orchestration/README.md`, state in `STATUS.md`, work items in
+`tickets/`, binding decisions in `decisions/`). Follow the session protocol there
+before touching design files. `PLAN.md` at the repo root is the architecture plan.

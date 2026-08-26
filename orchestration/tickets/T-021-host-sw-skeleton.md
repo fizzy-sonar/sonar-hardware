@@ -1,7 +1,7 @@
 ---
 id: T-021
 title: Host software skeleton (Python)
-status: in-progress
+status: done
 phase: P5
 tier: mid        # Python DSP package with tests
 priority: 2
@@ -27,3 +27,7 @@ Decision D006. Interfaces with T-020's UDP packet format — define `docs/packet
 
 ## Log
 - 2026-08-25 claude (fable): ticket created from architecture review.
+- 2026-08-25 codex/terra-t021: delivered host package, canonical SNP1/SNR1 packet
+  contract, mock/pyftdi transport boundary, raw unpack, CIC/FIR, chirp/matched
+  filter/beamform primitives and synthetic tests. `pytest -q`: 2 passed; ruff
+  passed. Physical FT232H/libusb and sustained hardware throughput remain untested.

@@ -10422,7 +10422,7 @@
 						(type none)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 12.7 -12.7 180)
 					(length 5.08)
 					(name "CC1"
@@ -10440,7 +10440,7 @@
 						)
 					)
 				)
-				(pin unspecified line
+				(pin passive line
 					(at 12.7 -10.16 180)
 					(length 5.08)
 					(name "CC2"
@@ -10775,7 +10775,7 @@
 						(type background)
 					)
 				)
-				(pin power_out line
+				(pin passive line
 					(at 5.08 -2.54 180)
 					(length 2.54)
 					(name "-"
@@ -11094,16 +11094,7 @@
 		)
 		(uuid "3126f0ee-9c44-473f-8ca7-afeb81379c3e")
 	)
-	(wire
-		(pts
-			(xy 138.43 147.32) (xy 142.24 147.32)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "3191a05a-92a5-428a-babc-6974a091d59b")
-	)
+	
 	(wire
 		(pts
 			(xy 132.08 129.54) (xy 135.89 129.54)
@@ -13950,6 +13941,18 @@
 			)
 		)
 	)
+	(global_label "5V"
+		(shape input)
+		(at 138.43 129.54 0)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "6c0b2eec-9643-4eee-8447-fcdeb2aad80e")
+		(fields_autoplaced yes)
+	)
 	(sheet
 		(at 142.24 124.46)
 		(size 27.94 26.67)
@@ -13988,96 +13991,15 @@
 				(justify left top)
 			)
 		)
-		(pin "GND" output
-			(at 142.24 147.32 180)
-			(uuid "fa751b38-951d-46ff-9ab8-f1dc04106e97")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify left)
-			)
-		)
-		(pin "3.3V" output
-			(at 170.18 134.62 0)
-			(uuid "cd83ca3a-2e2c-4d53-91cd-f2801cec1a34")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "10V" output
-			(at 170.18 129.54 0)
-			(uuid "3fc4eff1-4659-4d48-8c12-6082d516a08c")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "2.75V" output
-			(at 170.18 139.7 0)
-			(uuid "cc8cbcaf-7839-49c4-9f79-dc5f8ef19e92")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "-10V" output
-			(at 170.18 147.32 0)
-			(uuid "ede63f81-453a-44cc-b6f2-b6d524e84878")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "5V" output
-			(at 170.18 132.08 0)
-			(uuid "557e211e-21b1-476d-96fc-01f22e561bfc")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "2.5V" output
-			(at 170.18 142.24 0)
-			(uuid "bd8c5d84-3883-4874-9405-31eca5d1e2eb")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "-2.5V" output
-			(at 170.18 144.78 0)
-			(uuid "024bc14f-e00b-4a5d-bf89-c507766814ba")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
-		(pin "2.8V" output
-			(at 170.18 137.16 0)
-			(uuid "962ddc75-c98b-4e9e-b831-0bfd2be19a7f")
-			(effects
-				(font
-					(size 1.27 1.27)
-				)
-				(justify right)
-			)
-		)
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		(pin "Vin" input
 			(at 142.24 129.54 180)
 			(uuid "7362cc79-32eb-47b5-8a3c-0c3df57e3d9c")

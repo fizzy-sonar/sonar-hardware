@@ -58,3 +58,17 @@ Every pinmap row from position 15 up was on the wrong DIP position; the current
 sheet would have put FT_D2/FT_D3 on VU/GND. codex/sol-t011 is regenerating the
 sheet/pinmap/XDC from the corrected generator table. Evidence: /tmp XDC + Wayback
 manual; a reproducible check script lands under scripts/ with the fix.
+
+## Addendum 2 — T-011 done, T-005 done (evening)
+
+- T-011 repair merged (c609520 + closeouts): pinmap/digital sheet/XDC regenerated
+  with true DIP positions; `scripts/check_pinmap_vs_xdc.py` PASS 44/44 vs the live
+  master XDC (orchestrator re-ran independently). True CC set matches T-008's
+  original list; contract doc restored. T-011 → done.
+- T-005 spike merged and closed NO-GO: host-side `pcb build` fails exactly at the
+  hand-written-IC boundary (quad_opamp.zen), confirming the sandbox finding —
+  the tool needs its network registry or hand-authored IC modules; KiCad + JLC
+  turnkey stand per D008/D009.
+- State: all non-human-gated tickets complete. Remaining path is Joshua-gated:
+  T-007 purchases/host → T-020 bitstream; CP-BM coupon order + bench → T-010 →
+  T-014 → T-015 (cross-family review; use Claude budget) → CP-C → CP-D.

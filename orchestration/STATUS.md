@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by codex/terra-t005 — T-005 EDA spike (Zener) executed: NO-GO for v1, ticket at review; changes uncommitted on branch agent/T-005-eda-spike for orchestrator commit._
+_Last updated: 2026-08-26 by claude/orchestrator — T-011 live-gate repair verified and done; T-005 spike done (NO-GO); every non-human-gated ticket is now complete._
 
 ## Now
 - **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5

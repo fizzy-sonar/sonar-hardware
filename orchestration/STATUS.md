@@ -14,6 +14,9 @@ _Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nomina
   bake-off remains for T-008. EOL/NRND and missing T5838/JLC evidence are flagged.
 - **T-007 review:** click-ready dev-hardware list and Vivado host comparison
   delivered; Joshua must choose reseller, host, and purchase timing.
+- **T-006 done:** KiCad CLI harness added with repo-local cache and hard-failure
+  semantics. Approved unsandboxed runs pass end-to-end; baseline DRC is sonar
+  175/499/0, rx_amp_sim 1/0/0, txrx_dev 1/0/0 (violations/unconnected/footprints).
 - **KiCad open?** Unknown — check before hand-editing `.kicad_sch` (README rules).
 
 ## Ready tickets — launch each on the tier shown (routing table in README.md)
@@ -21,7 +24,7 @@ _Last updated: 2026-08-25 by codex — T-001 complete; link budget is not nomina
 | Ticket | Tier | Notes |
 |---|---|---|
 | T-002 parts & lifecycle audit | **cheap** | **done**; matrix committed; unlocks T-008 |
-| T-006 kicad-cli check harness | **cheap** | shell scripting |
+| T-006 kicad-cli check harness | **cheap** | **done**; baseline recorded |
 | T-009 Pico 2 snapshot firmware | mid | PIO/DMA; the first-echoes path |
 | T-021 host software | mid | benchmark pyftdi ingest early |
 | T-020 Vivado gateware | **top** | TB layer needs no Vivado host — start there |

@@ -85,3 +85,15 @@ captures. XDC gained the 30 SRAM pins + uart_rxd_out verbatim from the live
 master XDC. Merged (b1aafec + closeout 76c13eb). T-020 stays in-progress on:
 Vivado host (T-007), sonar_top<->XDC port-name reconciliation (flagged),
 ISSI timing constants live-PDF re-check, hardware demo.
+
+## Addendum 4 — T-020 residuals cleared (night)
+
+codex/sol-t020 finished the last agent-doable T-020 items: exact sonar_top<->XDC
+port bijection gate (gateware/sim/check_ports.py, 28 ports/73 bits, wired into
+make test as check 12) and a documented SRAM timing-margin analysis (worst 2.1x
+on tAA at the 48 MHz snapshot clock; ISSI PDF unreachable from all networks —
+CP-C carries "confirm against ISSI PDF"). Orchestrator re-ran: 12/12 PASS,
+zero FAIL. ISSI PDF hunt: issi.com serves HTML, no Wayback PDF capture,
+digikey 404, mouser JS-walled — margin analysis stands as the evidence.
+T-020's ONLY remaining gates: Vivado host (T-007 purchase) + hardware demo.
+Agent-doable project work is now fully exhausted.

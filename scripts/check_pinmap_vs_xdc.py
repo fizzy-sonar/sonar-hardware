@@ -5,7 +5,7 @@ gateware/constraints/sonar_cmod_a7.xdc) matches the Digilent Cmod-A7-Master.xdc
 44/44 on DIP position + package pin + IO name + clock-capable flag.
 
 Usage:  python3 scripts/check_pinmap_vs_xdc.py [/path/to/Cmod-A7-Master.xdc]
-        (default: /tmp/cmod-a7-master.xdc, the orchestrator's 2026-08-26 fetch)
+        (default: orchestration/reference/Cmod-A7-Master.xdc — committed copy of the\n        orchestrator's 2026-08-26 live fetch, sha256 56568df3868ef359e938ef8defab33e1814fe4153435e99e13da9260d9db4eaf;\n        re-fetch from github.com/Digilent/digilent-xdc to refresh)
 Exit 0 = PASS, 1 = FAIL. Stdlib only.
 
 Why this exists: the 2026-08-25 offline transcription sat rows 15-44 on wrong
@@ -32,7 +32,7 @@ def parse_xdc(path):
     return gpio
 
 def main():
-    path = sys.argv[1] if len(sys.argv) > 1 else "/tmp/cmod-a7-master.xdc"
+    path = sys.argv[1] if len(sys.argv) > 1 else str(__import__("pathlib").Path(__file__).resolve().parent.parent / "orchestration/reference/Cmod-A7-Master.xdc")
     gpio = parse_xdc(path)
     fails = []
     if len(gpio) != 44:

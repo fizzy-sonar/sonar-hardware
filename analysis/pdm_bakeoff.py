@@ -122,9 +122,7 @@ def _is_missing(x: Any) -> bool:
     return x is None or (isinstance(x, float) and math.isnan(x))
 
 
-def hierarchical_guard(
-    x: list[list[list[float | None]]], u_fixture_k2: float
-) -> GuardResult:
+def hierarchical_guard(x: list[list[list[float | None]]], u_fixture_k2: float) -> GuardResult:
     """x[q][u][r] scalar dB screen metric over coupon/site/reseat."""
     if u_fixture_k2 > U_FIXTURE_K2_MAX_DB:
         raise ValueError(
@@ -234,8 +232,7 @@ def _grid(
     index: int | None = None,
 ) -> list[list[list[float | None]]]:
     grid: list[list[list[float | None]]] = [
-        [[None for _ in range(N_RESEATS)] for _ in range(N_SITES)]
-        for _ in range(N_COUPONS)
+        [[None for _ in range(N_RESEATS)] for _ in range(N_SITES)] for _ in range(N_COUPONS)
     ]
     for (q, u, r), rec in records.items():
         if not (1 <= q <= N_COUPONS and 1 <= u <= N_SITES and 1 <= r <= N_RESEATS):
@@ -279,13 +276,9 @@ def t001_link_gate(n_screen_bin_db_spl: list[float]) -> dict[str, float | bool]:
             lb.DEFAULT_BANDWIDTH_HZ,
         )
     )
-    processing_gain = lb._processing_gain_db(
-        lb.DEFAULT_BANDWIDTH_HZ, lb.DEFAULT_CHIRP_DURATION_S
-    )
+    processing_gain = lb._processing_gain_db(lb.DEFAULT_BANDWIDTH_HZ, lb.DEFAULT_CHIRP_DURATION_S)
     source_level = float(
-        lb.WIDEBAND_PIEZO_TARGET.source_level_db_spl(
-            frequency_hz, lb.DEFAULT_DRIVE_V_RMS
-        )
+        lb.WIDEBAND_PIEZO_TARGET.source_level_db_spl(frequency_hz, lb.DEFAULT_DRIVE_V_RMS)
     )
     margin_10m = float(
         lb.sonar_margin_db(
@@ -390,9 +383,7 @@ def population_gate(cand: CandidateData) -> Gate:
     )
 
 
-def noise_screen_gate(
-    cand: CandidateData, dataset: dict[str, Any]
-) -> tuple[Gate, dict[str, Any]]:
+def noise_screen_gate(cand: CandidateData, dataset: dict[str, Any]) -> tuple[Gate, dict[str, Any]]:
     fx = _fixture_block(dataset)["u_fixture_k2_db"]
     per_bin = []
     for b in range(len(DECISION_BIN_EDGES_KHZ)):
@@ -448,9 +439,7 @@ def spread_gates(cand: CandidateData, dataset: dict[str, Any]) -> list[Gate]:
         )
     bin_grid_median: dict[int, GuardResult] = {}
     for b in range(len(DECISION_BIN_EDGES_KHZ)):
-        g = hierarchical_guard(
-            _grid(cand.records, "snr_bin_db", b), float(fx["snr_bin"][b])
-        )
+        g = hierarchical_guard(_grid(cand.records, "snr_bin_db", b), float(fx["snr_bin"][b]))
         bin_grid_median[b] = g
     worst = 0.0
     worst_desc = ""
@@ -533,15 +522,11 @@ def paired_loss_gate(
     """Predeclared (q,u,r) identity pairing: d = SNR_ICS - SNR_SPH, positive = SPH worse."""
     fx = _fixture_block(dataset)["u_fixture_k2_db"]
     d_bin: list[list[list[list[float | None]]]] = [
-        [
-            [[None for _ in range(N_RESEATS)] for _ in range(N_SITES)]
-            for _ in range(N_COUPONS)
-        ]
+        [[[None for _ in range(N_RESEATS)] for _ in range(N_SITES)] for _ in range(N_COUPONS)]
         for _ in range(len(DECISION_BIN_EDGES_KHZ))
     ]
     d_band: list[list[list[float | None]]] = [
-        [[None for _ in range(N_RESEATS)] for _ in range(N_SITES)]
-        for _ in range(N_COUPONS)
+        [[None for _ in range(N_RESEATS)] for _ in range(N_SITES)] for _ in range(N_COUPONS)
     ]
     incomplete = []
     for q in range(1, N_COUPONS + 1):
@@ -555,9 +540,7 @@ def paired_loss_gate(
                     d_bin[b][q - 1][u - 1][r - 1] = float(ri["snr_bin_db"][b]) - float(
                         rs["snr_bin_db"][b]
                     )
-                d_band[q - 1][u - 1][r - 1] = float(ri["snr_band_db"]) - float(
-                    rs["snr_band_db"]
-                )
+                d_band[q - 1][u - 1][r - 1] = float(ri["snr_band_db"]) - float(rs["snr_band_db"])
     bin_results = [
         hierarchical_guard(d_bin[b], float(fx["loss_bin"][b]))
         for b in range(len(DECISION_BIN_EDGES_KHZ))
@@ -611,9 +594,7 @@ def electrical_gate(cand: CandidateData, dataset: dict[str, Any]) -> Gate:
             problems.append(f"{key}: {value}+/-{unc} above limit {hi}")
     if problems:
         return Gate(f"electrical/{cand.name}", "fail", "; ".join(problems))
-    return Gate(
-        f"electrical/{cand.name}", "pass", "all readings plus uncertainty inside limits"
-    )
+    return Gate(f"electrical/{cand.name}", "pass", "all readings plus uncertainty inside limits")
 
 
 def power_gate(cand: CandidateData, dataset: dict[str, Any]) -> Gate:
@@ -668,9 +649,7 @@ def overload_gate(cand: CandidateData, dataset: dict[str, Any]) -> Gate:
             "guard + conditional human review"
         )
     if problems:
-        status = (
-            "fail" if recovery > RECOVERY_REVIEW_S or thd10 < AOP_MIN_DB_SPL else "pass"
-        )
+        status = "fail" if recovery > RECOVERY_REVIEW_S or thd10 < AOP_MIN_DB_SPL else "pass"
         g = Gate(f"overload/{cand.name}", status, "; ".join(problems))
         g.detail += " [conditional review]" if status == "pass" else ""
         return g
@@ -682,9 +661,7 @@ def overload_gate(cand: CandidateData, dataset: dict[str, Any]) -> Gate:
     )
 
 
-def overload_relative_gate(
-    sph: CandidateData, ics: CandidateData, dataset: dict[str, Any]
-) -> Gate:
+def overload_relative_gate(sph: CandidateData, ics: CandidateData, dataset: dict[str, Any]) -> Gate:
     oa, ob = dataset["overload"][SPH], dataset["overload"][ICS]
     if (
         float(oa["fixture_max_spl_db"]) < AOP_MIN_DB_SPL
@@ -722,10 +699,7 @@ def selection_rule(report: dict[str, Any]) -> tuple[str, str]:
             "Fewer than 12 valid units or missing reseats for at least one MPN; "
             "inconclusive unless Joshua ratifies a documented D011 waiver.",
         )
-    if not (
-        report["candidates"][SPH]["sourceable"]
-        and report["candidates"][ICS]["sourceable"]
-    ):
+    if not (report["candidates"][SPH]["sourceable"] and report["candidates"][ICS]["sourceable"]):
         return (
             "inconclusive",
             "Only one exact MPN is sourceable/testable; inconclusive under D011 "
@@ -734,9 +708,7 @@ def selection_rule(report: dict[str, Any]) -> tuple[str, str]:
 
     def hard_pass(c: str) -> bool:
         return all(
-            g.status == "pass"
-            for g in report["gates"]
-            if g.name.endswith(f"/{c}") and g.hard
+            g.status == "pass" for g in report["gates"] if g.name.endswith(f"/{c}") and g.hard
         )
 
     sph_ok, ics_ok = hard_pass(SPH), hard_pass(ICS)
@@ -874,14 +846,8 @@ def _synth_records(
             for r in range(1, N_RESEATS + 1):
                 unit_off = spread * ((u - 2.5) / 1.5) + 0.2 * (q - 2)
                 reseat_off = jitter * (r - 2)
-                snr_b = [
-                    snr_bin + unit_off + reseat_off + 0.05 * (b - 5.5)
-                    for b in range(12)
-                ]
-                noise_b = [
-                    noise_bin - unit_off - reseat_off + 0.1 * (b - 5.5)
-                    for b in range(12)
-                ]
+                snr_b = [snr_bin + unit_off + reseat_off + 0.05 * (b - 5.5) for b in range(12)]
+                noise_b = [noise_bin - unit_off - reseat_off + 0.1 * (b - 5.5) for b in range(12)]
                 # Integrated-band values from linear-power sums (per the estimator).
                 snr_band = (
                     10.0 * math.log10(sum(10.0 ** (v / 10.0) for v in snr_b) / 1.0)
@@ -933,14 +899,10 @@ def _synth_dataset(
     ) -> dict[str, Any]:
         records = _synth_records(snr, noise)
         units = [
-            {"coupon": q, "site": u}
-            for q in range(1, N_COUPONS + 1)
-            for u in range(1, N_SITES + 1)
+            {"coupon": q, "site": u} for q in range(1, N_COUPONS + 1) for u in range(1, N_SITES + 1)
         ]
         if not valid:
-            records = {
-                k: v for k, v in records.items() if not (k[0] == 3 and k[1] == 4)
-            }
+            records = {k: v for k, v in records.items() if not (k[0] == 3 and k[1] == 4)}
             units = units[:-1]
         return {
             "clock_hz": clock,
@@ -982,9 +944,7 @@ def _synth_dataset(
             "calibration_provenance": "synthetic self-test fixture",
         },
         "candidates": {
-            SPH: cand_block(
-                SPH, 3_072_000, sph_noise, sph_snr, sph_valid, sph_sourceable
-            ),
+            SPH: cand_block(SPH, 3_072_000, sph_noise, sph_snr, sph_valid, sph_sourceable),
             ICS: cand_block(
                 ICS,
                 4_800_000,
@@ -1066,10 +1026,7 @@ def run_selftest() -> None:
 
     # Worked estimator example, hand-computed:
     # x[q][u][r]: coupon q constant offset, unit offsets, reseat offsets.
-    x = [
-        [[10.0 + q + u * 0.5 + r * 0.1 for r in range(3)] for u in range(4)]
-        for q in range(3)
-    ]
+    x = [[[10.0 + q + u * 0.5 + r * 0.1 for r in range(3)] for u in range(4)] for q in range(3)]
     g = hierarchical_guard(x, 0.6)
     # m_unit[q][u] = 10+q+0.5u+0.1 ; m_coupon[q] = median_u = 10+q+0.85
     # m = median_q = 11.85 ; R = 0.1 ; V = |0.1? ... compute: unit offsets

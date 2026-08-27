@@ -6,7 +6,7 @@
 
 Two variants (SPH0641LU4H-1, ICS-41352), each a four-mic coupon with the
 production-intent CDCLVC1112PWR worst-case four-load clock branch, 0.50 mm NPTH
-acoustic ports, per-mic 100 nF C0G bypass, current-break jumper, and bench
+acoustic ports, per-mic 100 nF X7R bypass, current-break jumper, and bench
 header. All KiCad artifacts (symbols, footprints, schematic, PCB) are emitted
 from this single data-driven source so a dimension correction is a one-line
 change followed by regeneration.
@@ -117,21 +117,15 @@ J1_POS = (64.0, 15.0)  # 2x5 2.54 mm header
 
 
 # --- Footprint emitters ------------------------------------------------------------
-def _fp_text(
-    kind: str, text: str, x: float, y: float, layer: str, hide: bool = False
-) -> str:
+def _fp_text(kind: str, text: str, x: float, y: float, layer: str, hide: bool = False) -> str:
     h = "\n\t\t(hide yes)" if hide else ""
     return (
         f'\t(fp_text {kind} "{text}" (at {x} {y} 0) (layer "{layer}"){h}\n'
-        '\t\t(effects (font (size 1.0 1.0) (thickness 0.15)))\n\t\t(uuid "'
-        + uid()
-        + '")\n\t)'
+        '\t\t(effects (font (size 1.0 1.0) (thickness 0.15)))\n\t\t(uuid "' + uid() + '")\n\t)'
     )
 
 
-def _annulus_polys(
-    r_out: float, r_in: float, seg: int = 16
-) -> list[list[tuple[float, float]]]:
+def _annulus_polys(r_out: float, r_in: float, seg: int = 16) -> list[list[tuple[float, float]]]:
     import math as _m
 
     polys = []
@@ -172,9 +166,7 @@ def emit_mic_footprint(spec: dict) -> str:
     prim = []
     for poly in polys:
         pts = " ".join(f"(xy {px:.4f} {py:.4f})" for px, py in poly)
-        prim.append(
-            f"\t\t(gr_poly (pts {pts}) (stroke (width 0) (type solid)) (fill yes))"
-        )
+        prim.append(f"\t\t(gr_poly (pts {pts}) (stroke (width 0) (type solid)) (fill yes))")
     lines.append(
         f'\t(pad "3" smd custom (at 0 0) (size {ro * 2:.3f} {ro * 2:.3f}) '
         f'(layers "F.Cu" "F.Paste" "F.Mask")\n'
@@ -210,9 +202,7 @@ def emit_mic_footprint(spec: dict) -> str:
     )
     lines.append(
         '\t(fp_text user "NO COPPER/MASK/PASTE IN PORT" (at 0 -4.8 0) (layer "User.2")\n'
-        '\t\t(effects (font (size 0.8 0.8) (thickness 0.12)))\n\t\t(uuid "'
-        + uid()
-        + '")\n\t)'
+        '\t\t(effects (font (size 0.8 0.8) (thickness 0.12)))\n\t\t(uuid "' + uid() + '")\n\t)'
     )
     lines.append(")")
     return "\n".join(lines) + "\n"
@@ -499,9 +489,7 @@ class Schematic:
         self.items.append("\n".join(lines))
         return pin_xy
 
-    def stub_label(
-        self, x: float, y: float, outward: tuple[float, float], net: str
-    ) -> None:
+    def stub_label(self, x: float, y: float, outward: tuple[float, float], net: str) -> None:
         ex, ey = x + outward[0] * 2.54, y + outward[1] * 2.54
         ang = 0 if outward[0] >= 0 else 180
         justify = "left bottom" if outward[0] >= 0 else "right bottom"
@@ -544,7 +532,7 @@ def build_schematic(variant: str, project: str) -> str:
         cpins = sch.place(
             "C",
             f"C{i + 1}",
-            "100nF C0G 0603",
+            "100nF X7R 0603",
             "coupon:C_0603_T016",
             g(x + 15.24),
             60.96,
@@ -583,10 +571,10 @@ def build_schematic(variant: str, project: str) -> str:
         ("R", "R12", "100k 0603", 38.1, 142.24, "CLK_EN", "GND"),
         ("R", "R13", "0R 0603", 60.96, 100.33, "D0M", "D0"),
         ("R", "R14", "0R 0603", 60.96, 105.41, "D1M", "D1"),
-        ("C", "C5", "100nF C0G 0603", 95.25, 120.65, "+3V3_MIC", "GND"),
-        ("C", "C6", "100nF C0G 0603", 95.25, 125.73, "+3V3_MIC", "GND"),
-        ("C", "C7", "100nF C0G 0603", 95.25, 129.54, "+3V3_MIC", "GND"),
-        ("C", "C8", "100nF C0G 0603", 95.25, 135.89, "+3V3_MIC", "GND"),
+        ("C", "C5", "100nF X7R 0603", 95.25, 120.65, "+3V3_MIC", "GND"),
+        ("C", "C6", "100nF X7R 0603", 95.25, 125.73, "+3V3_MIC", "GND"),
+        ("C", "C7", "100nF X7R 0603", 95.25, 129.54, "+3V3_MIC", "GND"),
+        ("C", "C8", "100nF X7R 0603", 95.25, 135.89, "+3V3_MIC", "GND"),
         ("C", "C9", "1uF 0603", 95.25, 139.7, "+3V3_MIC", "GND"),
         ("C", "C10", "10uF 0603", 95.25, 144.78, "+3V3_MIC", "GND"),
         ("JP", "JP1", "JUMPER (current break)", 120.65, 120.65, "+3V3_MIC", "+3V3_IN"),
@@ -712,9 +700,7 @@ class Pcb:
         for a, b in zip(pts, pts[1:]):
             self.seg(a[0], a[1], b[0], b[1], net, layer, w)
 
-    def via(
-        self, x: float, y: float, net: str, size: float = 0.6, drill: float = 0.3
-    ) -> None:
+    def via(self, x: float, y: float, net: str, size: float = 0.6, drill: float = 0.3) -> None:
         self.items.append(
             f'\t(via (at {x:.3f} {y:.3f}) (size {size}) (drill {drill}) (layers "F.Cu" "B.Cu") '
             f'(net {NET_ID[net]}) (uuid "{uid()}"))'
@@ -728,9 +714,7 @@ class Pcb:
             f"\t\t(polygon (pts (xy 0.5 0.5) (xy {BOARD_W - 0.5} 0.5) (xy {BOARD_W - 0.5} {BOARD_H - 0.5}) (xy 0.5 {BOARD_H - 0.5})))\n\t)"
         )
 
-    def fp_0603(
-        self, ref: str, value: str, x: float, y: float, rot: int, n1: str, n2: str
-    ) -> None:
+    def fp_0603(self, ref: str, value: str, x: float, y: float, rot: int, n1: str, n2: str) -> None:
         pads = []
         for num, (dx, dy), net in ((1, (-0.5, 0.0), n1), (2, (0.5, 0.0), n2)):
             w, h = 0.9, 1.0
@@ -749,9 +733,7 @@ class Pcb:
             + f'\n\t\t(fp_rect (start -1.0 -0.75) (end 1.0 0.75) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))\n\t)'
         )
 
-    def fp_mic(
-        self, spec: dict, ref: str, x: float, y: float, nets: dict[int, str]
-    ) -> None:
+    def fp_mic(self, spec: dict, ref: str, x: float, y: float, nets: dict[int, str]) -> None:
         lines = [
             f'\t(footprint "coupon:{spec["name"]}" (layer "F.Cu") (uuid "{uid()}")',
             f"\t\t(at {x} {y} 0)",
@@ -770,9 +752,7 @@ class Pcb:
         prim = []
         for poly in _annulus_polys(ro, ri):
             pts = " ".join(f"(xy {px:.4f} {py:.4f})" for px, py in poly)
-            prim.append(
-                f"\t\t\t(gr_poly (pts {pts}) (stroke (width 0) (type solid)) (fill yes))"
-            )
+            prim.append(f"\t\t\t(gr_poly (pts {pts}) (stroke (width 0) (type solid)) (fill yes))")
         lines.append(
             f'\t\t(pad "3" smd custom (at 0 0) (size {ro * 2:.3f} {ro * 2:.3f}) (layers "F.Cu" "F.Paste" "F.Mask")\n'
             f'\t\t\t(net {NET_ID["GND"]} "GND")\n'
@@ -853,9 +833,7 @@ class Pcb:
             + "\n\t)"
         )
 
-    def fp_tp(
-        self, ref: str, x: float, y: float, net: str, bottom: bool = False
-    ) -> None:
+    def fp_tp(self, ref: str, x: float, y: float, net: str, bottom: bool = False) -> None:
         cu = "B.Cu" if bottom else "F.Cu"
         mask = "B.Mask" if bottom else "F.Mask"
         silk = "B.SilkS" if bottom else "F.SilkS"
@@ -920,9 +898,7 @@ def build_pcb(variant: str) -> str:
             pcb.via(mx - 1.4, 18.5, "GND")
             # Hard-tie the annular GND ring to a stitch via (do not rely on pour contact).
             pcb.path([(mx - 0.56, 17.58), (mx - 0.55, 16.5)], "GND", w=0.3)
-            pcb.fp_0603(
-                f"C{i + 1}", "100nF C0G", mx + 3.6, 18.0, 270, "+3V3_MIC", "GND"
-            )
+            pcb.fp_0603(f"C{i + 1}", "100nF X7R", mx + 3.6, 18.0, 270, "+3V3_MIC", "GND")
             pcb.path([(mx + 3.6, 17.05), (mx + 3.6, 16.6)], "+3V3_MIC")
             pcb.via(mx + 3.6, 16.5, "+3V3_MIC")
             data_x = mx - 0.8375
@@ -938,9 +914,7 @@ def build_pcb(variant: str) -> str:
                 )
         else:  # ICS
             # CLK: around the left of the GND ring, entry into pad 4 from the left.
-            pcb.path(
-                [(mx - 1.4, TRUNK_Y), (mx - 1.4, 19.15), (mx + 1.05, 19.15)], "CLK_ST"
-            )
+            pcb.path([(mx - 1.4, TRUNK_Y), (mx - 1.4, 19.15), (mx + 1.05, 19.15)], "CLK_ST")
             pcb.path([(mx + 1.252, 16.85), (mx + 1.252, 16.1)], "+3V3_MIC")
             pcb.via(mx + 1.252, 16.1, "+3V3_MIC")
             pcb.path([(mx + 2.28, 18.837), (mx + 2.9, 18.837)], sel_net)
@@ -950,9 +924,7 @@ def build_pcb(variant: str) -> str:
             # Hard-tie the annular GND ring to a stitch via (do not rely on pour contact).
             pcb.path([(mx - 0.56, 17.58), (mx - 0.55, 16.5)], "GND", w=0.3)
             pcb.via(mx + 0.55, 16.35, "GND")
-            pcb.fp_0603(
-                f"C{i + 1}", "100nF C0G", mx - 2.5, 18.0, 270, "+3V3_MIC", "GND"
-            )
+            pcb.fp_0603(f"C{i + 1}", "100nF X7R", mx - 2.5, 18.0, 270, "+3V3_MIC", "GND")
             pcb.path([(mx - 2.5, 17.05), (mx - 2.5, 16.6)], "+3V3_MIC")
             pcb.via(mx - 2.5, 16.5, "+3V3_MIC")
             data_x = mx + 2.074
@@ -1040,10 +1012,10 @@ def build_pcb(variant: str) -> str:
 
     # --- U1 decoupling + bulk caps; VDD via below each cap, GND into the pour ---
     for cx, ref, val in (
-        (6.5, "C5", "100nF C0G"),
-        (8.9, "C6", "100nF C0G"),
-        (11.3, "C7", "100nF C0G"),
-        (13.7, "C8", "100nF C0G"),
+        (6.5, "C5", "100nF X7R"),
+        (8.9, "C6", "100nF X7R"),
+        (11.3, "C7", "100nF X7R"),
+        (13.7, "C8", "100nF X7R"),
         (16.1, "C9", "1uF"),
         (18.5, "C10", "10uF"),
     ):
@@ -1168,11 +1140,7 @@ def build_pcb(variant: str) -> str:
         '(kicad_pcb (version 20260206) (generator "pcbnew") (generator_version "10.0")\n'
         '\t(general (thickness 1.6) (legacy_teardrops no))\n\t(paper "A4")\n'
         "\t(layers\n" + layers + "\n\t)\n"
-        "\t(setup\n\t\t(pad_to_mask_clearance 0)\n\t)\n"
-        + netdefs
-        + "\n"
-        + items
-        + "\n)\n"
+        "\t(setup\n\t\t(pad_to_mask_clearance 0)\n\t)\n" + netdefs + "\n" + items + "\n)\n"
     )
 
 
@@ -1195,9 +1163,7 @@ def _kicad_pro(name: str) -> str:
     import json
 
     ref = json.loads(
-        (
-            Path(__file__).resolve().parents[2] / "rx_amp_sim" / "rx_amp_sim.kicad_pro"
-        ).read_text()
+        (Path(__file__).resolve().parents[2] / "rx_amp_sim" / "rx_amp_sim.kicad_pro").read_text()
     )
     ref["meta"]["filename"] = f"{name}.kicad_pro"
     return json.dumps(ref, indent=2) + "\n"
@@ -1209,23 +1175,15 @@ def write_variant(variant: str) -> Path:
     d = OUT / name
     (d / "libs" / "coupon.pretty").mkdir(parents=True, exist_ok=True)
     (d / f"{name}.kicad_pro").write_text(_kicad_pro(name), encoding="utf-8")
-    (d / f"{name}.kicad_sch").write_text(
-        build_schematic(variant, name), encoding="utf-8"
-    )
+    (d / f"{name}.kicad_sch").write_text(build_schematic(variant, name), encoding="utf-8")
     (d / f"{name}.kicad_pcb").write_text(build_pcb(variant), encoding="utf-8")
     (d / "fp-lib-table").write_text(FP_LIB_TABLE, encoding="utf-8")
     (d / "sym-lib-table").write_text(SYM_LIB_TABLE, encoding="utf-8")
 
     pretty = d / "libs" / "coupon.pretty"
-    (pretty / f"{spec['name']}.kicad_mod").write_text(
-        emit_mic_footprint(spec), encoding="utf-8"
-    )
-    (pretty / "C_0603_T016.kicad_mod").write_text(
-        emit_smd0603("C_0603_T016"), encoding="utf-8"
-    )
-    (pretty / "R_0603_T016.kicad_mod").write_text(
-        emit_smd0603("R_0603_T016"), encoding="utf-8"
-    )
+    (pretty / f"{spec['name']}.kicad_mod").write_text(emit_mic_footprint(spec), encoding="utf-8")
+    (pretty / "C_0603_T016.kicad_mod").write_text(emit_smd0603("C_0603_T016"), encoding="utf-8")
+    (pretty / "R_0603_T016.kicad_mod").write_text(emit_smd0603("R_0603_T016"), encoding="utf-8")
     (pretty / "TSSOP-24_4.4x7.8mm_P0.65mm_T016.kicad_mod").write_text(
         emit_tssop24(), encoding="utf-8"
     )
@@ -1241,8 +1199,7 @@ def write_variant(variant: str) -> Path:
     )
 
     sym_defs = "\n".join(
-        sym_def(meta[0], meta[1], meta[2], meta[3], meta[4])
-        for meta in SYM_META.values()
+        sym_def(meta[0], meta[1], meta[2], meta[3], meta[4]) for meta in SYM_META.values()
     )
     (d / "coupon-symbols.kicad_sym").write_text(
         '(kicad_symbol_lib (version 20231120) (generator "t016-coupon-generator") (generator_version "1.0")\n'

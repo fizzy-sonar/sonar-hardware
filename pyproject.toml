@@ -5,6 +5,11 @@ requires-python=">=3.11"
 dependencies=["numpy==2.3.2"]
 [project.optional-dependencies]
 ftdi=["pyftdi==0.57.1"]
+# Pinned (REVIEW NIT4, 2026-08-26): check_coupons.sh and scripts/check.sh run
+# `ruff format --check`; unpinned system ruff drifted (0.14.0 reformats files the
+# T-016 verification recorded as clean under an older ruff). The tree is formatted
+# with exactly this version; bump the pin and reformat together.
+dev=["ruff==0.14.0"]
 [tool.pytest.ini_options]
 testpaths=["tests"]
 pythonpath=["host"]

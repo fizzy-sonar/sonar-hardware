@@ -23,9 +23,7 @@ CLI_CANDIDATES = [
     "/Applications/KiCad.app/Contents/MacOS/kicad-cli",
     "kicad-cli",
 ]
-LAYERS = (
-    "F.Cu,In1.Cu,In2.Cu,B.Cu,F.Paste,B.Paste,F.Mask,B.Mask,F.SilkS,B.SilkS,Edge.Cuts"
-)
+LAYERS = "F.Cu,In1.Cu,In2.Cu,B.Cu,F.Paste,B.Paste,F.Mask,B.Mask,F.SilkS,B.SilkS,Edge.Cuts"
 
 
 def find_cli() -> str:

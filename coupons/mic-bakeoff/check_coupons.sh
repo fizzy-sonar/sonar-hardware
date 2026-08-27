@@ -41,8 +41,20 @@ note "analysis selftest + normative block byte-identity"
 python3 analysis/pdm_bakeoff.py --selftest || failures=$((failures + 1))
 
 note "lint"
-ruff check analysis/pdm_bakeoff.py coupons/mic-bakeoff/ || failures=$((failures + 1))
-ruff format --check analysis/pdm_bakeoff.py coupons/mic-bakeoff/ || failures=$((failures + 1))
+# REVIEW NIT4 (2026-08-26): ruff format output is version-dependent; ruff is now
+# pinned to 0.14.0 in pyproject.toml [project.optional-dependencies] dev, and the
+# tree is formatted with exactly that version. Fail loudly on version drift
+# instead of emitting a misleading format diff. Install: `uv sync --extra dev`
+# (run `uv lock` first if the lock predates the pin).
+RUFF_PIN="0.14.0"
+ruff_ver=$(ruff --version 2>/dev/null | awk '{print $2}')
+if [ "$ruff_ver" != "$RUFF_PIN" ]; then
+  echo "ruff version $ruff_ver != pinned $RUFF_PIN (see pyproject dev extra)"
+  failures=$((failures + 1))
+else
+  ruff check analysis/pdm_bakeoff.py coupons/mic-bakeoff/ || failures=$((failures + 1))
+  ruff format --check analysis/pdm_bakeoff.py coupons/mic-bakeoff/ || failures=$((failures + 1))
+fi
 git -C "$ROOT" diff --check || failures=$((failures + 1))
 
 if [ "$failures" -gt 0 ]; then echo "SUMMARY: $failures failing steps"; exit 1; fi

@@ -105,7 +105,7 @@ _Last updated: 2026-08-26 by claude/orchestrator — T-011 live-gate repair veri
 | T-021 host software | mid | **done**; physical FT232H/libusb still untested |
 | T-020 Vivado gateware | **top** | **in-progress**; `make test` PASS (12/12, Icarus 13.0) incl. SRAM snapshot fallback + the new `sonar_top`<->XDC port-bijection gate (28 ports/73 bits exact, TX mapped per tx-limits.md); bitstream + hardware demo wait on the Vivado host |
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
-| T-016 mic coupon bake-off | mid | **review**; agent package delivered + verified; Joshua's CP-BM checklist in `coupons/mic-bakeoff/docs/order-package.md` |
+| T-016 mic coupon bake-off | mid | **review**; review findings S10/S11/NIT4 fixed 2026-08-26 (quantities reconciled 24 mics/MPN + 12 buffers; C1..C8 now 100 nF X7R 0603; ruff pinned 0.14.0 — host must run `uv lock` once); check_coupons.sh exit 0 re-verified; Joshua's CP-BM checklist in `coupons/mic-bakeoff/docs/order-package.md` |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
 | T-011 digital sheet | **top** | **done**; live-gate repair verified 44/44 vs live master XDC; `scripts/check_pinmap_vs_xdc.py` is the reproducible gate |
 | T-012 power tree | mid | **done**; rails table in `orchestration/rails.md`; CP-C reviews |
@@ -182,6 +182,12 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
 - 2026-08-26 — codex/terra-t016: T-016 coupon bake-off package (designs,
   analysis, runbook, order package) delivered and verified; ticket → review;
   CP-BM gate is Joshua's.
+- 2026-08-26 — codex/terra-t016-fix: REVIEW-2026-08-26 findings S10/S11/NIT4
+  fixed — order quantities reconciled (24 mics/MPN, 12 clock buffers, one
+  cross-checked table), C1..C8 changed to 100 nF X7R 0603 (C0G 0603 unbuyable),
+  ruff pinned to 0.14.0 + format drift repaired; check_coupons.sh exit 0
+  re-verified. Host action: run `uv lock` once (sandbox was offline). See
+  journal 2026-08-26-codex-terra-t016-fix.md and the T-016 Log.
 - 2026-08-26 — codex/sol-t020 (session 3): SRAM snapshot fallback done —
   `sram_snapshot.sv` + ISSI timing-checking model + TBs (back-to-back, timeout,
   full 512 KiB bit-exact), 48 MHz MMCM clock, sonar_top btn0/uart_rxd_out

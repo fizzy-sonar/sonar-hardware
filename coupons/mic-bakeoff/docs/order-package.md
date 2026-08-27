@@ -2,16 +2,19 @@
 
 _All prices unverified this session (offline sandbox; no distributor pages
 reachable). Fill the price column at order time from the distributor pages
-linked in `sourcing-evidence.md`. Quantities include assembly-loss margin:
-12 valid units per MPN required, so 4 coupons worth (16) ordered per MPN._
+linked in `sourcing-evidence.md`. Quantities reconciled 2026-08-26 (REVIEW S10):
+JLC's 5-board minimum per variant is fully assembled, which needs 20 mics per
+MPN and 10 clock buffers total; +20% assembly-loss/rework spares on each gives
+the purchase quantities below. Every number cross-checks in the reconciliation
+table at the bottom of this file._
 
 ## Mic + buffer purchases (distributor of Joshua's choice)
 
 | Item | MPN | Qty | Unit price | Ext. | Evidence |
 |---|---|---:|---|---|---|
-| SPH mic | Syntiant SPH0641LU4H-1 | 16 | $___ | $___ | sourcing-evidence.md |
-| ICS mic | TDK ICS-41352 | 16 | $___ | $___ | sourcing-evidence.md |
-| Clock buffer | TI CDCLVC1112PWR | 8 | $___ | $___ | TI/JLC Global Parts |
+| SPH mic | Syntiant SPH0641LU4H-1 | 24 | $___ | $___ | sourcing-evidence.md |
+| ICS mic | TDK ICS-41352 | 24 | $___ | $___ | sourcing-evidence.md |
+| Clock buffer | TI CDCLVC1112PWR | 12 | $___ | $___ | TI/JLC Global Parts |
 
 Note: ICS-41352 was NRND with no visible distributor inventory on 2026-08-25 —
 if it cannot be bought in coupon quantity, the bake-off is inconclusive by rule
@@ -39,7 +42,7 @@ if it cannot be bought in coupon quantity, the bake-off is inconclusive by rule
 |---|---|---:|
 | M1..M4 | variant MPN (SPH0641LU4H-1 or ICS-41352) | 4 |
 | U1 | CDCLVC1112PWR (TSSOP-24) — **pin map UNVERIFIED, see README** | 1 |
-| C1..C8 | 100 nF C0G/NP0 0603 (NOT X5R/X7R) | 8 |
+| C1..C8 | 100 nF X7R 0603 (dielectric fixed 2026-08-26, REVIEW S11: 100 nF C0G/NP0 does not exist in 0603; X7R DC-bias droop at the 3.3 V rail is acceptable for digital PDM mic supply bypass — mic PSRR covers residual rail noise) | 8 |
 | C9 | 1 uF 0603 | 1 |
 | C10 | 10 uF 0603 | 1 |
 | R0, R1 | 10 ohm 0603 1% | 2 |
@@ -57,6 +60,27 @@ if it cannot be bought in coupon quantity, the bake-off is inconclusive by rule
    SIGABRT — see README verification status) and confirm no new violations.
 3. At JLC DFM review: confirm mic pick-and-place rotation against each
    datasheet's pin-1 corner mark (ICS: Figure 3 is the PCB-side view used here).
-4. Re-check stock + price for both exact MPNs (evidence file is dated
-   2026-08-25/26; stock moves).
-5. Then, and only then: place the orders.
+4. Confirm the JLC BOM pick for C1..C8 is a 100 nF **X7R** 0603 part
+   (changed from the unfillable C0G/NP0 spec on 2026-08-26, REVIEW S11); no C0G
+   line should remain anywhere in the order.
+5. Re-check stock + price for both exact MPNs (evidence file is dated
+   2026-08-25/26; stock moves) at the reconciled quantities (24 per MPN,
+   12 buffers — REVIEW S10).
+6. Then, and only then: place the orders.
+
+## Quantity reconciliation (REVIEW S10, 2026-08-26 — every number cross-checked)
+
+| Quantity driver | Boards/variant | Mics/MPN needed | Buffers needed |
+|---|---:|---:|---:|
+| JLC PCB min order, fully assembled (4 mics + 1 buffer per board) | 5 | 5 x 4 = 20 | 5 per variant, 10 total |
+| U95 estimator requirement (3 coupons x 4 sites = 12 valid units/MPN) | 3 | 12 | 3 |
+| Board margin over estimator | 2 spare boards/variant | 8 units margin | 2 spare populated boards |
+| Assembly-loss/rework spares (+20%, parts only) | — | +4 | +2 |
+| **Purchase quantity** | **5 per variant (10 total)** | **24 per MPN** | **12 total** |
+
+Consistency checks: 24 mics/MPN >= 20 needed to fully assemble all 5 boards of
+that variant (4 left as rework/DOA spares; once boards are assembled, spare mics
+only serve rework). 12 buffers >= 10 boards total across both variants (2
+spares). 12 valid units/MPN for the estimator is met by any 3 of the 5 assembled
+coupons; the 2 spare boards absorb whole-coupon assembly or port-inspection
+failures without dropping below the estimator floor.

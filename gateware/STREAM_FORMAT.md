@@ -43,6 +43,14 @@ T-009:
 IEEE CRC-32 uses reflected polynomial `0xedb88320`, initial state `0xffffffff`,
 and final XOR `0xffffffff` (the result produced by Python `zlib.crc32`).
 
+Framing is unchanged by the 2026-08-26 SRAM milestone: the hardware producer is
+now `rtl/sram_snapshot.sv` (the Cmod's 512 KiB IS61WV5128BLL-10BLI), which emits
+this exact SNP1 v1 header and payload. Its default window is 174,762 frames =
+524,286 payload bytes (`floor(524288/3)`; the last two SRAM bytes are unused).
+A stream stop or CDC overrun ends the capture early; the header's frame count,
+payload byte count, and payload CRC then describe the truncated-but-exact
+window. `rtl/uart_snapshot.sv` remains as the small inferred-RAM format proof.
+
 ## Continuous FT245 stream: SNR1 v1
 
 One 32-byte header begins each fresh capture:

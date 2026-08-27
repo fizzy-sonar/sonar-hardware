@@ -35,6 +35,10 @@ The suite checks:
 - sticky overflow-and-stop behavior, exact accepted-prefix draining, and a clean
   reset/new-capture boundary when the 64 KiB elastic buffer cannot drain;
 - the 48-byte `SNP1` UART snapshot format, including both IEEE CRC-32 values;
+- the 512 KiB external-SRAM snapshot fallback (D012): two back-to-back captures
+  and a stream-stopped timeout capture drained over UART byte- and CRC-exact
+  against a timing-enforcing IS61WV5128BLL model, plus one full 512 KiB window
+  (174,762 frames = 524,286 payload bytes) proven bit-exact;
 - exact 1.536/3.072/4.8 MHz divider arithmetic and the 50 ms standard-mode /
   clock-off / 10 ms ultrasonic startup sequence; and
 - TX reset/idle safety, rejected/crossed limit violations, complementary drive,
@@ -74,19 +78,44 @@ timing-only placeholder XDC when no real pin map exists. `build_bitstream.tcl`
 refuses to run until T-011 provides `constraints/sonar_cmod_a7.xdc`; there are no
 fabricated `PACKAGE_PIN` values in this branch.
 
+## SRAM snapshot fallback (D012)
+
+`rtl/sram_snapshot.sv` implements the day-one fallback capture path: on a
+snapshot trigger (`btn[0]` in `sonar_top`) it streams accepted 3-byte PDM frames
+from the `pdm_stream_core` tap through a 16-entry Gray-pointer CDC FIFO into the
+Cmod's on-module ISSI IS61WV5128BLL-10BLI (512K x 8), then drains the window
+over the on-module FT2232HQ USB-UART bridge (`uart_rxd_out`, 115200 8-N-1) with
+the exact 48-byte `SNP1` header and both CRC-32 values. The window is
+`SNAPSHOT_FRAMES = 174762` frames = 524,286 bytes (bytes 0..524,285 of the
+512 KiB device). The controller runs on a 48 MHz MMCM output and writes one
+byte per three clocks (16 MB/s > the 14.4 MB/s ICS worst case) using a
+SETUP/PULSE/HOLD microcycle that gives >= 2.6x margin on every cited ISSI -8 ns
+grade timing parameter; `sim/is61wv5128bll_model.sv` enforces tWC/tPWE/tSD and
+models tAA in the testbench. A stream stop (or CDC overrun, reported on
+`capture_error`) ends the capture early and the header honestly reports the
+frames actually written.
+
 ## What is intentionally still open
 
 This is a simulator milestone, not a bitstream or hardware demonstration:
 
-- T-011 must publish the generic-header/Cmod/FT232H pin map, including a
-  clock-capable `PDM_CLK_FB`, before the real XDC exists.
+- The real XDC (`constraints/sonar_cmod_a7.xdc`) now exists (T-011, live
+  verified) and carries the verbatim Digilent SRAM/UART pin section; however
+  `sonar_top`'s pre-existing port names (`sys_clk_12mhz`, `pdm_data`, `ft_data`,
+  `ft_clk`, `tx_a`/`tx_b` vs the pinmap's `sysclk`/`pdm_d`/`ft_d`/`ft_clkout`/
+  `tx_en`/`tx_ph`/...) still need a deliberate reconciliation pass, including a
+  reviewed TX_EN/TX_PH drive mapping, before the bitstream build can bind.
+  The new SRAM/UART/btn/led ports already match the XDC names.
 - The Vivado host from T-007 is not purchased/selected, so the MMCM/derived-clock
-  scaffold, Xilinx IDDR polarity, BRAM inference/utilization, FT245 I/O timing,
-  CDC reports, setup/hold constraints on both PDM edges, timing closure, and
-  bitstream generation are unverified.
-- `uart_snapshot.sv` proves a bounded inferred-RAM snapshot and exact wire format.
-  A controller for the Cmod's 512 KiB external SRAM and its board-level UART path
-  remains before claiming the full fallback window on hardware.
+  scaffold (including the new 48 MHz SRAM clock), Xilinx IDDR polarity, BRAM
+  inference/utilization, FT245 I/O timing, SRAM set_output_delay budgeting, CDC
+  reports, setup/hold constraints on both PDM edges, timing closure, and
+  bitstream generation are unverified. The ISSI timing constants cited in
+  `rtl/sram_snapshot.sv` and enforced in the model should be re-checked against
+  the live ISSI PDF on that host (the offline sandbox cannot refetch it).
+- `uart_snapshot.sv` remains as the bounded inferred-RAM snapshot proof;
+  `sram_snapshot.sv` is the hardware window path. The UART snapshot has not been
+  demonstrated on hardware (needs the bitstream + a Cmod).
 - TX defaults are conservative generic ceilings only. T-013 must replace them
   with the chosen transducer/DRV8876 voltage, duty, and duration limits before TX
   hardware is enabled.

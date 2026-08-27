@@ -10,7 +10,8 @@ RTL := rtl/pdm_ddr_sampler.sv \
 	rtl/uart_tx.sv \
 	rtl/uart_snapshot.sv \
 	rtl/pdm_clock_startup.sv \
-	rtl/tx_nco_pwm.sv
+	rtl/tx_nco_pwm.sv \
+	rtl/sram_snapshot.sv
 
 .PHONY: test clean
 
@@ -41,6 +42,21 @@ test: $(BUILD_DIR)
 	$(IVERILOG) -g2012 -Wall -s tb_clock_tx \
 		-o $(BUILD_DIR)/tb_clock_tx $(RTL) sim/tb_clock_tx.sv
 	$(VVP) $(BUILD_DIR)/tb_clock_tx
+	$(IVERILOG) -g2012 -Wall -s tb_sram_snapshot \
+		-Ptb_sram_snapshot.SNAPSHOT_FRAMES=16 \
+		-Ptb_sram_snapshot.CLKS_PER_BIT=8 \
+		-Ptb_sram_snapshot.FRAME_TIMEOUT_CLKS=2000 \
+		-o $(BUILD_DIR)/tb_sram_snapshot_small $(RTL) \
+		sim/is61wv5128bll_model.sv sim/tb_sram_snapshot.sv
+	$(VVP) $(BUILD_DIR)/tb_sram_snapshot_small
+	$(IVERILOG) -g2012 -Wall -s tb_sram_snapshot \
+		-Ptb_sram_snapshot.SNAPSHOT_FRAMES=174762 \
+		-Ptb_sram_snapshot.CLKS_PER_BIT=2 \
+		-Ptb_sram_snapshot.FRAME_TIMEOUT_CLKS=4194304 \
+		-Ptb_sram_snapshot.FULL_WINDOW=1 \
+		-o $(BUILD_DIR)/tb_sram_snapshot_full $(RTL) \
+		sim/is61wv5128bll_model.sv sim/tb_sram_snapshot.sv
+	$(VVP) $(BUILD_DIR)/tb_sram_snapshot_full
 	$(IVERILOG) -g2012 -Wall -DXILINX -s sonar_top -t null \
 		$(RTL) rtl/pdm_clock_7series.sv rtl/sonar_top.sv \
 		sim/xilinx_7series_stubs.sv

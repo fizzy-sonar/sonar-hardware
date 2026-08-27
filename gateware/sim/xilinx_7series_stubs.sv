@@ -28,7 +28,8 @@ module MMCME2_BASE #(
     parameter integer DIVCLK_DIVIDE = 1,
     parameter real CLKFBOUT_MULT_F = 5.0,
     parameter real CLKOUT0_DIVIDE_F = 1.0,
-    parameter integer CLKOUT1_DIVIDE = 1
+    parameter integer CLKOUT1_DIVIDE = 1,
+    parameter integer CLKOUT2_DIVIDE = 1
 ) (
     input  wire CLKIN1,
     input  wire CLKFBIN,
@@ -37,11 +38,13 @@ module MMCME2_BASE #(
     output wire CLKFBOUT,
     output wire CLKOUT0,
     output wire CLKOUT1,
+    output wire CLKOUT2,
     output wire LOCKED
 );
     assign CLKFBOUT = 1'b0;
     assign CLKOUT0 = 1'b0;
     assign CLKOUT1 = 1'b0;
+    assign CLKOUT2 = 1'b0;
     assign LOCKED = 1'b0;
 endmodule
 

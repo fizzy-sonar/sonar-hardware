@@ -3,9 +3,13 @@
 # T-017): Pin Functions, PWP column — 1=EN/IN1, 2=PH/IN2, 3=nSLEEP, 4=nFAULT,
 # 5=VREF, 6=IPROPI, 7=IMODE, 8=OUT1, 9=PGND, 10=OUT2, 11=VM, 12=VCP, 13=CPH,
 # 14=CPL, 15=GND, 16=PMODE, PAD=EP to GND.
-# Symbol vendored from sonar-v1-pcb/sonar_lib.kicad_sym ("DRV8876PWPR", names
-# match the datasheet); footprint is the KiCad 10 system
-# HTSSOP-16-1EP_4.4x5mm_P0.65mm used by 20kHz-h-bridge.kicad_sch (U62).
+# REGISTRY SWAP (2026-08-27, T-017 session 2, authenticated): symbol +
+# footprint now from the diode component API (LCSC backend, C575551) via
+# `pcb component download`. Registry (easyeda2kicad) pin NAMES are identical
+# to the vendored sonar_lib symbol (EN/IN1, PH/IN2, nSLEEP, ..., EP=17), so
+# the pins= map below is untouched and netlist parity is structural.
+# Footprint delta (layout only): LCSC HTSSOP-16_L5.0-W4.4-P0.65-LS6.4-BL-EP
+# vs KiCad HTSSOP-16-1EP_4.4x5mm_P0.65mm.
 
 load("@stdlib/interfaces.zen", "Power")
 
@@ -30,8 +34,8 @@ EP = io(Ground)  # thermal pad (pin 17)
 Component(
     name="U",
     part=Part(mpn="DRV8876PWPR", manufacturer="Texas Instruments"),
-    symbol=Symbol(library="../symbols/DRV8876PWPR.kicad_sym", name="DRV8876PWPR"),
-    footprint=File("../footprints/HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask2.46x2.31mm.kicad_mod"),
+    symbol=Symbol(library="registry/DRV8876PWPR/lcsc.kicad_sym", name="DRV8876PWPR"),
+    footprint=File("registry/DRV8876PWPR/lcsc.kicad_mod"),
     prefix="U",
     pins={
         "EN/IN1": EN_IN1,

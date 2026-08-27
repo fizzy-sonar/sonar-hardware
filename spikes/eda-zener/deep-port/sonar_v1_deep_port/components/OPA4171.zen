@@ -3,12 +3,17 @@
 # https://www.ti.com/lit/ds/symlink/opa4171.pdf (fetched 2026-08-27, T-017):
 # Table 4-2 Pin Functions OPA4171 — OUTA=1, -INA=2, +INA=3, V+=4, +INB=5,
 # -INB=6, OUTB=7, OUTC=8, -INC=9, +INC=10, V-=11, +IND=12, -IND=13, OUTD=14.
-# This is the industry-standard quad pinout, identical to KiCad
-# Device:Opamp_Quad used by quad_rx_pre_amp.kicad_sch, so the same symbol
-# (vendored as symbols/Opamp_Quad.kicad_sym from the KiCad 10 system
-# Device.kicad_sym) is pin-faithful. Footprint is the KiCad 10 system
-# SOIC-14_3.9x8.7mm_P1.27mm.kicad_mod (the repo has no SOIC-14; the legacy
-# tile carries no footprint/MPN at all — superseded per D011).
+# REGISTRY SWAP (2026-08-27, T-017 session 2, authenticated): symbol +
+# footprint now from the diode component API (LCSC backend, C46269) via
+# `pcb component download`. Pin-name style delta only: registry names are
+# "INA-"/"INA+" (vendored KiCad-renamed: "-INA"/"+INA"); pin NUMBERS 1-14
+# (V+=4, V-=11) are the same industry-standard quad pinout, so netlist
+# connectivity is unchanged. The registry symbol is a proper 4-unit symbol
+# with unique per-unit names, so the session-1 multi-unit pin-rename
+# workaround is no longer needed. MPN tightened OPA4171IDR -> OPA4171AIDR
+# (the exact registry asset; A = tighter offset grade, same package/pinout).
+# Footprint delta (layout only): LCSC SOP-14_L8.6-W3.9-P1.27-LS6.0-BL vs
+# KiCad SOIC-14_3.9x8.7mm_P1.27mm (wider heel).
 #
 # Why OPA4171 and not the T-005 placeholder: the KiCad tile runs on +/-5 V
 # rails (5V_OP_AMP_HIGH / -5V_OP_AMP_LOW), so a 6 V-max TLV2474 cannot be
@@ -25,24 +30,24 @@ CH_D = io(Opamp)
 
 Component(
     name="U",
-    part=Part(mpn="OPA4171IDR", manufacturer="Texas Instruments"),
-    symbol=Symbol(library="../symbols/Opamp_Quad.kicad_sym", name="Opamp_Quad"),
-    footprint=File("../footprints/SOIC-14_3.9x8.7mm_P1.27mm.kicad_mod"),
+    part=Part(mpn="OPA4171AIDR", manufacturer="Texas Instruments"),  # registry asset is the A-grade reel code
+    symbol=Symbol(library="registry/OPA4171AIDR/lcsc.kicad_sym", name="OPA4171AIDR"),
+    footprint=File("registry/OPA4171AIDR/lcsc.kicad_mod"),
     prefix="U",
     pins={
         "OUTA": CH_A.OUT,
-        "-INA": CH_A.IN_N,
-        "+INA": CH_A.IN_P,
+        "INA-": CH_A.IN_N,
+        "INA+": CH_A.IN_P,
         "V+": VP,
-        "+INB": CH_B.IN_P,
-        "-INB": CH_B.IN_N,
+        "INB+": CH_B.IN_P,
+        "INB-": CH_B.IN_N,
         "OUTB": CH_B.OUT,
         "OUTC": CH_C.OUT,
-        "-INC": CH_C.IN_N,
-        "+INC": CH_C.IN_P,
+        "INC-": CH_C.IN_N,
+        "INC+": CH_C.IN_P,
         "V-": VN,
-        "+IND": CH_D.IN_P,
-        "-IND": CH_D.IN_N,
+        "IND+": CH_D.IN_P,
+        "IND-": CH_D.IN_N,
         "OUTD": CH_D.OUT,
     },
     properties={

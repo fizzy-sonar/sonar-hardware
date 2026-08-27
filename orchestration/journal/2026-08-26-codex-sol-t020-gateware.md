@@ -121,3 +121,43 @@ real control-plane integration remain; T-013 must release TX waveform limits.
 - Rules honored: no commit/merge/push (sandbox git is read-only anyway;
   everything left uncommitted for the orchestrator), ticket stays in-progress
   on the Vivado-host gate (T-007), journal extended, STATUS updated.
+
+## Addendum — session 4 (port reconciliation + SRAM timing evidence)
+
+- **Port-name reconciliation (the flag from session 3, now closed).** Pinmap
+  stayed authoritative (the XDC names were right), so the RTL side moved:
+  `sys_clk_12mhz`->`sysclk`, `pdm_data`->`pdm_d`, `pdm_clk_buffer_oe`->
+  `pdm_clk_en`, `ft_data`->`ft_d`, `ft_clk`->`ft_clkout`. TX mapping was
+  already ratified in `orchestration/tx-limits.md`: `tx_en`=`tx_a` (EN/IN1),
+  `tx_ph`=`tx_b` (PH/IN2), `tx_pmode`=1 (IN1/IN2 PWM mode), `tx_nsleep`=
+  `tx_active`, `tx_nfault` (open-drain, R170 pull-up) mirrored on `led0_r`.
+  The leftover simulator-only scaffolding ports had NO pins anywhere in the
+  pinmap (no spares on the DIP), so instead of fabricating pins they became
+  documented internal tie-offs: 16-cycle power-on reset + btn[1] manual reset,
+  `mic_power_good`/`wake_request`=1, TX start/increments tied to idle (driver
+  held asleep via `tx_nsleep`), status on the RGB LED (led0_b=overflow,
+  led0_g=stopped), `ft_siwu_n` dropped (not pinned out). TX envelope now uses
+  the T-013 MA40S4S limits (amplitude 187/256) instead of the generic 128.
+- **New reproducible gate:** `gateware/sim/check_ports.py` parses the
+  `sonar_top` header and the XDC's active `get_ports` (commented DNP block
+  excluded) and asserts an exact bijection incl. per-bit bus coverage;
+  negative-tested both directions (rename one port -> FAIL exit 1 listing both
+  directions). Wired into `make test` as check 12. Result: 28 ports / 73 bits
+  exact.
+- **SRAM timing evidence (TODO(host) replaced).** The ISSI PDF is unreachable
+  from every sandbox (HTML only, no archive), so `gateware/sim/README.md` now
+  carries the per-phase analysis: write = SETUP/PULSE/HOLD, 1 clk (20.833 ns)
+  each, 62.5 ns/byte; read = address/OE# applied for exactly 1 clk before the
+  latch edge. Margins vs standard -8/-10 grade values: tWC 6.3-7.8x, tWP
+  2.6-3.5x, tSD 7.6x, tRC 6.3-7.8x, tAA 2.1-2.6x (binding corner), tOE
+  4.2-5.2x — all >= the 2x target. Session 3's "reads get 41.7 ns" comment was
+  off by 2x (that is the read cycle, not the access budget); RTL comments
+  corrected. Residual risk (FPGA I/O delay, board skew) belongs to the host
+  `set_output_delay` budgeting (~12.8 ns slack at the tAA corner); CP-C keeps
+  a one-line "confirm against ISSI PDF" checklist item in the ticket Log.
+- Verification: `make clean && make test` 12/12 PASS (Icarus 13.0; only the
+  three known benign `@*` warnings); `scripts/check_pinmap_vs_xdc.py` still
+  PASSes 44/44 (XDC untouched).
+- Rules honored: no commit/merge/push — all changes uncommitted on
+  agent/T-020-gateware for the orchestrator; ticket stays in-progress on the
+  Vivado-host + hardware-demo gates.

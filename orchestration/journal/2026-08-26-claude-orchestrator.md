@@ -72,3 +72,16 @@ manual; a reproducible check script lands under scripts/ with the fix.
 - State: all non-human-gated tickets complete. Remaining path is Joshua-gated:
   T-007 purchases/host → T-020 bitstream; CP-BM coupon order + bench → T-010 →
   T-014 → T-015 (cross-family review; use Claude budget) → CP-C → CP-D.
+
+## Addendum 3 — T-020 SRAM snapshot controller (late evening)
+
+codex/sol-t020 implemented the remaining agent-doable T-020 item: the 512 KiB
+on-module SRAM (IS61WV5128BLL-10BLI, dedicated bank-14 pins, no DIP collision —
+verified against the live master XDC at /tmp/cmod-a7-master.xdc and refman §3 at
+/tmp/cmod-refman.html) snapshot controller with a behavioral SRAM TB enforcing
+real timing. Orchestrator independently re-ran `make clean && make test`:
+11/11 PASS incl. full 512 KiB window (524,334 bytes bit-exact) and back-to-back
+captures. XDC gained the 30 SRAM pins + uart_rxd_out verbatim from the live
+master XDC. Merged (b1aafec + closeout 76c13eb). T-020 stays in-progress on:
+Vivado host (T-007), sonar_top<->XDC port-name reconciliation (flagged),
+ISSI timing constants live-PDF re-check, hardware demo.

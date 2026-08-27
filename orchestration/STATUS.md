@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by codex/sol-t011-fix — REVIEW-2026-08-26 findings B1/S1/S2/S9 repaired (Cmod power feed, XDC regen safety, rails.md strategy, FT_SIWU pull-up); uncommitted, orchestrator integrates._
+_Last updated: 2026-08-26 by claude/orchestrator — cross-family review (orchestration/review/REVIEW-2026-08-26.md) found 2 blockers + 11 should-fix; B1/S1/S2/S9/S10/S11/NIT4 repaired and merged; B2 TX duty now hard-bounded (13/13 TB); D013 proposed for TX transducer default._
 
 ## Now
 - **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5
@@ -115,7 +115,7 @@ _Last updated: 2026-08-26 by codex/sol-t011-fix — REVIEW-2026-08-26 findings B
 | T-006 kicad-cli check harness | **cheap** | **done**; baseline recorded |
 | T-009 Pico 2 snapshot firmware | **mid** | **done (host-verified)**; physical integration waits on pins/SDK/board |
 | T-021 host software | mid | **done**; physical FT232H/libusb still untested |
-| T-020 Vivado gateware | **top** | **in-progress**; `make test` PASS (12/12, Icarus 13.0) incl. SRAM snapshot fallback + the new `sonar_top`<->XDC port-bijection gate (28 ports/73 bits exact, TX mapped per tx-limits.md); bitstream + hardware demo wait on the Vivado host |
+| T-020 Vivado gateware | **top** | **in-progress**; `make test` PASS (13/13, Icarus 13.0) incl. the B2 per-half-cycle duty hard-bound regression; bitstream + hardware demo wait on the Vivado host |
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
 | T-016 mic coupon bake-off | mid | **review**; review findings S10/S11/NIT4 fixed 2026-08-26 (quantities reconciled 24 mics/MPN + 12 buffers; C1..C8 now 100 nF X7R 0603; ruff pinned 0.14.0 — host must run `uv lock` once); check_coupons.sh exit 0 re-verified; Joshua's CP-BM checklist in `coupons/mic-bakeoff/docs/order-package.md` |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
@@ -137,6 +137,16 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
 (credits first, then the 5× tier); the 5-hour cap alone is pacing, not a blocker.
 
 ## Blockers
+- **REVIEW-2026-08-26 follow-up (schematic, pre-CP-C):** the T-013 netlist
+  audit recorded TX_NSLEEP on J40.44 in `digital.kicad_sch`, but pinmap.md/XDC/
+  tx-limits.md agree on pio48/V8 (pio44 is ETH_RXD1, an input). Move the
+  digital-sheet TX_NSLEEP global label J40.44 -> J40.48 and fix the TX Drive
+  text box ("pio1/2/44/8" -> "pio1/2/48/8") before CP-C. Owner: repair ticket
+  or T-015. Found by codex/sol-t020 while fixing review finding S3.
+- **D013 proposed (needs Joshua, CP-B/CP-C):** v1 default TX = piezo horn
+  tweeter 20-32 kHz chirps; MA40S4S 40 kHz use gated on Joshua's datasheet
+  reading of whether 20 Vpp is a terminal or fundamental limit (terminal =>
+  reduced VM setpoint or series element). See decisions/D013, REVIEW S5.
 - Vivado synthesis (part of T-020) waits on the Vivado host purchase/decision (T-007
   item 7). The T-020 testbench layer is DONE (12/12) and now also gates the
   `sonar_top` <-> XDC port bijection (`gateware/sim/check_ports.py`, exact 28
@@ -161,6 +171,16 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/sol-t020 (session 5): REVIEW-2026-08-26 TX fixes —
+  B2 blocker (tx_nco_pwm free-running 46.875 kHz carrier replaced by
+  phase-derived duty gating; per-half-cycle duty hard-bounded by
+  amplitude/256 +/-1 clock; new tb_tx_duty_bound runs the reviewer's exact
+  config + amplitude sweep + chirp endpoints + ramp, 0 violations, old RTL
+  fails with 594; envelope re-derived in tx-limits.md), S3 (TX_NSLEEP
+  pio44->pio48 doc fix + schematic follow-up flagged), S4 (DRV8876 00=coast,
+  11=brake; CP-C truth-table item), S5 (terminal-excursion statement +
+  D013 proposed), NIT5 (ft_d driven continuously). `make test` 13/13 PASS.
+  Uncommitted on agent/T-020-gateware. Journal addendum 5.
 - 2026-08-26 — codex/sol-t011-fix: repaired REVIEW-2026-08-26 B1/S1/S2/S9 in
   scripts/gen_digital_sheet.py + rails.md (regenerated outputs; R420 0R VU feed,
   PWR_FLAG deleted, XDC read-modify-write, FT_SIWU pull-up, Cmod 5V allocation).

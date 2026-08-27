@@ -161,3 +161,44 @@ real control-plane integration remain; T-013 must release TX waveform limits.
 - Rules honored: no commit/merge/push — all changes uncommitted on
   agent/T-020-gateware for the orchestrator; ticket stays in-progress on the
   Vivado-host + hardware-demo gates.
+
+---
+
+## Addendum — session 5 (REVIEW-2026-08-26 fixes: B2, S3, S4, S5, NIT5)
+
+- **B2 (blocker) — real fix, not a bound tweak.** The reviewer's catch was
+  structural: a 46.875 kHz free-running PWM carrier chopping 40 kHz
+  half-cycles (12.5 us) cannot bound per-half-cycle duty — 15.7% of
+  half-cycles sat entirely inside the carrier on-window at ~100% duty while
+  the mean was exactly on target (averaged checks blind to it). Fix: deleted
+  the carrier. Duty is gated by the NCO phase itself
+  (`phase[PHASE_BITS-2 -: PWM_BITS] < amplitude`) — the pulse occupies exactly
+  amplitude/256 of every half-cycle's phase range, so the per-half-cycle
+  bound is hard (+/-1 clock per pulse edge) for any frequency or chirp rate.
+  Bonus: the tx-limits.md envelope formula (2VM/pi)(1-cos(pi*d)), which was
+  really the contiguous-pulse Fourier result all along, is now exact.
+- **Regression TB proves both directions.** `tb_tx_duty_bound.sv`: reviewer
+  config (55924/187/12 MHz/200k clocks = 1333 half-cycles) + amplitude
+  0..255 sweep + chirp endpoints (27962/44739) at 187/255 + 20->32 kHz ramp.
+  New RTL: 0/6536 half-cycles over bound. Old RTL (from git): 594 over bound
+  in the reviewer config alone. Wired into `make test` (now 13/13 PASS).
+- **S3:** tx-limits.md TX_NSLEEP pio44 -> pio48 (V8) per pinmap.md. While
+  checking, found the real discrepancy is one layer down: the T-013 netlist
+  audit has TX_NSLEEP on J40.44 in `digital.kicad_sch` (pio44 = ETH_RXD1!).
+  Schematic move to J40.48 + on-sheet text-box fix flagged in T-013 Log and
+  STATUS blockers (outside this review-fix scope; XDC/gateware already V8).
+- **S4:** DRV8876 idle text corrected — IN1/IN2=00 is COAST (Hi-Z), 11 is
+  brake/low-side. Burst off-intervals: resonant element floats, rings down
+  through its capacitance + bridge body diodes, terminal voltage unclamped.
+  IN1/IN2 truth-table confirm added to the CP-C list.
+- **S5:** tx-limits.md states plainly: chopping never bounds TERMINAL
+  excursion — J50 sees 24 Vpp transitions for ANY nonzero duty; the envelope
+  bounds only the fundamental. Wrote `decisions/D013` (proposed, needs_human
+  CP-B/CP-C): v1 default TX = piezo horn tweeter 20-32 kHz chirps; MA40S4S
+  40 kHz gated on Joshua's terminal-vs-fundamental 20 Vpp datasheet reading
+  (terminal => reduced VM setpoint or series element at R173/R174).
+- **NIT5:** sonar_top drives `ft_d` continuously (no tri-state idle) since
+  ft_oe_n is tied high; port changed inout -> output; ft_wr_n still gates.
+- Verification: `make clean && make test` 13/13 PASS; check_ports bijection
+  28 ports/73 bits exact. No commits — all on agent/T-020-gateware for the
+  orchestrator. T-020 stays in-progress (Vivado host + hardware demo).

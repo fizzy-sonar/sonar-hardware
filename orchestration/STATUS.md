@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-27 by codex/terra-t017 — T-017 session 2 (authenticated): registry swap done, parity exact, verdict strengthened; all uncommitted. Earlier 2026-08-27: T-017 Zener deep port done (GO-WITH-CONDITIONS for v2). Previously: 2026-08-26 codex/sol-t020 (session 6) — review S6/S7/S8/NIT3 gateware hardening landed uncommitted on agent/T-020-gateware (make test 17/17); TX_NSLEEP schematic follow-up resolved (sheet already J40.48; TX Drive text box fixed). Previously: claude/orchestrator — cross-family review (orchestration/review/REVIEW-2026-08-26.md) found 2 blockers + 11 should-fix; B1/S1/S2/S9/S10/S11/NIT4 repaired and merged; B2 TX duty now hard-bounded (13/13 TB); D013 proposed for TX transducer default._
+_Last updated: 2026-08-27 by codex/sol-t020 — resume audit confirmed the T-017 and T-020 work is integrated on `main`; `gateware` verification is freshly PASS (17/17), the coupon lock is current, and only Joshua's pre-existing `sonar.kicad_pro` edit is dirty. No Vivado executable or attached Cmod/FTDI/Pico is available on this ARM Mac, so the project remains human-gated._
 
 ## Now
 - **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5
@@ -8,7 +8,7 @@ _Last updated: 2026-08-27 by codex/terra-t017 — T-017 session 2 (authenticated
   repaired + re-verified), T-016 at review (CP-BM), T-020 simulator milestone
   done (bitstream waits on Vivado host). Remaining: Joshua's CP-B/CP-BM reviews,
   T-007 purchases/host choice, then T-010 (unblocked by CP-BM) → T-014 → T-015
-  (cross-family review) → CP-C. T-005 EDA spike: **done, NO-GO for v1** (host `pcb build` confirmed the boundary) — see `spikes/eda-zener/REPORT.md`. **T-017 deep port done 2026-08-27 (codex/terra-t017):** with network+host, Zener builds — 3 blocks (power_supply, rx_preamp_tile, tx_drive) + 3 ICs (AP63301/OPA4171/DRV8876), `pcb build` ✓ 67 components, netlist node-for-node parity vs KiCad, live BOM; importer still emits empty stubs. **Session 2 (authenticated, same day):** diode account live — BOM coverage survey 28/29 lines hit, 23/29 with symbol+footprint assets, all 10 key ICs fully covered; all 3 ICs swapped from hand-written to registry (LCSC) assets via the search→download→vendor flow (component API is search/download only; CSE quota exhausted, LCSC works); rebuild ✓ 67 components with ZERO net/node netlist deltas; BOM match improved to 79.2%. Verdict **GO-WITH-CONDITIONS for v2, strengthened** (account condition drops, multi-unit softens; toolchain-pin/importer/JLC-table remain); D008 stands. All uncommitted (no-commit session rule).
+  (cross-family review) → CP-C. T-005 EDA spike: **done, NO-GO for v1** (host `pcb build` confirmed the boundary) — see `spikes/eda-zener/REPORT.md`. **T-017 deep port done 2026-08-27 (codex/terra-t017):** with network+host, Zener builds — 3 blocks (power_supply, rx_preamp_tile, tx_drive) + 3 ICs (AP63301/OPA4171/DRV8876), `pcb build` ✓ 67 components, netlist node-for-node parity vs KiCad, live BOM; importer still emits empty stubs. **Session 2 (authenticated, same day):** diode account live — BOM coverage survey 28/29 lines hit, 23/29 with symbol+footprint assets, all 10 key ICs fully covered; all 3 ICs swapped from hand-written to registry (LCSC) assets via the search→download→vendor flow (component API is search/download only; CSE quota exhausted, LCSC works); rebuild ✓ 67 components with ZERO net/node netlist deltas; BOM match improved to 79.2%. Verdict **GO-WITH-CONDITIONS for v2, strengthened** (account condition drops, multi-unit softens; toolchain-pin/importer/JLC-table remain); D008 stands. Integrated on `main` through merge `1e2a012` and journal close-out `d33867a`.
 - Architecture locked (see PLAN.md v2): 24 PDM ultrasonic mics → Cmod A7-35T +
   FT232H USB streaming → Python DSP; Pico 2 snapshot v0; TX via DRV8876 + connector.
 - **T-021 done:** host reference pipeline now has strict SNP1/SNR1 parsers, buffered
@@ -63,8 +63,8 @@ _Last updated: 2026-08-27 by codex/terra-t017 — T-017 session 2 (authenticated
   {3,5,8,18,19,36,37,38,40,43,46,47,48} (T-008 was right; contract doc restored).
   All outputs regenerated; reproducible gate committed:
   `scripts/check_pinmap_vs_xdc.py` → PASS 44/44 vs the live XDC; ERC /digital/
-  section zero violations. **T-011 stays in-progress until orchestrator
-  re-verifies.**
+  section zero violations. The orchestrator re-verified the gate and closed
+  T-011 (`status: done`).
   **2026-08-26 review repair (codex/sol-t011-fix, REVIEW-2026-08-26 B1/S1/S9):**
   the Cmod VU feed's orphan `+5V` net + stale masking PWR_FLAG are gone -
   J40.24 now reaches the power tree's `5V` net through new R420 (0R 0603,
@@ -73,7 +73,7 @@ _Last updated: 2026-08-27 by codex/terra-t017 — T-017 session 2 (authenticated
   pull-up added on FT_SIWU. Netlist: 5V=15 nodes incl. U35.3 buck VIN + U61.3
   boost VIN + R420.2; 5V_CMOD={J40.24,R420.1}; `+5V` absent; ERC /digital/
   zero; pinmap gate PASS 44/44.
-- **UNCOMMITTED WORK WARNING:** T-011 repair changes are in the working tree,
+- **T-011/T-013 integration landed:** the committed repair includes the
   (TX_EN/TX_PH/TX_NSLEEP/TX_PMODE/TX_NFAULT) bridged on the top sheet to the
   digital sheet's global labels; DRV8876 fully wired (VM=+12V, charge pump,
   VREF=3.3V, ~1.95A trip, nFAULT pull-up); off-board transducer on J50 screw
@@ -117,7 +117,7 @@ _Last updated: 2026-08-27 by codex/terra-t017 — T-017 session 2 (authenticated
 | T-021 host software | mid | **done**; physical FT232H/libusb still untested |
 | T-020 Vivado gateware | **top** | **in-progress**; `make test` PASS (17/17, Icarus 13.0) incl. review S6/S7/S8 hardening (per-domain reset syncs, functional UNISIM-style models, no-clipped-edge clock TB); bitstream + hardware demo wait on the Vivado host |
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
-| T-016 mic coupon bake-off | mid | **review**; review findings S10/S11/NIT4 fixed 2026-08-26 (quantities reconciled 24 mics/MPN + 12 buffers; C1..C8 now 100 nF X7R 0603; ruff pinned 0.14.0 — host must run `uv lock` once); check_coupons.sh exit 0 re-verified; Joshua's CP-BM checklist in `coupons/mic-bakeoff/docs/order-package.md` |
+| T-016 mic coupon bake-off | mid | **review**; review findings S10/S11/NIT4 fixed 2026-08-26 (quantities reconciled 24 mics/MPN + 12 buffers; C1..C8 now 100 nF X7R 0603; ruff pinned 0.14.0 and lock refreshed); `uv lock --check --offline` PASS 2026-08-27; check_coupons.sh exit 0 re-verified; Joshua's CP-BM checklist in `coupons/mic-bakeoff/docs/order-package.md` |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
 | T-011 digital sheet | **top** | **done**; live-gate repair verified 44/44 vs live master XDC; `scripts/check_pinmap_vs_xdc.py` is the reproducible gate |
 | T-012 power tree | mid | **done**; rails table in `orchestration/rails.md`; CP-C reviews |
@@ -152,7 +152,8 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   reading of whether 20 Vpp is a terminal or fundamental limit (terminal =>
   reduced VM setpoint or series element). See decisions/D013, REVIEW S5.
 - Vivado synthesis (part of T-020) waits on the Vivado host purchase/decision (T-007
-  item 7). The T-020 testbench layer is DONE (12/12) and now also gates the
+  item 7). The T-020 testbench layer is DONE (17/17, freshly re-run 2026-08-27)
+  and also gates the
   `sonar_top` <-> XDC port bijection (`gateware/sim/check_ports.py`, exact 28
   ports/73 bits, TX_EN/TX_PH mapped per `orchestration/tx-limits.md`); the SRAM
   timing constants question is closed by the documented per-phase margin analysis
@@ -175,7 +176,17 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
-- 2026-08-27 — codex/terra-t017: T-017 done — Zener deep port builds on host (67 comps, netlist parity exact, BOM live-priced, voltage checks negative-tested); registry account-gated; importer still broken; verdict GO-WITH-CONDITIONS for v2. All uncommitted. Journal: 2026-08-27-codex-terra-t017.md.
+- 2026-08-27 — codex/sol-t020 resume audit: confirmed T-017 and T-020 are
+  integrated on `main`; re-ran `gateware` `make clean && make test` (17/17 PASS,
+  full 512 KiB snapshot bit-exact, RTL/XDC 28 ports/73 bits exact); confirmed the
+  T-016 lock with `uv lock --check --offline`. Local host remains ARM64 with no
+  Vivado executable or attached Cmod/FTDI/Pico. No design file changed; Joshua's
+  pre-existing `sonar-v1-pcb/sonar.kicad_pro` edit remains untouched.
+- 2026-08-27 — codex/terra-t017: T-017 done — Zener deep port builds on host
+  (67 comps, netlist parity exact, BOM live-priced, voltage checks
+  negative-tested); authenticated registry coverage and assets strengthened the
+  verdict to GO-WITH-CONDITIONS for v2; importer still broken. Later integrated
+  on `main` through `d33867a`. Journal: 2026-08-27-codex-terra-t017.md.
 - 2026-08-26 — codex/sol-t020 (session 5): REVIEW-2026-08-26 TX fixes —
   B2 blocker (tx_nco_pwm free-running 46.875 kHz carrier replaced by
   phase-derived duty gating; per-half-cycle duty hard-bounded by
@@ -228,7 +239,8 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   fixed — order quantities reconciled (24 mics/MPN, 12 clock buffers, one
   cross-checked table), C1..C8 changed to 100 nF X7R 0603 (C0G 0603 unbuyable),
   ruff pinned to 0.14.0 + format drift repaired; check_coupons.sh exit 0
-  re-verified. Host action: run `uv lock` once (sandbox was offline). See
+  re-verified. Host lock refresh later landed in `7b29747`; fresh
+  `uv lock --check --offline` PASS 2026-08-27. See
   journal 2026-08-26-codex-terra-t016-fix.md and the T-016 Log.
 - 2026-08-26 — codex/sol-t020 (session 3): SRAM snapshot fallback done —
   `sram_snapshot.sv` + ISSI timing-checking model + TBs (back-to-back, timeout,

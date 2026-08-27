@@ -9,7 +9,7 @@ assignee: codex/sol-t020
 depends_on: []
 needs_human: false
 created: 2026-08-25
-updated: 2026-08-26
+updated: 2026-08-27
 ---
 ## Goal
 Vivado project for the Cmod A7-35T in `gateware/`:
@@ -322,3 +322,20 @@ the Vivado host; UART snapshot mode demonstrated in sim.
     remaining = Vivado host (build, UNISIM/xsim equivalence, placed
     timing/CDC, SRAM set_output_delay budgeting), hardware demo, CP-C
     items, control plane.
+- 2026-08-27 codex/sol-t020 resume audit: confirmed all six prior gateware
+  sessions are integrated on `main`, then re-ran the ticket verification from
+  current `main` with Icarus Verilog 13.0:
+
+      cd gateware && make clean && make test
+      PASS 17/17
+      PASS SRAM snapshot full 512 KiB window bytes=524334 bit-exact
+      PASS sonar_top <-> XDC port bijection: 28 ports / 73 bits exact
+
+  The four sampler runs again produced checksum `cff870`; the duty-bound test
+  checked 6,536 half-cycles with zero over bound. Only the three documented
+  benign `uart_snapshot.sv` array-sensitivity warnings appeared. Live blocker
+  audit: this host is ARM64, `vivado` is absent, and macOS USB inventory shows no
+  Cmod, Digilent, FTDI/FT232, Raspberry, or Pico device. Therefore the remaining
+  DoD is unchanged: x86 Vivado batch build plus UNISIM/timing/CDC/BRAM/SRAM-I/O
+  proofs, then physical FT232H and UART snapshot demos. Ticket stays
+  `in-progress`; no RTL, constraint, or KiCad file changed.

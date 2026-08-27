@@ -103,7 +103,7 @@ _Last updated: 2026-08-26 by claude/orchestrator — T-011 live-gate repair veri
 | T-006 kicad-cli check harness | **cheap** | **done**; baseline recorded |
 | T-009 Pico 2 snapshot firmware | **mid** | **done (host-verified)**; physical integration waits on pins/SDK/board |
 | T-021 host software | mid | **done**; physical FT232H/libusb still untested |
-| T-020 Vivado gateware | **top** | **in-progress**; `make test` PASS (11/11, Icarus 13.0) incl. the 512 KiB SRAM snapshot fallback (full-window bit-exact); real XDC landed + SRAM pins appended; bitstream waits on the Vivado host + a `sonar_top` port-name reconciliation pass |
+| T-020 Vivado gateware | **top** | **in-progress**; `make test` PASS (12/12, Icarus 13.0) incl. SRAM snapshot fallback + the new `sonar_top`<->XDC port-bijection gate (28 ports/73 bits exact, TX mapped per tx-limits.md); bitstream + hardware demo wait on the Vivado host |
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
 | T-016 mic coupon bake-off | mid | **review**; agent package delivered + verified; Joshua's CP-BM checklist in `coupons/mic-bakeoff/docs/order-package.md` |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
@@ -126,14 +126,13 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
 
 ## Blockers
 - Vivado synthesis (part of T-020) waits on the Vivado host purchase/decision (T-007
-  item 7). The T-020 testbench layer is DONE and now includes the 512 KiB
-  external-SRAM snapshot fallback (D012) with a timing-enforcing IS61WV5128BLL model:
-  dual-rate sampler/packer/FIFO/FT245/UART-snapshot/SRAM-snapshot/TX-chirp sims all
-  pass (11/11). Remaining T-020 DoD: batch build + utilization/timing/CDC +
-  UNISIM/BRAM proofs + SRAM set_output_delay budgeting on the host; a deliberate
-  `sonar_top` port-name reconciliation vs the T-011 XDC (pre-existing mismatch,
-  incl. TX_EN/TX_PH mapping); live ISSI datasheet re-check of the model's timing
-  constants; hardware FT232H/UART demo.
+  item 7). The T-020 testbench layer is DONE (12/12) and now also gates the
+  `sonar_top` <-> XDC port bijection (`gateware/sim/check_ports.py`, exact 28
+  ports/73 bits, TX_EN/TX_PH mapped per `orchestration/tx-limits.md`); the SRAM
+  timing constants question is closed by the documented per-phase margin analysis
+  in `gateware/sim/README.md` (>=2.1x worst case). Remaining T-020 DoD: batch build
+  + utilization/timing/CDC + UNISIM/BRAM proofs + SRAM set_output_delay budgeting
+  on the host; hardware FT232H/UART demo; CP-C confirm vs the ISSI PDF.
 - T-010, T-014's microphone line, and CP-C are blocked on T-016. After its agent
   package reaches `review`, the exact remaining human gate is: Joshua approves and
   places/pays for coupons, provides/operates the calibrated bench capture, and
@@ -150,6 +149,14 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/sol-t020 (session 4): finished the agent-doable T-020
+  remainder — sonar_top/XDC port reconciliation (bijection gated by new
+  gateware/sim/check_ports.py as make-test check 12; TX per tx-limits.md;
+  unpinnable scaffolding tied off: POR + btn[1] reset, TX idle/asleep) and the
+  SRAM timing-margin analysis (gateware/sim/README.md, worst 2.1x; CP-C
+  confirm-vs-ISSI-PDF line in ticket Log). `make test` 12/12 PASS. All
+  uncommitted on agent/T-020-gateware. Ticket stays in-progress (Vivado host +
+  hardware demo gates). Journal: 2026-08-26-codex-sol-t020-gateware.md addendum 4.
 - 2026-08-26 — codex/terra-t005: T-005 EDA spike (diodeinc/pcb Zener) → NO-GO for v1;
   report `spikes/eda-zener/REPORT.md`, hand port + raw importer outputs under
   `spikes/eda-zener/`; ticket at review; sandbox blocked git — ALL changes

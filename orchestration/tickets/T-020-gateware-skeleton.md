@@ -172,3 +172,51 @@ the Vivado host; UART snapshot mode demonstrated in sim.
        unconstrained deliberately).
     Sandbox unchanged: no git writes; all work left uncommitted for the
     orchestrator.
+- 2026-08-26 codex/sol-t020 (session 4): completed the two remaining
+  agent-doable items.
+  1. PORT-NAME RECONCILIATION (done): `sonar_top`'s port list is now an exact
+     bijection with the active `get_ports` of the real XDC (28 ports / 73
+     bits; the commented DNP RMII block excluded). Pinmap stayed authoritative
+     (XDC names were already correct) so the RTL side was fixed: renames
+     `sys_clk_12mhz`->`sysclk`, `pdm_data`->`pdm_d`, `pdm_clk_buffer_oe`->
+     `pdm_clk_en`, `ft_data`->`ft_d`, `ft_clk`->`ft_clkout`. TX_EN/TX_PH
+     mapping per `orchestration/tx-limits.md` (authoritative, T-013):
+     `tx_en`=`tx_a` (EN/IN1, positive half-cycle), `tx_ph`=`tx_b` (PH/IN2,
+     negative half-cycle), `tx_pmode`=1 (IN1/IN2 PWM interface mode; CP-C
+     datasheet verify item), `tx_nsleep`=`tx_active`, `tx_nfault` mirrored on
+     `led0_r`. The simulator-only scaffolding ports without pins (reset,
+     mic_power_good, wake_request, tx_start/increments/amplitude/burst,
+     capture status outs, ft_siwu_n) were replaced by documented internal
+     tie-offs: 16-cycle power-on reset + btn[1] manual reset, control plane
+     TODO constants (TX permanently idle, driver asleep), status on the
+     on-module RGB LED (led0_b=overflow, led0_g=stopped). New gate:
+     `gateware/sim/check_ports.py` (negative-tested both directions) wired
+     into `make test` as check 12.
+  2. SRAM TIMING EVIDENCE (done): the TODO(host) constants question is
+     replaced by a per-phase timing-margin analysis in `gateware/sim/README.md`
+     (cycles + ns per phase at the 48 MHz snapshot clock vs standard -8/-10
+     grade tRC/tWC/tAA/tWP/tOE/tSD/tHD; worst margin 2.1x on tAA at a -10
+     grade, >= 2.6x vs the on-module -10BLI/Digilent 8 ns rating). Also
+     corrected an off-by-2x comment: reads budget one full clock (20.833 ns)
+     of address/OE# access, not 41.7 ns (41.7/62.5 ns is the cycle time).
+     The model still enforces tWC/tPWE/tSD in sim.
+     **CP-C checklist: confirm the model's SRAM timing constants against the
+     ISSI IS61WV5128BLL datasheet PDF.**
+  - Verification: `cd gateware && make clean && make test` 12/12 PASS
+    (Icarus 13.0), including
+    `PASS sonar_top <-> XDC port bijection: 28 ports / 73 bits exact (active
+    get_ports only, DNP block excluded)`; only the three known benign Icarus
+    `@*` warnings in `uart_snapshot.sv`. `scripts/check_pinmap_vs_xdc.py`
+    still PASSes 44/44 (XDC untouched).
+  - **Ticket stays in-progress (human gates remain), exactly:**
+    1. Vivado host (T-007 item 7): batch build, utilization/timing/CDC,
+       UNISIM IDDR polarity + BRAM inference proofs, SRAM set_output_delay
+       board-skew budgeting (~12.8 ns slack at the binding tAA corner).
+    2. Hardware demo: FT232H streaming + btn0-triggered SRAM snapshot over
+       the Cmod's own USB-UART.
+    3. CP-C items: confirm SRAM constants vs ISSI PDF; PMODE polarity
+       (tx-limits.md); T-013-released TX limits now wired as the MA40S4S
+       envelope (amplitude 187/256).
+    4. Future control plane to un-tie the internal TX/wake scaffolding.
+  - Rules honored: no commit/merge/push; all changes uncommitted on
+    agent/T-020-gateware for the orchestrator.

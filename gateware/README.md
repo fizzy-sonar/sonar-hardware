@@ -40,9 +40,13 @@ The suite checks:
   against a timing-enforcing IS61WV5128BLL model, plus one full 512 KiB window
   (174,762 frames = 524,286 payload bytes) proven bit-exact;
 - exact 1.536/3.072/4.8 MHz divider arithmetic and the 50 ms standard-mode /
-  clock-off / 10 ms ultrasonic startup sequence; and
+  clock-off / 10 ms ultrasonic startup sequence;
 - TX reset/idle safety, rejected/crossed limit violations, complementary drive,
-  and a bounded fixed-point NCO/PWM chirp ramp.
+  and a bounded fixed-point NCO/PWM chirp ramp; and
+- an exact `sonar_top` <-> XDC port bijection (`sim/check_ports.py`): every
+  active `get_ports` name in `constraints/sonar_cmod_a7.xdc` matches a real
+  port (bit-exact on buses), and every top-level port is constrained; the
+  commented DNP RMII block is excluded.
 
 The final test also elaborates the complete `sonar_top` and each `XILINX` RTL
 branch against compile-only 7-series primitive stubs. Those stubs catch portable
@@ -99,20 +103,26 @@ frames actually written.
 
 This is a simulator milestone, not a bitstream or hardware demonstration:
 
-- The real XDC (`constraints/sonar_cmod_a7.xdc`) now exists (T-011, live
-  verified) and carries the verbatim Digilent SRAM/UART pin section; however
-  `sonar_top`'s pre-existing port names (`sys_clk_12mhz`, `pdm_data`, `ft_data`,
-  `ft_clk`, `tx_a`/`tx_b` vs the pinmap's `sysclk`/`pdm_d`/`ft_d`/`ft_clkout`/
-  `tx_en`/`tx_ph`/...) still need a deliberate reconciliation pass, including a
-  reviewed TX_EN/TX_PH drive mapping, before the bitstream build can bind.
-  The new SRAM/UART/btn/led ports already match the XDC names.
+- The real XDC (`constraints/sonar_cmod_a7.xdc`, T-011 live-verified + the
+  verbatim Digilent SRAM/UART MANUAL APPEND section) and `sonar_top` are now
+  reconciled: the port list is an exact bijection with the active `get_ports`
+  (28 ports / 73 bits; renamed to the pinmap net names, TX mapped per
+  `orchestration/tx-limits.md` — `tx_en`=`tx_a`/IN1, `tx_ph`=`tx_b`/IN2,
+  `tx_pmode`=1 IN1/IN2 mode, `tx_nsleep`=`tx_active`, `tx_nfault`->`led0_r`),
+  gated by `sim/check_ports.py` in `make test`. The old simulator-only
+  scaffolding ports (reset/mic_power_good/wake_request/tx_start/.../
+  ft_siwu_n) had no pins in the pinmap and were replaced by documented
+  internal tie-offs (power-on reset + btn[1] manual reset; TX permanently
+  idle until a control plane exists).
 - The Vivado host from T-007 is not purchased/selected, so the MMCM/derived-clock
   scaffold (including the new 48 MHz SRAM clock), Xilinx IDDR polarity, BRAM
   inference/utilization, FT245 I/O timing, SRAM set_output_delay budgeting, CDC
   reports, setup/hold constraints on both PDM edges, timing closure, and
   bitstream generation are unverified. The ISSI timing constants cited in
-  `rtl/sram_snapshot.sv` and enforced in the model should be re-checked against
-  the live ISSI PDF on that host (the offline sandbox cannot refetch it).
+  `rtl/sram_snapshot.sv` and enforced in the model are the standard -8/-10
+  grade values; `sim/README.md` carries the per-phase timing-margin analysis
+  (>= 2.1x worst case) and the residual "confirm against ISSI PDF" item is a
+  CP-C checklist line in the ticket Log.
 - `uart_snapshot.sv` remains as the bounded inferred-RAM snapshot proof;
   `sram_snapshot.sv` is the hardware window path. The UART snapshot has not been
   demonstrated on hardware (needs the bitstream + a Cmod).

@@ -13,8 +13,9 @@
 //   tRC  read cycle time             >= 8 ns
 //   tAA  address access time         <= 8 ns (modeled as output delay)
 //   tDOE OE# access time             <= 5 ns (covered by the tAA model delay)
-// TODO(host): re-verify these constants against the live ISSI PDF on the
-// Vivado host; the offline sandbox cannot refetch it.
+// The controller's per-phase margins against these values are analyzed in
+// sim/README.md (worst case 2.6x at the -10 ns grade). CP-C checklist:
+// confirm against the ISSI PDF (ticket T-020 Log).
 module is61wv5128bll_model #(
     parameter integer T_AA_NS  = 8,
     parameter integer T_WC_NS  = 8,

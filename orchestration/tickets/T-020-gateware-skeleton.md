@@ -120,3 +120,55 @@ the Vivado host; UART snapshot mode demonstrated in sim.
   `t020-gateware-commits.bundle` at the worktree root. Land them with:
   `git fetch /private/tmp/sonar-t020/t020-gateware-commits.bundle \
     agent/T-020-gateware:agent/T-020-gateware` from the main checkout.
+- 2026-08-26 codex/sol-t020 (session 3): implemented the 512 KiB on-module
+  SRAM snapshot fallback (D012 "UART snapshot via the Cmod's own USB"), the
+  remaining agent-doable item from the session-2 list.
+  - `rtl/sram_snapshot.sv`: start-triggered capture streams the accepted-frame
+    tap (new `tap_frame_*` outputs on `pdm_stream_core`) through a 16x32
+    Gray-pointer CDC FIFO into the IS61WV5128BLL-10BLI, then drains over
+    `uart_tx` with the exact 48-byte SNP1 v1 header (counts/CRCs computed from
+    the completed capture, so timeout/overrun truncation is described honestly;
+    capture IDs increment per capture). One byte per three 48 MHz clocks
+    (16 MB/s > 14.4 MB/s ICS worst case) with SETUP/PULSE/HOLD write
+    microcycles: >= 2.6x margin on the cited ISSI -8 ns grade parameters
+    (tWC 8 / tPWE 6 / tSD 5.5 / tHD 0 ns; tAA/tDOE 8/5 ns reads vs 41.7 ns).
+  - `sim/is61wv5128bll_model.sv`: behavioral 512Kx8 model enforcing tWC/tPWE/
+    tSD/address-setup/bus-driven checks and modeling tAA=8 ns read delay.
+    NOTE: sandbox has no network; the cited ISSI numbers are the standard
+    -8/-10 grade datasheet values and must be re-verified against the live PDF
+    on the Vivado host (marked TODO(host) in both files).
+  - `sim/tb_sram_snapshot.sv`: (a) two back-to-back 16-frame captures plus a
+    stream-stopped timeout (zero-frame) capture, each byte- and CRC-exact,
+    capture IDs 5/6/7; (b) one full 512 KiB window: 174,762 frames, 524,334
+    bytes drained and checked bit-exact (pattern + both CRC-32s).
+  - Integration: `pdm_clock_7series` gains a 48 MHz MMCM CLKOUT2 (/16) +
+    BUFG for the SRAM/UART domain; `sonar_top` instantiates `sram_snapshot`
+    triggered by `btn[0]`, status on `led[0]`/`led[1]`, UART on
+    `uart_rxd_out` (J18). New ports use the master-XDC names.
+  - `constraints/sonar_cmod_a7.xdc`: appended the 30 SRAM pins
+    (MemAdr[0..18], MemDB[0..7], RamCEn/RamOEn/RamWEn) copied EXACTLY from the
+    live master XDC plus `uart_rxd_out` J18; all are dedicated on-module
+    bank-14 nets with zero overlap against the 44 DIP pins (verified; the
+    appended section is marked MANUAL APPEND so XDC regeneration keeps it).
+    `scripts/check_pinmap_vs_xdc.py` still PASSes 44/44.
+  - `cd gateware && make clean && make test`: **11/11 PASS** (Icarus 13.0);
+    only the three known benign Icarus `@*` warnings in `uart_snapshot.sv`.
+    Real output:
+
+        PASS SRAM snapshot SNP1 round-trip: two back-to-back 16-frame captures + timeout-empty header, CRCs verified
+        PASS SRAM snapshot full 512 KiB window bytes=524334 bit-exact
+
+  - **Ticket stays in-progress (human gates).** Remaining, exactly:
+    1. Vivado host (T-007 item 7): batch build, utilization/timing/CDC,
+       UNISIM IDDR polarity + BRAM inference proofs, SRAM set_output_delay
+       budgeting, live ISSI datasheet re-check of the model constants.
+    2. `sonar_top` port-name reconciliation vs the pinmap XDC (pre-existing:
+       `sys_clk_12mhz`/`pdm_data`/`ft_data`/`ft_clk`/`tx_a`/`tx_b` vs
+       `sysclk`/`pdm_d`/`ft_d`/`ft_clkout`/`tx_en`/`tx_ph`), including a
+       reviewed TX_EN/TX_PH mapping, before the bitstream can bind.
+    3. Hardware demo: FT232H streaming + btn0-triggered SRAM snapshot over
+       the Cmod's own USB-UART.
+    4. T-013-released TX limits; future control plane (uart_txd_in J17 left
+       unconstrained deliberately).
+    Sandbox unchanged: no git writes; all work left uncommitted for the
+    orchestrator.

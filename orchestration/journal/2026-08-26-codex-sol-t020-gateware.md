@@ -80,3 +80,44 @@ real control-plane integration remain; T-013 must release TX waveform limits.
 - T-020 stays `in-progress`: Vivado host (T-007 item 7) and T-011's pin map /
   real XDC remain the gates, plus UNISIM/BRAM proofs and hardware demos. See
   the ticket Log for the exact remaining DoD items.
+
+## Addendum — session 3 (SRAM snapshot fallback, the last agent-doable item)
+
+- Built the D012 day-one fallback end to end in simulation:
+  `rtl/sram_snapshot.sv` captures the accepted-frame tap of
+  `pdm_stream_core` (new `tap_frame_data`/`tap_frame_valid` outputs) through a
+  16x32 async FIFO into the Cmod's IS61WV5128BLL-10BLI, then drains the window
+  over `uart_tx` with byte-exact SNP1 v1 framing (48-byte header, payload CRC,
+  header CRC; counts computed from the completed capture so timeout/overrun
+  truncation is honestly described; IDs increment per capture).
+- Clocking: new 48 MHz MMCM CLKOUT2 (/16 from the 768 MHz VCO) + BUFG in
+  `pdm_clock_7series` (`sram_clk`); one byte per three clocks = 16 MB/s, above
+  the 14.4 MB/s ICS worst case, so the CDC FIFO never fills in steady state.
+  Write microcycle SETUP/PULSE/HOLD (20.833 ns each) gives >= 2.6x margin on
+  every cited ISSI -8 ns grade parameter (tWC/tPWE/tSD/tHD; reads get 41.7 ns
+  vs tAA 8 ns). `sim/is61wv5128bll_model.sv` enforces tWC/tPWE/tSD and models
+  tAA. **Caveat:** no network in the sandbox — the cited ISSI constants are
+  standard -8/-10 grade values, marked TODO(host) for re-verification against
+  the live PDF on the Vivado host.
+- `sim/tb_sram_snapshot.sv` proves: two back-to-back 16-frame captures + a
+  stream-stopped timeout (zero-frame) capture, IDs 5/6/7, all byte- and
+  CRC-exact; and one full 512 KiB window — 174,762 frames, 524,334 bytes
+  drained bit-exact (pattern + both CRCs) in ~47 s of Icarus wall time.
+- `sonar_top` integrates it behind `btn[0]` (snapshot trigger), `led[0]` busy /
+  `led[1]` error, drain on `uart_rxd_out` (J18, the FT2232HQ bridge). New
+  ports use master-XDC names (MemAdr/MemDB/RamCEn/RamOEn/RamWEn).
+- XDC: appended the 30 SRAM pins + `uart_rxd_out` copied EXACTLY from the live
+  master XDC (`/tmp/cmod-a7-master.xdc`), marked MANUAL APPEND so regeneration
+  from `scripts/gen_digital_sheet.py` preserves it; zero overlap with the 44
+  DIP pins (all SRAM/UART pins are dedicated bank-14 on-module nets);
+  `scripts/check_pinmap_vs_xdc.py` still PASSes 44/44.
+- `cd gateware && make clean && make test`: 11/11 PASS (9 previous + 2 new);
+  only the three known benign Icarus `@*` warnings in `uart_snapshot.sv`.
+- Found and flagged (not fixed — pre-existing, needs a reviewed pass):
+  `sonar_top`'s legacy port names don't match the T-011 XDC (`sys_clk_12mhz`
+  vs `sysclk`, `pdm_data` vs `pdm_d`, `ft_data`/`ft_clk` vs `ft_d`/`ft_clkout`,
+  `tx_a`/`tx_b` vs the TX_EN/TX_PH DRV8876 interface). The bitstream build
+  cannot bind until that reconciliation happens; recorded in the ticket Log.
+- Rules honored: no commit/merge/push (sandbox git is read-only anyway;
+  everything left uncommitted for the orchestrator), ticket stays in-progress
+  on the Vivado-host gate (T-007), journal extended, STATUS updated.

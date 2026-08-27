@@ -16,6 +16,11 @@ module pdm_stream_core #(
     output reg         overflow_sticky,
     output reg         capture_stopped,
 
+    // Accepted-frame tap for the SRAM snapshot fallback (sram_snapshot). These
+    // are pdm_clk_fb-domain; the snapshot controller crosses them over itself.
+    output wire [23:0] tap_frame_data,
+    output wire        tap_frame_valid,
+
     input  wire        ft_clk,
     input  wire        ft_reset,
     input  wire        ft_txe_n,
@@ -42,6 +47,9 @@ module pdm_stream_core #(
     reg ft_capture_sync_d;
     reg accepting;
     reg [31:0] next_capture_id;
+
+    assign tap_frame_data  = sampled_frame;
+    assign tap_frame_valid = accepting && sampled_valid;
 
     wire pdm_capture_active = pdm_capture_sync;
     wire pdm_capture_start = pdm_capture_sync && !pdm_capture_sync_d;

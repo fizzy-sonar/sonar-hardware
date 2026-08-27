@@ -12,7 +12,10 @@ module pdm_clock_7series #(
     input  wire buffer_oe,
     input  wire select_ultrasonic,
     output wire pdm_clk_src,
-    output wire locked
+    output wire locked,
+    // 48 MHz (768 MHz VCO / 16) for the SRAM snapshot controller and its UART;
+    // one byte per three clocks = 16 MB/s, above the 14.4 MB/s ICS worst case.
+    output wire sram_clk
 );
     localparam integer ULTRA_DIVIDE =
         PDM_CLOCK_HZ == 3072000 ? 125 :
@@ -21,6 +24,7 @@ module pdm_clock_7series #(
     wire mmcm_feedback_buf;
     wire standard_2x_unbuf;
     wire ultrasonic_2x_unbuf;
+    wire sram_clk_unbuf;
     wire standard_2x;
     wire ultrasonic_2x;
     reg [1:0] standard_divider;
@@ -42,7 +46,8 @@ module pdm_clock_7series #(
         .DIVCLK_DIVIDE(1),
         .CLKFBOUT_MULT_F(64.0),       // 12 MHz * 64 = 768 MHz VCO
         .CLKOUT0_DIVIDE_F(125.0),     // 6.144 MHz, then /4 standard
-        .CLKOUT1_DIVIDE(ULTRA_DIVIDE) // 6.144 or 9.6 MHz, then /2
+        .CLKOUT1_DIVIDE(ULTRA_DIVIDE), // 6.144 or 9.6 MHz, then /2
+        .CLKOUT2_DIVIDE(16)            // 48 MHz SRAM snapshot/UART clock
     ) mmcm_i (
         .CLKIN1(clk_12mhz),
         .CLKFBIN(mmcm_feedback_buf),
@@ -51,12 +56,14 @@ module pdm_clock_7series #(
         .CLKFBOUT(mmcm_feedback),
         .CLKOUT0(standard_2x_unbuf),
         .CLKOUT1(ultrasonic_2x_unbuf),
+        .CLKOUT2(sram_clk_unbuf),
         .LOCKED(locked)
     );
 
     BUFG feedback_buf_i (.I(mmcm_feedback), .O(mmcm_feedback_buf));
     BUFG standard_2x_buf_i (.I(standard_2x_unbuf), .O(standard_2x));
     BUFG ultrasonic_2x_buf_i (.I(ultrasonic_2x_unbuf), .O(ultrasonic_2x));
+    BUFG sram_buf_i (.I(sram_clk_unbuf), .O(sram_clk));
 
     always @(posedge standard_2x) begin
         if (reset || !locked) standard_divider <= 2'd0;

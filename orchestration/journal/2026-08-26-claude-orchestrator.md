@@ -123,3 +123,13 @@ GO-WITH-CONDITIONS for v2 authoring (registry is account-gated so ICs were
 hand-written; KiCad importer still yields empty stubs — adoption = re-authoring;
 multi-unit symbols need a workaround). D008 stands for v1. Ticket done; 12
 papercuts + evidence in spikes/eda-zener/REPORT.md "Deep port (T-017)".
+
+## Addendum 7 — T-017 session 2 (2026-08-27): registry coverage with Joshua's login
+
+Joshua created a diode.computer account (pcb auth login). Authenticated survey:
+28/29 v1 BOM lines hit in the component API; 23/29 have symbol+footprint assets,
+including all 10 key ICs/mics (SPH0641LU4H-1 with full Syntiant assets). The three
+hand-written deep-port modules were swapped to vendored registry assets; pcb build
+still passes (67 components) with EXACT netlist parity (0 node-line diff). Remaining
+conditions for a v2 Zener adoption: toolchain pinning, no working KiCad importer,
+JLC house-part table. D008 unchanged for v1. Coverage data: deep-port/coverage/.

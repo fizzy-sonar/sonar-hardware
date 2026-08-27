@@ -22,11 +22,13 @@
 // tRC (read cycle) >= 8 ns, tAA (address access) <= 8 ns, tDOE (OE# access)
 // <= 5 ns. The three-phase write below (SETUP/PULSE/HOLD, 20.833 ns each at
 // 48 MHz) gives >= 2.6x margin on every write minimum plus a full-clock
-// address/data hold after WE# rises; reads allow 41.7 ns against the 8 ns
-// access. sim/is61wv5128bll_model.sv enforces these minimums in simulation.
-// TODO(host): re-verify the cited numbers against the live ISSI PDF on the
-// Vivado host (the offline sandbox cannot refetch it) and let Vivado check
-// board-level setup/hold with set_output_delay before hardware bring-up.
+// address/data hold after WE# rises; reads budget one full clock (20.833 ns)
+// of address/OE# access against the 8 ns tAA. sim/README.md carries the full
+// per-phase timing-margin analysis (worst case 2.6x on tWP/tAA at the -10
+// grade); sim/is61wv5128bll_model.sv enforces the write minimums in
+// simulation. Remaining host gates: CP-C "confirm against ISSI PDF" checklist
+// item (ticket Log) and Vivado board-level set_output_delay setup/hold
+// budgeting before hardware bring-up.
 module sram_snapshot #(
     parameter integer PDM_CLOCK_HZ = 3072000,
     // floor(512 KiB / 3-byte frames): uses bytes 0..524285 of the window.
@@ -484,7 +486,8 @@ module sram_snapshot #(
                         data_drive <= 1'b0;
                         rphase     <= 1'b1;
                     end else begin
-                        // 41.7 ns of address/OE# access against the 8 ns tAA.
+                        // One full clock (20.833 ns) of address/OE# access
+                        // against the 8 ns tAA / 5 ns tDOE (2.6x margin).
                         read_latch <= sram_data;
                         sram_ce_n  <= 1'b1;
                         sram_oe_n  <= 1'b1;

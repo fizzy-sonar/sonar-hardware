@@ -1,4 +1,5 @@
 IVERILOG ?= iverilog
+PYTHON ?= python3
 VVP ?= vvp
 BUILD_DIR := build
 RTL := rtl/pdm_ddr_sampler.sv \
@@ -61,6 +62,7 @@ test: $(BUILD_DIR)
 		$(RTL) rtl/pdm_clock_7series.sv rtl/sonar_top.sv \
 		sim/xilinx_7series_stubs.sv
 	@echo "PASS XILINX primitive branches and sonar_top elaborate with compile-only stubs"
+	$(PYTHON) sim/check_ports.py
 
 $(BUILD_DIR):
 	mkdir -p $@

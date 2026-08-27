@@ -92,3 +92,26 @@ Real `pcb build` output pasted in the ticket Log; BOM/netlist artifacts exist.
   as designed; reverted)
 
   No git commits made (rule); ALL changes uncommitted in the worktree.
+- 2026-08-27 codex/terra-t017 (session 2, AUTHENTICATED — Joshua's
+  diode.computer account live): registry swap + BOM coverage survey done.
+  (1) Coverage: 29 real v1 BOM lines probed via `pcb component search` —
+  28/29 hit (only PSPHAQ127-270M boost inductor missed), 23/29 with
+  symbol+footprint assets; ALL 10 key ICs/mics (AP63301, TPS55340,
+  CDCLVC1112, LAN8720A, ICS-41352/41350, DRV8876, FT232HL, OPA4171AIDR,
+  SPH0641LU4H-1) have full assets. Table in REPORT.md session-2 section;
+  raw JSON in deep-port/coverage/results.json. (2) Swap: component API is
+  search+download only (no in-language Part(mpn=) auto-resolution — verified
+  in diodeinc/pcb source); flow = download signed S3 asset URLs (LCSC
+  backend; CSE quota exhausted server-side) -> vendor files -> Component(
+  symbol=Symbol(library=...), footprint=File(...)). All 3 hand-written
+  components swapped to registry assets. `pcb build` ✓ 67 components;
+  netlist parity: git diff of layout/default.net vs session-1 (KiCad-verified)
+  netlist shows ZERO net/node line changes — only value/footprint/libsource
+  strings + pin-name labels (GND-vs-PGND pin 4 AP63301; INA--style OPA4171;
+  DRV8876 identical). pcb bom improved to 79.2% unique matched
+  (OPA4171AIDR/C46269). Footprint geometry deltas (LCSC easyeda2kicad vs
+  KiCad libs) are layout-only and documented per-component. (3) REPORT.md
+  session-2 section added; verdict: GO-WITH-CONDITIONS strengthened —
+  condition (a) account decision DROPS, (c) multi-unit softens (registry
+  symbols have unique per-unit pin names); standing: toolchain pin, no
+  importer, JLC house table. No commits (rule); all changes uncommitted.

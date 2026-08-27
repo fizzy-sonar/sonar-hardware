@@ -30,17 +30,28 @@
     "matcher": "assign_house_capacitor",
     "availability": {
       "us": {
-        "price": 0.18,
-        "stock": 223144,
-        "alt_stock": 9029096
+        "price": 0.19,
+        "stock": 714293,
+        "alt_stock": 8314803
       },
       "global": {
         "price": 0.0842,
         "stock": 126577,
         "alt_stock": 1499
       },
-      "selected_offer_id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
+      "selected_offer_id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
       "offers": [
+        {
+          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 714293,
+          "price": 0.19,
+          "part_id": "490-10673-1-ND",
+          "mpn": "GCM188R71E105KA64D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
         {
           "id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
           "region": "US",
@@ -64,34 +75,12 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
-          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 714293,
-          "price": 0.19,
-          "part_id": "490-10673-1-ND",
-          "mpn": "GCM188R71E105KA64D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
           "id": "3344c442-c033-418d-adb0-8efcfd818614",
           "region": "US",
           "distributor": "Mouser",
           "stock": 241756,
           "price": 0.18,
           "part_id": "81-GCM188R71E105KA4J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
-        },
-        {
-          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
-          "region": "US",
-          "distributor": "Arrow Electronics",
-          "stock": 89703,
-          "price": 0.064,
-          "part_id": "GCM188R71E105KA64J",
           "mpn": "GCM188R71E105KA64J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
@@ -117,17 +106,6 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
-          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 6480000,
-          "price": 0.03,
-          "part_id": "GCM188R71E105KA64J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "a688dfbe-4fe9-46ce-b44b-2b9fb235651f",
@@ -161,6 +139,28 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
+        {
+          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
+          "region": "US",
+          "distributor": "Arrow Electronics",
+          "stock": 89703,
+          "price": 0.064,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
+        },
+        {
+          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 6480000,
+          "price": 0.03,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "c12c9bb9-cc4a-44a5-a605-11304327af89",
@@ -227,17 +227,28 @@
     "matcher": "assign_house_capacitor",
     "availability": {
       "us": {
-        "price": 0.18,
-        "stock": 223144,
-        "alt_stock": 9029096
+        "price": 0.19,
+        "stock": 714293,
+        "alt_stock": 8314803
       },
       "global": {
         "price": 0.0842,
         "stock": 126577,
         "alt_stock": 1499
       },
-      "selected_offer_id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
+      "selected_offer_id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
       "offers": [
+        {
+          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 714293,
+          "price": 0.19,
+          "part_id": "490-10673-1-ND",
+          "mpn": "GCM188R71E105KA64D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
         {
           "id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
           "region": "US",
@@ -261,34 +272,12 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
-          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 714293,
-          "price": 0.19,
-          "part_id": "490-10673-1-ND",
-          "mpn": "GCM188R71E105KA64D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
           "id": "3344c442-c033-418d-adb0-8efcfd818614",
           "region": "US",
           "distributor": "Mouser",
           "stock": 241756,
           "price": 0.18,
           "part_id": "81-GCM188R71E105KA4J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
-        },
-        {
-          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
-          "region": "US",
-          "distributor": "Arrow Electronics",
-          "stock": 89703,
-          "price": 0.064,
-          "part_id": "GCM188R71E105KA64J",
           "mpn": "GCM188R71E105KA64J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
@@ -314,17 +303,6 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
-          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 6480000,
-          "price": 0.03,
-          "part_id": "GCM188R71E105KA64J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "a688dfbe-4fe9-46ce-b44b-2b9fb235651f",
@@ -358,6 +336,28 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
+        {
+          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
+          "region": "US",
+          "distributor": "Arrow Electronics",
+          "stock": 89703,
+          "price": 0.064,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
+        },
+        {
+          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 6480000,
+          "price": 0.03,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "c12c9bb9-cc4a-44a5-a605-11304327af89",
@@ -424,17 +424,28 @@
     "matcher": "assign_house_capacitor",
     "availability": {
       "us": {
-        "price": 0.18,
-        "stock": 223144,
-        "alt_stock": 9029096
+        "price": 0.19,
+        "stock": 714293,
+        "alt_stock": 8314803
       },
       "global": {
         "price": 0.0842,
         "stock": 126577,
         "alt_stock": 1499
       },
-      "selected_offer_id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
+      "selected_offer_id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
       "offers": [
+        {
+          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 714293,
+          "price": 0.19,
+          "part_id": "490-10673-1-ND",
+          "mpn": "GCM188R71E105KA64D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
         {
           "id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
           "region": "US",
@@ -458,34 +469,12 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
-          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 714293,
-          "price": 0.19,
-          "part_id": "490-10673-1-ND",
-          "mpn": "GCM188R71E105KA64D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
           "id": "3344c442-c033-418d-adb0-8efcfd818614",
           "region": "US",
           "distributor": "Mouser",
           "stock": 241756,
           "price": 0.18,
           "part_id": "81-GCM188R71E105KA4J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
-        },
-        {
-          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
-          "region": "US",
-          "distributor": "Arrow Electronics",
-          "stock": 89703,
-          "price": 0.064,
-          "part_id": "GCM188R71E105KA64J",
           "mpn": "GCM188R71E105KA64J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
@@ -511,17 +500,6 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
-          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 6480000,
-          "price": 0.03,
-          "part_id": "GCM188R71E105KA64J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "a688dfbe-4fe9-46ce-b44b-2b9fb235651f",
@@ -555,6 +533,28 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
+        {
+          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
+          "region": "US",
+          "distributor": "Arrow Electronics",
+          "stock": 89703,
+          "price": 0.064,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
+        },
+        {
+          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 6480000,
+          "price": 0.03,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "c12c9bb9-cc4a-44a5-a605-11304327af89",
@@ -621,17 +621,28 @@
     "matcher": "assign_house_capacitor",
     "availability": {
       "us": {
-        "price": 0.18,
-        "stock": 223144,
-        "alt_stock": 9029096
+        "price": 0.19,
+        "stock": 714293,
+        "alt_stock": 8314803
       },
       "global": {
         "price": 0.0842,
         "stock": 126577,
         "alt_stock": 1499
       },
-      "selected_offer_id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
+      "selected_offer_id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
       "offers": [
+        {
+          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 714293,
+          "price": 0.19,
+          "part_id": "490-10673-1-ND",
+          "mpn": "GCM188R71E105KA64D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
         {
           "id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
           "region": "US",
@@ -655,34 +666,12 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
-          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 714293,
-          "price": 0.19,
-          "part_id": "490-10673-1-ND",
-          "mpn": "GCM188R71E105KA64D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
           "id": "3344c442-c033-418d-adb0-8efcfd818614",
           "region": "US",
           "distributor": "Mouser",
           "stock": 241756,
           "price": 0.18,
           "part_id": "81-GCM188R71E105KA4J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
-        },
-        {
-          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
-          "region": "US",
-          "distributor": "Arrow Electronics",
-          "stock": 89703,
-          "price": 0.064,
-          "part_id": "GCM188R71E105KA64J",
           "mpn": "GCM188R71E105KA64J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
@@ -708,17 +697,6 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
-          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 6480000,
-          "price": 0.03,
-          "part_id": "GCM188R71E105KA64J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "a688dfbe-4fe9-46ce-b44b-2b9fb235651f",
@@ -752,6 +730,28 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
+        {
+          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
+          "region": "US",
+          "distributor": "Arrow Electronics",
+          "stock": 89703,
+          "price": 0.064,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
+        },
+        {
+          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 6480000,
+          "price": 0.03,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "c12c9bb9-cc4a-44a5-a605-11304327af89",
@@ -1197,17 +1197,6 @@
           "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
         },
         {
-          "id": "ed4970a7-a3af-4922-ba94-20f5f57be550",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 13680,
-          "price": 0.06,
-          "part_id": "GCM1885C1H472JA16D",
-          "mpn": "GCM1885C1H472JA16D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
-        },
-        {
           "id": "d1a27cae-add0-4282-89f9-be2a800a3cc1",
           "region": "US",
           "distributor": "Newark",
@@ -1219,26 +1208,15 @@
           "datasheet_url": "https://assets.cofactr.com/c7e4cdeb-deaf-347e-aa65-cebe270ca2c8.pdf"
         },
         {
-          "id": "500bb164-1e4c-4a4e-a088-b242cd858191",
+          "id": "ed4970a7-a3af-4922-ba94-20f5f57be550",
           "region": "US",
           "distributor": "Newark",
-          "stock": 3000,
-          "price": 0.201,
-          "part_id": "CGA3E1C0G2A472J080AE",
-          "mpn": "CGA3E1C0G2A472J080AE",
-          "manufacturer": "EPCOS - TDK Electronics",
-          "datasheet_url": "https://product.tdk.com/en/system/files?file=dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_soft_en.pdf"
-        },
-        {
-          "id": "5c0f89e7-a440-48af-8c62-ab16f9a5a3f9",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 2917,
-          "price": 0.221,
-          "part_id": "CC0603JRNPO9BN472",
-          "mpn": "CC0603JRNPO9BN472",
-          "manufacturer": "YAGEO",
-          "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
+          "stock": 13680,
+          "price": 0.06,
+          "part_id": "GCM1885C1H472JA16D",
+          "mpn": "GCM1885C1H472JA16D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
         },
         {
           "id": "3f25ea39-cf43-4aa9-b7aa-8f216c73b0ea",
@@ -1261,6 +1239,28 @@
           "mpn": "GCM1885C1H472JA16D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
+        },
+        {
+          "id": "500bb164-1e4c-4a4e-a088-b242cd858191",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 3000,
+          "price": 0.201,
+          "part_id": "CGA3E1C0G2A472J080AE",
+          "mpn": "CGA3E1C0G2A472J080AE",
+          "manufacturer": "EPCOS - TDK Electronics",
+          "datasheet_url": "https://product.tdk.com/en/system/files?file=dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_soft_en.pdf"
+        },
+        {
+          "id": "5c0f89e7-a440-48af-8c62-ab16f9a5a3f9",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 2917,
+          "price": 0.221,
+          "part_id": "CC0603JRNPO9BN472",
+          "mpn": "CC0603JRNPO9BN472",
+          "manufacturer": "YAGEO",
+          "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
         },
         {
           "id": "301130aa-7658-489f-a05c-8ca3a90130bc",
@@ -1931,17 +1931,6 @@
           "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
         },
         {
-          "id": "ed4970a7-a3af-4922-ba94-20f5f57be550",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 13680,
-          "price": 0.06,
-          "part_id": "GCM1885C1H472JA16D",
-          "mpn": "GCM1885C1H472JA16D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
-        },
-        {
           "id": "d1a27cae-add0-4282-89f9-be2a800a3cc1",
           "region": "US",
           "distributor": "Newark",
@@ -1953,26 +1942,15 @@
           "datasheet_url": "https://assets.cofactr.com/c7e4cdeb-deaf-347e-aa65-cebe270ca2c8.pdf"
         },
         {
-          "id": "500bb164-1e4c-4a4e-a088-b242cd858191",
+          "id": "ed4970a7-a3af-4922-ba94-20f5f57be550",
           "region": "US",
           "distributor": "Newark",
-          "stock": 3000,
-          "price": 0.201,
-          "part_id": "CGA3E1C0G2A472J080AE",
-          "mpn": "CGA3E1C0G2A472J080AE",
-          "manufacturer": "EPCOS - TDK Electronics",
-          "datasheet_url": "https://product.tdk.com/en/system/files?file=dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_soft_en.pdf"
-        },
-        {
-          "id": "5c0f89e7-a440-48af-8c62-ab16f9a5a3f9",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 2917,
-          "price": 0.221,
-          "part_id": "CC0603JRNPO9BN472",
-          "mpn": "CC0603JRNPO9BN472",
-          "manufacturer": "YAGEO",
-          "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
+          "stock": 13680,
+          "price": 0.06,
+          "part_id": "GCM1885C1H472JA16D",
+          "mpn": "GCM1885C1H472JA16D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
         },
         {
           "id": "3f25ea39-cf43-4aa9-b7aa-8f216c73b0ea",
@@ -1995,6 +1973,28 @@
           "mpn": "GCM1885C1H472JA16D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
+        },
+        {
+          "id": "500bb164-1e4c-4a4e-a088-b242cd858191",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 3000,
+          "price": 0.201,
+          "part_id": "CGA3E1C0G2A472J080AE",
+          "mpn": "CGA3E1C0G2A472J080AE",
+          "manufacturer": "EPCOS - TDK Electronics",
+          "datasheet_url": "https://product.tdk.com/en/system/files?file=dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_soft_en.pdf"
+        },
+        {
+          "id": "5c0f89e7-a440-48af-8c62-ab16f9a5a3f9",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 2917,
+          "price": 0.221,
+          "part_id": "CC0603JRNPO9BN472",
+          "mpn": "CC0603JRNPO9BN472",
+          "manufacturer": "YAGEO",
+          "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
         },
         {
           "id": "301130aa-7658-489f-a05c-8ca3a90130bc",
@@ -2665,17 +2665,6 @@
           "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
         },
         {
-          "id": "ed4970a7-a3af-4922-ba94-20f5f57be550",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 13680,
-          "price": 0.06,
-          "part_id": "GCM1885C1H472JA16D",
-          "mpn": "GCM1885C1H472JA16D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
-        },
-        {
           "id": "d1a27cae-add0-4282-89f9-be2a800a3cc1",
           "region": "US",
           "distributor": "Newark",
@@ -2687,26 +2676,15 @@
           "datasheet_url": "https://assets.cofactr.com/c7e4cdeb-deaf-347e-aa65-cebe270ca2c8.pdf"
         },
         {
-          "id": "500bb164-1e4c-4a4e-a088-b242cd858191",
+          "id": "ed4970a7-a3af-4922-ba94-20f5f57be550",
           "region": "US",
           "distributor": "Newark",
-          "stock": 3000,
-          "price": 0.201,
-          "part_id": "CGA3E1C0G2A472J080AE",
-          "mpn": "CGA3E1C0G2A472J080AE",
-          "manufacturer": "EPCOS - TDK Electronics",
-          "datasheet_url": "https://product.tdk.com/en/system/files?file=dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_soft_en.pdf"
-        },
-        {
-          "id": "5c0f89e7-a440-48af-8c62-ab16f9a5a3f9",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 2917,
-          "price": 0.221,
-          "part_id": "CC0603JRNPO9BN472",
-          "mpn": "CC0603JRNPO9BN472",
-          "manufacturer": "YAGEO",
-          "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
+          "stock": 13680,
+          "price": 0.06,
+          "part_id": "GCM1885C1H472JA16D",
+          "mpn": "GCM1885C1H472JA16D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
         },
         {
           "id": "3f25ea39-cf43-4aa9-b7aa-8f216c73b0ea",
@@ -2729,6 +2707,28 @@
           "mpn": "GCM1885C1H472JA16D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
+        },
+        {
+          "id": "500bb164-1e4c-4a4e-a088-b242cd858191",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 3000,
+          "price": 0.201,
+          "part_id": "CGA3E1C0G2A472J080AE",
+          "mpn": "CGA3E1C0G2A472J080AE",
+          "manufacturer": "EPCOS - TDK Electronics",
+          "datasheet_url": "https://product.tdk.com/en/system/files?file=dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_soft_en.pdf"
+        },
+        {
+          "id": "5c0f89e7-a440-48af-8c62-ab16f9a5a3f9",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 2917,
+          "price": 0.221,
+          "part_id": "CC0603JRNPO9BN472",
+          "mpn": "CC0603JRNPO9BN472",
+          "manufacturer": "YAGEO",
+          "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
         },
         {
           "id": "301130aa-7658-489f-a05c-8ca3a90130bc",
@@ -3399,17 +3399,6 @@
           "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
         },
         {
-          "id": "ed4970a7-a3af-4922-ba94-20f5f57be550",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 13680,
-          "price": 0.06,
-          "part_id": "GCM1885C1H472JA16D",
-          "mpn": "GCM1885C1H472JA16D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
-        },
-        {
           "id": "d1a27cae-add0-4282-89f9-be2a800a3cc1",
           "region": "US",
           "distributor": "Newark",
@@ -3421,26 +3410,15 @@
           "datasheet_url": "https://assets.cofactr.com/c7e4cdeb-deaf-347e-aa65-cebe270ca2c8.pdf"
         },
         {
-          "id": "500bb164-1e4c-4a4e-a088-b242cd858191",
+          "id": "ed4970a7-a3af-4922-ba94-20f5f57be550",
           "region": "US",
           "distributor": "Newark",
-          "stock": 3000,
-          "price": 0.201,
-          "part_id": "CGA3E1C0G2A472J080AE",
-          "mpn": "CGA3E1C0G2A472J080AE",
-          "manufacturer": "EPCOS - TDK Electronics",
-          "datasheet_url": "https://product.tdk.com/en/system/files?file=dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_soft_en.pdf"
-        },
-        {
-          "id": "5c0f89e7-a440-48af-8c62-ab16f9a5a3f9",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 2917,
-          "price": 0.221,
-          "part_id": "CC0603JRNPO9BN472",
-          "mpn": "CC0603JRNPO9BN472",
-          "manufacturer": "YAGEO",
-          "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
+          "stock": 13680,
+          "price": 0.06,
+          "part_id": "GCM1885C1H472JA16D",
+          "mpn": "GCM1885C1H472JA16D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
         },
         {
           "id": "3f25ea39-cf43-4aa9-b7aa-8f216c73b0ea",
@@ -3463,6 +3441,28 @@
           "mpn": "GCM1885C1H472JA16D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
+        },
+        {
+          "id": "500bb164-1e4c-4a4e-a088-b242cd858191",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 3000,
+          "price": 0.201,
+          "part_id": "CGA3E1C0G2A472J080AE",
+          "mpn": "CGA3E1C0G2A472J080AE",
+          "manufacturer": "EPCOS - TDK Electronics",
+          "datasheet_url": "https://product.tdk.com/en/system/files?file=dam/doc/product/capacitor/ceramic/mlcc/catalog/mlcc_automotive_soft_en.pdf"
+        },
+        {
+          "id": "5c0f89e7-a440-48af-8c62-ab16f9a5a3f9",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 2917,
+          "price": 0.221,
+          "part_id": "CC0603JRNPO9BN472",
+          "mpn": "CC0603JRNPO9BN472",
+          "manufacturer": "YAGEO",
+          "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
         },
         {
           "id": "301130aa-7658-489f-a05c-8ca3a90130bc",
@@ -3754,17 +3754,28 @@
     "matcher": "assign_house_capacitor",
     "availability": {
       "us": {
-        "price": 0.18,
-        "stock": 223144,
-        "alt_stock": 9029096
+        "price": 0.19,
+        "stock": 714293,
+        "alt_stock": 8314803
       },
       "global": {
         "price": 0.0842,
         "stock": 126577,
         "alt_stock": 1499
       },
-      "selected_offer_id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
+      "selected_offer_id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
       "offers": [
+        {
+          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 714293,
+          "price": 0.19,
+          "part_id": "490-10673-1-ND",
+          "mpn": "GCM188R71E105KA64D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
         {
           "id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
           "region": "US",
@@ -3788,34 +3799,12 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
-          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 714293,
-          "price": 0.19,
-          "part_id": "490-10673-1-ND",
-          "mpn": "GCM188R71E105KA64D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
           "id": "3344c442-c033-418d-adb0-8efcfd818614",
           "region": "US",
           "distributor": "Mouser",
           "stock": 241756,
           "price": 0.18,
           "part_id": "81-GCM188R71E105KA4J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
-        },
-        {
-          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
-          "region": "US",
-          "distributor": "Arrow Electronics",
-          "stock": 89703,
-          "price": 0.064,
-          "part_id": "GCM188R71E105KA64J",
           "mpn": "GCM188R71E105KA64J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
@@ -3841,17 +3830,6 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
-          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 6480000,
-          "price": 0.03,
-          "part_id": "GCM188R71E105KA64J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "a688dfbe-4fe9-46ce-b44b-2b9fb235651f",
@@ -3885,6 +3863,28 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
+        {
+          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
+          "region": "US",
+          "distributor": "Arrow Electronics",
+          "stock": 89703,
+          "price": 0.064,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
+        },
+        {
+          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 6480000,
+          "price": 0.03,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "c12c9bb9-cc4a-44a5-a605-11304327af89",
@@ -3985,6 +3985,28 @@
           "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
+          "id": "5f0a1337-d8b5-4cc2-94f6-a2f5f49fa527",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 2415687,
+          "price": 0.02739,
+          "part_id": "490-3285-2-ND",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "d6e3ca95-3bdd-4699-ba71-1088607a04f5",
+          "region": "US",
+          "distributor": "Mouser",
+          "stock": 1695523,
+          "price": 0.15,
+          "part_id": "81-GRM188R72A104KA35",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
           "id": "e00dcfc8-eb3b-4ce4-b8f6-6cf9f4795a4b",
           "region": "US",
           "distributor": "Digi-Key",
@@ -4007,17 +4029,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "5f0a1337-d8b5-4cc2-94f6-a2f5f49fa527",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 2415687,
-          "price": 0.02739,
-          "part_id": "490-3285-2-ND",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "7de2ac14-d413-4d17-bcef-9ecdf5e3b195",
           "region": "US",
           "distributor": "Digi-Key",
@@ -4027,17 +4038,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "d6e3ca95-3bdd-4699-ba71-1088607a04f5",
-          "region": "US",
-          "distributor": "Mouser",
-          "stock": 1695523,
-          "price": 0.15,
-          "part_id": "81-GRM188R72A104KA35",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "d87408a7-b58a-412d-af5c-fbed36ab1c4c",
@@ -4056,6 +4056,61 @@
           "distributor": "Arrow Electronics",
           "stock": 273544,
           "price": 0.0584,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "e4f297c3-e5d5-4faa-a386-779ca0e31884",
+          "region": "US",
+          "distributor": "Avnet",
+          "stock": 304000,
+          "price": 0.01954,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "e13cf2d2-78c5-41e5-89e7-6fe723be43c4",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 376000,
+          "price": 0.043,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "b662fab6-9764-4439-85d7-d224906f9964",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 80839,
+          "price": 0.063,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "3308418f-43b1-44ce-b6d9-605ea71e306a",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 80839,
+          "price": 0.042,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "dd638c45-9f0d-4f8c-8015-f685cd3804c1",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 4000,
+          "price": 0.03,
           "part_id": "GRM188R72A104KA35D",
           "mpn": "GRM188R72A104KA35D",
           "manufacturer": "Murata Electronics",
@@ -4082,28 +4137,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "e4f297c3-e5d5-4faa-a386-779ca0e31884",
-          "region": "US",
-          "distributor": "Avnet",
-          "stock": 304000,
-          "price": 0.01954,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
-          "id": "e13cf2d2-78c5-41e5-89e7-6fe723be43c4",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 376000,
-          "price": 0.043,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "90d76a70-9407-41a8-9d7a-f481dd10ff02",
@@ -4139,17 +4172,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "b662fab6-9764-4439-85d7-d224906f9964",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 80839,
-          "price": 0.063,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "825fc184-8656-4e24-a675-472bfd8cb5c2",
           "region": "US",
           "distributor": "Newark",
@@ -4161,17 +4183,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "3308418f-43b1-44ce-b6d9-605ea71e306a",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 80839,
-          "price": 0.042,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "b4abb7b6-ce8f-43ff-a269-fbc5a83acbaf",
           "region": "US",
           "distributor": "Newark",
@@ -4181,17 +4192,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "dd638c45-9f0d-4f8c-8015-f685cd3804c1",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 4000,
-          "price": 0.03,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "394a3f74-c089-4809-924e-14efd3ec6d19",
@@ -4258,17 +4258,28 @@
     "matcher": "assign_house_capacitor",
     "availability": {
       "us": {
-        "price": 0.18,
-        "stock": 223144,
-        "alt_stock": 9029096
+        "price": 0.19,
+        "stock": 714293,
+        "alt_stock": 8314803
       },
       "global": {
         "price": 0.0842,
         "stock": 126577,
         "alt_stock": 1499
       },
-      "selected_offer_id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
+      "selected_offer_id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
       "offers": [
+        {
+          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 714293,
+          "price": 0.19,
+          "part_id": "490-10673-1-ND",
+          "mpn": "GCM188R71E105KA64D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
         {
           "id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
           "region": "US",
@@ -4292,34 +4303,12 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
-          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 714293,
-          "price": 0.19,
-          "part_id": "490-10673-1-ND",
-          "mpn": "GCM188R71E105KA64D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
           "id": "3344c442-c033-418d-adb0-8efcfd818614",
           "region": "US",
           "distributor": "Mouser",
           "stock": 241756,
           "price": 0.18,
           "part_id": "81-GCM188R71E105KA4J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
-        },
-        {
-          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
-          "region": "US",
-          "distributor": "Arrow Electronics",
-          "stock": 89703,
-          "price": 0.064,
-          "part_id": "GCM188R71E105KA64J",
           "mpn": "GCM188R71E105KA64J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
@@ -4345,17 +4334,6 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
-          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 6480000,
-          "price": 0.03,
-          "part_id": "GCM188R71E105KA64J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "a688dfbe-4fe9-46ce-b44b-2b9fb235651f",
@@ -4389,6 +4367,28 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
+        {
+          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
+          "region": "US",
+          "distributor": "Arrow Electronics",
+          "stock": 89703,
+          "price": 0.064,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
+        },
+        {
+          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 6480000,
+          "price": 0.03,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "c12c9bb9-cc4a-44a5-a605-11304327af89",
@@ -4489,6 +4489,28 @@
           "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
+          "id": "5f0a1337-d8b5-4cc2-94f6-a2f5f49fa527",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 2415687,
+          "price": 0.02739,
+          "part_id": "490-3285-2-ND",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "d6e3ca95-3bdd-4699-ba71-1088607a04f5",
+          "region": "US",
+          "distributor": "Mouser",
+          "stock": 1695523,
+          "price": 0.15,
+          "part_id": "81-GRM188R72A104KA35",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
           "id": "e00dcfc8-eb3b-4ce4-b8f6-6cf9f4795a4b",
           "region": "US",
           "distributor": "Digi-Key",
@@ -4511,17 +4533,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "5f0a1337-d8b5-4cc2-94f6-a2f5f49fa527",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 2415687,
-          "price": 0.02739,
-          "part_id": "490-3285-2-ND",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "7de2ac14-d413-4d17-bcef-9ecdf5e3b195",
           "region": "US",
           "distributor": "Digi-Key",
@@ -4531,17 +4542,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "d6e3ca95-3bdd-4699-ba71-1088607a04f5",
-          "region": "US",
-          "distributor": "Mouser",
-          "stock": 1695523,
-          "price": 0.15,
-          "part_id": "81-GRM188R72A104KA35",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "d87408a7-b58a-412d-af5c-fbed36ab1c4c",
@@ -4560,6 +4560,61 @@
           "distributor": "Arrow Electronics",
           "stock": 273544,
           "price": 0.0584,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "e4f297c3-e5d5-4faa-a386-779ca0e31884",
+          "region": "US",
+          "distributor": "Avnet",
+          "stock": 304000,
+          "price": 0.01954,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "e13cf2d2-78c5-41e5-89e7-6fe723be43c4",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 376000,
+          "price": 0.043,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "b662fab6-9764-4439-85d7-d224906f9964",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 80839,
+          "price": 0.063,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "3308418f-43b1-44ce-b6d9-605ea71e306a",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 80839,
+          "price": 0.042,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "dd638c45-9f0d-4f8c-8015-f685cd3804c1",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 4000,
+          "price": 0.03,
           "part_id": "GRM188R72A104KA35D",
           "mpn": "GRM188R72A104KA35D",
           "manufacturer": "Murata Electronics",
@@ -4586,28 +4641,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "e4f297c3-e5d5-4faa-a386-779ca0e31884",
-          "region": "US",
-          "distributor": "Avnet",
-          "stock": 304000,
-          "price": 0.01954,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
-          "id": "e13cf2d2-78c5-41e5-89e7-6fe723be43c4",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 376000,
-          "price": 0.043,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "90d76a70-9407-41a8-9d7a-f481dd10ff02",
@@ -4643,17 +4676,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "b662fab6-9764-4439-85d7-d224906f9964",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 80839,
-          "price": 0.063,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "825fc184-8656-4e24-a675-472bfd8cb5c2",
           "region": "US",
           "distributor": "Newark",
@@ -4665,17 +4687,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "3308418f-43b1-44ce-b6d9-605ea71e306a",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 80839,
-          "price": 0.042,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "b4abb7b6-ce8f-43ff-a269-fbc5a83acbaf",
           "region": "US",
           "distributor": "Newark",
@@ -4685,17 +4696,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "dd638c45-9f0d-4f8c-8015-f685cd3804c1",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 4000,
-          "price": 0.03,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "394a3f74-c089-4809-924e-14efd3ec6d19",
@@ -4796,6 +4796,28 @@
           "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
+          "id": "5f0a1337-d8b5-4cc2-94f6-a2f5f49fa527",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 2415687,
+          "price": 0.02739,
+          "part_id": "490-3285-2-ND",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "d6e3ca95-3bdd-4699-ba71-1088607a04f5",
+          "region": "US",
+          "distributor": "Mouser",
+          "stock": 1695523,
+          "price": 0.15,
+          "part_id": "81-GRM188R72A104KA35",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
           "id": "e00dcfc8-eb3b-4ce4-b8f6-6cf9f4795a4b",
           "region": "US",
           "distributor": "Digi-Key",
@@ -4818,17 +4840,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "5f0a1337-d8b5-4cc2-94f6-a2f5f49fa527",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 2415687,
-          "price": 0.02739,
-          "part_id": "490-3285-2-ND",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "7de2ac14-d413-4d17-bcef-9ecdf5e3b195",
           "region": "US",
           "distributor": "Digi-Key",
@@ -4838,17 +4849,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "d6e3ca95-3bdd-4699-ba71-1088607a04f5",
-          "region": "US",
-          "distributor": "Mouser",
-          "stock": 1695523,
-          "price": 0.15,
-          "part_id": "81-GRM188R72A104KA35",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "d87408a7-b58a-412d-af5c-fbed36ab1c4c",
@@ -4867,6 +4867,61 @@
           "distributor": "Arrow Electronics",
           "stock": 273544,
           "price": 0.0584,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "e4f297c3-e5d5-4faa-a386-779ca0e31884",
+          "region": "US",
+          "distributor": "Avnet",
+          "stock": 304000,
+          "price": 0.01954,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "e13cf2d2-78c5-41e5-89e7-6fe723be43c4",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 376000,
+          "price": 0.043,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "b662fab6-9764-4439-85d7-d224906f9964",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 80839,
+          "price": 0.063,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "3308418f-43b1-44ce-b6d9-605ea71e306a",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 80839,
+          "price": 0.042,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "dd638c45-9f0d-4f8c-8015-f685cd3804c1",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 4000,
+          "price": 0.03,
           "part_id": "GRM188R72A104KA35D",
           "mpn": "GRM188R72A104KA35D",
           "manufacturer": "Murata Electronics",
@@ -4893,28 +4948,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "e4f297c3-e5d5-4faa-a386-779ca0e31884",
-          "region": "US",
-          "distributor": "Avnet",
-          "stock": 304000,
-          "price": 0.01954,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
-          "id": "e13cf2d2-78c5-41e5-89e7-6fe723be43c4",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 376000,
-          "price": 0.043,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "90d76a70-9407-41a8-9d7a-f481dd10ff02",
@@ -4950,17 +4983,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "b662fab6-9764-4439-85d7-d224906f9964",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 80839,
-          "price": 0.063,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "825fc184-8656-4e24-a675-472bfd8cb5c2",
           "region": "US",
           "distributor": "Newark",
@@ -4972,17 +4994,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "3308418f-43b1-44ce-b6d9-605ea71e306a",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 80839,
-          "price": 0.042,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "b4abb7b6-ce8f-43ff-a269-fbc5a83acbaf",
           "region": "US",
           "distributor": "Newark",
@@ -4992,17 +5003,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "dd638c45-9f0d-4f8c-8015-f685cd3804c1",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 4000,
-          "price": 0.03,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "394a3f74-c089-4809-924e-14efd3ec6d19",
@@ -5151,6 +5151,28 @@
           "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
+          "id": "5f0a1337-d8b5-4cc2-94f6-a2f5f49fa527",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 2415687,
+          "price": 0.02739,
+          "part_id": "490-3285-2-ND",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "d6e3ca95-3bdd-4699-ba71-1088607a04f5",
+          "region": "US",
+          "distributor": "Mouser",
+          "stock": 1695523,
+          "price": 0.15,
+          "part_id": "81-GRM188R72A104KA35",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
           "id": "e00dcfc8-eb3b-4ce4-b8f6-6cf9f4795a4b",
           "region": "US",
           "distributor": "Digi-Key",
@@ -5173,17 +5195,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "5f0a1337-d8b5-4cc2-94f6-a2f5f49fa527",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 2415687,
-          "price": 0.02739,
-          "part_id": "490-3285-2-ND",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "7de2ac14-d413-4d17-bcef-9ecdf5e3b195",
           "region": "US",
           "distributor": "Digi-Key",
@@ -5193,17 +5204,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "d6e3ca95-3bdd-4699-ba71-1088607a04f5",
-          "region": "US",
-          "distributor": "Mouser",
-          "stock": 1695523,
-          "price": 0.15,
-          "part_id": "81-GRM188R72A104KA35",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "d87408a7-b58a-412d-af5c-fbed36ab1c4c",
@@ -5222,6 +5222,61 @@
           "distributor": "Arrow Electronics",
           "stock": 273544,
           "price": 0.0584,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "e4f297c3-e5d5-4faa-a386-779ca0e31884",
+          "region": "US",
+          "distributor": "Avnet",
+          "stock": 304000,
+          "price": 0.01954,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "e13cf2d2-78c5-41e5-89e7-6fe723be43c4",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 376000,
+          "price": 0.043,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "b662fab6-9764-4439-85d7-d224906f9964",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 80839,
+          "price": 0.063,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "3308418f-43b1-44ce-b6d9-605ea71e306a",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 80839,
+          "price": 0.042,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "dd638c45-9f0d-4f8c-8015-f685cd3804c1",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 4000,
+          "price": 0.03,
           "part_id": "GRM188R72A104KA35D",
           "mpn": "GRM188R72A104KA35D",
           "manufacturer": "Murata Electronics",
@@ -5248,28 +5303,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "e4f297c3-e5d5-4faa-a386-779ca0e31884",
-          "region": "US",
-          "distributor": "Avnet",
-          "stock": 304000,
-          "price": 0.01954,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
-          "id": "e13cf2d2-78c5-41e5-89e7-6fe723be43c4",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 376000,
-          "price": 0.043,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "90d76a70-9407-41a8-9d7a-f481dd10ff02",
@@ -5305,17 +5338,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "b662fab6-9764-4439-85d7-d224906f9964",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 80839,
-          "price": 0.063,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "825fc184-8656-4e24-a675-472bfd8cb5c2",
           "region": "US",
           "distributor": "Newark",
@@ -5327,17 +5349,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "3308418f-43b1-44ce-b6d9-605ea71e306a",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 80839,
-          "price": 0.042,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "b4abb7b6-ce8f-43ff-a269-fbc5a83acbaf",
           "region": "US",
           "distributor": "Newark",
@@ -5347,17 +5358,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "dd638c45-9f0d-4f8c-8015-f685cd3804c1",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 4000,
-          "price": 0.03,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "394a3f74-c089-4809-924e-14efd3ec6d19",
@@ -5424,17 +5424,28 @@
     "matcher": "assign_house_capacitor",
     "availability": {
       "us": {
-        "price": 0.18,
-        "stock": 223144,
-        "alt_stock": 9029096
+        "price": 0.19,
+        "stock": 714293,
+        "alt_stock": 8314803
       },
       "global": {
         "price": 0.0842,
         "stock": 126577,
         "alt_stock": 1499
       },
-      "selected_offer_id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
+      "selected_offer_id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
       "offers": [
+        {
+          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 714293,
+          "price": 0.19,
+          "part_id": "490-10673-1-ND",
+          "mpn": "GCM188R71E105KA64D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
         {
           "id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
           "region": "US",
@@ -5458,34 +5469,12 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
-          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 714293,
-          "price": 0.19,
-          "part_id": "490-10673-1-ND",
-          "mpn": "GCM188R71E105KA64D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
           "id": "3344c442-c033-418d-adb0-8efcfd818614",
           "region": "US",
           "distributor": "Mouser",
           "stock": 241756,
           "price": 0.18,
           "part_id": "81-GCM188R71E105KA4J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
-        },
-        {
-          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
-          "region": "US",
-          "distributor": "Arrow Electronics",
-          "stock": 89703,
-          "price": 0.064,
-          "part_id": "GCM188R71E105KA64J",
           "mpn": "GCM188R71E105KA64J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
@@ -5511,17 +5500,6 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
-          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 6480000,
-          "price": 0.03,
-          "part_id": "GCM188R71E105KA64J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "a688dfbe-4fe9-46ce-b44b-2b9fb235651f",
@@ -5555,6 +5533,28 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
+        {
+          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
+          "region": "US",
+          "distributor": "Arrow Electronics",
+          "stock": 89703,
+          "price": 0.064,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
+        },
+        {
+          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 6480000,
+          "price": 0.03,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "c12c9bb9-cc4a-44a5-a605-11304327af89",
@@ -5655,28 +5655,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
         },
         {
-          "id": "97b92144-ed30-4681-9105-4184e5b72687",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 0,
-          "price": 0.27,
-          "part_id": "490-GRM188Z71A106KA73JDKR-ND",
-          "mpn": "GRM188Z71A106KA73J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
-        },
-        {
-          "id": "b8369a05-c094-408a-a58b-11a688fbcc9d",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 0,
-          "price": 0.27,
-          "part_id": "490-GRM188Z71A106KA73JCT-ND",
-          "mpn": "GRM188Z71A106KA73J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
-        },
-        {
           "id": "184b8d02-0ca0-45ee-af44-a4a76dde32bf",
           "region": "US",
           "distributor": "Digi-Key",
@@ -5699,28 +5677,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
         },
         {
-          "id": "ffe0f245-7711-4811-99b9-938b50478467",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 0,
-          "price": 0.05003,
-          "part_id": "490-GRM188Z71A106KA73JTR-ND",
-          "mpn": "GRM188Z71A106KA73J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
-        },
-        {
-          "id": "a481f10f-31b7-4c57-b0ca-0ea89b6f6da2",
-          "region": "US",
-          "distributor": "Mouser",
-          "stock": 0,
-          "price": 0.26,
-          "part_id": "81-GRM188Z71A106KA3J",
-          "mpn": "GRM188Z71A106KA73J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
-        },
-        {
           "id": "3d3786be-c363-4ab3-96ce-b9e900d75777",
           "region": "US",
           "distributor": "Mouser",
@@ -5739,39 +5695,6 @@
           "price": 0.04283,
           "part_id": "GRM188Z71A106KA73D",
           "mpn": "GRM188Z71A106KA73D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
-        },
-        {
-          "id": "2e4f8429-e907-435f-92da-81e358ec9a16",
-          "region": "US",
-          "distributor": "Arrow Electronics",
-          "stock": 0,
-          "price": 0.0568,
-          "part_id": "GRM188Z71A106KA73J",
-          "mpn": "GRM188Z71A106KA73J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
-        },
-        {
-          "id": "fded6ff3-ddb3-4c13-9b62-009501ac222a",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 0,
-          "price": 0.05,
-          "part_id": "GRM188Z71A106KA73J",
-          "mpn": "GRM188Z71A106KA73J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
-        },
-        {
-          "id": "d81025ce-5387-4af8-ab8d-31a6fe6d1b2f",
-          "region": "US",
-          "distributor": "Avnet",
-          "stock": 0,
-          "price": 0.047,
-          "part_id": "GRM188Z71A106KA73J",
-          "mpn": "GRM188Z71A106KA73J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
         },
@@ -5816,6 +5739,83 @@
           "price": 0.058,
           "part_id": "GRM188Z71A106KA73D",
           "mpn": "GRM188Z71A106KA73D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
+        },
+        {
+          "id": "97b92144-ed30-4681-9105-4184e5b72687",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 0,
+          "price": 0.27,
+          "part_id": "490-GRM188Z71A106KA73JDKR-ND",
+          "mpn": "GRM188Z71A106KA73J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
+        },
+        {
+          "id": "b8369a05-c094-408a-a58b-11a688fbcc9d",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 0,
+          "price": 0.27,
+          "part_id": "490-GRM188Z71A106KA73JCT-ND",
+          "mpn": "GRM188Z71A106KA73J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
+        },
+        {
+          "id": "ffe0f245-7711-4811-99b9-938b50478467",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 0,
+          "price": 0.05003,
+          "part_id": "490-GRM188Z71A106KA73JTR-ND",
+          "mpn": "GRM188Z71A106KA73J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
+        },
+        {
+          "id": "a481f10f-31b7-4c57-b0ca-0ea89b6f6da2",
+          "region": "US",
+          "distributor": "Mouser",
+          "stock": 0,
+          "price": 0.26,
+          "part_id": "81-GRM188Z71A106KA3J",
+          "mpn": "GRM188Z71A106KA73J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
+        },
+        {
+          "id": "2e4f8429-e907-435f-92da-81e358ec9a16",
+          "region": "US",
+          "distributor": "Arrow Electronics",
+          "stock": 0,
+          "price": 0.0568,
+          "part_id": "GRM188Z71A106KA73J",
+          "mpn": "GRM188Z71A106KA73J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
+        },
+        {
+          "id": "fded6ff3-ddb3-4c13-9b62-009501ac222a",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 0,
+          "price": 0.05,
+          "part_id": "GRM188Z71A106KA73J",
+          "mpn": "GRM188Z71A106KA73J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
+        },
+        {
+          "id": "d81025ce-5387-4af8-ab8d-31a6fe6d1b2f",
+          "region": "US",
+          "distributor": "Avnet",
+          "stock": 0,
+          "price": 0.047,
+          "part_id": "GRM188Z71A106KA73J",
+          "mpn": "GRM188Z71A106KA73J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/b3409c8c737055f7d27195546b98a15d2034e548/grm188z71a106ka73.pdf"
         },
@@ -6902,6 +6902,17 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/c2f3f07a42564342a937429d654d7ec4e09c9f2e/pgurl_detailed_information.phplangenrefjppart_nocga3e1c0g2a472j080ac.ph.pdf"
         },
         {
+          "id": "98789262-066f-4eba-9ecd-2f16f58c17f9",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 13680,
+          "price": 0.053,
+          "part_id": "GCM1885C1H472JA16D",
+          "mpn": "GCM1885C1H472JA16D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
+        },
+        {
           "id": "500bb164-1e4c-4a4e-a088-b242cd858191",
           "region": "US",
           "distributor": "Newark",
@@ -6922,17 +6933,6 @@
           "mpn": "CC0603JRNPO9BN472",
           "manufacturer": "YAGEO",
           "datasheet_url": "https://www.yageo.com/upload/media/product/productsearch/datasheet/mlcc/UPY-GP_NP0_16V-to-50V_18.pdf"
-        },
-        {
-          "id": "98789262-066f-4eba-9ecd-2f16f58c17f9",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 13680,
-          "price": 0.053,
-          "part_id": "GCM1885C1H472JA16D",
-          "mpn": "GCM1885C1H472JA16D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://datasheet.octopart.com/GCM1885C1H472JA16D-Murata-datasheet-138716761.pdf"
         },
         {
           "id": "301130aa-7658-489f-a05c-8ca3a90130bc",
@@ -7224,17 +7224,28 @@
     "matcher": "assign_house_capacitor",
     "availability": {
       "us": {
-        "price": 0.18,
-        "stock": 223144,
-        "alt_stock": 9029096
+        "price": 0.19,
+        "stock": 714293,
+        "alt_stock": 8314803
       },
       "global": {
         "price": 0.0842,
         "stock": 126577,
         "alt_stock": 1499
       },
-      "selected_offer_id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
+      "selected_offer_id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
       "offers": [
+        {
+          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 714293,
+          "price": 0.19,
+          "part_id": "490-10673-1-ND",
+          "mpn": "GCM188R71E105KA64D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
         {
           "id": "4180224d-a778-43a7-b292-357a9b7ce4d4",
           "region": "US",
@@ -7258,34 +7269,12 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
-          "id": "90b2b698-7e9d-47f3-877f-17c45cd9c11e",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 714293,
-          "price": 0.19,
-          "part_id": "490-10673-1-ND",
-          "mpn": "GCM188R71E105KA64D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
           "id": "3344c442-c033-418d-adb0-8efcfd818614",
           "region": "US",
           "distributor": "Mouser",
           "stock": 241756,
           "price": 0.18,
           "part_id": "81-GCM188R71E105KA4J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
-        },
-        {
-          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
-          "region": "US",
-          "distributor": "Arrow Electronics",
-          "stock": 89703,
-          "price": 0.064,
-          "part_id": "GCM188R71E105KA64J",
           "mpn": "GCM188R71E105KA64J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
@@ -7311,17 +7300,6 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
-        },
-        {
-          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 6480000,
-          "price": 0.03,
-          "part_id": "GCM188R71E105KA64J",
-          "mpn": "GCM188R71E105KA64J",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "a688dfbe-4fe9-46ce-b44b-2b9fb235651f",
@@ -7355,6 +7333,28 @@
           "mpn": "GCM188R71E105KA64D",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://assets.cofactr.com/6f03c7f7-5fa4-3b62-9100-dccfd2397a67.pdf"
+        },
+        {
+          "id": "5d7b563c-2e68-4610-9799-5a154110c8b6",
+          "region": "US",
+          "distributor": "Arrow Electronics",
+          "stock": 89703,
+          "price": 0.064,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
+        },
+        {
+          "id": "668dfe16-cbac-43b7-ad3e-cd16b39b45f5",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 6480000,
+          "price": 0.03,
+          "part_id": "GCM188R71E105KA64J",
+          "mpn": "GCM188R71E105KA64J",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://static6.arrow.com/aropdfconversion/ec36f635ac3ceb0c89f96c0c9f7ec91ccb3d44e7/gcm188r71e105ka64.pdf"
         },
         {
           "id": "c12c9bb9-cc4a-44a5-a605-11304327af89",
@@ -7479,6 +7479,28 @@
           "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
+          "id": "5f0a1337-d8b5-4cc2-94f6-a2f5f49fa527",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 2415687,
+          "price": 0.02739,
+          "part_id": "490-3285-2-ND",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "d6e3ca95-3bdd-4699-ba71-1088607a04f5",
+          "region": "US",
+          "distributor": "Mouser",
+          "stock": 1695523,
+          "price": 0.15,
+          "part_id": "81-GRM188R72A104KA35",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
           "id": "e00dcfc8-eb3b-4ce4-b8f6-6cf9f4795a4b",
           "region": "US",
           "distributor": "Digi-Key",
@@ -7501,17 +7523,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "5f0a1337-d8b5-4cc2-94f6-a2f5f49fa527",
-          "region": "US",
-          "distributor": "Digi-Key",
-          "stock": 2415687,
-          "price": 0.02739,
-          "part_id": "490-3285-2-ND",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "7de2ac14-d413-4d17-bcef-9ecdf5e3b195",
           "region": "US",
           "distributor": "Digi-Key",
@@ -7521,17 +7532,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "d6e3ca95-3bdd-4699-ba71-1088607a04f5",
-          "region": "US",
-          "distributor": "Mouser",
-          "stock": 1695523,
-          "price": 0.15,
-          "part_id": "81-GRM188R72A104KA35",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "d87408a7-b58a-412d-af5c-fbed36ab1c4c",
@@ -7550,6 +7550,61 @@
           "distributor": "Arrow Electronics",
           "stock": 273544,
           "price": 0.0584,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "e4f297c3-e5d5-4faa-a386-779ca0e31884",
+          "region": "US",
+          "distributor": "Avnet",
+          "stock": 304000,
+          "price": 0.01954,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "e13cf2d2-78c5-41e5-89e7-6fe723be43c4",
+          "region": "US",
+          "distributor": "TTI",
+          "stock": 376000,
+          "price": 0.043,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "b662fab6-9764-4439-85d7-d224906f9964",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 80839,
+          "price": 0.063,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "3308418f-43b1-44ce-b6d9-605ea71e306a",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 80839,
+          "price": 0.042,
+          "part_id": "GRM188R72A104KA35D",
+          "mpn": "GRM188R72A104KA35D",
+          "manufacturer": "Murata Electronics",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
+        },
+        {
+          "id": "dd638c45-9f0d-4f8c-8015-f685cd3804c1",
+          "region": "US",
+          "distributor": "Newark",
+          "stock": 4000,
+          "price": 0.03,
           "part_id": "GRM188R72A104KA35D",
           "mpn": "GRM188R72A104KA35D",
           "manufacturer": "Murata Electronics",
@@ -7576,28 +7631,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "e4f297c3-e5d5-4faa-a386-779ca0e31884",
-          "region": "US",
-          "distributor": "Avnet",
-          "stock": 304000,
-          "price": 0.01954,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
-          "id": "e13cf2d2-78c5-41e5-89e7-6fe723be43c4",
-          "region": "US",
-          "distributor": "TTI",
-          "stock": 376000,
-          "price": 0.043,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "90d76a70-9407-41a8-9d7a-f481dd10ff02",
@@ -7633,17 +7666,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "b662fab6-9764-4439-85d7-d224906f9964",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 80839,
-          "price": 0.063,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "825fc184-8656-4e24-a675-472bfd8cb5c2",
           "region": "US",
           "distributor": "Newark",
@@ -7655,17 +7677,6 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
         },
         {
-          "id": "3308418f-43b1-44ce-b6d9-605ea71e306a",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 80839,
-          "price": 0.042,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
-        },
-        {
           "id": "b4abb7b6-ce8f-43ff-a269-fbc5a83acbaf",
           "region": "US",
           "distributor": "Newark",
@@ -7675,17 +7686,6 @@
           "mpn": "GRM188R72A104KA35J",
           "manufacturer": "Murata Electronics",
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/853b89233b49414d8f73d718a549d93f026917be/grm188r72a104ka35.pdf"
-        },
-        {
-          "id": "dd638c45-9f0d-4f8c-8015-f685cd3804c1",
-          "region": "US",
-          "distributor": "Newark",
-          "stock": 4000,
-          "price": 0.03,
-          "part_id": "GRM188R72A104KA35D",
-          "mpn": "GRM188R72A104KA35D",
-          "manufacturer": "Murata Electronics",
-          "datasheet_url": "https://assets.cofactr.com/datasheet/f896bf3a-60d2-3b3d-b732-0ec1080ba59f.pdf"
         },
         {
           "id": "394a3f74-c089-4809-924e-14efd3ec6d19",
@@ -14368,7 +14368,7 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/7f6a3033fa081d859e1cf6333ba28b57f3e48c30/aoa0000c304.pdf"
         },
         {
-          "id": "7bc3e356-3006-4ef0-b517-ffc3442ec702",
+          "id": "018f541d-b437-468f-8bfe-bb4fb15b8862",
           "region": "US",
           "distributor": "Newark",
           "stock": 0,
@@ -14379,7 +14379,7 @@
           "datasheet_url": "https://static6.arrow.com/aropdfconversion/7f6a3033fa081d859e1cf6333ba28b57f3e48c30/aoa0000c304.pdf"
         },
         {
-          "id": "018f541d-b437-468f-8bfe-bb4fb15b8862",
+          "id": "7bc3e356-3006-4ef0-b517-ffc3442ec702",
           "region": "US",
           "distributor": "Newark",
           "stock": 0,
@@ -15109,11 +15109,89 @@
   {
     "path": "PREAMP.U_QUAD.U",
     "designator": "U1",
-    "mpn": "OPA4171IDR",
+    "mpn": "OPA4171AIDR",
     "manufacturer": "Texas Instruments",
     "description": "Quad 36V RRIO op-amp, 3MHz GBW, SOIC-14",
     "availability": {
-      "no_match": true
+      "us": {
+        "price": 3.8,
+        "stock": 1944,
+        "alt_stock": 5916
+      },
+      "global": {
+        "price": 1.2462,
+        "stock": 96,
+        "alt_stock": 0
+      },
+      "selected_offer_id": "008145b0-3f6c-4390-9230-e1d860170bc2",
+      "offers": [
+        {
+          "id": "008145b0-3f6c-4390-9230-e1d860170bc2",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 1944,
+          "price": 3.8,
+          "part_id": "296-29037-1-ND",
+          "mpn": "OPA4171AIDR",
+          "manufacturer": "Texas Instruments",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/839ca1d2-f517-3ddc-9b47-9d200119b9ea.pdf"
+        },
+        {
+          "id": "e947619a-3714-4d08-b50a-1d623e7a78ba",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 1944,
+          "price": 3.8,
+          "part_id": "296-29037-6-ND",
+          "mpn": "OPA4171AIDR",
+          "manufacturer": "Texas Instruments",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/839ca1d2-f517-3ddc-9b47-9d200119b9ea.pdf"
+        },
+        {
+          "id": "065f2afb-cc4e-460f-b448-871c4343332f",
+          "region": "US",
+          "distributor": "Mouser",
+          "stock": 916,
+          "price": 3.8,
+          "part_id": "595-OPA4171AIDR",
+          "mpn": "OPA4171AIDR",
+          "manufacturer": "Texas Instruments",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/839ca1d2-f517-3ddc-9b47-9d200119b9ea.pdf"
+        },
+        {
+          "id": "c9ec126e-49c4-4a6a-848d-ba69befed3fe",
+          "region": "US",
+          "distributor": "Arrow Electronics",
+          "stock": 5000,
+          "price": 1.716,
+          "part_id": "OPA4171AIDR",
+          "mpn": "OPA4171AIDR",
+          "manufacturer": "Texas Instruments",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/839ca1d2-f517-3ddc-9b47-9d200119b9ea.pdf"
+        },
+        {
+          "id": "e99511d1-08b3-4436-bad4-b24a4d59faed",
+          "region": "US",
+          "distributor": "Digi-Key",
+          "stock": 0,
+          "price": 2.05184,
+          "part_id": "296-29037-2-ND",
+          "mpn": "OPA4171AIDR",
+          "manufacturer": "Texas Instruments",
+          "datasheet_url": "https://assets.cofactr.com/datasheet/839ca1d2-f517-3ddc-9b47-9d200119b9ea.pdf"
+        },
+        {
+          "id": "c311c0d2-ac28-4cd8-b8b0-957ba3c40d4e",
+          "region": "Global",
+          "distributor": "lcsc",
+          "stock": 96,
+          "price": 1.2462,
+          "part_id": "C46269",
+          "mpn": "OPA4171AIDR",
+          "manufacturer": "Texas Instruments",
+          "datasheet_url": "https://www.ti.com/cn/lit/gpn/opa4171"
+        }
+      ]
     }
   },
   {

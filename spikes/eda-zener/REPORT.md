@@ -257,3 +257,117 @@ weeks. Conditions before v2 adoption: (a) decide the account question
 version; (c) expect to hand-manage multi-unit symbols; (d) no importer — plan
 greenfield re-authoring; (e) BOM house parts need a JLC-oriented table to
 satisfy D009. For v1: KiCad per D008, unchanged.
+
+---
+
+# Deep port session 2 (T-017 addendum) — AUTHENTICATED: registry swap + BOM coverage survey
+
+Date: 2026-08-27 (evening) · Agent: codex/terra-t017 · pcbc 0.4.38, host,
+**diode.computer account active (Joshua)** — `pcb auth` works, `pcb component`
+API unlocked. Verdict re-check at the bottom: **GO-WITH-CONDITIONS strengthens;
+condition (a) (account question) drops.**
+
+## What changed with auth
+
+| Probe | Session 1 (anon) | Session 2 (authenticated) |
+|---|---|---|
+| `pcb component search <MPN>` | 401-style "Not authenticated" error | **works** — structured JSON: mpn/manufacturer, per-backend (cse/lcsc/ncti) asset booleans, live offers w/ stock + price breaks |
+| `pcb component download` | n/a | **works via LCSC backend** — returns signed S3 URLs for `.kicad_sym` / `.kicad_mod` / `.step` |
+| `pcb search` (registry:modules / kicad index) | empty index | still no hits for our MPNs — the module registry does not carry these parts; the **component API is the asset path** |
+| CSE download backend | n/a | **"provider download quota is exhausted"** (HTTP 500 scrape timeout on first try, quota error after) — LCSC backend is the reliable path today |
+
+## BOM coverage survey (29 real v1 BOM lines; full JSON: deep-port/coverage/results.json)
+
+Method: `pcb component search <MPN> --format json` per line; "assets" = symbol
+(S) / footprint (F) / 3D (3) booleans per backend (cse = SnapMagic-style,
+lcsc = LCSC/easyeda2kicad).
+
+| BOM line | MPN (as on sheets / T-002 / T-016 order pkg) | Hit | Assets |
+|---|---|---|---|
+| Buck reg | AP63301WU-7 | exact | cse:SF3, lcsc:SF |
+| Boost reg | TPS55340PWPR | exact | cse:SF3, lcsc:SF |
+| Clock buffer | CDCLVC1112PWR | exact | cse:SF3, lcsc:SF |
+| ETH PHY (DNP) | LAN8720A | exact | cse:SF3 |
+| Mic (primary) | ICS-41352 | exact | cse:SF3 |
+| Mic (EOL fallback) | ICS-41350 | exact | cse:SF3 |
+| H-bridge | DRV8876PWPR | exact | cse:SF3, lcsc:SF3 |
+| USB bridge | FT232HL-TRAY | exact | cse:SF3, lcsc:SF |
+| Quad op-amp | OPA4171AIDR | exact | cse:SF3, lcsc:SF3 |
+| Mic (Syntiant) | SPH0641LU4H-1 | exact | cse:3, **lcsc:SF3** |
+| MagJack | HR911105A | near only | none |
+| Oscillator | SG-8002CA | near (…19.6608M variant) | cse:SF3 |
+| Schottky | SS34 | exact | cse:SF3 |
+| Boost inductor | PSPHAQ127-270M | **no-hit** | — |
+| P-FET (ideal diode) | AO3415 | exact | cse:3 only |
+| Ideal-diode pair | DZDH0401DW-7 | exact | cse:SF3 |
+| Ferrite | BLM18KG121TN1D | exact | cse:SF3 |
+| TX terminal block | Phoenix 1935161 | exact | cse:SF3 |
+| 10× passives (Samsung/Yageo/Murata/Walsin sheet MPNs: RC0603FR-0710KL, RC0603FR-07100KL, CC0603KRX7R9BB104, CL10A105KB8NNNC, CL10A106MA8NRNC, CL10B472KB8NNNC, CL10B473KB8NNNC, GRM188C61E226ME01D, …) | all exact | all | cse:SF3 each |
+| 4× passives (0603WAF8662T5E, FRC0603F1691TS, FRC0603F7872TS) | exact | yes | **no assets** (metadata-only rows) |
+
+**Score: 28 of 29 BOM lines found; 23 of 29 with symbol+footprint assets**
+(24 counting step-only AO3415 as partial). The 6 gaps: 1 no-hit (boost
+inductor), 1 near-hit no-assets (MagJack), 1 step-only (AO3415), 3
+metadata-only resistors (still price/stock-visible; stdlib generics cover
+their EDA side anyway). Coverage is decisively better for the hard parts —
+**all 10 key ICs/mics hit with full assets** — than for commodity passives.
+
+## Registry swap (task 2) — done, parity preserved
+
+Consumption syntax (learned from `pcb component --help` + diodeinc/pcb
+source): the component API is **search + download only**. `.zen` `Component()`
+does NOT auto-resolve registry assets from `Part(mpn=...)`; the flow is
+`pcb component search` → `pcb component download --lcsc-part-number <C#>` →
+fetch the signed URLs → wire the local files into
+`Component(symbol=Symbol(library=..., name=...), footprint=File(...))`.
+That is the precise boundary: registry components are **consumable by build,
+but as downloaded files, not as a live part reference**.
+
+Swapped all three hand-written components to registry (LCSC) assets, in
+`deep-port/sonar_v1_deep_port/components/registry/<MPN>/`:
+
+- **DRV8876.zen** — pure path swap. Registry symbol pin names are
+  byte-identical to the datasheet/vendored ones (EN/IN1…EP=17); `pins=` map
+  untouched.
+- **AP63301.zen** — path swap + one pin-name key: registry pin 4 = `GND`
+  (vendored: `PGND`). Pin numbers 1–6 identical.
+- **OPA4171.zen** — path swap + pin-name style delta (`INA-` vs `-INA`),
+  MPN tightened to the exact asset `OPA4171AIDR` (A-grade, same package/
+  pinout). Bonus: the registry symbol is a proper 4-unit symbol with
+  **unique per-unit pin names**, so session 1's multi-unit rename workaround
+  is unnecessary with registry symbols (condition (c) softens).
+
+`pcb build` after swap: **✓ 67 components** (unchanged count). Netlist
+parity re-check, `git diff layout/default.net` vs the session-1 netlist
+that was verified node-for-node vs KiCad: **0 net/node lines changed** —
+only comp `value`/`footprint`/`libsource` strings and pin-name labels in
+`libpart` sections differ. Connectivity parity vs the KiCad originals is
+preserved transitively and exactly. `pcb layout` regenerated
+`layout.kicad_pcb` with the LCSC footprints (accepted despite legacy v5
+`module` format); layout deltas are footprint-geometry only, documented in
+each component header. `pcb bom` re-run: matched unique **19/24 (79.2%)**,
+qty 89.3%, US $12.56 / Global $5.07 — improved from 75% because
+OPA4171AIDR now matches (LCSC C46269). Artifacts refreshed:
+`deep-port/{bom.txt,bom.json,netlist.net}`.
+
+Remaining boundary notes: CSE (SnapMagic) download backend failed — first a
+scrape timeout (HTTP 500), then "provider download quota is exhausted";
+LCSC backend worked for all three parts including a STEP for AP63301 that
+search metadata didn't advertise. Signed URLs expire in 1 h — downloaded
+assets must be vendored into the repo (done). STEP files downloaded for
+OPA4171/DRV8876 but not yet embedded (`pcb embed-step` exists; not needed
+for netlist/BOM parity).
+
+## Verdict re-check
+
+Session 1: GO-WITH-CONDITIONS (a: account/registry decision, b: toolchain
+pinning, c: multi-unit symbols, d: no importer, e: JLC house table).
+Session 2: **(a) drops** — Joshua's account works; the component API covers
+all 10 key ICs with full assets and the download→vendor flow replaces
+hand-authoring (the ~10–20 min/IC datasheet-transcription cost collapses to
+~2 min/part). **(c) softens** — registry multi-unit symbols have unique pin
+names; hand-management is only needed for vendored KiCad `Device:` symbols.
+Standing: (b) toolchain pinning, (d) no importer (unchanged, re-authoring
+path), (e) JLC-oriented house table for D009. Verdict: **GO-WITH-CONDITIONS
+for v2, strengthened** (5 conditions → 3, one softened). For v1: KiCad per
+D008, unchanged.

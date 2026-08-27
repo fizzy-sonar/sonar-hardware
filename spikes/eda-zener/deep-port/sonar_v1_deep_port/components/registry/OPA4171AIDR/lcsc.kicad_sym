@@ -1,0 +1,292 @@
+(kicad_symbol_lib
+  (version 20211014)
+  (generator https://github.com/uPesy/easyeda2kicad.py)
+
+  (symbol "OPA4171AIDR"
+    (in_bom yes)
+    (on_board yes)
+    (property
+      "Reference"
+      "U"
+      (id 0)
+      (at 0 5.08 0)
+      (effects (font (size 1.27 1.27) ) )
+    )
+    (property
+      "Value"
+      "OPA4171AIDR"
+      (id 1)
+      (at 0 -5.08 0)
+      (effects (font (size 1.27 1.27) ) )
+    )
+    (property
+      "Footprint"
+      "C46269:SOP-14_L8.6-W3.9-P1.27-LS6.0-BL"
+      (id 2)
+      (at 0 -7.62 0)
+      (effects (font (size 1.27 1.27) ) hide)
+    )
+    (property
+      "Datasheet"
+      "https://lcsc.com/product-detail/General-Purpose-Amplifiers_TI_OPA4171AIDR_OPA4171AIDR_C46269.html"
+      (id 3)
+      (at 0 -10.16 0)
+      (effects (font (size 1.27 1.27) ) hide)
+    )
+    (property
+      "Manufacturer"
+      "TI(德州仪器)"
+      (id 4)
+      (at 0 -12.70 0)
+      (effects (font (size 1.27 1.27) ) hide)
+    )
+    (property
+      "MPN"
+      "OPA4171AIDR"
+      (id 5)
+      (at 0 -15.24 0)
+      (effects (font (size 1.27 1.27) ) hide)
+    )
+    (property
+      "LCSC Part"
+      "C46269"
+      (id 6)
+      (at 0 -17.78 0)
+      (effects (font (size 1.27 1.27) ) hide)
+    )
+    (property
+      "ki_keywords"
+      "Operational Amplifier"
+      (id 8)
+      (at 0 -20.32 0)
+      (effects (font (size 1.27 1.27) ) hide)
+    )
+    (property
+      "ki_description"
+      "Low Power, RRO, General Purpose Operational Amplifier, 2.7 to 36 V, -40 to 125 degC, 14-pin SOIC (D14), Green (RoHS  no SbBr)"
+      (id 9)
+      (at 0 -22.86 0)
+      (effects (font (size 1.27 1.27) ) hide)
+    )
+    (symbol "OPA4171AIDR_1_1"
+      (polyline
+        (pts
+          (xy -5.08 -5.08) (xy 5.08 -0.00) (xy -5.08 5.08) (xy -5.08 -5.08)
+        )
+        (stroke (width 0) (type default))
+        (fill (type background))
+      )
+      (polyline
+        (pts
+          (xy -4.06 2.54) (xy -2.54 2.54)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (polyline
+        (pts
+          (xy -4.06 -2.54) (xy -2.54 -2.54)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (polyline
+        (pts
+          (xy -3.30 -1.78) (xy -3.30 -3.30)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (text "A"
+        (at -2.03 -0.60 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (pin output line
+        (at 10.16 -0.00 180)
+        (length 5.08)
+        (name "OUTA" (effects (font (size 1.27 1.27))))
+        (number "1" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at -10.16 2.54 0)
+        (length 5.08)
+        (name "INA-" (effects (font (size 1.27 1.27))))
+        (number "2" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at -10.16 -2.54 0)
+        (length 5.08)
+        (name "INA+" (effects (font (size 1.27 1.27))))
+        (number "3" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at 0.00 7.62 270)
+        (length 5.08)
+        (name "V+" (effects (font (size 1.27 1.27))))
+        (number "4" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at 0.00 -7.62 90)
+        (length 5.08)
+        (name "V-" (effects (font (size 1.27 1.27))))
+        (number "11" (effects (font (size 1.27 1.27))))
+      )
+    )
+    (symbol "OPA4171AIDR_2_1"
+      (polyline
+        (pts
+          (xy -12.70 2.54) (xy -2.54 7.62) (xy -12.70 12.70) (xy -12.70 2.54)
+        )
+        (stroke (width 0) (type default))
+        (fill (type background))
+      )
+      (polyline
+        (pts
+          (xy -11.68 10.16) (xy -10.16 10.16)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (polyline
+        (pts
+          (xy -11.68 5.08) (xy -10.16 5.08)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (polyline
+        (pts
+          (xy -10.92 5.84) (xy -10.92 4.32)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (text "B"
+        (at -9.65 6.75 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (pin unspecified line
+        (at -17.78 5.08 0)
+        (length 5.08)
+        (name "INB+" (effects (font (size 1.27 1.27))))
+        (number "5" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at -17.78 10.16 0)
+        (length 5.08)
+        (name "INB-" (effects (font (size 1.27 1.27))))
+        (number "6" (effects (font (size 1.27 1.27))))
+      )
+      (pin output line
+        (at 2.54 7.62 180)
+        (length 5.08)
+        (name "OUTB" (effects (font (size 1.27 1.27))))
+        (number "7" (effects (font (size 1.27 1.27))))
+      )
+    )
+    (symbol "OPA4171AIDR_3_1"
+      (polyline
+        (pts
+          (xy 25.40 -40.64) (xy 35.56 -35.56) (xy 25.40 -30.48) (xy 25.40 -40.64)
+        )
+        (stroke (width 0) (type default))
+        (fill (type background))
+      )
+      (polyline
+        (pts
+          (xy 26.42 -33.02) (xy 27.94 -33.02)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (polyline
+        (pts
+          (xy 26.42 -38.10) (xy 27.94 -38.10)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (polyline
+        (pts
+          (xy 27.18 -37.34) (xy 27.18 -38.86)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (text "C"
+        (at 28.45 -36.42 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (pin output line
+        (at 40.64 -35.56 180)
+        (length 5.08)
+        (name "OUTC" (effects (font (size 1.27 1.27))))
+        (number "8" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at 20.32 -33.02 0)
+        (length 5.08)
+        (name "INC-" (effects (font (size 1.27 1.27))))
+        (number "9" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at 20.32 -38.10 0)
+        (length 5.08)
+        (name "INC+" (effects (font (size 1.27 1.27))))
+        (number "10" (effects (font (size 1.27 1.27))))
+      )
+    )
+    (symbol "OPA4171AIDR_4_1"
+      (polyline
+        (pts
+          (xy 40.64 -43.18) (xy 50.80 -38.10) (xy 40.64 -33.02) (xy 40.64 -43.18)
+        )
+        (stroke (width 0) (type default))
+        (fill (type background))
+      )
+      (polyline
+        (pts
+          (xy 41.66 -35.56) (xy 43.18 -35.56)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (polyline
+        (pts
+          (xy 41.66 -40.64) (xy 43.18 -40.64)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (polyline
+        (pts
+          (xy 42.42 -39.88) (xy 42.42 -41.40)
+        )
+        (stroke (width 0) (type default))
+        (fill (type none))
+      )
+      (text "D"
+        (at 43.43 -38.97 0)
+        (effects (font (size 1.27 1.27)))
+      )
+      (pin unspecified line
+        (at 35.56 -40.64 0)
+        (length 5.08)
+        (name "IND+" (effects (font (size 1.27 1.27))))
+        (number "12" (effects (font (size 1.27 1.27))))
+      )
+      (pin unspecified line
+        (at 35.56 -35.56 0)
+        (length 5.08)
+        (name "IND-" (effects (font (size 1.27 1.27))))
+        (number "13" (effects (font (size 1.27 1.27))))
+      )
+      (pin output line
+        (at 55.88 -38.10 180)
+        (length 5.08)
+        (name "OUTD" (effects (font (size 1.27 1.27))))
+        (number "14" (effects (font (size 1.27 1.27))))
+      )
+    )
+  )
+)

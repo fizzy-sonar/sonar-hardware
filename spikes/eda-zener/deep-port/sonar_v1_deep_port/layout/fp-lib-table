@@ -1,5 +1,8 @@
 (fp_lib_table
   (version 7)
+  (lib (name "localhost_sonar_deep-port_components_registry_AP63301WU-7") (type "KiCad") (uri "${KIPRJMOD}/../components/registry/AP63301WU-7") (options "") (descr ""))
+  (lib (name "localhost_sonar_deep-port_components_registry_DRV8876PWPR") (type "KiCad") (uri "${KIPRJMOD}/../components/registry/DRV8876PWPR") (options "") (descr ""))
+  (lib (name "localhost_sonar_deep-port_components_registry_OPA4171AIDR") (type "KiCad") (uri "${KIPRJMOD}/../components/registry/OPA4171AIDR") (options "") (descr ""))
   (lib (name "localhost_sonar_deep-port_footprints") (type "KiCad") (uri "${KIPRJMOD}/../footprints") (options "") (descr ""))
   (lib (name "stdlib_kicad-footprints_Capacitor_SMD") (type "KiCad") (uri "${KIPRJMOD}/../.pcb/stdlib/kicad-footprints/Capacitor_SMD.pretty") (options "") (descr ""))
   (lib (name "stdlib_kicad-footprints_Inductor_SMD") (type "KiCad") (uri "${KIPRJMOD}/../.pcb/stdlib/kicad-footprints/Inductor_SMD.pretty") (options "") (descr ""))

@@ -5,29 +5,33 @@
 # 5=SW, 6=BST; "A 100nF capacitor is recommended from BST to SW".
 # Matches sonar-v1-pcb/sonar_lib.kicad_sym "AP63301WU-7" and the KiCad
 # netlist of power_supply.kicad_sch (U61) exactly.
-# Symbol/footprint are vendored copies: symbols/AP63301WU-7.kicad_sym is
-# extracted from sonar_lib.kicad_sym; footprints/TSOT-23-6.kicad_mod is
-# copied from sonar-v1-pcb/libs/Sonar.pretty.
+# REGISTRY SWAP (2026-08-27, T-017 session 2, authenticated): symbol +
+# footprint now come from the diode component API (LCSC backend, C2158003)
+# via `pcb component download`; vendored KiCad copies retained under
+# ../symbols|../footprints for reference. Pin-name delta: registry pin 4 is
+# "GND" (vendored KiCad: "PGND"); pin NUMBERS 1-6 identical, so netlist
+# connectivity is unchanged. Footprint delta (layout only): LCSC
+# TSOT-23-6_L2.9-W1.6-P0.95-LS2.8-BR vs KiCad Sonar:TSOT-23-6.
 
 
 FB = io(Net)  # feedback divider tap
 EN = io(Net)  # enable, precision 1.18 V threshold; tie to VIN for auto-start
 VIN = io(Power)  # 3.8–32 V input
-GND = io(Ground)  # power ground (symbol pin name: PGND)
+GND = io(Ground)  # power ground (registry symbol pin name: GND; KiCad vendored was PGND)
 SW = io(Net)  # switch node
 BST = io(Net)  # bootstrap, 100 nF to SW
 
 Component(
     name="U",
     part=Part(mpn="AP63301WU-7", manufacturer="Diodes Incorporated"),
-    symbol=Symbol(library="../symbols/AP63301WU-7.kicad_sym", name="AP63301WU-7"),
-    footprint=File("../footprints/TSOT-23-6.kicad_mod"),
+    symbol=Symbol(library="registry/AP63301WU-7/lcsc.kicad_sym", name="AP63301WU-7"),
+    footprint=File("registry/AP63301WU-7/lcsc.kicad_mod"),
     prefix="U",
     pins={
         "FB": FB,
         "EN": EN,
         "VIN": VIN,
-        "PGND": GND,
+        "GND": GND,  # registry symbol names pin 4 GND (vendored was PGND)
         "SW": SW,
         "BST": BST,
     },

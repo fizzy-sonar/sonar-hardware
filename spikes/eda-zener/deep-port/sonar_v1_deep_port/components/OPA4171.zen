@@ -1,0 +1,56 @@
+# OPA4171 — TI quad 36 V rail-to-rail output op-amp, SOIC-14 (D package).
+# Hand-authored from TI datasheet SBOS516H (rev. June 2024),
+# https://www.ti.com/lit/ds/symlink/opa4171.pdf (fetched 2026-08-27, T-017):
+# Table 4-2 Pin Functions OPA4171 — OUTA=1, -INA=2, +INA=3, V+=4, +INB=5,
+# -INB=6, OUTB=7, OUTC=8, -INC=9, +INC=10, V-=11, +IND=12, -IND=13, OUTD=14.
+# This is the industry-standard quad pinout, identical to KiCad
+# Device:Opamp_Quad used by quad_rx_pre_amp.kicad_sch, so the same symbol
+# (vendored as symbols/Opamp_Quad.kicad_sym from the KiCad 10 system
+# Device.kicad_sym) is pin-faithful. Footprint is the KiCad 10 system
+# SOIC-14_3.9x8.7mm_P1.27mm.kicad_mod (the repo has no SOIC-14; the legacy
+# tile carries no footprint/MPN at all — superseded per D011).
+#
+# Why OPA4171 and not the T-005 placeholder: the KiCad tile runs on +/-5 V
+# rails (5V_OP_AMP_HIGH / -5V_OP_AMP_LOW), so a 6 V-max TLV2474 cannot be
+# used. OPA4171: 2.7-36 V supply (abs max 40 V), RRIO, 3 MHz GBW, quad.
+
+load("@stdlib/interfaces.zen", "Opamp")
+
+VP = io(Power)  # V+ (pin 4), highest supply
+VN = io(Power)  # V- (pin 11), lowest supply
+CH_A = io(Opamp)
+CH_B = io(Opamp)
+CH_C = io(Opamp)
+CH_D = io(Opamp)
+
+Component(
+    name="U",
+    part=Part(mpn="OPA4171IDR", manufacturer="Texas Instruments"),
+    symbol=Symbol(library="../symbols/Opamp_Quad.kicad_sym", name="Opamp_Quad"),
+    footprint=File("../footprints/SOIC-14_3.9x8.7mm_P1.27mm.kicad_mod"),
+    prefix="U",
+    pins={
+        "OUTA": CH_A.OUT,
+        "-INA": CH_A.IN_N,
+        "+INA": CH_A.IN_P,
+        "V+": VP,
+        "+INB": CH_B.IN_P,
+        "-INB": CH_B.IN_N,
+        "OUTB": CH_B.OUT,
+        "OUTC": CH_C.OUT,
+        "-INC": CH_C.IN_N,
+        "+INC": CH_C.IN_P,
+        "V-": VN,
+        "+IND": CH_D.IN_P,
+        "-IND": CH_D.IN_N,
+        "OUTD": CH_D.OUT,
+    },
+    properties={
+        "supply_max": "36V",
+        "gbw": "3MHz",
+        "iq_per_channel": "475uA",
+    },
+    description="Quad 36V RRIO op-amp, 3MHz GBW, SOIC-14",
+    datasheet="https://www.ti.com/lit/ds/symlink/opa4171.pdf",
+    type="opamp_quad",
+)

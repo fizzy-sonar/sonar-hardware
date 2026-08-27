@@ -1,0 +1,12 @@
+# T-017 Zener deep-port workspace (Sonar v1 blocks). See ../../REPORT.md.
+[workspace]
+repository = "localhost/sonar/deep-port"
+pcb-version = "0.4"
+
+[board]
+name = "sonar_v1_deep_port"
+path = "sonar_v1_deep_port.zen"
+description = "T-017 deep port: AP63301 power sheet + 4ch OPA4171 RX preamp tile + DRV8876 TX drive block."
+
+[access]
+allow = ["*"]

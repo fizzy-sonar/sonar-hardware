@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by codex/sol-t020 (session 6) — review S6/S7/S8/NIT3 gateware hardening landed uncommitted on agent/T-020-gateware (make test 17/17); TX_NSLEEP schematic follow-up resolved (sheet already J40.48; TX Drive text box fixed). Previously: claude/orchestrator — cross-family review (orchestration/review/REVIEW-2026-08-26.md) found 2 blockers + 11 should-fix; B1/S1/S2/S9/S10/S11/NIT4 repaired and merged; B2 TX duty now hard-bounded (13/13 TB); D013 proposed for TX transducer default._
+_Last updated: 2026-08-27 by codex/terra-t017 — T-017 Zener deep port done (GO-WITH-CONDITIONS for v2); all uncommitted. Previously: 2026-08-26 codex/sol-t020 (session 6) — review S6/S7/S8/NIT3 gateware hardening landed uncommitted on agent/T-020-gateware (make test 17/17); TX_NSLEEP schematic follow-up resolved (sheet already J40.48; TX Drive text box fixed). Previously: claude/orchestrator — cross-family review (orchestration/review/REVIEW-2026-08-26.md) found 2 blockers + 11 should-fix; B1/S1/S2/S9/S10/S11/NIT4 repaired and merged; B2 TX duty now hard-bounded (13/13 TB); D013 proposed for TX transducer default._
 
 ## Now
 - **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5
@@ -8,7 +8,7 @@ _Last updated: 2026-08-26 by codex/sol-t020 (session 6) — review S6/S7/S8/NIT3
   repaired + re-verified), T-016 at review (CP-BM), T-020 simulator milestone
   done (bitstream waits on Vivado host). Remaining: Joshua's CP-B/CP-BM reviews,
   T-007 purchases/host choice, then T-010 (unblocked by CP-BM) → T-014 → T-015
-  (cross-family review) → CP-C. T-005 EDA spike: **done, NO-GO for v1** (host `pcb build` confirmed the boundary) — see `spikes/eda-zener/REPORT.md`.
+  (cross-family review) → CP-C. T-005 EDA spike: **done, NO-GO for v1** (host `pcb build` confirmed the boundary) — see `spikes/eda-zener/REPORT.md`. **T-017 deep port done 2026-08-27 (codex/terra-t017):** with network+host, Zener builds — 3 blocks (power_supply, rx_preamp_tile, tx_drive) + 3 datasheet-authored ICs (AP63301/OPA4171/DRV8876), `pcb build` ✓ 67 components, netlist node-for-node parity vs KiCad, live BOM; registry is account-gated (all ICs hand-written), importer still emits empty stubs. Verdict **GO-WITH-CONDITIONS for v2**; D008 stands. All uncommitted (no-commit session rule).
 - Architecture locked (see PLAN.md v2): 24 PDM ultrasonic mics → Cmod A7-35T +
   FT232H USB streaming → Python DSP; Pico 2 snapshot v0; TX via DRV8876 + connector.
 - **T-021 done:** host reference pipeline now has strict SNP1/SNR1 parsers, buffered
@@ -175,6 +175,7 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-27 — codex/terra-t017: T-017 done — Zener deep port builds on host (67 comps, netlist parity exact, BOM live-priced, voltage checks negative-tested); registry account-gated; importer still broken; verdict GO-WITH-CONDITIONS for v2. All uncommitted. Journal: 2026-08-27-codex-terra-t017.md.
 - 2026-08-26 — codex/sol-t020 (session 5): REVIEW-2026-08-26 TX fixes —
   B2 blocker (tx_nco_pwm free-running 46.875 kHz carrier replaced by
   phase-derived duty gating; per-half-cycle duty hard-bounded by

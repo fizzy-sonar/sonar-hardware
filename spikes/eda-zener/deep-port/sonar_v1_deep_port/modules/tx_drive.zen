@@ -1,0 +1,91 @@
+# Sonar v1 TX drive block port (T-017 stretch): DRV8876 H-bridge per
+# sonar-v1-pcb/20kHz-h-bridge.kicad_sch (U62), net-for-net from the KiCad
+# netlist (2026-08-27). 20 kHz / 40 kHz drive limits per
+# orchestration/tx-limits.md are gateware-enforced; not modeled here.
+#
+# KiCad refdes -> module names: U62->U_DRV, C284->C_FLY (47nF CPH-CPL; NOTE:
+# datasheet SLVSEY0 recommends 22nF - open CP-C verify item), C285->C_VCP
+# (1uF VCP-VM; datasheet recommends 100nF - same CP-C item), C286->C_VM_100N,
+# C287->C_VM_10U, R170->R_NFAULT (10k pull-up to +3V3), R171->R_IPROPI
+# (1.69k), R172->R_IMODE (10R to GND), R173/R174->R_OUT1/2 (0R series),
+# R175+C288->R_SNUB/C_SNUB (10R + 4.7nF across J50), J50->J_TX.
+# Control nets TX_EN/TX_PH/TX_NSLEEP/TX_PMODE/TX_NFAULT are module ios.
+
+load("@stdlib/interfaces.zen", "Power")
+
+Resistor = Module("@stdlib/generics/Resistor.zen")
+Capacitor = Module("@stdlib/generics/Capacitor.zen")
+DRV8876 = Module("../components/DRV8876.zen")
+
+io_V12 = io("io_V12", Power)
+io_V33 = io("io_V33", Power)  # VREF tie + nFAULT pull-up rail
+io_GND = io("io_GND", Ground)
+
+TX_EN = io("TX_EN", Net)
+TX_PH = io("TX_PH", Net)
+TX_NSLEEP = io("TX_NSLEEP", Net)
+TX_PMODE = io("TX_PMODE", Net)
+TX_NFAULT = io("TX_NFAULT", Net)
+
+drv1 = Net("TX_DRV1")
+drv2 = Net("TX_DRV2")
+tx1 = Net("Net-(J50-Pin_1)")
+tx2 = Net("Net-(J50-Pin_2)")
+snub = Net("Net-(C288-Pad1)")
+ipropi = Net("Net-(U62-IPROPI)")
+imode = Net("Net-(U62-IMODE)")
+vcp = Net("Net-(U62-VCP)")
+cph = Net("Net-(U62-CPH)")
+cpl = Net("Net-(U62-CPL)")
+
+DRV8876(
+    name="U_DRV",
+    EN_IN1=TX_EN,
+    PH_IN2=TX_PH,
+    NSLEEP=TX_NSLEEP,
+    NFAULT=TX_NFAULT,
+    VREF=io_V33,
+    IPROPI=ipropi,
+    IMODE=imode,
+    OUT1=drv1,
+    PGND=io_GND,
+    OUT2=drv2,
+    VM=io_V12,
+    VCP=vcp,
+    CPH=cph,
+    CPL=cpl,
+    GND=io_GND,
+    PMODE=TX_PMODE,
+    EP=io_GND,
+)
+
+# Charge pump / VM caps
+Capacitor(name="C_FLY", value="47nF 10%", package="0603", dielectric="X7R", voltage="50V", P1=cph, P2=cpl)
+Capacitor(name="C_VCP", value="1uF 10%", package="0603", dielectric="X7R", voltage="25V", P1=io_V12, P2=vcp)
+Capacitor(name="C_VM_100N", value="100nF 10%", package="0603", dielectric="X7R", voltage="50V", P1=io_V12, P2=io_GND)
+Capacitor(name="C_VM_10U", value="10uF 20%", package="0603", dielectric="X7R", voltage="25V", P1=io_V12, P2=io_GND)
+
+# Straps / sensing
+Resistor(name="R_NFAULT", value="10kOhm 5%", package="0603", P1=io_V33, P2=TX_NFAULT)
+Resistor(name="R_IPROPI", value="1.69kOhm 1%", package="0603", P1=ipropi, P2=io_GND)
+Resistor(name="R_IMODE", value="10Ohm 5%", package="0603", P1=imode, P2=io_GND)
+
+# 0R series elements + off-board connector J50 + DNP-able RC snubber
+Resistor(name="R_OUT1", value="0Ohm", package="0603", P1=drv1, P2=tx1)
+Resistor(name="R_OUT2", value="0Ohm", package="0603", P1=drv2, P2=tx2)
+Resistor(name="R_SNUB", value="10Ohm 5%", package="0603", P1=tx2, P2=snub)
+Capacitor(name="C_SNUB", value="4.7nF 10%", package="0603", dielectric="C0G", voltage="50V", P1=snub, P2=tx1)
+
+# J50: Phoenix MKDS 1x02 screw terminal (off-board transducer)
+Component(
+    name="J_TX",
+    symbol=Symbol(
+        library="@stdlib/kicad-symbols/Connector_Generic.kicad_symdir/Conn_01x02.kicad_sym", name="Conn_01x02"
+    ),
+    footprint=File("../footprints/TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal.kicad_mod"),
+    prefix="J",
+    part=Part(mpn="1935161", manufacturer="Phoenix Contact"),
+    pins={"Pin_1": tx1, "Pin_2": tx2},
+    description="TerminalBlock Phoenix MKDS-1,5-2-5.08 (TX transducer)",
+    type="connector",
+)

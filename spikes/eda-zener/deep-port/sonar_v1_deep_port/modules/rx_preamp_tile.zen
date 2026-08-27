@@ -1,0 +1,82 @@
+# Sonar v1 legacy 4-channel RX preamp tile (T-017 deep port). This completes
+# the T-005 hand-port (spikes/eda-zener/hand-port/rx_preamp_channel.zen),
+# which left `QuadOpamp = Module("quad_opamp.zen")  # not written in this
+# spike`. The component is now components/OPA4171.zen (real MPN, datasheet
+# pinout, SOIC-14 footprint).
+#
+# NOTE: this analog tile is SUPERSEDED in v1 (D011: 24x digital PDM mics);
+# ported as an authoring-fidelity exercise only. The KiCad sheet
+# quad_rx_pre_amp.kicad_sch is a 4-channel tile instantiated twice; here it
+# is one parameterized module (channels x4, one OPA4171).
+#
+# Channel topology extracted from the KiCad netlist (2026-08-27), channel 0 of
+# instance U5 shown; all four channels symmetric:
+#   C_IN 1uF coupling (C166) -> R_BIAS 10k to GND (R32) -> U5A +IN (pin 3)
+#   U5A -IN (pin 2): R_GAIN 1k to GND (R36), R_FB 20k to output (R37,
+#     ${R_GAIN_TARGET}; alt stuffing R_A 40k + R_B 60k = ${R_GAIN_HIGH_*})
+#   U5A OUT (pin 1): RX.PRE node (TP84) -> R_OUT 49.9 (R334) -> AMP_OUT_0
+#     (TP85), C_SHUNT 4.7nF to GND (C266)
+# Rails: 5V_OP_AMP_HIGH / -5V_OP_AMP_LOW, decoupled 100nF + 1uF each
+#   (C163/C264, C164/C265).
+#
+# The T-005 hand-port had C_FB across the feedback path; the real sheet puts
+# the 4.7nF as a shunt AFTER the 49.9R series output resistor - corrected here.
+
+load("@stdlib/interfaces.zen", "Opamp")
+load("@stdlib/units.zen", "Resistance")
+
+Resistor = Module("@stdlib/generics/Resistor.zen")
+Capacitor = Module("@stdlib/generics/Capacitor.zen")
+TestPoint = Module("@stdlib/generics/TestPoint.zen")
+OPA4171 = Module("../components/OPA4171.zen")
+
+io_VP = input("io_VP", Power)  # 5V_OP_AMP_HIGH
+io_VN = input("io_VN", Power)  # -5V_OP_AMP_LOW
+io_GND = io("io_GND", Ground)
+
+# Per-channel ports: mic-side input and amplified output.
+IN = [input("IN" + str(i), Net) for i in range(4)]
+AMP_OUT = [output("AMP_OUT" + str(i), Net) for i in range(4)]
+
+# KiCad textvars ${R_GAIN_TARGET} / ${R_GAIN_HIGH_*} become a config param.
+r_fb = config(
+    Resistance,
+    default=Resistance("20kOhm"),
+    help="feedback R; KiCad ${R_GAIN_TARGET}=20k (gain 21), alt ${R_GAIN_HIGH_*}=40k+60k (gain 101)",
+)
+
+# Per-unit nets first (Starlark evaluates top-to-bottom), then the quad.
+in_p = [Net("U" + u + "-IN_P") for u in ["A", "B", "C", "D"]]
+in_n = [Net("U" + u + "-IN_N") for u in ["A", "B", "C", "D"]]
+pre = [Net("RX_PRE" + str(i)) for i in range(4)]  # op-amp output (KiCad RX.PRE TP)
+
+OPA4171(
+    name="U_QUAD",
+    VP=io_VP,
+    VN=io_VN,
+    CH_A=Opamp(IN_P=in_p[0], IN_N=in_n[0], OUT=pre[0]),
+    CH_B=Opamp(IN_P=in_p[1], IN_N=in_n[1], OUT=pre[1]),
+    CH_C=Opamp(IN_P=in_p[2], IN_N=in_n[2], OUT=pre[2]),
+    CH_D=Opamp(IN_P=in_p[3], IN_N=in_n[3], OUT=pre[3]),
+)
+
+for i in range(4):
+    out = AMP_OUT[i]
+    Capacitor(
+        name="C_IN" + str(i), value="1uF 10%", package="0603", dielectric="X7R", voltage="16V", P1=IN[i], P2=in_p[i]
+    )
+    Resistor(name="R_BIAS" + str(i), value="10kOhm 5%", package="0603", P1=in_p[i], P2=io_GND)
+    Resistor(name="R_GAIN" + str(i), value="1kOhm 1%", package="0603", P1=in_n[i], P2=io_GND)
+    Resistor(name="R_FB" + str(i), value=r_fb, package="0603", P1=in_n[i], P2=pre[i])
+    Resistor(name="R_OUT" + str(i), value="49.9Ohm 1%", package="0603", P1=pre[i], P2=out)
+    Capacitor(
+        name="C_SHUNT" + str(i), value="4.7nF 10%", package="0603", dielectric="C0G", voltage="50V", P1=out, P2=io_GND
+    )
+    TestPoint(name="TP_PRE" + str(i), variant="Pad_D1.0mm", P1=pre[i])
+    TestPoint(name="TP_AMP" + str(i), variant="Pad_D1.0mm", P1=out)
+
+# Rail decoupling (KiCad C163/C264 on V+, C164/C265 on V-).
+Capacitor(name="C_VP_100N", value="100nF 10%", package="0603", dielectric="X7R", voltage="16V", P1=io_VP, P2=io_GND)
+Capacitor(name="C_VP_1U", value="1uF 10%", package="0603", dielectric="X7R", voltage="16V", P1=io_VP, P2=io_GND)
+Capacitor(name="C_VN_100N", value="100nF 10%", package="0603", dielectric="X7R", voltage="16V", P1=io_GND, P2=io_VN)
+Capacitor(name="C_VN_1U", value="1uF 10%", package="0603", dielectric="X7R", voltage="16V", P1=io_GND, P2=io_VN)

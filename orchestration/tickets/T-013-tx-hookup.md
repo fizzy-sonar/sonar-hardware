@@ -85,6 +85,12 @@ check.sh ERC.
     TX_NSLEEP global label must move from J40.44 to J40.48 and the text box
     corrected before CP-C. Flagged in STATUS blockers; not edited here
     (outside the review-fix scope; gateware/XDC are already on V8).
+    **RESOLVED 2026-08-26 (codex/sol-t020, T-020 session 6):** the audit
+    above was stale - the current sheet already has TX_NSLEEP on J40.48
+    (regenerating `scripts/gen_digital_sheet.py` is content-identical to
+    the checked-in sheet; PINS maps position 48 -> TX_NSLEEP; ETH_RXD1 is
+    the J40.44 label). Only the 20kHz-h-bridge text box was genuinely
+    stale ("pio1/2/44/8 out"); corrected to "pio1/2/48/8 out".
   - **S4 FIXED (doc):** idle-state text corrected - in IN1/IN2 (PWM) mode,
     IN1=IN2=00 is COAST (both half-bridges Hi-Z), 11 is brake/low-side.
     tx-limits.md now states the burst off-interval consequence (resonant

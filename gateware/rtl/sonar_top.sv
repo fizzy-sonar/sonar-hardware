@@ -30,8 +30,9 @@
 //   led[0] = SRAM snapshot busy      led[1] = SRAM snapshot error
 //   led0_b = capture_overflow        led0_g = capture_stopped
 //   led0_r = tx_limit_fault | ~tx_nfault
-// Buttons (on-module, active-high): btn[0] = snapshot trigger, btn[1] = manual
-// reset (async assert, synchronous use inside the clocked always blocks).
+// Buttons (on-module, active-high): btn[0] = snapshot trigger (debounced in
+// the sysclk domain, REVIEW-2026-08-26 S6), btn[1] = manual reset (async
+// assert; every receiving domain releases through its own reset_sync).
 module sonar_top #(
     parameter integer PDM_CLOCK_HZ = 3072000
 ) (
@@ -79,10 +80,10 @@ module sonar_top #(
     // 7-series), and btn[1] is the manual reset.
     reg [15:0] por_shift = 16'hFFFF;
     always @(posedge sysclk) por_shift <= {por_shift[14:0], 1'b0};
+    // Master reset: async assert (POR shift register or btn[1]).
     wire reset = por_shift[15] | btn[1];
 
     wire select_ultrasonic;
-    wire discard_samples;
     wire capture_enable;
     wire clocks_locked;
     wire [7:0] ft_d_out;
@@ -100,17 +101,66 @@ module sonar_top #(
     wire        snapshot_done;
     wire        snapshot_error;
 
+    // REVIEW-2026-08-26 S6: per-domain async-assert/sync-release reset
+    // synchronizers. Release is aligned to each receiving clock, so the
+    // async_fifo's paired wr_reset/rd_reset never see a metastable or
+    // non-simultaneous release. Domains whose clock may be absent at POR
+    // (pdm_clk_fb until the mic clock starts, ft_clkout until the FT232H
+    // is clocking, sram_clk until the MMCM locks) hold reset until their
+    // clock runs - the intended behavior.
+    wire reset_sysclk, reset_pdm, reset_ft, reset_sram;
+    reset_sync reset_sysclk_i (.clk(sysclk), .reset_async(reset),
+                               .reset_synced(reset_sysclk));
+    reset_sync reset_pdm_i    (.clk(pdm_clk_fb), .reset_async(reset),
+                               .reset_synced(reset_pdm));
+    reset_sync reset_ft_i     (.clk(ft_clkout), .reset_async(reset),
+                               .reset_synced(reset_ft));
+    reset_sync reset_sram_i   (.clk(sram_clk),
+                               .reset_async(reset || !clocks_locked),
+                               .reset_synced(reset_sram));
+
+    // REVIEW-2026-08-26 S6: debounce the mechanical snapshot trigger in the
+    // sysclk domain (20 ms). sram_snapshot.start still crosses into
+    // sram_clk through the module's internal 2-flop synchronizer
+    // (sram_snapshot.sv) - that CDC was already correct; without debounce
+    // each button press produced multiple triggers.
+    wire btn0_clean;
+    button_debounce #(.DEBOUNCE_CYCLES(240000)) btn0_i (
+        .clk(sysclk), .reset(reset_sysclk), .btn_async(btn[0]),
+        .btn_clean(btn0_clean)
+    );
+
+    // clocks_locked is asynchronous to sysclk; 2-flop sync before it gates
+    // the startup FSM's power_good.
+    (* ASYNC_REG = "TRUE" *) reg locked_meta = 1'b0;
+    reg locked_sys = 1'b0;
+    always @(posedge sysclk) begin
+        if (reset_sysclk) begin
+            locked_meta <= 1'b0;
+            locked_sys  <= 1'b0;
+        end else begin
+            locked_meta <= clocks_locked;
+            locked_sys  <= locked_meta;
+        end
+    end
+
     // Control plane TODO: no external power-good/wake pins exist yet, so the
     // startup controller assumes the array is powered and runs its
     // 50 ms standard-mode / clock-off / 10 ms ultrasonic sequence once.
     pdm_clock_startup startup_i (
-        .clk(sysclk), .reset(reset),
-        .power_good(1'b1 && clocks_locked),
+        .clk(sysclk), .reset(reset_sysclk),
+        .power_good(1'b1 && locked_sys),
         .wake_request(1'b1), .buffer_oe(pdm_clk_en),
         .select_ultrasonic(select_ultrasonic),
-        .discard_samples(discard_samples), .capture_enable(capture_enable)
+        // REVIEW-2026-08-26 NIT3: discard_samples is observability-only
+        // (tb_clock_tx checks the FSM marks the standard/settle phases for
+        // discard); the capture_enable edges do the real gating. Left
+        // unconnected here so it does not read as implemented behavior.
+        .discard_samples(), .capture_enable(capture_enable)
     );
 
+    // Raw async reset to the MMCM RST pin (a true async input); the fabric
+    // clock domains inside synchronize their own releases (S6/S8).
     pdm_clock_7series #(.PDM_CLOCK_HZ(PDM_CLOCK_HZ)) clocks_i (
         .clk_12mhz(sysclk), .reset(reset),
         .buffer_oe(pdm_clk_en),
@@ -122,10 +172,10 @@ module sonar_top #(
     pdm_stream_core #(.PDM_CLOCK_HZ(PDM_CLOCK_HZ)) stream_i (
         // capture_enable is the coordinated per-capture reset/boundary. Keep
         // pdm_reset global so overflow survives sleep until reset/new capture.
-        .pdm_clk_fb(pdm_clk_fb), .pdm_reset(reset),
+        .pdm_clk_fb(pdm_clk_fb), .pdm_reset(reset_pdm),
         .pdm_data(pdm_d), .capture_enable(capture_enable),
         .overflow_sticky(capture_overflow), .capture_stopped(capture_stopped),
-        .ft_clk(ft_clkout), .ft_reset(reset), .ft_txe_n(ft_txe_n),
+        .ft_clk(ft_clkout), .ft_reset(reset_ft), .ft_txe_n(ft_txe_n),
         .ft_data_out(ft_d_out), .ft_data_oe(ft_d_oe),
         .ft_wr_n(ft_wr_n), .ft_rd_n(ft_rd_n), .ft_oe_n(ft_oe_n),
         .ft_siwu_n(),                 // SIWU# not pinned out in the pinmap
@@ -143,8 +193,8 @@ module sonar_top #(
     sram_snapshot #(
         .PDM_CLOCK_HZ(PDM_CLOCK_HZ)
     ) snapshot_i (
-        .clk(sram_clk), .reset(reset || !clocks_locked), .start(btn[0]),
-        .stream_clk(pdm_clk_fb), .stream_reset(reset),
+        .clk(sram_clk), .reset(reset_sram), .start(btn0_clean),
+        .stream_clk(pdm_clk_fb), .stream_reset(reset_pdm),
         .stream_frame_data(tap_frame_data),
         .stream_frame_valid(tap_frame_valid),
         .sram_addr(MemAdr), .sram_data(MemDB),
@@ -169,7 +219,7 @@ module sonar_top #(
         .MAX_AMPLITUDE(8'd187),          // tx-limits.md MA40S4S derivation
         .MAX_BURST_CYCLES(32'd120000)    // <=10 ms at 12 MHz
     ) tx_i (
-        .clk(sysclk), .reset(reset), .start(1'b0),
+        .clk(sysclk), .reset(reset_sysclk), .start(1'b0),
         .phase_increment(24'd0),
         .phase_increment_delta(32'sd0),
         .amplitude(8'd0),

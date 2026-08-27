@@ -8,7 +8,11 @@ module pdm_clock_startup #(
     parameter integer CTRL_CLOCK_HZ = 12000000,
     parameter integer START_STANDARD_MS = 50,
     parameter integer ULTRASONIC_SETTLE_MS = 10,
-    parameter integer SWITCH_OFF_CYCLES = 4
+    // REVIEW-2026-08-26 S8: the clock-off window must exceed the 2-flop
+    // buffer_oe synchronizer latency in the slowest selected_clock domain
+    // (2 x 651 ns at 1.536 MHz = 1.302 us) so the mic clock is verifiably
+    // OFF before select_ultrasonic changes; 20 cycles at 12 MHz = 1.67 us.
+    parameter integer SWITCH_OFF_CYCLES = 20
 ) (
     input  wire clk,
     input  wire reset,

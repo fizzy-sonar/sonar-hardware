@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by claude/orchestrator — T-011 live-gate repair verified and done; T-005 spike done (NO-GO); every non-human-gated ticket is now complete._
+_Last updated: 2026-08-26 by codex/sol-t011-fix — REVIEW-2026-08-26 findings B1/S1/S2/S9 repaired (Cmod power feed, XDC regen safety, rails.md strategy, FT_SIWU pull-up); uncommitted, orchestrator integrates._
 
 ## Now
 - **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5
@@ -65,6 +65,14 @@ _Last updated: 2026-08-26 by claude/orchestrator — T-011 live-gate repair veri
   `scripts/check_pinmap_vs_xdc.py` → PASS 44/44 vs the live XDC; ERC /digital/
   section zero violations. **T-011 stays in-progress until orchestrator
   re-verifies.**
+  **2026-08-26 review repair (codex/sol-t011-fix, REVIEW-2026-08-26 B1/S1/S9):**
+  the Cmod VU feed's orphan `+5V` net + stale masking PWR_FLAG are gone -
+  J40.24 now reaches the power tree's `5V` net through new R420 (0R 0603,
+  populated by default; DNP to isolate for module-USB backfeed). write_xdc()
+  preserves the MANUAL APPEND section (regen-twice byte-identical). R411 10k
+  pull-up added on FT_SIWU. Netlist: 5V=15 nodes incl. U35.3 buck VIN + U61.3
+  boost VIN + R420.2; 5V_CMOD={J40.24,R420.1}; `+5V` absent; ERC /digital/
+  zero; pinmap gate PASS 44/44.
 - **UNCOMMITTED WORK WARNING:** T-011 repair changes are in the working tree,
   (TX_EN/TX_PH/TX_NSLEEP/TX_PMODE/TX_NFAULT) bridged on the top sheet to the
   digital sheet's global labels; DRV8876 fully wired (VM=+12V, charge pump,
@@ -79,7 +87,11 @@ _Last updated: 2026-08-26 by claude/orchestrator — T-011 live-gate repair veri
   ERC-clean (project ERC 456/339/117 -> 377/298/79; power sheets at zero
   messages). Sequencing (12V after 3V3_D), bulk caps, rail test points, and the
   bring-up rails table are in `orchestration/rails.md`. Seven legacy converter
-  sheets deleted. `pcb drc` still SIGABRTs in the sandbox (exit 134) — ERC is
+  sheets deleted. **2026-08-26 review repair (codex/sol-t011-fix, REVIEW S2):**
+  rails.md now records the real v1 strategy (carrier 5V powers the Cmod via VU
+  through R420, populated by default; module-USB backfeed bring-up procedure;
+  Cmod ~200-400 mA typ allocation added to the 5V budget as an unmeasured
+  assumption); the stale self-powered/SJ1-SJ2 text is deleted. `pcb drc` still SIGABRTs in the sandbox (exit 134) — ERC is
   the gate; DRC re-run unsandboxed remains open.
 - **KiCad open?** Unknown. **KiCad files changed on disk 2026-08-26 (sonar.kicad_sch,
   new digital.kicad_sch) — Joshua: reload KiCad before opening the project.**
@@ -149,6 +161,11 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-26 — codex/sol-t011-fix: repaired REVIEW-2026-08-26 B1/S1/S2/S9 in
+  scripts/gen_digital_sheet.py + rails.md (regenerated outputs; R420 0R VU feed,
+  PWR_FLAG deleted, XDC read-modify-write, FT_SIWU pull-up, Cmod 5V allocation).
+  Verification in the T-011/T-012 Logs + journal
+  2026-08-26-codex-sol-t011-fix.md. Uncommitted; orchestrator integrates.
 - 2026-08-26 — codex/sol-t020 (session 4): finished the agent-doable T-020
   remainder — sonar_top/XDC port reconciliation (bijection gated by new
   gateware/sim/check_ports.py as make-test check 12; TX per tx-limits.md;

@@ -91,3 +91,20 @@ check.sh ERC; rails table reviewed at CP-C.
   Left for others: sonar.kicad_pcb still holds deleted sheets' footprints
   (resync at P3); T-014 sources R_0603_31.6k + FB2-as-0R; T-013 hooks +12V to
   DRV8876 VM; T-010 consumes 3V3_MIC.
+- 2026-08-26 codex/sol-t011-fix (review repair, REVIEW-2026-08-26.md S2/B1):
+  **S2 fixed:** rails.md now records the actual v1 power strategy - carrier 5V
+  powers the Cmod A7 through VU (DIP 24) via R420 (0R 0603, POPULATED BY DEFAULT;
+  DNP to isolate). The stale "Cmod/FT232H/Pico 2 self-powered from their own USB
+  / SJ1 SJ2 DNP option" text is deleted (FT232H + Pico 2 remain self-powered;
+  only the Cmod part was wrong). Backfeed caveat added as an explicit bring-up
+  procedure note: VU is the module's own USB 5 V in/out (bitstream load + D012
+  snapshot drain), so DNP/lift R420 before connecting the Cmod's USB while
+  carrier 5V is live; verify backfeed on the bench before ever connecting both.
+  **5V rail budget:** added the missing Cmod allocation - ~200-400 mA typ,
+  stated as an unmeasured assumption (A7-35T at our utilization: 12-lane DDR PDM
+  capture + FT245 sync-FIFO drain + MMCM, moderate toggle; verify at bring-up).
+  USB-C headroom after Cmod + 3V3_D buck input is ~300-400 mA; TX bursts still
+  require XT60. Schematic side (R420, net rename 5V, PWR_FLAG deletion) is in
+  the T-011 Log; ERC /digital/ zero, netlist chain J40.24-R420.1 / R420.2-5V
+  verified (5V = 15 nodes incl. U35.3 buck VIN + U61.3 boost VIN).
+

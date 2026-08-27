@@ -97,3 +97,16 @@ zero FAIL. ISSI PDF hunt: issi.com serves HTML, no Wayback PDF capture,
 digikey 404, mouser JS-walled — margin analysis stands as the evidence.
 T-020's ONLY remaining gates: Vivado host (T-007 purchase) + hardware demo.
 Agent-doable project work is now fully exhausted.
+
+## Addendum 5 — Cross-family review + fix wave (night)
+
+Claude review agent (cross-family vs the kimi authors) wrote
+orchestration/review/REVIEW-2026-08-26.md: verdict MIXED, 2 blockers (B1 Cmod power
+orphan masked by a stale PWR_FLAG; B2 TX duty cap was a mean not a bound — 15.7% of
+half-cycles at ~100% duty), 11 should-fix, 8 nits. Four fix waves (sol-t011-fix,
+sol-t020 sessions 5-6, terra-t016-fix) repaired B1/B2/S1-S11/NIT1/3/4/5; S5 became
+D013 (proposed, TX transducer default). Orchestrator re-verified on main: make test
+17/17, pinmap gate 44/44, port bijection 28/73, check_coupons.sh exit 0, ERC 346
+(legacy sheets only). Ledger: orchestration/review/FIXES-2026-08-26.md. Joshua-facing
+plan: orchestration/review/JOSHUA-REVIEW-PLAN.md. Open human gates: D013 ratify,
+MA40S4S/DRV8876/CDCLVC1112 datasheet readings, T-007 purchases, CP-BM.

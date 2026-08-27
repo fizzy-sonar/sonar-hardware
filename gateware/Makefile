@@ -43,6 +43,9 @@ test: $(BUILD_DIR)
 	$(IVERILOG) -g2012 -Wall -s tb_clock_tx \
 		-o $(BUILD_DIR)/tb_clock_tx $(RTL) sim/tb_clock_tx.sv
 	$(VVP) $(BUILD_DIR)/tb_clock_tx
+	$(IVERILOG) -g2012 -Wall -s tb_tx_duty_bound \
+		-o $(BUILD_DIR)/tb_tx_duty_bound $(RTL) sim/tb_tx_duty_bound.sv
+	$(VVP) $(BUILD_DIR)/tb_tx_duty_bound
 	$(IVERILOG) -g2012 -Wall -s tb_sram_snapshot \
 		-Ptb_sram_snapshot.SNAPSHOT_FRAMES=16 \
 		-Ptb_sram_snapshot.CLKS_PER_BIT=8 \

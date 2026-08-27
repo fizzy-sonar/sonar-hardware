@@ -73,3 +73,24 @@ check.sh ERC.
       box, no symbol/wire collisions).
   Not done / next: pcb drc re-run unsandboxed (environmental); CP-C datasheet
   strap checks above; CP-E bench Vpp measurement at J50.
+
+- 2026-08-26 codex/sol-t020: REVIEW-2026-08-26 fixes landing in
+  `orchestration/tx-limits.md` (S3/S4) plus one schematic follow-up found
+  while fixing S3.
+  - **S3 FIXED (doc):** TX_NSLEEP is pio48/V8 per `orchestration/pinmap.md`
+    (pio44/U3 is ETH_RXD1, an input) - tx-limits.md table corrected.
+    **FOLLOW-UP (schematic, owner T-015/CP-C or a repair ticket):** this
+    ticket's netlist audit recorded U62.3=TX_NSLEEP on J40.44, and the TX
+    Drive sheet text box says "pio1/2/44/8 out" - the `digital.kicad_sch`
+    TX_NSLEEP global label must move from J40.44 to J40.48 and the text box
+    corrected before CP-C. Flagged in STATUS blockers; not edited here
+    (outside the review-fix scope; gateware/XDC are already on V8).
+  - **S4 FIXED (doc):** idle-state text corrected - in IN1/IN2 (PWM) mode,
+    IN1=IN2=00 is COAST (both half-bridges Hi-Z), 11 is brake/low-side.
+    tx-limits.md now states the burst off-interval consequence (resonant
+    element floats, rings down through its capacitance + bridge body diodes,
+    terminal voltage not clamped) and adds "confirm the IN1/IN2 truth table
+    vs the DRV8876 datasheet" to the CP-C verification list.
+  - Related: D013 (proposed) picks the piezo horn tweeter as the v1 default
+    TX path and gates MA40S4S use on Joshua's 20 Vpp terminal-vs-fundamental
+    datasheet reading (REVIEW S5).

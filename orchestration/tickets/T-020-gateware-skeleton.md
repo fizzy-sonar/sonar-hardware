@@ -220,3 +220,37 @@ the Vivado host; UART snapshot mode demonstrated in sim.
     4. Future control plane to un-tie the internal TX/wake scaffolding.
   - Rules honored: no commit/merge/push; all changes uncommitted on
     agent/T-020-gateware for the orchestrator.
+
+- 2026-08-26 codex/sol-t020 (session 5): REVIEW-2026-08-26 fixes, scope
+  B2/S5/NIT5.
+  - **B2 (blocker) FIXED in `gateware/rtl/tx_nco_pwm.sv`:** the free-running
+    256-clock PWM carrier (46.875 kHz, 21.33 us) is gone. Duty is now gated by
+    the NCO phase itself (top PWM_BITS of the sub-half-cycle phase <
+    amplitude), so per-half-cycle duty is HARD-BOUNDED by amplitude/256
+    (+/-1 clock quantization per pulse edge) at any frequency/chirp rate.
+    New regression `gateware/sim/tb_tx_duty_bound.sv` (make-test check 9,
+    suite now 13/13): reviewer's exact config (PHASE_BITS=24,
+    phase_increment=55924, amplitude=187, 12 MHz, 200k clocks = 1333
+    half-cycles), amplitude sweep 0..255 (0 correctly rejected), both chirp
+    endpoints 27962/44739 at amplitude 187 and 255, and a 20->32 kHz ramp -
+    ZERO half-cycles over the derived bound
+    (on_clocks <= floor(amplitude*T_half/256)+2); worst observed 254/256 at
+    amplitude 255. Negative gate: the pre-fix RTL fails this TB with 594
+    half-cycles over bound in the reviewer config alone (matches the
+    reviewer's ~100%-duty observation). `tb_clock_tx` PHASE_BITS bumped
+    8->12 (gate requires PHASE_BITS > PWM_BITS); expectations unchanged.
+    Envelope re-derived in `orchestration/tx-limits.md`; the
+    (2VM/pi)(1-cos(pi*d)) formula is now EXACT for this waveform.
+  - **S5:** tx-limits.md now states plainly that duty-chopping never bounds
+    TERMINAL excursion (J50 always sees 24 Vpp transitions for any nonzero
+    amplitude); wrote `orchestration/decisions/D013` (status: proposed,
+    needs_human CP-B/CP-C): default v1 TX = piezo horn tweeter 20-32 kHz
+    chirps; MA40S4S 40 kHz use gated on Joshua's terminal-vs-fundamental
+    datasheet reading (terminal => reduced VM setpoint or series element).
+  - **NIT5:** `sonar_top` no longer tri-states `ft_d` (ft_oe_n is tied high,
+    FT232H never drives); port is now `output wire [7:0]`, constant drive with
+    `ft_wr_n` gating the transfer. Comment added in `ft245_sync_tx`.
+  - Verification: `make clean && make test` 13/13 PASS (Icarus 13.0);
+    `check_ports.py` bijection still 28 ports/73 bits exact.
+  - No commits (orchestrator commits). Ticket stays in-progress on the
+    Vivado-host + hardware-demo gates.

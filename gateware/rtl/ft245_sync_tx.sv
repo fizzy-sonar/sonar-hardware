@@ -35,6 +35,9 @@ module ft245_sync_tx (
 
     // The v1 core is transmit-only. Never enable the FT232H read direction.
     assign ft_rd_n = 1'b1;
+    // OE# tied high: this interface is write-only, so the FT232H never drives
+    // the data bus and the FPGA drives ft_d continuously (REVIEW-2026-08-26
+    // NIT5 - sonar_top no longer tri-states ft_d when idle).
     assign ft_oe_n = 1'b1;
     assign ft_siwu_n = 1'b1;
 

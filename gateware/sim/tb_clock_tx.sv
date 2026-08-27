@@ -8,8 +8,11 @@ module tb_clock_tx;
     reg wake = 1'b0;
     wire buffer_oe, select_ultrasonic, discard_samples, capture_enable;
     reg tx_start = 1'b0;
-    reg [7:0] phase_increment = 8'd0;
-    reg signed [11:0] phase_increment_delta = 12'sd0;
+    // PHASE_BITS widened 8->12: the phase-derived duty gate (REVIEW B2 fix)
+    // needs PHASE_BITS > PWM_BITS. The chirp-step read below still takes
+    // phase_step_accum[11:4], i.e. the low 8 Q4 bits - expectations unchanged.
+    reg [11:0] phase_increment = 12'd0;
+    reg signed [15:0] phase_increment_delta = 16'sd0;
     reg [7:0] amplitude = 8'd0;
     reg [31:0] burst_cycles = 32'd0;
     wire tx_a, tx_b, tx_active, limit_fault;
@@ -35,8 +38,8 @@ module tb_clock_tx;
     );
 
     tx_nco_pwm #(
-        .PHASE_BITS(8), .PWM_BITS(8), .RAMP_FRAC_BITS(4),
-        .MAX_PHASE_INCREMENT(8'd64), .MAX_AMPLITUDE(8'd128),
+        .PHASE_BITS(12), .PWM_BITS(8), .RAMP_FRAC_BITS(4),
+        .MAX_PHASE_INCREMENT(12'd64), .MAX_AMPLITUDE(8'd128),
         .MAX_BURST_CYCLES(16)
     ) tx_i (
         .clk(clk), .reset(reset), .start(tx_start),
@@ -108,8 +111,8 @@ module tb_clock_tx;
                    standard_cycles, switch_off_cycles, settle_cycles);
 
         // Reject an over-limit request and remain electrically safe.
-        phase_increment = 8'd20;
-        phase_increment_delta = 12'sd0;
+        phase_increment = 12'd20;
+        phase_increment_delta = 16'sd0;
         amplitude = 8'd200;
         burst_cycles = 8;
         pulse_tx_start();
@@ -121,7 +124,7 @@ module tb_clock_tx;
         // exactly +0.5/cycle in Q4, and stops by itself.
         amplitude = 8'd96;
         burst_cycles = 8;
-        phase_increment_delta = 12'sd8;
+        phase_increment_delta = 16'sd8;
         pulse_tx_start();
         wait (tx_active);
         wait (!tx_active);
@@ -138,8 +141,8 @@ module tb_clock_tx;
 
         // A ramp that would cross the configured frequency ceiling must stop
         // rather than emit an out-of-envelope phase step.
-        phase_increment = 8'd63;
-        phase_increment_delta = 12'sd32; // +2.0/cycle in Q4
+        phase_increment = 12'd63;
+        phase_increment_delta = 16'sd32; // +2.0/cycle in Q4
         burst_cycles = 4;
         pulse_tx_start();
         wait (tx_active);

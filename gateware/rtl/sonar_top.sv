@@ -51,7 +51,9 @@ module sonar_top #(
     input  wire        ft_clkout,
     input  wire        ft_rxf_n,       // reserved: RX path/control plane (unused)
     input  wire        ft_txe_n,
-    inout  wire [7:0]  ft_d,
+    // REVIEW-2026-08-26 NIT5: ft_oe_n is tied high, so the FT232H never
+    // drives the bus; the FPGA drives ft_d at all times (no tri-state idle).
+    output wire [7:0]  ft_d,
     output wire        ft_wr_n,
     output wire        ft_rd_n,
     output wire        ft_oe_n,
@@ -129,7 +131,11 @@ module sonar_top #(
         .ft_siwu_n(),                 // SIWU# not pinned out in the pinmap
         .tap_frame_data(tap_frame_data), .tap_frame_valid(tap_frame_valid)
     );
-    assign ft_d = ft_d_oe ? ft_d_out : 8'hzz;
+    // Constant drive (NIT5): ft_wr_n (= !ft_data_oe) already gates the
+    // transfer; holding the last byte between writes is harmless because the
+    // FT232H only samples ft_d while WR# is low.
+    assign ft_d = ft_d_out;
+    wire ft_d_oe_unused = ft_d_oe;
 
     // 512 KiB SRAM snapshot fallback (D012). The SRAM/UART clock domain is
     // held in reset until the MMCM locks; capture frames tap the accepted

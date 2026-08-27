@@ -1,7 +1,7 @@
 ---
 id: T-018
 title: Guided visual review page for Joshua
-status: in-progress
+status: done
 phase: P2
 tier: mid        # Python/HTML review tooling plus KiCad render orchestration
 priority: 1
@@ -47,3 +47,33 @@ git diff --check
 
 - 2026-08-27 codex/sol-t018: ticket created and claimed from Joshua's request for
   an easy guided review showing the renders, layouts, and complete evidence set.
+- 2026-08-27 codex/sol-t018: completed the guided page and one-command launcher.
+  `scripts/gen_review_page.py` now freshly exports the 50-sheet main schematic +
+  PDF, both coupon schematics, top/bottom 2D board plots, and top/bottom 3D renders
+  for the legacy main PCB and both coupon candidates. The page has eight guided
+  steps, full-resolution image links, a persistent 11-item checklist with notes,
+  “show everything”/print modes, and a paste-ready review-summary builder. The
+  main PCB is explicitly marked NOT FOR APPROVAL with DRC counts pulled from the
+  report; it cannot be confused with an unstarted production layout.
+- Verification (2026-08-27, real output):
+
+      python3 scripts/gen_review_page.py --skip-gateware
+      link check: 157 local src/href attributes, 157 resolve, 0 broken
+      assets copied: 72
+      link check: PASS
+
+      python3 scripts/check_review_page.py
+      review page: 8 steps, 11 review items, 71 images, 157 local references
+      required assets: 18/18 present
+      review page checks: PASS
+
+      ruff check scripts/gen_review_page.py scripts/check_review_page.py
+      All checks passed!
+
+  `ruff format --check`, `bash -n scripts/open_review.sh`, and `git diff --check`
+  also pass. Visually inspected the 1440 px generated page preview, all six 3D
+  board views, and representative main/coupon top/bottom 2D plots. The installed
+  in-app-browser bridge has a stale internal package path, so Quick Look plus
+  direct render inspection supplied visual QA; this does not affect the standalone
+  page or `./scripts/open_review.sh`. No schematic, PCB, gateware, or user project
+  file was changed.

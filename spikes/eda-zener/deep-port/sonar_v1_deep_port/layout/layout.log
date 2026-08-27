@@ -1,0 +1,409 @@
+./src/common/stdpbase.cpp(59): assert ""traits"" failed in Get(): create wxApp before calling this
+INFO: Parsing JSON netlist from /var/folders/v7/qlk1r5q51ps3qbvxr_542fqr0000gn/T/.tmpa2sREd/netlist.json
+DEBUG: Found module PREAMP with layout_path: None
+DEBUG: Found module PREAMP.C_IN0 with layout_path: None
+DEBUG: Found module PREAMP.C_IN1 with layout_path: None
+DEBUG: Found module PREAMP.C_IN2 with layout_path: None
+DEBUG: Found module PREAMP.C_IN3 with layout_path: None
+DEBUG: Found module PREAMP.C_SHUNT0 with layout_path: None
+DEBUG: Found module PREAMP.C_SHUNT1 with layout_path: None
+DEBUG: Found module PREAMP.C_SHUNT2 with layout_path: None
+DEBUG: Found module PREAMP.C_SHUNT3 with layout_path: None
+DEBUG: Found module PREAMP.C_VN_100N with layout_path: None
+DEBUG: Found module PREAMP.C_VN_1U with layout_path: None
+DEBUG: Found module PREAMP.C_VP_100N with layout_path: None
+DEBUG: Found module PREAMP.C_VP_1U with layout_path: None
+DEBUG: Found module PREAMP.R_BIAS0 with layout_path: None
+DEBUG: Found module PREAMP.R_BIAS1 with layout_path: None
+DEBUG: Found module PREAMP.R_BIAS2 with layout_path: None
+DEBUG: Found module PREAMP.R_BIAS3 with layout_path: None
+DEBUG: Found module PREAMP.R_FB0 with layout_path: None
+DEBUG: Found module PREAMP.R_FB1 with layout_path: None
+DEBUG: Found module PREAMP.R_FB2 with layout_path: None
+DEBUG: Found module PREAMP.R_FB3 with layout_path: None
+DEBUG: Found module PREAMP.R_GAIN0 with layout_path: None
+DEBUG: Found module PREAMP.R_GAIN1 with layout_path: None
+DEBUG: Found module PREAMP.R_GAIN2 with layout_path: None
+DEBUG: Found module PREAMP.R_GAIN3 with layout_path: None
+DEBUG: Found module PREAMP.R_OUT0 with layout_path: None
+DEBUG: Found module PREAMP.R_OUT1 with layout_path: None
+DEBUG: Found module PREAMP.R_OUT2 with layout_path: None
+DEBUG: Found module PREAMP.R_OUT3 with layout_path: None
+DEBUG: Found module PREAMP.TP_AMP0 with layout_path: None
+DEBUG: Found module PREAMP.TP_AMP1 with layout_path: None
+DEBUG: Found module PREAMP.TP_AMP2 with layout_path: None
+DEBUG: Found module PREAMP.TP_AMP3 with layout_path: None
+DEBUG: Found module PREAMP.TP_PRE0 with layout_path: None
+DEBUG: Found module PREAMP.TP_PRE1 with layout_path: None
+DEBUG: Found module PREAMP.TP_PRE2 with layout_path: None
+DEBUG: Found module PREAMP.TP_PRE3 with layout_path: None
+DEBUG: Found module PREAMP.U_QUAD with layout_path: None
+DEBUG: Found module PSU with layout_path: None
+DEBUG: Found module PSU.C_BST with layout_path: None
+DEBUG: Found module PSU.C_IN_100N with layout_path: None
+DEBUG: Found module PSU.C_IN_10U with layout_path: None
+DEBUG: Found module PSU.C_IN_22U with layout_path: None
+DEBUG: Found module PSU.C_MIC_10U with layout_path: None
+DEBUG: Found module PSU.C_MIC_1U with layout_path: None
+DEBUG: Found module PSU.C_OUT_22U_A with layout_path: None
+DEBUG: Found module PSU.C_OUT_22U_B with layout_path: None
+DEBUG: Found module PSU.FB_MIC with layout_path: None
+DEBUG: Found module PSU.L_BUCK with layout_path: None
+DEBUG: Found module PSU.R_EN with layout_path: None
+DEBUG: Found module PSU.R_FB_BOT with layout_path: None
+DEBUG: Found module PSU.R_FB_TOP with layout_path: None
+DEBUG: Found module PSU.TP_3V3 with layout_path: None
+DEBUG: Found module PSU.TP_3V3_MIC with layout_path: None
+DEBUG: Found module PSU.TP_5V with layout_path: None
+DEBUG: Found module PSU.U_BUCK with layout_path: None
+DEBUG: Found module TX with layout_path: None
+DEBUG: Found module TX.C_FLY with layout_path: None
+DEBUG: Found module TX.C_SNUB with layout_path: None
+DEBUG: Found module TX.C_VCP with layout_path: None
+DEBUG: Found module TX.C_VM_100N with layout_path: None
+DEBUG: Found module TX.C_VM_10U with layout_path: None
+DEBUG: Found module TX.R_IMODE with layout_path: None
+DEBUG: Found module TX.R_IPROPI with layout_path: None
+DEBUG: Found module TX.R_NFAULT with layout_path: None
+DEBUG: Found module TX.R_OUT1 with layout_path: None
+DEBUG: Found module TX.R_OUT2 with layout_path: None
+DEBUG: Found module TX.R_SNUB with layout_path: None
+DEBUG: Found module TX.U_DRV with layout_path: None
+INFO: --------------------------------------------------------------------------------
+INFO: Running step: ImportNetlist
+INFO: --------------------------------------------------------------------------------
+INFO: Starting ImportNetlist...
+INFO: Running lens-based netlist sync
+INFO: Starting lens-based layout sync
+INFO: Source: 67 footprints, 3 groups, 46 nets
+INFO: OLD FPV path=PREAMP.C_IN0.C ref=C1 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PREAMP.C_IN1.C ref=C2 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PREAMP.C_IN2.C ref=C3 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PREAMP.C_IN3.C ref=C4 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PREAMP.C_SHUNT0.C ref=C5 value=GRM1885C1H472JA01D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=4.7nF 10%", "Dielectric=C0G", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GRM1885C1H472JA01D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=50V"]
+INFO: OLD FPV path=PREAMP.C_SHUNT1.C ref=C6 value=GRM1885C1H472JA01D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=4.7nF 10%", "Dielectric=C0G", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GRM1885C1H472JA01D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=50V"]
+INFO: OLD FPV path=PREAMP.C_SHUNT2.C ref=C7 value=GRM1885C1H472JA01D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=4.7nF 10%", "Dielectric=C0G", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GRM1885C1H472JA01D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=50V"]
+INFO: OLD FPV path=PREAMP.C_SHUNT3.C ref=C8 value=GRM1885C1H472JA01D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=4.7nF 10%", "Dielectric=C0G", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GRM1885C1H472JA01D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=50V"]
+INFO: OLD FPV path=PREAMP.C_VN_100N.C ref=C10 value=GRM188R72A104KA35D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=100nF 10%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GRM188R72A104KA35D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PREAMP.C_VN_1U.C ref=C9 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PREAMP.C_VP_100N.C ref=C12 value=GRM188R72A104KA35D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=100nF 10%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GRM188R72A104KA35D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PREAMP.C_VP_1U.C ref=C11 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PREAMP.R_BIAS0.R ref=R1 value=ERJ-3EKF1002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1002V", "Package=0603", "Prefix=R", "Resistance=10k 5%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_BIAS1.R ref=R2 value=ERJ-3EKF1002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1002V", "Package=0603", "Prefix=R", "Resistance=10k 5%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_BIAS2.R ref=R3 value=ERJ-3EKF1002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1002V", "Package=0603", "Prefix=R", "Resistance=10k 5%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_BIAS3.R ref=R4 value=ERJ-3EKF1002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1002V", "Package=0603", "Prefix=R", "Resistance=10k 5%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_FB0.R ref=R5 value=ERJ-3EKF2002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF2002V", "Package=0603", "Prefix=R", "Resistance=20k", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_FB1.R ref=R6 value=ERJ-3EKF2002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF2002V", "Package=0603", "Prefix=R", "Resistance=20k", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_FB2.R ref=R7 value=ERJ-3EKF2002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF2002V", "Package=0603", "Prefix=R", "Resistance=20k", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_FB3.R ref=R8 value=ERJ-3EKF2002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF2002V", "Package=0603", "Prefix=R", "Resistance=20k", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_GAIN0.R ref=R9 value=ERJ-3EKF1001V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1001V", "Package=0603", "Prefix=R", "Resistance=1k 1%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_GAIN1.R ref=R10 value=ERJ-3EKF1001V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1001V", "Package=0603", "Prefix=R", "Resistance=1k 1%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_GAIN2.R ref=R11 value=ERJ-3EKF1001V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1001V", "Package=0603", "Prefix=R", "Resistance=1k 1%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_GAIN3.R ref=R12 value=ERJ-3EKF1001V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1001V", "Package=0603", "Prefix=R", "Resistance=1k 1%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_OUT0.R ref=R13 value=ERJ-3EKF49R9V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF49R9V", "Package=0603", "Prefix=R", "Resistance=49.9 1%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_OUT1.R ref=R14 value=ERJ-3EKF49R9V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF49R9V", "Package=0603", "Prefix=R", "Resistance=49.9 1%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_OUT2.R ref=R15 value=ERJ-3EKF49R9V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF49R9V", "Package=0603", "Prefix=R", "Resistance=49.9 1%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.R_OUT3.R ref=R16 value=ERJ-3EKF49R9V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF49R9V", "Package=0603", "Prefix=R", "Resistance=49.9 1%", "Type=resistor"]
+INFO: OLD FPV path=PREAMP.TP_AMP0.TP ref=TP1 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: OLD FPV path=PREAMP.TP_AMP1.TP ref=TP2 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: OLD FPV path=PREAMP.TP_AMP2.TP ref=TP3 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: OLD FPV path=PREAMP.TP_AMP3.TP ref=TP4 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: OLD FPV path=PREAMP.TP_PRE0.TP ref=TP5 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: OLD FPV path=PREAMP.TP_PRE1.TP ref=TP6 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: OLD FPV path=PREAMP.TP_PRE2.TP ref=TP7 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: OLD FPV path=PREAMP.TP_PRE3.TP ref=TP8 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: OLD FPV path=PREAMP.U_QUAD.U ref=U1 value=OPA4171IDR fpid=localhost_sonar_deep-port_footprints:SOIC-14_3.9x8.7mm_P1.27mm fields=["Gbw=3MHz", "Iq Per Channel=475uA", "KiLib_Generator=package/gullwing", "Manufacturer=Texas Instruments", "Mpn=OPA4171IDR", "Prefix=U", "Supply Max=36V", "Type=opamp_quad"]
+INFO: OLD FPV path=PSU.C_BST.C ref=C13 value=GRM188R72A104KA35D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=100nF 10%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GRM188R72A104KA35D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PSU.C_IN_100N.C ref=C16 value=GRM188R72A104KA35D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=100nF 10%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GRM188R72A104KA35D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PSU.C_IN_10U.C ref=C14 value="10uF 20% 16V X7R" fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=10uF 20%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PSU.C_IN_22U.C ref=C15 value="22uF 20% 16V X7R" fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=22uF 20%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PSU.C_MIC_10U.C ref=C18 value=GRM188Z71A106KA73D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=10uF 20%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GRM188Z71A106KA73D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=10V"]
+INFO: OLD FPV path=PSU.C_MIC_1U.C ref=C17 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: OLD FPV path=PSU.C_OUT_22U_A.C ref=C19 value="22uF 20% 10V X7R" fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=22uF 20%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=10V"]
+INFO: OLD FPV path=PSU.C_OUT_22U_B.C ref=C20 value="22uF 20% 10V X7R" fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=22uF 20%", "Dielectric=X7R", "KiLib_Generator=SMD_2terminal_chip_molded", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=10V"]
+INFO: OLD FPV path=PSU.FB_MIC.FB ref=FB1 value=BLM18KG121TN1D fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Frequency=100MHz", "Impedance=120", "KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Murata", "Mpn=BLM18KG121TN1D", "Package=0603", "Prefix=FB", "Type=ferrite_bead"]
+INFO: OLD FPV path=PSU.L_BUCK.L ref=L1 value=2.2uH fpid=stdlib_kicad-footprints_Inductor_SMD:L_0402_1005Metric fields=["Inductance=2.2uH", "KiLib_Generator=SMD_2terminal_chip_molded", "Package=0402", "Prefix=L", "Type=inductor"]
+INFO: OLD FPV path=PSU.R_EN.R ref=R17 value=ERJ-3EKF1003V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1003V", "Package=0603", "Prefix=R", "Resistance=100k 5%", "Type=resistor"]
+INFO: OLD FPV path=PSU.R_FB_BOT.R ref=R18 value=ERJ-3EKF1002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1002V", "Package=0603", "Prefix=R", "Resistance=10k 1%", "Type=resistor"]
+INFO: OLD FPV path=PSU.R_FB_TOP.R ref=R19 value=ERJ-3EKF3162V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["KiLib_Generator=SMD_2terminal_chip_molded", "Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF3162V", "Package=0603", "Prefix=R", "Resistance=31.6k 1%", "Type=resistor"]
+INFO: OLD FPV path=PSU.TP_3V3.TP ref=TP9 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: OLD FPV path=PSU.TP_3V3_MIC.TP ref=TP10 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: OLD FPV path=PSU.TP_5V.TP ref=TP11 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: OLD FPV path=PSU.U_BUCK.U ref=U2 value=AP63301WU-7 fpid=localhost_sonar_deep-port_footprints:TSOT-23-6 fields=["Iout Max=3A", "Lcsc=C2158003", "Manufacturer=Diodes Incorporated", "Mpn=AP63301WU-7", "Prefix=U", "Type=buck_regulator", "Vin Max=32V", "Vin Min=3.8V"]
+INFO: OLD GRV path=PREAMP members=[PREAMP.C_IN0.C, PREAMP.C_IN1.C, PREAMP.C_IN2.C, PREAMP.C_IN3.C, PREAMP.C_SHUNT0.C, PREAMP.C_SHUNT1.C, PREAMP.C_SHUNT2.C, PREAMP.C_SHUNT3.C, PREAMP.C_VN_100N.C, PREAMP.C_VN_1U.C, PREAMP.C_VP_100N.C, PREAMP.C_VP_1U.C, PREAMP.R_BIAS0.R, PREAMP.R_BIAS1.R, PREAMP.R_BIAS2.R, PREAMP.R_BIAS3.R, PREAMP.R_FB0.R, PREAMP.R_FB1.R, PREAMP.R_FB2.R, PREAMP.R_FB3.R, PREAMP.R_GAIN0.R, PREAMP.R_GAIN1.R, PREAMP.R_GAIN2.R, PREAMP.R_GAIN3.R, PREAMP.R_OUT0.R, PREAMP.R_OUT1.R, PREAMP.R_OUT2.R, PREAMP.R_OUT3.R, PREAMP.TP_AMP0.TP, PREAMP.TP_AMP1.TP, PREAMP.TP_AMP2.TP, PREAMP.TP_AMP3.TP, PREAMP.TP_PRE0.TP, PREAMP.TP_PRE1.TP, PREAMP.TP_PRE2.TP, PREAMP.TP_PRE3.TP, PREAMP.U_QUAD.U]
+INFO: OLD GRV path=PSU members=[PSU.C_BST.C, PSU.C_IN_100N.C, PSU.C_IN_10U.C, PSU.C_IN_22U.C, PSU.C_MIC_10U.C, PSU.C_MIC_1U.C, PSU.C_OUT_22U_A.C, PSU.C_OUT_22U_B.C, PSU.FB_MIC.FB, PSU.L_BUCK.L, PSU.R_EN.R, PSU.R_FB_BOT.R, PSU.R_FB_TOP.R, PSU.TP_3V3.TP, PSU.TP_3V3_MIC.TP, PSU.TP_5V.TP, PSU.U_BUCK.U]
+INFO: OLD FPC path=PREAMP.C_IN0.C x=149695000 y=112820000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=111390000 val_x=149695000 val_y=114250000
+INFO: OLD FPC path=PREAMP.C_IN1.C x=149695000 y=111310000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=109880000 val_x=149695000 val_y=112740000
+INFO: OLD FPC path=PREAMP.C_IN2.C x=149695000 y=109800000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=108370000 val_x=149695000 val_y=111230000
+INFO: OLD FPC path=PREAMP.C_IN3.C x=149695000 y=108290000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=106860000 val_x=149695000 val_y=109720000
+INFO: OLD FPC path=PREAMP.C_SHUNT0.C x=149695000 y=106780000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=105350000 val_x=149695000 val_y=108210000
+INFO: OLD FPC path=PREAMP.C_SHUNT1.C x=149695000 y=105270000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=103840000 val_x=149695000 val_y=106700000
+INFO: OLD FPC path=PREAMP.C_SHUNT2.C x=149695000 y=103760000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=102330000 val_x=149695000 val_y=105190000
+INFO: OLD FPC path=PREAMP.C_SHUNT3.C x=142245000 y=103455000 orient=0.0 layer=F.Cu ref_x=142245000 ref_y=102025000 val_x=142245000 val_y=104885000
+INFO: OLD FPC path=PREAMP.C_VN_100N.C x=145255000 y=103455000 orient=0.0 layer=F.Cu ref_x=145255000 ref_y=102025000 val_x=145255000 val_y=104885000
+INFO: OLD FPC path=PREAMP.C_VN_1U.C x=149695000 y=102250000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=100820000 val_x=149695000 val_y=103680000
+INFO: OLD FPC path=PREAMP.C_VP_100N.C x=142245000 y=101945000 orient=0.0 layer=F.Cu ref_x=142245000 ref_y=100515000 val_x=142245000 val_y=103375000
+INFO: OLD FPC path=PREAMP.C_VP_1U.C x=145255000 y=101945000 orient=0.0 layer=F.Cu ref_x=145255000 ref_y=100515000 val_x=145255000 val_y=103375000
+INFO: OLD FPC path=PREAMP.R_BIAS0.R x=152705000 y=112820000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=111390000 val_x=152705000 val_y=114250000
+INFO: OLD FPC path=PREAMP.R_BIAS1.R x=152705000 y=111310000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=109880000 val_x=152705000 val_y=112740000
+INFO: OLD FPC path=PREAMP.R_BIAS2.R x=152705000 y=109800000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=108370000 val_x=152705000 val_y=111230000
+INFO: OLD FPC path=PREAMP.R_BIAS3.R x=152705000 y=108290000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=106860000 val_x=152705000 val_y=109720000
+INFO: OLD FPC path=PREAMP.R_FB0.R x=152705000 y=106780000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=105350000 val_x=152705000 val_y=108210000
+INFO: OLD FPC path=PREAMP.R_FB1.R x=152705000 y=105270000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=103840000 val_x=152705000 val_y=106700000
+INFO: OLD FPC path=PREAMP.R_FB2.R x=152705000 y=103760000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=102330000 val_x=152705000 val_y=105190000
+INFO: OLD FPC path=PREAMP.R_FB3.R x=152705000 y=102250000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=100820000 val_x=152705000 val_y=103680000
+INFO: OLD FPC path=PREAMP.R_GAIN0.R x=149695000 y=100740000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=99310000 val_x=149695000 val_y=102170000
+INFO: OLD FPC path=PREAMP.R_GAIN1.R x=152705000 y=100740000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=99310000 val_x=152705000 val_y=102170000
+INFO: OLD FPC path=PREAMP.R_GAIN2.R x=142245000 y=100435000 orient=0.0 layer=F.Cu ref_x=142245000 ref_y=99005000 val_x=142245000 val_y=101865000
+INFO: OLD FPC path=PREAMP.R_GAIN3.R x=145255000 y=100435000 orient=0.0 layer=F.Cu ref_x=145255000 ref_y=99005000 val_x=145255000 val_y=101865000
+INFO: OLD FPC path=PREAMP.R_OUT0.R x=149695000 y=99230000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=97800000 val_x=149695000 val_y=100660000
+INFO: OLD FPC path=PREAMP.R_OUT1.R x=152705000 y=99230000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=97800000 val_x=152705000 val_y=100660000
+INFO: OLD FPC path=PREAMP.R_OUT2.R x=142245000 y=98925000 orient=0.0 layer=F.Cu ref_x=142245000 ref_y=97495000 val_x=142245000 val_y=100355000
+INFO: OLD FPC path=PREAMP.R_OUT3.R x=145255000 y=98925000 orient=0.0 layer=F.Cu ref_x=145255000 ref_y=97495000 val_x=145255000 val_y=100355000
+INFO: OLD FPC path=PREAMP.TP_AMP0.TP x=155235000 y=112550000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=111102000 val_x=155235000 val_y=114100000
+INFO: OLD FPC path=PREAMP.TP_AMP1.TP x=155235000 y=109530000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=108082000 val_x=155235000 val_y=111080000
+INFO: OLD FPC path=PREAMP.TP_AMP2.TP x=155235000 y=106510000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=105062000 val_x=155235000 val_y=108060000
+INFO: OLD FPC path=PREAMP.TP_AMP3.TP x=155235000 y=103490000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=102042000 val_x=155235000 val_y=105040000
+INFO: OLD FPC path=PREAMP.TP_PRE0.TP x=155235000 y=100470000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=99022000 val_x=155235000 val_y=102020000
+INFO: OLD FPC path=PREAMP.TP_PRE1.TP x=155235000 y=98420000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=96972000 val_x=155235000 val_y=99970000
+INFO: OLD FPC path=PREAMP.TP_PRE2.TP x=149215000 y=97450000 orient=0.0 layer=F.Cu ref_x=149215000 ref_y=96002000 val_x=149215000 val_y=99000000
+INFO: OLD FPC path=PREAMP.TP_PRE3.TP x=152225000 y=97450000 orient=0.0 layer=F.Cu ref_x=152225000 ref_y=96002000 val_x=152225000 val_y=99000000
+INFO: OLD FPC path=PREAMP.U_QUAD.U x=144465000 y=108970000 orient=0.0 layer=F.Cu ref_x=144465000 ref_y=103690000 val_x=144465000 val_y=114250000
+INFO: OLD FPC path=PSU.C_BST.C x=159765000 y=109195000 orient=0.0 layer=F.Cu ref_x=159765000 ref_y=107765000 val_x=159765000 val_y=110625000
+INFO: OLD FPC path=PSU.C_IN_100N.C x=162775000 y=109195000 orient=0.0 layer=F.Cu ref_x=162775000 ref_y=107765000 val_x=162775000 val_y=110625000
+INFO: OLD FPC path=PSU.C_IN_10U.C x=159765000 y=107685000 orient=0.0 layer=F.Cu ref_x=159765000 ref_y=106255000 val_x=159765000 val_y=109115000
+INFO: OLD FPC path=PSU.C_IN_22U.C x=162775000 y=107685000 orient=0.0 layer=F.Cu ref_x=162775000 ref_y=106255000 val_x=162775000 val_y=109115000
+INFO: OLD FPC path=PSU.C_MIC_10U.C x=163915000 y=112820000 orient=0.0 layer=F.Cu ref_x=163915000 ref_y=111390000 val_x=163915000 val_y=114250000
+INFO: OLD FPC path=PSU.C_MIC_1U.C x=163915000 y=111310000 orient=0.0 layer=F.Cu ref_x=163915000 ref_y=109880000 val_x=163915000 val_y=112740000
+INFO: OLD FPC path=PSU.C_OUT_22U_A.C x=159765000 y=106175000 orient=0.0 layer=F.Cu ref_x=159765000 ref_y=104745000 val_x=159765000 val_y=107605000
+INFO: OLD FPC path=PSU.C_OUT_22U_B.C x=162775000 y=106175000 orient=0.0 layer=F.Cu ref_x=162775000 ref_y=104745000 val_x=162775000 val_y=107605000
+INFO: OLD FPC path=PSU.FB_MIC.FB x=165785000 y=109195000 orient=0.0 layer=F.Cu ref_x=165785000 ref_y=107765000 val_x=165785000 val_y=110625000
+INFO: OLD FPC path=PSU.L_BUCK.L x=166375000 y=111030000 orient=0.0 layer=F.Cu ref_x=166375000 ref_y=109860000 val_x=166375000 val_y=112200000
+INFO: OLD FPC path=PSU.R_EN.R x=165785000 y=107685000 orient=0.0 layer=F.Cu ref_x=165785000 ref_y=106255000 val_x=165785000 val_y=109115000
+INFO: OLD FPC path=PSU.R_FB_BOT.R x=165785000 y=106175000 orient=0.0 layer=F.Cu ref_x=165785000 ref_y=104745000 val_x=165785000 val_y=107605000
+INFO: OLD FPC path=PSU.R_FB_TOP.R x=159765000 y=104665000 orient=0.0 layer=F.Cu ref_x=159765000 ref_y=103235000 val_x=159765000 val_y=106095000
+INFO: OLD FPC path=PSU.TP_3V3.TP x=166445000 y=112550000 orient=0.0 layer=F.Cu ref_x=166445000 ref_y=111102000 val_x=166445000 val_y=114100000
+INFO: OLD FPC path=PSU.TP_3V3_MIC.TP x=162295000 y=104395000 orient=0.0 layer=F.Cu ref_x=162295000 ref_y=102947000 val_x=162295000 val_y=105945000
+INFO: OLD FPC path=PSU.TP_5V.TP x=165305000 y=104395000 orient=0.0 layer=F.Cu ref_x=165305000 ref_y=102947000 val_x=165305000 val_y=105945000
+INFO: OLD FPC path=PSU.U_BUCK.U x=160335000 y=111850000 orient=0.0 layer=F.Cu ref_x=160335000 ref_y=109450000 val_x=160335000 val_y=114250000
+INFO: Changes: +13 -0 footprints
+INFO: NEW FPV path=PREAMP.C_IN0.C ref=C1 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PREAMP.C_IN1.C ref=C2 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PREAMP.C_IN2.C ref=C3 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PREAMP.C_IN3.C ref=C4 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PREAMP.C_SHUNT0.C ref=C5 value=GRM1885C1H472JA01D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=4.7nF 10%", "Dielectric=C0G", "Manufacturer=Murata Electronics", "Mpn=GRM1885C1H472JA01D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=50V"]
+INFO: NEW FPV path=PREAMP.C_SHUNT1.C ref=C6 value=GRM1885C1H472JA01D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=4.7nF 10%", "Dielectric=C0G", "Manufacturer=Murata Electronics", "Mpn=GRM1885C1H472JA01D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=50V"]
+INFO: NEW FPV path=PREAMP.C_SHUNT2.C ref=C7 value=GRM1885C1H472JA01D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=4.7nF 10%", "Dielectric=C0G", "Manufacturer=Murata Electronics", "Mpn=GRM1885C1H472JA01D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=50V"]
+INFO: NEW FPV path=PREAMP.C_SHUNT3.C ref=C8 value=GRM1885C1H472JA01D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=4.7nF 10%", "Dielectric=C0G", "Manufacturer=Murata Electronics", "Mpn=GRM1885C1H472JA01D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=50V"]
+INFO: NEW FPV path=PREAMP.C_VN_100N.C ref=C10 value=GRM188R72A104KA35D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=100nF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GRM188R72A104KA35D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PREAMP.C_VN_1U.C ref=C9 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PREAMP.C_VP_100N.C ref=C12 value=GRM188R72A104KA35D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=100nF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GRM188R72A104KA35D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PREAMP.C_VP_1U.C ref=C11 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PREAMP.R_BIAS0.R ref=R1 value=ERJ-3EKF1002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1002V", "Package=0603", "Prefix=R", "Resistance=10k 5%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_BIAS1.R ref=R2 value=ERJ-3EKF1002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1002V", "Package=0603", "Prefix=R", "Resistance=10k 5%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_BIAS2.R ref=R3 value=ERJ-3EKF1002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1002V", "Package=0603", "Prefix=R", "Resistance=10k 5%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_BIAS3.R ref=R4 value=ERJ-3EKF1002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1002V", "Package=0603", "Prefix=R", "Resistance=10k 5%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_FB0.R ref=R5 value=ERJ-3EKF2002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF2002V", "Package=0603", "Prefix=R", "Resistance=20k", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_FB1.R ref=R6 value=ERJ-3EKF2002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF2002V", "Package=0603", "Prefix=R", "Resistance=20k", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_FB2.R ref=R7 value=ERJ-3EKF2002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF2002V", "Package=0603", "Prefix=R", "Resistance=20k", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_FB3.R ref=R8 value=ERJ-3EKF2002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF2002V", "Package=0603", "Prefix=R", "Resistance=20k", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_GAIN0.R ref=R9 value=ERJ-3EKF1001V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1001V", "Package=0603", "Prefix=R", "Resistance=1k 1%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_GAIN1.R ref=R10 value=ERJ-3EKF1001V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1001V", "Package=0603", "Prefix=R", "Resistance=1k 1%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_GAIN2.R ref=R11 value=ERJ-3EKF1001V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1001V", "Package=0603", "Prefix=R", "Resistance=1k 1%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_GAIN3.R ref=R12 value=ERJ-3EKF1001V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1001V", "Package=0603", "Prefix=R", "Resistance=1k 1%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_OUT0.R ref=R13 value=ERJ-3EKF49R9V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF49R9V", "Package=0603", "Prefix=R", "Resistance=49.9 1%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_OUT1.R ref=R14 value=ERJ-3EKF49R9V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF49R9V", "Package=0603", "Prefix=R", "Resistance=49.9 1%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_OUT2.R ref=R15 value=ERJ-3EKF49R9V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF49R9V", "Package=0603", "Prefix=R", "Resistance=49.9 1%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.R_OUT3.R ref=R16 value=ERJ-3EKF49R9V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF49R9V", "Package=0603", "Prefix=R", "Resistance=49.9 1%", "Type=resistor"]
+INFO: NEW FPV path=PREAMP.TP_AMP0.TP ref=TP1 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: NEW FPV path=PREAMP.TP_AMP1.TP ref=TP2 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: NEW FPV path=PREAMP.TP_AMP2.TP ref=TP3 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: NEW FPV path=PREAMP.TP_AMP3.TP ref=TP4 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: NEW FPV path=PREAMP.TP_PRE0.TP ref=TP5 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: NEW FPV path=PREAMP.TP_PRE1.TP ref=TP6 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: NEW FPV path=PREAMP.TP_PRE2.TP ref=TP7 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: NEW FPV path=PREAMP.TP_PRE3.TP ref=TP8 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: NEW FPV path=PREAMP.U_QUAD.U ref=U1 value=OPA4171IDR fpid=localhost_sonar_deep-port_footprints:SOIC-14_3.9x8.7mm_P1.27mm fields=["Gbw=3MHz", "Iq Per Channel=475uA", "Manufacturer=Texas Instruments", "Mpn=OPA4171IDR", "Prefix=U", "Supply Max=36V", "Type=opamp_quad"]
+INFO: NEW FPV path=PSU.C_BST.C ref=C13 value=GRM188R72A104KA35D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=100nF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GRM188R72A104KA35D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PSU.C_IN_100N.C ref=C16 value=GRM188R72A104KA35D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=100nF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GRM188R72A104KA35D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PSU.C_IN_10U.C ref=C14 value="10uF 20% 16V X7R" fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=10uF 20%", "Dielectric=X7R", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PSU.C_IN_22U.C ref=C15 value="22uF 20% 16V X7R" fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=22uF 20%", "Dielectric=X7R", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PSU.C_MIC_10U.C ref=C18 value=GRM188Z71A106KA73D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=10uF 20%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GRM188Z71A106KA73D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=10V"]
+INFO: NEW FPV path=PSU.C_MIC_1U.C ref=C17 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=16V"]
+INFO: NEW FPV path=PSU.C_OUT_22U_A.C ref=C19 value="22uF 20% 10V X7R" fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=22uF 20%", "Dielectric=X7R", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=10V"]
+INFO: NEW FPV path=PSU.C_OUT_22U_B.C ref=C20 value="22uF 20% 10V X7R" fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=22uF 20%", "Dielectric=X7R", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=10V"]
+INFO: NEW FPV path=PSU.FB_MIC.FB ref=FB1 value=BLM18KG121TN1D fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Frequency=100MHz", "Impedance=120", "Manufacturer=Murata", "Mpn=BLM18KG121TN1D", "Package=0603", "Prefix=FB", "Type=ferrite_bead"]
+INFO: NEW FPV path=PSU.L_BUCK.L ref=L1 value=2.2uH fpid=stdlib_kicad-footprints_Inductor_SMD:L_0402_1005Metric fields=["Inductance=2.2uH", "Package=0402", "Prefix=L", "Type=inductor"]
+INFO: NEW FPV path=PSU.R_EN.R ref=R17 value=ERJ-3EKF1003V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1003V", "Package=0603", "Prefix=R", "Resistance=100k 5%", "Type=resistor"]
+INFO: NEW FPV path=PSU.R_FB_BOT.R ref=R18 value=ERJ-3EKF1002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1002V", "Package=0603", "Prefix=R", "Resistance=10k 1%", "Type=resistor"]
+INFO: NEW FPV path=PSU.R_FB_TOP.R ref=R19 value=ERJ-3EKF3162V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF3162V", "Package=0603", "Prefix=R", "Resistance=31.6k 1%", "Type=resistor"]
+INFO: NEW FPV path=PSU.TP_3V3.TP ref=TP9 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: NEW FPV path=PSU.TP_3V3_MIC.TP ref=TP10 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: NEW FPV path=PSU.TP_5V.TP ref=TP11 value=? fpid=stdlib_kicad-footprints_TestPoint:TestPoint_Pad_D1.0mm bom=false pos=false fields=["Prefix=TP", "Variant=Pad_D1.0mm"]
+INFO: NEW FPV path=PSU.U_BUCK.U ref=U2 value=AP63301WU-7 fpid=localhost_sonar_deep-port_footprints:TSOT-23-6 fields=["Iout Max=3A", "Lcsc=C2158003", "Manufacturer=Diodes Incorporated", "Mpn=AP63301WU-7", "Prefix=U", "Type=buck_regulator", "Vin Max=32V", "Vin Min=3.8V"]
+INFO: NEW FPV path=TX.C_FLY.C ref=C21 value=0603B473J500CT fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=47nF 10%", "Dielectric=X7R", "Manufacturer=Walsin Technology Corporation", "Mpn=0603B473J500CT", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=50V"]
+INFO: NEW FPV path=TX.C_SNUB.C ref=C22 value=GRM1885C1H472JA01D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=4.7nF 10%", "Dielectric=C0G", "Manufacturer=Murata Electronics", "Mpn=GRM1885C1H472JA01D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=50V"]
+INFO: NEW FPV path=TX.C_VCP.C ref=C23 value=GCM188R71E105KA64D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=1uF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GCM188R71E105KA64D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=25V"]
+INFO: NEW FPV path=TX.C_VM_100N.C ref=C25 value=GRM188R72A104KA35D fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=100nF 10%", "Dielectric=X7R", "Manufacturer=Murata Electronics", "Mpn=GRM188R72A104KA35D", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=50V"]
+INFO: NEW FPV path=TX.C_VM_10U.C ref=C24 value="10uF 20% 25V X7R" fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric fields=["Capacitance=10uF 20%", "Dielectric=X7R", "Package=0603", "Prefix=C", "Type=capacitor", "Voltage=25V"]
+INFO: NEW FPV path=TX.J_TX ref=J1 value="1935161" fpid="localhost_sonar_deep-port_footprints:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal" fields=["Manufacturer=Phoenix Contact", "Mpn=1935161", "Prefix=J", "Type=connector"]
+INFO: NEW FPV path=TX.R_IMODE.R ref=R20 value=ERJ-3EKF10R0V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF10R0V", "Package=0603", "Prefix=R", "Resistance=10 5%", "Type=resistor"]
+INFO: NEW FPV path=TX.R_IPROPI.R ref=R21 value=ERJ-3EKF1691V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1691V", "Package=0603", "Prefix=R", "Resistance=1.69k 1%", "Type=resistor"]
+INFO: NEW FPV path=TX.R_NFAULT.R ref=R22 value=ERJ-3EKF1002V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF1002V", "Package=0603", "Prefix=R", "Resistance=10k 5%", "Type=resistor"]
+INFO: NEW FPV path=TX.R_OUT1.R ref=R23 value=ERJ-3GEY0R00V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3GEY0R00V", "Package=0603", "Prefix=R", "Resistance=0", "Type=resistor"]
+INFO: NEW FPV path=TX.R_OUT2.R ref=R24 value=ERJ-3GEY0R00V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3GEY0R00V", "Package=0603", "Prefix=R", "Resistance=0", "Type=resistor"]
+INFO: NEW FPV path=TX.R_SNUB.R ref=R25 value=ERJ-3EKF10R0V fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric fields=["Manufacturer=Panasonic Industry", "Mpn=ERJ-3EKF10R0V", "Package=0603", "Prefix=R", "Resistance=10 5%", "Type=resistor"]
+INFO: NEW FPV path=TX.U_DRV.U ref=U3 value=DRV8876PWPR fpid=localhost_sonar_deep-port_footprints:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask2.46x2.31mm fields=["Ipeak=3.5A", "Manufacturer=Texas Instruments", "Mpn=DRV8876PWPR", "Prefix=U", "Type=h_bridge_driver", "Vm Range=4.5-37V"]
+INFO: NEW GRV path=PREAMP members=[PREAMP.C_IN0.C, PREAMP.C_IN1.C, PREAMP.C_IN2.C, PREAMP.C_IN3.C, PREAMP.C_SHUNT0.C, PREAMP.C_SHUNT1.C, PREAMP.C_SHUNT2.C, PREAMP.C_SHUNT3.C, PREAMP.C_VN_100N.C, PREAMP.C_VN_1U.C, PREAMP.C_VP_100N.C, PREAMP.C_VP_1U.C, PREAMP.R_BIAS0.R, PREAMP.R_BIAS1.R, PREAMP.R_BIAS2.R, PREAMP.R_BIAS3.R, PREAMP.R_FB0.R, PREAMP.R_FB1.R, PREAMP.R_FB2.R, PREAMP.R_FB3.R, PREAMP.R_GAIN0.R, PREAMP.R_GAIN1.R, PREAMP.R_GAIN2.R, PREAMP.R_GAIN3.R, PREAMP.R_OUT0.R, PREAMP.R_OUT1.R, PREAMP.R_OUT2.R, PREAMP.R_OUT3.R, PREAMP.TP_AMP0.TP, PREAMP.TP_AMP1.TP, PREAMP.TP_AMP2.TP, PREAMP.TP_AMP3.TP, PREAMP.TP_PRE0.TP, PREAMP.TP_PRE1.TP, PREAMP.TP_PRE2.TP, PREAMP.TP_PRE3.TP, PREAMP.U_QUAD.U]
+INFO: NEW GRV path=PSU members=[PSU.C_BST.C, PSU.C_IN_100N.C, PSU.C_IN_10U.C, PSU.C_IN_22U.C, PSU.C_MIC_10U.C, PSU.C_MIC_1U.C, PSU.C_OUT_22U_A.C, PSU.C_OUT_22U_B.C, PSU.FB_MIC.FB, PSU.L_BUCK.L, PSU.R_EN.R, PSU.R_FB_BOT.R, PSU.R_FB_TOP.R, PSU.TP_3V3.TP, PSU.TP_3V3_MIC.TP, PSU.TP_5V.TP, PSU.U_BUCK.U]
+INFO: NEW GRV path=TX members=[TX.C_FLY.C, TX.C_SNUB.C, TX.C_VCP.C, TX.C_VM_100N.C, TX.C_VM_10U.C, TX.J_TX, TX.R_IMODE.R, TX.R_IPROPI.R, TX.R_NFAULT.R, TX.R_OUT1.R, TX.R_OUT2.R, TX.R_SNUB.R, TX.U_DRV.U]
+INFO: NEW FPC path=PREAMP.C_IN0.C x=149695000 y=112820000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=111390000 val_x=149695000 val_y=114250000
+INFO: NEW FPC path=PREAMP.C_IN1.C x=149695000 y=111310000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=109880000 val_x=149695000 val_y=112740000
+INFO: NEW FPC path=PREAMP.C_IN2.C x=149695000 y=109800000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=108370000 val_x=149695000 val_y=111230000
+INFO: NEW FPC path=PREAMP.C_IN3.C x=149695000 y=108290000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=106860000 val_x=149695000 val_y=109720000
+INFO: NEW FPC path=PREAMP.C_SHUNT0.C x=149695000 y=106780000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=105350000 val_x=149695000 val_y=108210000
+INFO: NEW FPC path=PREAMP.C_SHUNT1.C x=149695000 y=105270000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=103840000 val_x=149695000 val_y=106700000
+INFO: NEW FPC path=PREAMP.C_SHUNT2.C x=149695000 y=103760000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=102330000 val_x=149695000 val_y=105190000
+INFO: NEW FPC path=PREAMP.C_SHUNT3.C x=142245000 y=103455000 orient=0.0 layer=F.Cu ref_x=142245000 ref_y=102025000 val_x=142245000 val_y=104885000
+INFO: NEW FPC path=PREAMP.C_VN_100N.C x=145255000 y=103455000 orient=0.0 layer=F.Cu ref_x=145255000 ref_y=102025000 val_x=145255000 val_y=104885000
+INFO: NEW FPC path=PREAMP.C_VN_1U.C x=149695000 y=102250000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=100820000 val_x=149695000 val_y=103680000
+INFO: NEW FPC path=PREAMP.C_VP_100N.C x=142245000 y=101945000 orient=0.0 layer=F.Cu ref_x=142245000 ref_y=100515000 val_x=142245000 val_y=103375000
+INFO: NEW FPC path=PREAMP.C_VP_1U.C x=145255000 y=101945000 orient=0.0 layer=F.Cu ref_x=145255000 ref_y=100515000 val_x=145255000 val_y=103375000
+INFO: NEW FPC path=PREAMP.R_BIAS0.R x=152705000 y=112820000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=111390000 val_x=152705000 val_y=114250000
+INFO: NEW FPC path=PREAMP.R_BIAS1.R x=152705000 y=111310000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=109880000 val_x=152705000 val_y=112740000
+INFO: NEW FPC path=PREAMP.R_BIAS2.R x=152705000 y=109800000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=108370000 val_x=152705000 val_y=111230000
+INFO: NEW FPC path=PREAMP.R_BIAS3.R x=152705000 y=108290000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=106860000 val_x=152705000 val_y=109720000
+INFO: NEW FPC path=PREAMP.R_FB0.R x=152705000 y=106780000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=105350000 val_x=152705000 val_y=108210000
+INFO: NEW FPC path=PREAMP.R_FB1.R x=152705000 y=105270000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=103840000 val_x=152705000 val_y=106700000
+INFO: NEW FPC path=PREAMP.R_FB2.R x=152705000 y=103760000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=102330000 val_x=152705000 val_y=105190000
+INFO: NEW FPC path=PREAMP.R_FB3.R x=152705000 y=102250000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=100820000 val_x=152705000 val_y=103680000
+INFO: NEW FPC path=PREAMP.R_GAIN0.R x=149695000 y=100740000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=99310000 val_x=149695000 val_y=102170000
+INFO: NEW FPC path=PREAMP.R_GAIN1.R x=152705000 y=100740000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=99310000 val_x=152705000 val_y=102170000
+INFO: NEW FPC path=PREAMP.R_GAIN2.R x=142245000 y=100435000 orient=0.0 layer=F.Cu ref_x=142245000 ref_y=99005000 val_x=142245000 val_y=101865000
+INFO: NEW FPC path=PREAMP.R_GAIN3.R x=145255000 y=100435000 orient=0.0 layer=F.Cu ref_x=145255000 ref_y=99005000 val_x=145255000 val_y=101865000
+INFO: NEW FPC path=PREAMP.R_OUT0.R x=149695000 y=99230000 orient=0.0 layer=F.Cu ref_x=149695000 ref_y=97800000 val_x=149695000 val_y=100660000
+INFO: NEW FPC path=PREAMP.R_OUT1.R x=152705000 y=99230000 orient=0.0 layer=F.Cu ref_x=152705000 ref_y=97800000 val_x=152705000 val_y=100660000
+INFO: NEW FPC path=PREAMP.R_OUT2.R x=142245000 y=98925000 orient=0.0 layer=F.Cu ref_x=142245000 ref_y=97495000 val_x=142245000 val_y=100355000
+INFO: NEW FPC path=PREAMP.R_OUT3.R x=145255000 y=98925000 orient=0.0 layer=F.Cu ref_x=145255000 ref_y=97495000 val_x=145255000 val_y=100355000
+INFO: NEW FPC path=PREAMP.TP_AMP0.TP x=155235000 y=112550000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=111102000 val_x=155235000 val_y=114100000
+INFO: NEW FPC path=PREAMP.TP_AMP1.TP x=155235000 y=109530000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=108082000 val_x=155235000 val_y=111080000
+INFO: NEW FPC path=PREAMP.TP_AMP2.TP x=155235000 y=106510000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=105062000 val_x=155235000 val_y=108060000
+INFO: NEW FPC path=PREAMP.TP_AMP3.TP x=155235000 y=103490000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=102042000 val_x=155235000 val_y=105040000
+INFO: NEW FPC path=PREAMP.TP_PRE0.TP x=155235000 y=100470000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=99022000 val_x=155235000 val_y=102020000
+INFO: NEW FPC path=PREAMP.TP_PRE1.TP x=155235000 y=98420000 orient=0.0 layer=F.Cu ref_x=155235000 ref_y=96972000 val_x=155235000 val_y=99970000
+INFO: NEW FPC path=PREAMP.TP_PRE2.TP x=149215000 y=97450000 orient=0.0 layer=F.Cu ref_x=149215000 ref_y=96002000 val_x=149215000 val_y=99000000
+INFO: NEW FPC path=PREAMP.TP_PRE3.TP x=152225000 y=97450000 orient=0.0 layer=F.Cu ref_x=152225000 ref_y=96002000 val_x=152225000 val_y=99000000
+INFO: NEW FPC path=PREAMP.U_QUAD.U x=144465000 y=108970000 orient=0.0 layer=F.Cu ref_x=144465000 ref_y=103690000 val_x=144465000 val_y=114250000
+INFO: NEW FPC path=PSU.C_BST.C x=159765000 y=109195000 orient=0.0 layer=F.Cu ref_x=159765000 ref_y=107765000 val_x=159765000 val_y=110625000
+INFO: NEW FPC path=PSU.C_IN_100N.C x=162775000 y=109195000 orient=0.0 layer=F.Cu ref_x=162775000 ref_y=107765000 val_x=162775000 val_y=110625000
+INFO: NEW FPC path=PSU.C_IN_10U.C x=159765000 y=107685000 orient=0.0 layer=F.Cu ref_x=159765000 ref_y=106255000 val_x=159765000 val_y=109115000
+INFO: NEW FPC path=PSU.C_IN_22U.C x=162775000 y=107685000 orient=0.0 layer=F.Cu ref_x=162775000 ref_y=106255000 val_x=162775000 val_y=109115000
+INFO: NEW FPC path=PSU.C_MIC_10U.C x=163915000 y=112820000 orient=0.0 layer=F.Cu ref_x=163915000 ref_y=111390000 val_x=163915000 val_y=114250000
+INFO: NEW FPC path=PSU.C_MIC_1U.C x=163915000 y=111310000 orient=0.0 layer=F.Cu ref_x=163915000 ref_y=109880000 val_x=163915000 val_y=112740000
+INFO: NEW FPC path=PSU.C_OUT_22U_A.C x=159765000 y=106175000 orient=0.0 layer=F.Cu ref_x=159765000 ref_y=104745000 val_x=159765000 val_y=107605000
+INFO: NEW FPC path=PSU.C_OUT_22U_B.C x=162775000 y=106175000 orient=0.0 layer=F.Cu ref_x=162775000 ref_y=104745000 val_x=162775000 val_y=107605000
+INFO: NEW FPC path=PSU.FB_MIC.FB x=165785000 y=109195000 orient=0.0 layer=F.Cu ref_x=165785000 ref_y=107765000 val_x=165785000 val_y=110625000
+INFO: NEW FPC path=PSU.L_BUCK.L x=166375000 y=111030000 orient=0.0 layer=F.Cu ref_x=166375000 ref_y=109860000 val_x=166375000 val_y=112200000
+INFO: NEW FPC path=PSU.R_EN.R x=165785000 y=107685000 orient=0.0 layer=F.Cu ref_x=165785000 ref_y=106255000 val_x=165785000 val_y=109115000
+INFO: NEW FPC path=PSU.R_FB_BOT.R x=165785000 y=106175000 orient=0.0 layer=F.Cu ref_x=165785000 ref_y=104745000 val_x=165785000 val_y=107605000
+INFO: NEW FPC path=PSU.R_FB_TOP.R x=159765000 y=104665000 orient=0.0 layer=F.Cu ref_x=159765000 ref_y=103235000 val_x=159765000 val_y=106095000
+INFO: NEW FPC path=PSU.TP_3V3.TP x=166445000 y=112550000 orient=0.0 layer=F.Cu ref_x=166445000 ref_y=111102000 val_x=166445000 val_y=114100000
+INFO: NEW FPC path=PSU.TP_3V3_MIC.TP x=162295000 y=104395000 orient=0.0 layer=F.Cu ref_x=162295000 ref_y=102947000 val_x=162295000 val_y=105945000
+INFO: NEW FPC path=PSU.TP_5V.TP x=165305000 y=104395000 orient=0.0 layer=F.Cu ref_x=165305000 ref_y=102947000 val_x=165305000 val_y=105945000
+INFO: NEW FPC path=PSU.U_BUCK.U x=160335000 y=111850000 orient=0.0 layer=F.Cu ref_x=160335000 ref_y=109450000 val_x=160335000 val_y=114250000
+INFO: NEW FPC path=TX.C_FLY.C x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.C_SNUB.C x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.C_VCP.C x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.C_VM_100N.C x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.C_VM_10U.C x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.J_TX x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.R_IMODE.R x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.R_IPROPI.R x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.R_NFAULT.R x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.R_OUT1.R x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.R_OUT2.R x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.R_SNUB.R x=0 y=0 orient=0.0 layer=F.Cu
+INFO: NEW FPC path=TX.U_DRV.U x=0 y=0 orient=0.0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.C_FLY.C ref=C21 fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric value=0603B473J500CT x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.C_SNUB.C ref=C22 fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric value=GRM1885C1H472JA01D x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.C_VCP.C ref=C23 fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric value=GCM188R71E105KA64D x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.C_VM_100N.C ref=C25 fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric value=GRM188R72A104KA35D x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.C_VM_10U.C ref=C24 fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric value="10uF 20% 25V X7R" x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.J_TX ref=J1 fpid="localhost_sonar_deep-port_footprints:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal" value="1935161" x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.R_IMODE.R ref=R20 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3EKF10R0V x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.R_IPROPI.R ref=R21 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3EKF1691V x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.R_NFAULT.R ref=R22 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3EKF1002V x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.R_OUT1.R ref=R23 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3GEY0R00V x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.R_OUT2.R ref=R24 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3GEY0R00V x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.R_SNUB.R ref=R25 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3EKF10R0V x=0 y=0 layer=F.Cu
+INFO: CHANGESET FP_ADD path=TX.U_DRV.U ref=U3 fpid=localhost_sonar_deep-port_footprints:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask2.46x2.31mm value=DRV8876PWPR x=0 y=0 layer=F.Cu
+INFO: CHANGESET GR_ADD path=TX members=13
+INFO: Added footprint: TX.C_FLY.C
+INFO: Added footprint: TX.C_SNUB.C
+INFO: Added footprint: TX.C_VCP.C
+INFO: Added footprint: TX.C_VM_100N.C
+INFO: Added footprint: TX.C_VM_10U.C
+INFO: Added footprint: TX.J_TX
+INFO: Added footprint: TX.R_IMODE.R
+INFO: Added footprint: TX.R_IPROPI.R
+INFO: Added footprint: TX.R_NFAULT.R
+INFO: Added footprint: TX.R_OUT1.R
+INFO: Added footprint: TX.R_OUT2.R
+INFO: Added footprint: TX.R_SNUB.R
+INFO: Added footprint: TX.U_DRV.U
+INFO: Added group: TX
+INFO: HierPlace: placed 13 items
+INFO: OPLOG FP_ADD path=TX.C_FLY.C ref=C21 fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric value=0603B473J500CT x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.C_SNUB.C ref=C22 fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric value=GRM1885C1H472JA01D x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.C_VCP.C ref=C23 fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric value=GCM188R71E105KA64D x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.C_VM_100N.C ref=C25 fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric value=GRM188R72A104KA35D x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.C_VM_10U.C ref=C24 fpid=stdlib_kicad-footprints_Capacitor_SMD:C_0603_1608Metric value="10uF 20% 25V X7R" x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.J_TX ref=J1 fpid="localhost_sonar_deep-port_footprints:TerminalBlock_Phoenix_MKDS-1,5-2-5.08_1x02_P5.08mm_Horizontal" value="1935161" x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.R_IMODE.R ref=R20 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3EKF10R0V x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.R_IPROPI.R ref=R21 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3EKF1691V x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.R_NFAULT.R ref=R22 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3EKF1002V x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.R_OUT1.R ref=R23 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3GEY0R00V x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.R_OUT2.R ref=R24 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3GEY0R00V x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.R_SNUB.R ref=R25 fpid=stdlib_kicad-footprints_Resistor_SMD:R_0603_1608Metric value=ERJ-3EKF10R0V x=0 y=0 layer=F.Cu pads=2
+INFO: OPLOG FP_ADD path=TX.U_DRV.U ref=U3 fpid=localhost_sonar_deep-port_footprints:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask2.46x2.31mm value=DRV8876PWPR x=0 y=0 layer=F.Cu pads=20
+INFO: OPLOG GR_ADD path=TX
+INFO: OPLOG NET_ADD name=TX.Net-(U62-CPH)
+INFO: OPLOG NET_ADD name=TX.Net-(U62-CPL)
+INFO: OPLOG NET_ADD name=TX.Net-(C288-Pad1)
+INFO: OPLOG NET_ADD name=TX.Net-(J50-Pin_1)
+INFO: OPLOG NET_ADD name=+12V
+INFO: OPLOG NET_ADD name=TX.Net-(U62-VCP)
+INFO: OPLOG NET_ADD name=TX.Net-(J50-Pin_2)
+INFO: OPLOG NET_ADD name=TX.Net-(U62-IMODE)
+INFO: OPLOG NET_ADD name=TX.Net-(U62-IPROPI)
+INFO: OPLOG NET_ADD name=TX_NFAULT
+INFO: OPLOG NET_ADD name=TX.TX_DRV1
+INFO: OPLOG NET_ADD name=TX.TX_DRV2
+INFO: OPLOG NET_ADD name=TX_EN
+INFO: OPLOG NET_ADD name=TX_NSLEEP
+INFO: OPLOG NET_ADD name=TX_PH
+INFO: OPLOG NET_ADD name=TX_PMODE
+INFO: OPLOG PLACE_FP path=TX.C_FLY.C x=151960000 y=92915000 w=3010000 h=1510000
+INFO: OPLOG PLACE_FP path=TX.C_SNUB.C x=148965000 y=81790000 w=3010000 h=1510000
+INFO: OPLOG PLACE_FP path=TX.C_VCP.C x=151960000 y=91405000 w=3010000 h=1510000
+INFO: OPLOG PLACE_FP path=TX.C_VM_100N.C x=148965000 y=80280000 w=3010000 h=1510000
+INFO: OPLOG PLACE_FP path=TX.C_VM_10U.C x=151975000 y=81790000 w=3010000 h=1510000
+INFO: OPLOG PLACE_FP path=TX.J_TX x=140740000 y=83300000 w=11220000 h=11125000
+INFO: OPLOG PLACE_FP path=TX.R_IMODE.R x=151960000 y=89895000 w=3010000 h=1510000
+INFO: OPLOG PLACE_FP path=TX.R_IPROPI.R x=148965000 y=78770000 w=3010000 h=1510000
+INFO: OPLOG PLACE_FP path=TX.R_NFAULT.R x=151975000 y=80280000 w=3010000 h=1510000
+INFO: OPLOG PLACE_FP path=TX.R_OUT1.R x=151960000 y=88385000 w=3010000 h=1510000
+INFO: OPLOG PLACE_FP path=TX.R_OUT2.R x=151975000 y=78770000 w=3010000 h=1510000
+INFO: OPLOG PLACE_FP path=TX.R_SNUB.R x=151960000 y=86875000 w=3010000 h=1510000
+INFO: OPLOG PLACE_FP path=TX.U_DRV.U x=140740000 y=77710000 w=8225000 h=5590000
+INFO: Sync completed in 0.083s
+INFO: Lens sync complete: +13 -0 footprints
+INFO: Completed ImportNetlist in 0.084 seconds
+INFO: --------------------------------------------------------------------------------
+INFO: Running step: FinalizeBoard
+INFO: --------------------------------------------------------------------------------
+INFO: Starting FinalizeBoard...
+INFO: Saved layout snapshot to /private/tmp/sonar-t017/spikes/eda-zener/deep-port/sonar_v1_deep_port/layout/snapshot.layout.json
+INFO: Snapshot export took 0.073 seconds
+INFO: Board saving took 0.011 seconds
+INFO: Completed FinalizeBoard in 0.086 seconds

@@ -1,0 +1,80 @@
+# Sonar v1 power_supply sheet port (T-017): AP63301 buck 5V -> +3.3V plus the
+# FB2 3V3_MIC filtered branch. Ported net-for-net from the KiCad netlist of
+# sonar-v1-pcb/power_supply.kicad_sch (kicad-cli sch export netlist,
+# 2026-08-27); per-node parity table in ../../REPORT.md.
+#
+# KiCad sheet refdes -> this module's instance names:
+#   U61->U_BUCK  C161->C_IN_100N  C162->C_IN_10U  C174->C_IN_22U
+#   C165->C_BST  L4->L_BUCK  R160->R_EN  R161->R_FB_TOP  R162->R_FB_BOT
+#   C178/C179->C_OUT_22U_A/B  C171->C_MIC_10U  C181->C_MIC_1U
+#   FB2->FB_MIC  TP80->TP_5V  TP82->TP_3V3  TP86->TP_3V3_MIC
+# TP81 (+12V) is NOT ported: +12V comes from the 5v_to_12v_boost.kicad_sch
+# subsheet, out of scope here (T-005 scoped this port to buck + mic filter).
+#
+# FB2 note: the KiCad sheet fits FB2 = 0R 0603 (rails.md: "fit 0R 0603
+# initially; 120R @ 100MHz ferrite BLM18KG121TN1D is the reviewed option").
+# This port instantiates the reviewed ferrite per rails.md; set
+# impedance/dnp accordingly at order time.
+
+
+Resistor = Module("@stdlib/generics/Resistor.zen")
+Capacitor = Module("@stdlib/generics/Capacitor.zen")
+Inductor = Module("@stdlib/generics/Inductor.zen")
+FerriteBead = Module("@stdlib/generics/FerriteBead.zen")
+TestPoint = Module("@stdlib/generics/TestPoint.zen")
+AP63301 = Module("../components/AP63301.zen")
+
+io_V5 = io("io_V5", Power)
+io_V33 = io("io_V33", Power)
+io_V33_MIC = io("io_V33_MIC", Power)
+io_GND = io("io_GND", Ground)
+
+# ---- +5V input decoupling (KiCad: C161 100nF, C162 10uF, C174 22uF) --------
+Capacitor(name="C_IN_100N", value="100nF 10%", package="0603", dielectric="X7R", voltage="16V", P1=io_V5, P2=io_GND)
+Capacitor(name="C_IN_10U", value="10uF 20%", package="0603", dielectric="X7R", voltage="16V", P1=io_V5, P2=io_GND)
+Capacitor(name="C_IN_22U", value="22uF 20%", package="0603", dielectric="X7R", voltage="16V", P1=io_V5, P2=io_GND)
+
+# ---- AP63301 buck -----------------------------------------------------------
+sw = Net("Net-(U61-SW)")  # KiCad net name kept for the parity spot-check
+vfb = Net("Net-(U61-FB)")
+ven = Net("Net-(U61-EN)")
+bst = Net("Net-(U61-BST)")
+
+AP63301(name="U_BUCK", FB=vfb, EN=ven, VIN=io_V5, GND=io_GND, SW=sw, BST=bst)
+
+# EN pulled up to 5V via 100k (KiCad R160) -> automatic startup
+Resistor(name="R_EN", value="100kOhm 5%", package="0603", P1=io_V5, P2=ven)
+
+# BST bootstrap 100nF to SW (KiCad C165; datasheet: 100nF recommended)
+Capacitor(name="C_BST", value="100nF 10%", package="0603", dielectric="X7R", voltage="16V", P1=bst, P2=sw)
+
+# L4 2.2uH. KiCad footprint is L_1008_2520Metric; stdlib's closest generic
+# inductor package is 0402 (L_0402_1005Metric) - see parity notes.
+Inductor(name="L_BUCK", value="2.2uH", package="0402", P1=sw, P2=io_V33)
+
+# Feedback divider (KiCad R161/R162): Vout = 0.8V * (1 + 31.6k/10k) = 3.33V
+Resistor(name="R_FB_TOP", value="31.6kOhm 1%", package="0603", P1=io_V33, P2=vfb)
+Resistor(name="R_FB_BOT", value="10kOhm 1%", package="0603", P1=vfb, P2=io_GND)
+
+# ---- +3.3V output bulk (KiCad C178/C179 22uF x2) -----------------------------
+Capacitor(name="C_OUT_22U_A", value="22uF 20%", package="0603", dielectric="X7R", voltage="10V", P1=io_V33, P2=io_GND)
+Capacitor(name="C_OUT_22U_B", value="22uF 20%", package="0603", dielectric="X7R", voltage="10V", P1=io_V33, P2=io_GND)
+
+# ---- 3V3_MIC branch (KiCad FB2, C171 10uF, C181 1uF) ------------------------
+FerriteBead(
+    name="FB_MIC",
+    value="120Ohm",
+    frequency="100MHz",
+    package="0603",
+    mpn="BLM18KG121TN1D",
+    manufacturer="Murata",
+    P1=io_V33,
+    P2=io_V33_MIC,
+)
+Capacitor(name="C_MIC_10U", value="10uF 20%", package="0603", dielectric="X7R", voltage="10V", P1=io_V33_MIC, P2=io_GND)
+Capacitor(name="C_MIC_1U", value="1uF 10%", package="0603", dielectric="X7R", voltage="16V", P1=io_V33_MIC, P2=io_GND)
+
+# ---- Rail test points (KiCad TP80/TP82/TP86; rails.md bring-up table) -------
+TestPoint(name="TP_5V", variant="Pad_D1.0mm", P1=io_V5)
+TestPoint(name="TP_3V3", variant="Pad_D1.0mm", P1=io_V33)
+TestPoint(name="TP_3V3_MIC", variant="Pad_D1.0mm", P1=io_V33_MIC)

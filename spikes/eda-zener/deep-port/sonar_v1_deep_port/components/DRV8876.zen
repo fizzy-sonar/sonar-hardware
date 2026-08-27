@@ -1,0 +1,62 @@
+# DRV8876PWPR — TI 4.5–37 V, 3.5 A peak H-bridge, HTSSOP-16 (PWP) w/ PowerPAD.
+# Hand-authored from TI datasheet SLVSEY0 (drv8876.pdf, fetched 2026-08-27,
+# T-017): Pin Functions, PWP column — 1=EN/IN1, 2=PH/IN2, 3=nSLEEP, 4=nFAULT,
+# 5=VREF, 6=IPROPI, 7=IMODE, 8=OUT1, 9=PGND, 10=OUT2, 11=VM, 12=VCP, 13=CPH,
+# 14=CPL, 15=GND, 16=PMODE, PAD=EP to GND.
+# Symbol vendored from sonar-v1-pcb/sonar_lib.kicad_sym ("DRV8876PWPR", names
+# match the datasheet); footprint is the KiCad 10 system
+# HTSSOP-16-1EP_4.4x5mm_P0.65mm used by 20kHz-h-bridge.kicad_sch (U62).
+
+load("@stdlib/interfaces.zen", "Power")
+
+EN_IN1 = io(Net)  # EN/IN1 (pin 1)
+PH_IN2 = io(Net)  # PH/IN2 (pin 2)
+NSLEEP = io(Net)  # nSLEEP (pin 3), internal pulldown
+NFAULT = io(Net)  # nFAULT (pin 4), open-drain, needs external pull-up
+VREF = io(Net)  # VREF (pin 5), current-limit reference
+IPROPI = io(Net)  # IPROPI (pin 6), analog current out
+IMODE = io(Net)  # IMODE (pin 7), quad-level strap
+OUT1 = io(Net)  # H-bridge output 1 (pin 8)
+PGND = io(Ground)  # pin 9
+OUT2 = io(Net)  # H-bridge output 2 (pin 10)
+VM = io(Power)  # 4.5-37 V motor supply (pin 11)
+VCP = io(Net)  # charge pump out (pin 12), 100 nF to VM
+CPH = io(Net)  # charge pump node (pin 13); 22 nF (datasheet) to CPL
+CPL = io(Net)  # (pin 14)
+GND = io(Ground)  # pin 15
+PMODE = io(Net)  # pin 16, tri-level strap
+EP = io(Ground)  # thermal pad (pin 17)
+
+Component(
+    name="U",
+    part=Part(mpn="DRV8876PWPR", manufacturer="Texas Instruments"),
+    symbol=Symbol(library="../symbols/DRV8876PWPR.kicad_sym", name="DRV8876PWPR"),
+    footprint=File("../footprints/HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3.4x5mm_Mask2.46x2.31mm.kicad_mod"),
+    prefix="U",
+    pins={
+        "EN/IN1": EN_IN1,
+        "PH/IN2": PH_IN2,
+        "nSLEEP": NSLEEP,
+        "nFAULT": NFAULT,
+        "VREF": VREF,
+        "IPROPI": IPROPI,
+        "IMODE": IMODE,
+        "OUT1": OUT1,
+        "PGND": PGND,
+        "OUT2": OUT2,
+        "VM": VM,
+        "VCP": VCP,
+        "CPH": CPH,
+        "CPL": CPL,
+        "GND": GND,
+        "PMODE": PMODE,
+        "EP": EP,
+    },
+    description="4.5-37V 3.5A H-bridge motor driver, PH/EN, HTSSOP-16 PowerPAD",
+    datasheet="https://www.ti.com/lit/ds/symlink/drv8876.pdf",
+    properties={
+        "vm_range": "4.5-37V",
+        "ipeak": "3.5A",
+    },
+    type="h_bridge_driver",
+)

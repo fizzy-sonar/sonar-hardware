@@ -1,0 +1,69 @@
+# T-017 deep-port top board: instantiates the two ported Sonar v1 blocks.
+#   power_supply.zen  — AP63301 buck 5V->+3.3V + 3V3_MIC ferrite branch
+#   rx_preamp_tile.zen — 4ch OPA4171 preamp tile (legacy analog, superseded
+#                        by D011 digital PDM; ported for fidelity evidence)
+
+load("@stdlib/units.zen", "Voltage")
+load("@stdlib/checks.zen", "voltage_within")
+
+PowerSupply = Module("modules/power_supply.zen")
+RxPreampTile = Module("modules/rx_preamp_tile.zen")
+TxDrive = Module("modules/tx_drive.zen")
+
+Board(
+    name="sonar_v1_deep_port",
+    layout_path="layout",
+    layers=4,
+)
+
+# ---- Rails ------------------------------------------------------------------
+gnd = Ground("GND")
+v5 = Power("+5V", voltage=Voltage("5V 5%"))
+v33 = Power("+3V3", voltage=Voltage("3.3V 2%"))
+v33_mic = Power("3V3_MIC", voltage=Voltage("3.3V 2%"))
+
+# Legacy analog rails for the preamp tile (exist only in the old analog tree).
+vp_analog = Power("5V_OP_AMP_HIGH", voltage=Voltage("5V 5%"))
+vn_analog = Power("-5V_OP_AMP_LOW", voltage=Voltage("-5V 5%"))
+
+# ERC-equivalent rail checks (stdlib add_electrical_check, run at build).
+voltage_within("5V 10%")(v5)
+voltage_within("3.3V 5%")(v33)
+voltage_within("3.3V 5%")(v33_mic)
+
+PowerSupply(name="PSU", io_V5=v5, io_V33=v33, io_V33_MIC=v33_mic, io_GND=gnd)
+
+# Preamp tile: 4 mic inputs / 4 amplified outputs left as named dangling nets
+# (this port models the tile, not the array or ADC sheets).
+RxPreampTile(
+    name="PREAMP",
+    io_VP=vp_analog,
+    io_VN=vn_analog,
+    io_GND=gnd,
+    IN0=Net("MIC0"),
+    IN1=Net("MIC1"),
+    IN2=Net("MIC2"),
+    IN3=Net("MIC3"),
+    AMP_OUT0=Net("AMP_OUT_0"),
+    AMP_OUT1=Net("AMP_OUT_1"),
+    AMP_OUT2=Net("AMP_OUT_2"),
+    AMP_OUT3=Net("AMP_OUT_3"),
+)
+
+# TX drive block (stretch target): +12V rail comes from the boost sheet in
+# KiCad; declared here as an input rail. Control nets dangle at the top level
+# (they originate on the digital sheet / gateware headers in the real board).
+v12 = Power("+12V", voltage=Voltage("12V 5%"))
+voltage_within("12V 10%")(v12)
+
+TxDrive(
+    name="TX",
+    io_V12=v12,
+    io_V33=v33,
+    io_GND=gnd,
+    TX_EN=Net("TX_EN"),
+    TX_PH=Net("TX_PH"),
+    TX_NSLEEP=Net("TX_NSLEEP"),
+    TX_PMODE=Net("TX_PMODE"),
+    TX_NFAULT=Net("TX_NFAULT"),
+)

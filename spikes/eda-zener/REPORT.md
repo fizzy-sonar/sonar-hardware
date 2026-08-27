@@ -119,3 +119,141 @@ close T-005 as NO-GO (done); no further work.
 - `power_supply_import/`, `preamp_import/`, `sonar_full_import/` — raw importer
   outputs (stubs) kept as evidence. Each contains an importer-created nested
   `.git/`; ignore or delete at cleanup.
+
+---
+
+# Deep port (T-017) — VERDICT: GO-WITH-CONDITIONS for v2 authoring
+
+**VERDICT: GO-WITH-CONDITIONS.** With network + host access, `pcb build`
+works and is genuinely good: three real Sonar v1 blocks (power sheet, RX
+preamp tile, TX drive) build clean, emit a KiCad netlist that is
+node-for-node identical to the originals, and produce a live-priced BOM.
+Conditions: (1) the registry is **account-gated, not just network-gated** —
+all ICs were hand-written; (2) the KiCad importer is still useless on our
+design (empty stub on host, see below), so adoption means re-authoring, not
+migration; (3) multi-unit symbols need a documented workaround. D008 (KiCad
+for v1) stands regardless — this informs v2 only.
+
+Date: 2026-08-27 · Agent: codex/terra-t017 · Tool: `pcbc 0.4.38`
+(auto-upgraded from 0.4.36 at first run) on the host (no sandbox).
+
+## What the registry actually offers (the T-005 unknown, now measured)
+
+| Probe | Result |
+|---|---|
+| `git ls-remote https://code.diode.computer/diode/registry` | **401 Unauthorized** (Basic/Bearer); anonymous clone 403 |
+| `pcb component search AP63301` | `Error: Not authenticated. Run pcb auth login` |
+| `pcb search --mode kicad:components TLV2474` | `Error: Authentication required` |
+| `pcb add code.diode.computer/diode/registry@latest` | fails (SSH fallback, host key) |
+| `~/.pcb/cache/index_v4.sqlite` | exists but EMPTY (0 rows) |
+| `pcb bom` stock/price data | **works anonymously** (live Digikey-style stock + LCSC columns) |
+| Bundled stdlib (toolchain `lib/std/`) | works offline; generics + bundled KiCad footprints/symbols |
+| Public GitHub (diodeinc/example, demolib, kicad_lib) | clonable; `demolib` empty, `example` is the format reference used here |
+
+**So: without a diode account (prohibited by project rules), the component
+registry contributes nothing. Every IC must be hand-written.** T-005's
+supply-chain concern is now sharper: it is account-gated SaaS, not merely
+network-gated.
+
+## What was built (all under `spikes/eda-zener/deep-port/sonar_v1_deep_port/`)
+
+- `components/AP63301.zen` — from Diodes DS42002 Rev.3 PDF (fetched live);
+  pin names match `sonar_lib.kicad_sym`; vendored symbol + TSOT-23-6
+  footprint from the repo. ~15 min.
+- `components/OPA4171.zen` — **part choice correction**: the KiCad tile runs
+  on ±5 V rails (`5V_OP_AMP_HIGH`/`-5V_OP_AMP_LOW`), so the ticket-suggested
+  TLV2474 (6 V max) is unusable; chose OPA4171 (36 V RRIO quad, SOIC-14) and
+  verified the pinout against TI SBOS516H Table 4-2 (fetched live). The
+  KiCad tile itself names NO MPN (generic `Device:Opamp_Quad`, no
+  footprint). ~20 min incl. the multi-unit papercut below.
+- `components/DRV8876.zen` — from TI SLVSEY0 (drv8876.pdf, fetched live),
+  PWP/HTSSOP-16 pinout; symbol vendored from `sonar_lib.kicad_sym`,
+  footprint from KiCad system lib. ~10 min (pattern was known by then).
+- `modules/power_supply.zen` — net-for-net port of `power_supply.kicad_sch`
+  (U61 buck + FB2 3V3_MIC branch; TP81/+12V excluded — it lives on the boost
+  subsheet). FB2 instantiated as the rails.md-reviewed BLM18KG121TN1D ferrite
+  (KiCad currently fits 0R — documented delta).
+- `modules/rx_preamp_tile.zen` — completes the T-005 hand-port. Channel
+  topology corrected against the real netlist: the 4.7 nF is a shunt AFTER
+  the 49.9 Ω series output (T-005 guessed feedback cap); `${R_GAIN_*}`
+  textvars → one `config()` param. One module × 4 channels vs 4 KiCad sheet
+  instances + textvar substitution — the hierarchy win is real.
+- `modules/tx_drive.zen` — DRV8876 block net-for-net (stretch target, done).
+- Build outputs: `layout/default.net` (KiCad netlist, 46 nets),
+  `layout/layout.kicad_pcb` (67 footprints), `deep-port/bom.txt|json`.
+
+## Parity spot-check (KiCad netlist via `kicad-cli sch export netlist` vs `layout/default.net`)
+
+Power sheet, node-for-node (KiCad refdes.pin → Zener refdes.pin, all match):
+`5V` 6/6 nodes, `+3.3V` 6/6, `3V3_MIC` 4/4, `Net-(U61-FB)` 3/3,
+`Net-(U61-SW)` 3/3, `Net-(U61-BST)` 2/2, `Net-(U61-EN)` 2/2; U2 (AP63301)
+6/6 pins. Preamp ch0: `U5A-+`=3/3, `U5A--`=3/3 + KiCad's alt-stuffing pair
+(parameterized away), `AMP_OUT_0`=3/3; U1 (OPA4171) 14/14 pins. TX: `+12V`
+4/4, `CPH/CPL/VCP/IMODE/IPROPI`/J50/snub all exact; U3 (DRV8876) 17/17 pins
+incl. EP. Component counts: power 16+TP81(excluded)=17 vs KiCad 19
+(TP81 + FB2-as-0R diff accounted); preamp tile 37 vs KiCad ~45 (8
+alt-stuffing resistors parameterized); TX 13 vs KiCad 16 (3 power symbols /
+flags not ported).
+
+## ERC-equivalent: real, and it bites
+
+`voltage_within` checks ran at build. Negative test (checked +3V3 against
+"5V 10%"): `Error: Voltage range 3.3V 2% of +3V3 is not within 5V 10%` —
+build fails. Reverted, build green.
+
+## Importer re-test (host + network, pcbc 0.4.38)
+
+`pcb import sonar-v1-pcb/power_supply.kicad_sch` → same empty 9-line stub,
+same `Error: Part group 12V has PCB footprints but no schematic symbol
+instances`. **The importer is still not viable; Zener adoption =
+re-authoring.** At the measured cost (~10–20 min/IC, ~15–20 min/sheet-block)
+that is affordable for v2 but rules out any "import the v1 design" path.
+
+## Papercuts (each cost 1–3 build iterations; ~15 of the ~40 min)
+
+1. `pins=` keys are KiCad pin NAMES (numbers only when the name is
+   empty/`~`). Error message lists expected names — good.
+2. **Multi-unit symbols are effectively unsupported as-is**: Opamp_Quad's
+   pins are named `+`/`-` per unit (duplicates), and Zener keys nets by
+   signal name → would short all units. Fix: renamed pins in the vendored
+   symbol copy (OUTA/-INA/+INA/... per SBOS516H). Undocumented; worked by
+   reading the pcb source (diodeinc/pcb is public, helpful).
+3. Multi-symbol `.kicad_sym` needs `Symbol(library=..., name=...)`; KiCad
+   nested `_0_1/_1_1` subunits are flattened as separate "symbols".
+4. Symbol `Sim.*` properties auto-import a SPICE model; unresolved
+   `${KICAD9_SYMBOL_DIR}` → hard build failure. Stripped `Sim.*` from the
+   vendored symbol.
+5. Net names reject `.` (KiCad's `RX.PRE`, `+3.3V` are illegal → `RX_PRE0`,
+   `+3V3`) and duplicate `Net("x")` literals are rejected (bind to a var) —
+   annoying for KiCad-faithful naming, good hygiene otherwise.
+6. `properties["datasheet"]/["description"]` are hard errors; must use
+   `datasheet=`/`description=` kwargs. `Part()` is prelude.
+7. Generic kwargs can be aliased (FerriteBead `impedance` → pass as
+   `value=`); discoverable only by reading stdlib source.
+8. Any non-generic component without `part=Part(...)` fails the BOM stage.
+9. stdlib `Inductor` package enum lacks 1008 → used 0402 (footprint
+   mismatch vs KiCad's L_1008_2520Metric; flagged in the module).
+10. `pcb new board` demands a repo URL and inits a nested git repo (deleted).
+11. `pcb fmt` accepts one path; `pintype "stereo"` in emitted netlists is
+    cosmetic noise.
+12. Toolchain auto-upgraded 0.4.36→0.4.38 on first run — no pin/lock visible
+    in pcb.toml (`pcb-version = "0.4"` semver floor only). Repro risk.
+
+## BOM quality
+
+17 unique parts: 12 matched with live stock+price (house MPNs:
+Murata/Panasonic/Yageo — US-vendor-oriented, not JLC; D009 tension
+unchanged). Unmatched: 22 µF 0603 (16 V/10 V), 10 µF 16 V, 2.2 µH 0402
+inductor, **4.7 nF C0G 0603 — corroborates T-016's finding that C0G 0603 is
+unbuyable**; the stdlib house tables silently agree. ICs (AP63301, DRV8876,
+connector) matched by explicit MPN; AP63301 even resolved LCSC C2158003.
+
+## Bottom line for v2
+
+The authoring loop (write → `pcb build` → real netlist/BOM/checks) is
+credible and pleasant; a full Sonar-scale board is days of authoring, not
+weeks. Conditions before v2 adoption: (a) decide the account question
+(registry auth) or commit to vendored components only; (b) pin the toolchain
+version; (c) expect to hand-manage multi-unit symbols; (d) no importer — plan
+greenfield re-authoring; (e) BOM house parts need a JLC-oriented table to
+satisfy D009. For v1: KiCad per D008, unchanged.

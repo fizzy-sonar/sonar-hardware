@@ -8,6 +8,12 @@ Background reading (optional): `orchestration/review/REVIEW-2026-08-26.md` (what
 independent reviewer found) and `orchestration/review/FIXES-2026-08-26.md` (what was
 already fixed — you do NOT need to re-check those; they were re-verified after fixing).
 
+**Easy guided path:** run `./scripts/open_review.sh`. It regenerates and verifies one
+local step-by-step page with full-resolution analysis, schematic, main-board, and
+coupon renders; remembers checklist progress in your browser; and builds a response
+you can paste back to an agent. Use `./scripts/open_review.sh --live` when you also
+want to spend ~1 minute re-running all 17 gateware tests before the page opens.
+
 ## Part 1 — Decisions only you can make (~25 min total)
 
 1. **(2 min) GATE — D013 TX transducer default.** Read `orchestration/decisions/D013-tx-default-transducer.md`

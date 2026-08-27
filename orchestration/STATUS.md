@@ -1,12 +1,14 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-27 by codex/sol-t020 — resume audit confirmed the T-017 and T-020 work is integrated on `main`; `gateware` verification is freshly PASS (17/17), the coupon lock is current, and only Joshua's pre-existing `sonar.kicad_pro` edit is dirty. No Vivado executable or attached Cmod/FTDI/Pico is available on this ARM Mac, so the project remains human-gated._
+_Last updated: 2026-08-27 by codex/sol-t018 — guided visual review delivered and verified: eight steps, 71 actual renders/plots, persistent decision notes, and a one-command launcher. The sparse main PCB is explicitly identified as legacy/P3-not-started. Only Joshua's pre-existing `sonar.kicad_pro` edit remains dirty; project execution is still human-gated._
 
 ## Now
-- **T-018 in progress (codex/sol-t018):** turning the existing generated review
-  page into Joshua's guided CP-B/CP-BM review surface, including current schematic
-  renders, explicit legacy main-PCB state, coupon schematics/layouts, persistent
-  checklist progress, and direct evidence links.
+- **T-018 done:** run `./scripts/open_review.sh` for the guided CP-B/CP-BM review
+  surface. It freshly generates current schematic/PDF renders, main-board and both
+  coupon top/bottom 2D + 3D views, analysis/DSP/gateware evidence, persistent review
+  notes, and a paste-ready response. `./scripts/open_review.sh --live` also re-runs
+  all 17 gateware checks before opening. Generator/checker PASS; main PCB is loudly
+  marked legacy and NOT FOR APPROVAL because P3 has not started.
 - **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5
   agent work is landed: T-009/T-021/T-012/T-013 done, T-011 done (live-gate defect found +
   repaired + re-verified), T-016 at review (CP-BM), T-020 simulator milestone
@@ -180,6 +182,11 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-08-27 — codex/sol-t018: guided visual review done. Added eight-step,
+  locally persistent review workflow, 71 actual images, current main/coupon
+  schematic and PCB exports, full PDF, review-summary builder, strict page/asset
+  checker, and `./scripts/open_review.sh`. Visual QA passed; no design file changed.
+  Journal: 2026-08-27-codex-sol-t018-guided-review.md.
 - 2026-08-27 — codex/sol-t020 resume audit: confirmed T-017 and T-020 are
   integrated on `main`; re-ran `gateware` `make clean && make test` (17/17 PASS,
   full 512 KiB snapshot bit-exact, RTL/XDC 28 ports/73 bits exact); confirmed the

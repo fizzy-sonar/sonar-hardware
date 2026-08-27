@@ -28,8 +28,11 @@ codex/terra-t016. **Nothing here authorizes a purchase; CP-BM is Joshua's gate.*
 - M1/M3 SELECT low, M2/M4 SELECT high; DATA merged pairwise (D0 = M1+M2,
   D1 = M3+M4) through 0-ohm isolation footprints R13/R14. **No pulls on D0/D1.**
 - Returned clock Y1 through R1 to J1 pin 9 (`CLK_FB`) for skew measurement.
-- 3.3 V rail through JP1 current-break jumper; bulk 10 uF + 1 uF; 100 nF C0G at
-  every mic and each used U1 VDD pin.
+- 3.3 V rail through JP1 current-break jumper; bulk 10 uF + 1 uF; 100 nF X7R 0603
+  at every mic and each used U1 VDD pin (dielectric changed from C0G 2026-08-26,
+  REVIEW S11: 100 nF C0G is not manufacturable in 0603; X7R DC-bias droop at the
+  3.3 V rail is acceptable — these are digital PDM mics whose PSRR covers residual
+  rail noise, and the 10 uF + 1 uF bulk caps carry the low-frequency load).
 - J1 2x5 bench header: 1 +3V3_IN, 2 GND, 3 D0, 4 D1, 5 GND, 6 CLK_IN, 7 CLK_EN,
   8 GND, 9 CLK_FB, 10 GND.
 - Test points: TP1 +3V3_MIC, TP2 clock near (source end of trunk), TP3 clock far

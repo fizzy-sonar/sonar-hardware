@@ -196,9 +196,7 @@ def verify_variant(variant: str) -> None:
     pcbnew.ZONE_FILLER(board).Fill(board.Zones())
     board.BuildConnectivity()
     unconn = board.GetConnectivity().GetUnconnectedCount(False)
-    check(
-        unconn == 0, f"{variant}: connectivity after zone fill ({unconn} unconnected)"
-    )
+    check(unconn == 0, f"{variant}: connectivity after zone fill ({unconn} unconnected)")
 
     copper = collect_copper(board)
     for layer, items in copper.items():
@@ -218,8 +216,7 @@ def verify_variant(variant: str) -> None:
                     )
         check(
             worst[0] >= MIN_GAP_MM - 1e-6,
-            f"{variant}: {layer} min different-net copper gap "
-            f"{worst[0]:.3f} mm >= {MIN_GAP_MM} mm",
+            f"{variant}: {layer} min different-net copper gap {worst[0]:.3f} mm >= {MIN_GAP_MM} mm",
         )
 
     # Acoustic ports: four 0.50 mm NPTH at mic centres; ring interior copper-free.
@@ -228,18 +225,14 @@ def verify_variant(variant: str) -> None:
         if fp.GetReference().startswith("M") and fp.GetReference()[1:].isdigit():
             for pad in fp.Pads():
                 if pad.GetDrillSize().x > 0 and not pad.IsOnCopperLayer():
-                    npth.append(
-                        (fp.GetReference(), mm(pad.GetDrillSize().x), pad_abs(pad))
-                    )
+                    npth.append((fp.GetReference(), mm(pad.GetDrillSize().x), pad_abs(pad)))
     # np_thru_hole pads with no copper
     holes = []
     for fp in board.GetFootprints():
         for pad in fp.Pads():
             if pad.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH:
                 pos = pad.GetPosition()
-                holes.append(
-                    (fp.GetReference(), mm(pad.GetDrillSize().x), mm(pos.x), mm(pos.y))
-                )
+                holes.append((fp.GetReference(), mm(pad.GetDrillSize().x), mm(pos.x), mm(pos.y)))
     mic_holes = [h for h in holes if h[0].startswith("M")]
     check(
         len(mic_holes) == 4 and all(abs(h[1] - 0.5) < 1e-6 for h in mic_holes),

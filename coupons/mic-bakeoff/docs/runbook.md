@@ -8,9 +8,11 @@ CP-BM. Agents analyze files; they do not run the bench._
 
 ## 0. Pre-bench checklist
 
-1. Assembled coupons: 3 SPH + 3 ICS (4 mics each), logged by serial; every
-   installed unit and assembly failure logged (coupon X-ray/AOI notes if
-   available).
+1. Assembled coupons: 3 SPH + 3 ICS (4 mics each) from the 5+5 fabricated,
+   logged by serial; every installed unit and assembly failure logged (coupon
+   X-ray/AOI notes if available). Quantities per `order-package.md` as reconciled
+   2026-08-26 (REVIEW S10: 24 mics/MPN, 12 clock buffers purchased; S11: C1..C8
+   are 100 nF X7R 0603, not C0G — do not "correct" them back).
 2. Port inspection BEFORE first power: 100% of the 12 ports per candidate meet
    the fab drawing: 0.50 mm hole, non-plated, free of copper/mask/paste/debris;
    calibrated imaging shows no aperture clipping. Record package-to-hole offset

@@ -228,6 +228,40 @@ baseline before T-010 starts.
 - `git diff --check` and ticket-dependency audit pass; exact output is pasted here.
 
 ## Log
+- 2026-08-26 codex/terra-t016-fix: coupon-package review findings fixed
+  (`orchestration/review/REVIEW-2026-08-26.md`). **S10 (quantities not
+  self-consistent):** reconciled in `docs/order-package.md` — JLC 5-board min
+  per variant fully assembled needs 20 mics/MPN and 10 clock buffers total;
+  purchase quantities now 24 mics per MPN (was 16) and 12 CDCLVC1112PWR
+  (was 8), i.e. +20% assembly-loss/rework spares over full-population need,
+  with a single reconciliation table cross-checking every quantity (estimator
+  floor 12 valid units/MPN still met by any 3 of 5 coupons). **S11 (100 nF
+  C0G/NP0 0603 not manufacturable):** changed C1..C8 to 100 nF X7R 0603 in
+  `generate_coupon.py` (schematic values + PCB fab text), regenerated both
+  coupons, and updated `order-package.md`, `README.md`, and `runbook.md`;
+  rationale: digital PDM mic supply bypass on the 3.3 V rail, X7R DC-bias
+  droop acceptable, mic PSRR plus the 10 uF/1 uF bulk caps cover it; 0603
+  X7R chosen over 1206 C0G as the lower-DFM-risk option (no layout change).
+  Flagged as new pre-order checklist step 4 (confirm JLC picks X7R, no C0G
+  line remains). **NIT4 (ruff unpinned):** pinned `ruff==0.14.0` in
+  `pyproject.toml` `[project.optional-dependencies] dev` (the version on the
+  review host; the exact version T-016's original verification used is
+  unrecoverable — it was an unpinned system install), reformatted the 4
+  drifted files (`analysis/pdm_bakeoff.py`, `generate_coupon.py`,
+  `verify_coupon.py`, `fab_export.py`) with the pinned version, and added a
+  loud version-mismatch check to `check_coupons.sh`. Sandbox is offline, so
+  `uv.lock` could not be refreshed — HOST MUST RUN `uv lock` once before
+  `uv sync --extra dev`; until then `uv lock --check` will flag the new pin.
+- Verification (2026-08-26, this sandbox, real output):
+  `./coupons/mic-bakeoff/check_coupons.sh` exit 0; tail:
+  `== lint / All checks passed! / 4 files already formatted / SUMMARY: coupon
+  package checks passed`. Full log: `build/t016/check-run-2026-08-26.log`.
+  Both variants still ERC 4/4 reviewed waivers, geometric verify all PASS
+  (0 unconnected, gaps 0.145-0.150 mm, 4x NPTH, J1 map, pad-1 quadrants),
+  fab export end-to-end, analysis selftest all branches, normative block
+  sha256 unchanged (7408e0ae...f4b3b). "regen produced a diff" line is the
+  S11 value-string change itself; it goes quiet once committed. No order
+  placed; ticket stays `review`, CP-BM remains Joshua's gate.
 - 2026-08-26 codex/terra-t016: agent-executable package delivered on
   branch agent/T-016-mic-bakeoff. Deliverables: `coupons/mic-bakeoff/` with
   separate SPH and ICS coupon KiCad projects (datasheet-anchored land patterns:

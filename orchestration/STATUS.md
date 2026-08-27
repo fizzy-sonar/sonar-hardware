@@ -3,6 +3,10 @@
 _Last updated: 2026-08-27 by codex/sol-t020 — resume audit confirmed the T-017 and T-020 work is integrated on `main`; `gateware` verification is freshly PASS (17/17), the coupon lock is current, and only Joshua's pre-existing `sonar.kicad_pro` edit is dirty. No Vivado executable or attached Cmod/FTDI/Pico is available on this ARM Mac, so the project remains human-gated._
 
 ## Now
+- **T-018 in progress (codex/sol-t018):** turning the existing generated review
+  page into Joshua's guided CP-B/CP-BM review surface, including current schematic
+  renders, explicit legacy main-PCB state, coupon schematics/layouts, persistent
+  checklist progress, and direct evidence links.
 - **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5
   agent work is landed: T-009/T-021/T-012/T-013 done, T-011 done (live-gate defect found +
   repaired + re-verified), T-016 at review (CP-BM), T-020 simulator milestone

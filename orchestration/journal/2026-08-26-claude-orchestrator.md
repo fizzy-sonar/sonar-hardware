@@ -110,3 +110,16 @@ D013 (proposed, TX transducer default). Orchestrator re-verified on main: make t
 (legacy sheets only). Ledger: orchestration/review/FIXES-2026-08-26.md. Joshua-facing
 plan: orchestration/review/JOSHUA-REVIEW-PLAN.md. Open human gates: D013 ratify,
 MA40S4S/DRV8876/CDCLVC1112 datasheet readings, T-007 purchases, CP-BM.
+
+## Addendum 6 — T-017 Zener deep port (2026-08-27, networked)
+
+Joshua authorized registry access, so the T-005 NO-GO (a sandbox artifact) was
+re-tested fairly. codex/terra-t017 (full network, host pcb CLI) ported three real
+v1 blocks (power sheet, RX preamp tile, TX drive) to .zen, hand-defining OPA4171
+and AP63301 modules from datasheets. `pcb build` PASSES; emitted netlist is
+node-for-node identical to the KiCad originals (6/6, 4/4 rails, 17/17 DRV8876
+pins); live-priced BOM + a generated layout.kicad_pcb produced. Verdict:
+GO-WITH-CONDITIONS for v2 authoring (registry is account-gated so ICs were
+hand-written; KiCad importer still yields empty stubs — adoption = re-authoring;
+multi-unit symbols need a workaround). D008 stands for v1. Ticket done; 12
+papercuts + evidence in spikes/eda-zener/REPORT.md "Deep port (T-017)".

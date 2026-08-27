@@ -74,7 +74,7 @@ PINS = [
  ("pio21",21,"N1","IO_L10N_T1_AD15N_35",     35,"",        "PDM_D9",      "in",   "pdm", "CH18/CH19 = M24/M34"),
  ("pio22",22,"N2","IO_L10P_T1_AD15P_35",     35,"",        "PDM_D10",     "in",   "pdm", "CH20/CH21 = M40/M41"),
  ("pio23",23,"P1","IO_L19N_T3_VREF_35",      35,"",        "PDM_D11",     "in",   "pdm", "CH22/CH23 = M43/M44"),
- ("-",     24,"--","(power: VU)",              0,"",        "+5V",         "pwr",  "pwr", "DIP 24 = VU, module 5V in/out; carrier +5V (T-012) powers the module here"),
+ ("-",     24,"--","(power: VU)",              0,"",        "5V",          "pwr",  "pwr", "DIP 24 = VU, module 5V in/out; carrier 5V (T-012) powers the module here via R420 (0R 0603, populated by default)"),
  ("-",     25,"--","(power: GND)",             0,"",        "GND",         "pwr",  "pwr", "DIP 25 = GND, the ONLY module GND pin"),
  ("pio26",26,"R3","IO_L2P_T0_34",            34,"",        "FT_D0",       "inout","ft",  ""),
  ("pio27",27,"T3","IO_L2N_T0_34",            34,"",        "FT_D1",       "inout","ft",  ""),
@@ -287,12 +287,13 @@ def build():
             "Clock-capable pins: PDM_CLK_FB=pio40 (pkg W4, MRCC_34), FT_CLKOUT=pio47 (pkg U8, SRCC_34), ETH_REF_CLK=pio3 (pkg A16, MRCC_16).\n"
             "DIP positions + package pins VERIFIED 2026-08-26 against the live Digilent Cmod-A7-Master.xdc + reference manual fig. 8.1\n"
             "(reproducible: scripts/check_pinmap_vs_xdc.py).", 25.4, 18.5)
-    sh.text("POWER STRATEGY (revised 2026-08-26 after the live reference-manual check caught the offline transcription error): the DIP\n"
-            "socket exposes exactly TWO power pins - pin 24 = VU (module 5 V in/out) and pin 25 = GND (the ONLY module GND). There is\n"
-            "NO 3V3 pin on the DIP. The carrier +5V rail (T-012 power tree) drives VU and powers the module. Do NOT also power the\n"
-            "module from its own USB while carrier +5V is live unless backfeed safety is verified (VU is the module's USB 5 V in/out).\n"
-            "DIP pins 15/16 are XADC analog inputs via a 3.3V->1V divider (NOT usable for 3.3V digital): NC here. The FT232H breakout\n"
-            "is self-powered from its own USB (its 5V pin is NC). Board +3.3V rail source: T-012 power tree (not the legacy \"3.3V\" net).", 25.4, 29)
+    sh.text("POWER STRATEGY (revised 2026-08-26; review-B1 fix): the DIP socket exposes exactly TWO power pins - pin 24 = VU (module\n"
+            "5 V in/out) and pin 25 = GND (the ONLY module GND). There is NO 3V3 pin on the DIP. The carrier 5V rail (T-012 power tree,\n"
+            "global net \"5V\") powers the module through R420 (0R 0603, populated by default) -> 5V_CMOD -> J40 pin 24. Backfeed\n"
+            "caveat: VU is the module's own USB 5 V in/out, so to program the Cmod from its own USB while the carrier is live, DNP\n"
+            "R420 first (bring-up procedure in orchestration/rails.md). DIP pins 15/16 are XADC analog inputs via a 3.3V->1V divider\n"
+            "(NOT usable for 3.3V digital): NC here. The FT232H breakout is self-powered from its own USB (its 5V pin is NC).\n"
+            "Board +3.3V rail source: T-012 power tree (not the legacy \"3.3V\" net).", 25.4, 29)
     sh.text("PDM HEADER CONTENTION RULE (D012): exactly ONE capture platform attached at a time - either the Cmod A7 in socket J40,\n"
             "or the Pico 2 (T-009) via ribbon on J42. NEVER both: both would drive PDM_CLK_SRC/PDM_CLK_EN into each other.\n"
             "Microphones and the CDCLVC1112 clock buffer live on the array sheet (T-010/T-016); PDM_* nets cross sheets by global label.", 25.4, 42.5)
@@ -310,12 +311,26 @@ def build():
         if net == "GND":
             n_pwr += 1
             sh.stub_power(a, "GND", f"#PWR4{n_pwr:02d}")
-        elif net == "+5V":
-            sh.stub_power(a, "+5V", "#PWR424")
+        elif net == "5V":
+            sh.stub_label(a, "5V_CMOD")   # module side of the VU-feed 0R (R420, review B1)
         elif net == "NC":
             sh.stub_nc(a)
         else:
             sh.stub_label(a, net, SHAPE[d])
+
+    # ---- VU feed series element (REVIEW 2026-08-26 B1): R420 0R 0603, populated
+    # by default; DNP to isolate carrier 5V from the Cmod VU pin (e.g. when
+    # programming the module over its own USB while the carrier is live).
+    rvu = sh.symbol("Device", "Device.kicad_sym", "R", "R420", "0R", 120, 100,
+                    fp="Resistor_SMD:R_0603_1608Metric")
+    rvu_top = min(rvu.values(), key=lambda a: a['y'])
+    rvu_bot = max(rvu.values(), key=lambda a: a['y'])
+    sh.stub_label(rvu_top, "5V_CMOD")
+    sh.stub_label(rvu_bot, "5V")
+    sh.text("R420: 0R 0603 in the Cmod VU feed (5V -> 5V_CMOD -> J40 pin 24). Populated by default (v1 power strategy:\n"
+            "carrier 5V powers the module). DNP to isolate the module from carrier 5V - the backfeed-safe procedure for\n"
+            "running the Cmod from its own USB (bitstream load / D012 snapshot drain) while the carrier is live.\n"
+            "See orchestration/rails.md. (Review 2026-08-26 B1.)", 100, 110)
 
     # ---- J41: FT232H header (Adafruit 2264-style 1x20) ----------------------
     ft = sh.symbol("Connector_Generic", "Connector_Generic.kicad_sym",
@@ -336,6 +351,15 @@ def build():
             "pins11-20=C0-C9. Sync-FIFO (FT245) mapping: C0=RXF#, C1=TXE#, C2=RD#, C3=WR#, C4=SIWU (FPGA tie option),\n"
             "C5=CLKOUT (60 MHz, to clock-capable pio47), C6=OE#, C7-C9 unused (NC). Breakout VCCIO is 3.3 V.\n"
             "VERIFY the physical breakout pin order against the Adafruit board at layout (net identities are what matter).", 262, 135)
+
+    # S9 (REVIEW 2026-08-26): FT_SIWU (J41 pin 15) must not float - 10k 0603 pull-up to +3.3V.
+    rsu = sh.symbol("Device", "Device.kicad_sym", "R", "R411", "10k", 290, 150,
+                    fp="Resistor_SMD:R_0603_1608Metric")
+    rsu_top = min(rsu.values(), key=lambda a: a['y'])
+    rsu_bot = max(rsu.values(), key=lambda a: a['y'])
+    sh.stub_power(rsu_top, "+3.3V", "#PWR411")
+    sh.stub_label(rsu_bot, "FT_SIWU")
+    sh.text("R411: FT_SIWU (SIWU#) pull-up to +3.3V, 10k 0603 - a floating FTDI control input is not a safe default (review S9).", 283, 160)
 
     # ---- J42: generic PDM header (2x13, GND interleave) ---------------------
     pd = sh.symbol("Connector_Generic", "Connector_Generic.kicad_sym",
@@ -458,10 +482,9 @@ def build():
     sh.stub_power(pf1['1'], "+3.3V", "#PWR790")
     pf2 = sh.symbol("power", "power.kicad_sym", "PWR_FLAG", "#FLG402", "PWR_FLAG", 100, 130)
     sh.stub_label(pf2['1'], "ETH_VDDCR")
-    pf3 = sh.symbol("power", "power.kicad_sym", "PWR_FLAG", "#FLG403", "PWR_FLAG", 110, 130)
-    sh.stub_power(pf3['1'], "+5V", "#PWR791")
-    sh.text("PWR_FLAGs: +3.3V and +5V are sourced by the T-012 power tree (not yet in the schematic);\n"
-            "+5V feeds the Cmod VU pin (DIP 24) and powers the module.\n"
+    sh.text("PWR_FLAGs: +3.3V is sourced by the T-012 power tree (power_supply sheet); the flag is kept so this\n"
+            "sheet is ERC-clean standalone. The stale +5V PWR_FLAG that masked the orphan VU net (review 2026-08-26 B1)\n"
+            "is DELETED - the VU feed now runs J40.24 -> R420 (0R) -> the global 5V net driven by the power mux.\n"
             "ETH_VDDCR is driven by the LAN8720A internal 1.2V regulator (whole block DNP).", 76, 140)
 
     # ---- test points ---------------------------------------------------------
@@ -674,7 +697,23 @@ def write_xdc(path):
     L.append("## NOTE for T-020: PDM input timing (tDD 18-40 ns / tDZ 3-16 ns vs pdm_clk_fb both edges)")
     L.append("## belongs in a timing XDC with set_input_delay on both edges; see docs/pdm-capture-contract.md")
     L.append("## and docs/pdm-rx-design.md timing budget (setup 122.2 ns / hold 2.12 ns at 3.072 MHz).")
-    open(path, 'w').write('\n'.join(L) + '\n')
+    # S1 (REVIEW 2026-08-26): read-modify-write - preserve everything from the
+    # MANUAL APPEND marker onward (on-module SRAM + UART constraints, maintained
+    # by T-020, NOT derivable from the DIP pin table). Regenerating must never
+    # silently delete it.
+    manual = ""
+    if os.path.exists(path):
+        old_src = open(path).read()
+        m = re.search(r'^## -+\n## MANUAL APPEND', old_src, re.M)
+        if m:
+            manual = old_src[m.start():]
+        elif "MANUAL APPEND" in old_src:
+            i = old_src.index("MANUAL APPEND")
+            manual = old_src[old_src.rfind('\n', 0, i) + 1:]
+    out = '\n'.join(L) + '\n'
+    if manual:
+        out += '\n' + manual.rstrip('\n') + '\n'
+    open(path, 'w').write(out)
 
 # ---------------------------------------------------------------------------
 # pinmap.md writer
@@ -763,13 +802,16 @@ def write_pinmap(path):
     L.append("")
     L.append("## Board-level decisions (ratified within T-011 scope)")
     L.append("")
-    L.append("1. **Power strategy (REVISED 2026-08-26)**: the carrier +5V rail (T-012 power tree)")
-    L.append("   powers the module through VU (DIP pin 24, the module's 5 V in/out); DIP pin 25 is")
-    L.append("   the only module GND. There is NO 3V3 pin on the DIP, so the earlier")
-    L.append("   CMOD_3V3/CMOD_VU no-connect + SJ1/SJ2 rework plan is deleted. Do NOT power the")
-    L.append("   module from its own USB while carrier +5V is live unless backfeed safety is")
-    L.append("   verified. DIP pins 15/16 are XADC analog-only (3.3V->1V divider): NC. FT232H")
-    L.append("   breakout self-powered from its own USB (its 5V pin is NC). Pico 2 self-powered.")
+    L.append("1. **Power strategy (REVISED 2026-08-26, review-B1 fix)**: the carrier 5V rail")
+    L.append("   (T-012 power tree, global net `5V`) powers the module through R420 (0R 0603,")
+    L.append("   populated by default) -> `5V_CMOD` -> VU (DIP pin 24, the module's 5 V in/out);")
+    L.append("   DIP pin 25 is the only module GND. There is NO 3V3 pin on the DIP, so the earlier")
+    L.append("   CMOD_3V3/CMOD_VU no-connect + SJ1/SJ2 rework plan is deleted. Backfeed caveat:")
+    L.append("   VU is the module's own USB 5 V in/out, and the same USB carries bitstream load +")
+    L.append("   the D012 snapshot drain - to run the Cmod from its own USB while the carrier is")
+    L.append("   live, DNP R420 first (bring-up procedure in orchestration/rails.md). DIP pins")
+    L.append("   15/16 are XADC analog-only (3.3V->1V divider): NC. FT232H breakout self-powered")
+    L.append("   from its own USB (its 5V pin is NC). Pico 2 self-powered.")
     L.append("2. **Contention rule**: exactly one capture platform at a time - Cmod in J40 *or*")
     L.append("   Pico 2 ribbon on J42, never both (both drive PDM_CLK_SRC/PDM_CLK_EN).")
     L.append("3. **Clock architecture**: FPGA generates PDM_CLK_SRC (MMCM from on-module 12 MHz;")
@@ -787,8 +829,8 @@ def write_pinmap(path):
     L.append("")
     L.append("- To array sheet (T-010): `PDM_D0..11`, `PDM_CLK_SRC`, `PDM_CLK_EN`, `PDM_CLK_FB`.")
     L.append("- To TX sheet (T-013): `TX_EN`, `TX_PH`, `TX_NSLEEP`, `TX_NFAULT`, `TX_PMODE`.")
-    L.append("- To power tree (T-012): `+3.3V` (power symbol), `GND`, `+5V` (power symbol; feeds the")
-    L.append("  Cmod VU pin and powers the module).")
+    L.append("- To power tree (T-012): `+3.3V` (power symbol), `GND`, `5V` (global label; feeds the")
+    L.append("  Cmod VU pin via R420 0R -> `5V_CMOD` and powers the module).")
     L.append("- DNP-internal: `ETH_VDDCR`, `ETH_RBIAS`, `ETH_RST_N`, `ETH_INTSEL`, `ETH_REGOFF`,")
     L.append("  `ETH_RCT`, `ETH_TXP/N`, `ETH_RXP/N`.")
     open(path, 'w').write('\n'.join(L) + '\n')

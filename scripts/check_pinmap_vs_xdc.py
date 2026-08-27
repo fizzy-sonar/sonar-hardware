@@ -51,7 +51,7 @@ def main():
         if p is None:
             fails.append(f"position {pos}: missing from PIN TABLE"); continue
         if pos in SPECIAL:
-            if p[0] != "-" or p[6] not in ("NC", "+5V", "GND"):
+            if p[0] != "-" or p[6] not in ("NC", "5V", "GND"):  # 5V: unified net name (review B1; was +5V)
                 fails.append(f"position {pos}: must be a non-digital row ({SPECIAL[pos]}), "
                              f"got pio={p[0]} net={p[6]}")
             continue

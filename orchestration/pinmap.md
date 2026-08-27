@@ -84,7 +84,7 @@ DIP positions 15/16 (XADC analog) and 24/25 (VU/GND) carry no user I/O.
 | pio21 | 21 | N1 | IO_L10N_T1_AD15N_35 | 35 |  | `PDM_D9` | in | CH18/CH19 = M24/M34 |
 | pio22 | 22 | N2 | IO_L10P_T1_AD15P_35 | 35 |  | `PDM_D10` | in | CH20/CH21 = M40/M41 |
 | pio23 | 23 | P1 | IO_L19N_T3_VREF_35 | 35 |  | `PDM_D11` | in | CH22/CH23 = M43/M44 |
-| - | 24 | -- | (power: VU) | - |  | `+5V` | pwr | DIP 24 = VU, module 5V in/out; carrier +5V (T-012) powers the module here |
+| - | 24 | -- | (power: VU) | - |  | `5V` | pwr | DIP 24 = VU, module 5V in/out; carrier 5V (T-012) powers the module here via R420 (0R 0603, populated by default) |
 | - | 25 | -- | (power: GND) | - |  | `GND` | pwr | DIP 25 = GND, the ONLY module GND pin |
 | pio26 | 26 | R3 | IO_L2P_T0_34 | 34 |  | `FT_D0` | inout |  |
 | pio27 | 27 | T3 | IO_L2N_T0_34 | 34 |  | `FT_D1` | inout |  |
@@ -130,13 +130,16 @@ Pmod JA (bank 14, on module, free for debug/expansion): ja[0]=G17, ja[1]=G19, ja
 
 ## Board-level decisions (ratified within T-011 scope)
 
-1. **Power strategy (REVISED 2026-08-26)**: the carrier +5V rail (T-012 power tree)
-   powers the module through VU (DIP pin 24, the module's 5 V in/out); DIP pin 25 is
-   the only module GND. There is NO 3V3 pin on the DIP, so the earlier
-   CMOD_3V3/CMOD_VU no-connect + SJ1/SJ2 rework plan is deleted. Do NOT power the
-   module from its own USB while carrier +5V is live unless backfeed safety is
-   verified. DIP pins 15/16 are XADC analog-only (3.3V->1V divider): NC. FT232H
-   breakout self-powered from its own USB (its 5V pin is NC). Pico 2 self-powered.
+1. **Power strategy (REVISED 2026-08-26, review-B1 fix)**: the carrier 5V rail
+   (T-012 power tree, global net `5V`) powers the module through R420 (0R 0603,
+   populated by default) -> `5V_CMOD` -> VU (DIP pin 24, the module's 5 V in/out);
+   DIP pin 25 is the only module GND. There is NO 3V3 pin on the DIP, so the earlier
+   CMOD_3V3/CMOD_VU no-connect + SJ1/SJ2 rework plan is deleted. Backfeed caveat:
+   VU is the module's own USB 5 V in/out, and the same USB carries bitstream load +
+   the D012 snapshot drain - to run the Cmod from its own USB while the carrier is
+   live, DNP R420 first (bring-up procedure in orchestration/rails.md). DIP pins
+   15/16 are XADC analog-only (3.3V->1V divider): NC. FT232H breakout self-powered
+   from its own USB (its 5V pin is NC). Pico 2 self-powered.
 2. **Contention rule**: exactly one capture platform at a time - Cmod in J40 *or*
    Pico 2 ribbon on J42, never both (both drive PDM_CLK_SRC/PDM_CLK_EN).
 3. **Clock architecture**: FPGA generates PDM_CLK_SRC (MMCM from on-module 12 MHz;
@@ -154,7 +157,7 @@ Pmod JA (bank 14, on module, free for debug/expansion): ja[0]=G17, ja[1]=G19, ja
 
 - To array sheet (T-010): `PDM_D0..11`, `PDM_CLK_SRC`, `PDM_CLK_EN`, `PDM_CLK_FB`.
 - To TX sheet (T-013): `TX_EN`, `TX_PH`, `TX_NSLEEP`, `TX_NFAULT`, `TX_PMODE`.
-- To power tree (T-012): `+3.3V` (power symbol), `GND`, `+5V` (power symbol; feeds the
-  Cmod VU pin and powers the module).
+- To power tree (T-012): `+3.3V` (power symbol), `GND`, `5V` (global label; feeds the
+  Cmod VU pin via R420 0R -> `5V_CMOD` and powers the module).
 - DNP-internal: `ETH_VDDCR`, `ETH_RBIAS`, `ETH_RST_N`, `ETH_INTSEL`, `ETH_REGOFF`,
   `ETH_RCT`, `ETH_TXP/N`, `ETH_RXP/N`.

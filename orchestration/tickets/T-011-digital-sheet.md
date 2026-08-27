@@ -217,3 +217,37 @@ manual by a second agent session.
   pin+IO name+bank+CC flag), special positions 15/16 analog NC and 24=VU/25=GND,
   PDM_CLK_FB/FT_CLKOUT/ETH_REF_CLK all clock-capable. Reference manual §8 confirmed
   44 digital + 2 analog + 2 power (no DIP 3V3). Live-fetch gate closed; ticket done.
+- 2026-08-26 codex/sol-t011-fix (review repair, REVIEW-2026-08-26.md B1/S1/S9):
+  **B1 (blocker) fixed in the generator** (scripts/gen_digital_sheet.py): the Cmod
+  VU feed no longer uses the orphan `+5V` power symbol - PINS row 24 now names the
+  power tree's net `5V`; J40.24 wires to `5V_CMOD`, and new R420 (0R 0603,
+  populated by default, DNP-capable) connects 5V_CMOD -> 5V. The stale PWR_FLAG
+  #FLG403 (+ #PWR791) that masked the orphan net is DELETED.
+  **S1 fixed:** write_xdc() is now read-modify-write - everything from the
+  `## ---` + `## MANUAL APPEND` marker onward is preserved verbatim across
+  regeneration (proved by regen-twice: byte-identical XDC, manual section intact,
+  83 set_property lines = 52 generated + 30 SRAM + uart_rxd_out).
+  **S9 fixed:** R411 (10k 0603) pull-up from FT_SIWU (J41.15) to +3.3V.
+  scripts/check_pinmap_vs_xdc.py updated for the intentional `+5V`->`5V` rename.
+  VERIFICATION (kicad-cli 10.0.1, this machine, 2026-08-26):
+    Netlist (build/sonar.net) - the B1 chain, verbatim node lists:
+      5V: 15 nodes -> ['C140.1','C161.1','C162.1','C174.1','L2.1','Q1.2','Q2.2',
+        'R160.1','R420.2','TP5.1','TP80.1','U35.3','U37.4','U38.4','U61.3']
+        (U35.3 = AP63301 buck VIN, U61.3 = TPS55340 boost VIN, L2.1 = boost
+        inductor, Q1.2/Q2.2 = power mux - R420.2 sits ON the power-tree net)
+      5V_CMOD: 2 nodes -> ['J40.24','R420.1']  (module side of the 0R)
+      FT_SIWU: 2 nodes -> ['J41.15','R411.2']; R411.1 on +3.3V (23-node net)
+      `+5V` net: ABSENT (orphan eliminated). NOTE: a series element necessarily
+      splits the net in KiCad, so J40.24 reaches the buck/boost inputs THROUGH
+      the populated R420 - the review's "same net as buck/boost" criterion is met
+      modulo the (also review-mandated) 0R in the feed.
+    ERC --severity-all: project 346 msgs (was 347; 276 err/70 warn, all in the
+      pre-existing array/TX/lib-table scope); **/digital/ section: ZERO**.
+    scripts/check_pinmap_vs_xdc.py: PASS 44/44 vs the committed live-fetched
+      Cmod-A7-Master.xdc; special positions 15/16/24/25 intact.
+    XDC regen-twice diff: byte-identical (S1 proof).
+    `kicad-cli pcb drc` NOT run: SIGABRTs (exit 134) in this sandbox on all
+      projects incl. pristine ones - known environmental issue (T-006 note);
+      re-run unsandboxed. ERC is the gate.
+  Nothing committed (orchestrator commits). rails.md updated (S2) - see T-012 Log.
+

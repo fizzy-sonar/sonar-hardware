@@ -17,12 +17,17 @@ module pdm_ddr_sampler #(
     integer i;
 
 `ifdef XILINX
-    // SAME_EDGE_PIPELINED makes the two samples from one external clock period
-    // available together. The primitive mapping and placed timing remain part
-    // of the Vivado-host gate; the portable test model below defines semantics.
+    // SAME_EDGE_PIPELINED makes the two samples from one external clock
+    // period available together - one full clock AFTER the sampled edge
+    // pair (Q1 = rising k, Q2 = falling k.5, both after rising k+1). The
+    // functional IDDR model in sim/xilinx_7series_stubs.sv implements
+    // exactly that latency (REVIEW-2026-08-26 S7), and pipeline_valid is
+    // two stages deep to match, so the first frame_valid marks a REAL
+    // sampled pair. tb_sampler_packer runs this branch under -DXILINX and
+    // the portable branch without it; both must emit identical frames.
     wire [DATA_LINES-1:0] rising_samples;
     wire [DATA_LINES-1:0] falling_samples;
-    reg                   pipeline_valid;
+    reg [1:0]             pipeline_valid;
 
     genvar bit_index;
     generate
@@ -46,16 +51,16 @@ module pdm_ddr_sampler #(
 
     always @(posedge pdm_clk_fb) begin
         if (reset) begin
-            frame_data    <= {2*DATA_LINES{1'b0}};
-            frame_valid   <= 1'b0;
-            pipeline_valid <= 1'b0;
+            frame_data     <= {2*DATA_LINES{1'b0}};
+            frame_valid    <= 1'b0;
+            pipeline_valid <= 2'b00;
         end else begin
             for (i = 0; i < DATA_LINES; i = i + 1) begin
                 frame_data[2*i]   <= rising_samples[i];
                 frame_data[2*i+1] <= falling_samples[i];
             end
-            frame_valid    <= pipeline_valid;
-            pipeline_valid <= 1'b1;
+            frame_valid    <= pipeline_valid[1];
+            pipeline_valid <= {pipeline_valid[0], 1'b1};
         end
     end
 `else

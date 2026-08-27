@@ -202,3 +202,40 @@ real control-plane integration remain; T-013 must release TX waveform limits.
 - Verification: `make clean && make test` 13/13 PASS; check_ports bijection
   28 ports/73 bits exact. No commits — all on agent/T-020-gateware for the
   orchestrator. T-020 stays in-progress (Vivado host + hardware demo).
+
+## Session 6 (review S6/S7/S8/NIT3 hardening + TX_NSLEEP follow-up)
+- **S6:** `reset_sync.sv` (async-assert/sync-release per domain) now fans the
+  POR/btn[1] reset into sysclk/pdm_clk_fb/ft_clkout/sram_clk; clockless-at-POR
+  domains hold reset until their clock runs. `button_debounce.sv` (20 ms) on
+  btn[0]; sram_snapshot's internal 2FF start sync still owns the sram_clk CDC.
+  clocks_locked 2FF-synced into sysclk for the startup FSM. TB tb_reset_sync
+  proves: immediate async assert, release exactly on domain posedge #2, no
+  bounce/glitch/multi-trigger.
+- **S8:** BUFGCTRL S0/S1 registered in their own I0/I1 domains (UG472) with a
+  one-hot interlock; buffer_oe 2FF-synced into selected_clock before ODDR D1.
+  Found while doing this: SWITCH_OFF_CYCLES=4 (333 ns) < OE-sync latency
+  (1.302 us at 1.536 MHz) — the "switch while off" invariant did NOT survive
+  synchronization; default raised to 20 (1.67 us). tb_pdm_clock monitors every
+  output pulse waveform-level: zero clipped edges across enable/disable/rate
+  switch; rates verified (1.536/3.072/48 MHz, MMCM lock).
+- **S7:** xilinx_7series_stubs.sv rewritten as FUNCTIONAL models (IDDR
+  SAME_EDGE_PIPELINED true latency, ODDR, glitch-free BUFGCTRL, MMCM VCO/
+  divider generators + 20-cycle lock). Gotcha fixed en route: the
+  combinational "C ? qr : qf" ODDR form glitches zero-width in zero-time sim —
+  model drives one reg at both edges instead. The sampler's XILINX branch
+  needed a 2nd pipeline_valid stage to match true IDDR latency (else it
+  published one garbage frame). tb_sampler_packer now prints a capture
+  checksum: portable and -DXILINX runs BOTH print cff870 at 3.072 and 4.8 MHz —
+  bit-identical captures through the synthesis branch. `-t null` elaboration
+  retained. UNISIM/xsim equivalence on the Vivado host remains open (ticket).
+- **NIT3:** dead discard_samples wire removed from sonar_top; port kept as
+  FSM observability (tb_clock_tx), intentionally unconnected with comment.
+- **TX_NSLEEP follow-up RESOLVED:** session-5's "sheet has it on J40.44" came
+  from the stale T-013 audit. Current digital.kicad_sch = byte-content of the
+  current generator (PINS: position 48 -> TX_NSLEEP, labels attach by
+  position); ETH_RXD1 is the J40.44 label. Only the 20kHz-h-bridge text box
+  said "pio1/2/44/8" — fixed to "pio1/2/48/8". STATUS blocker cleared, T-013
+  Log annotated.
+- Verification: make clean && make test 17/17 PASS (was 13/13); check_ports
+  28 ports/73 bits exact; check_pinmap_vs_xdc PASS 44/44 (XDC/pinmap
+  untouched). No commits — all on agent/T-020-gateware for the orchestrator.

@@ -1,6 +1,6 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-08-26 by claude/orchestrator — cross-family review (orchestration/review/REVIEW-2026-08-26.md) found 2 blockers + 11 should-fix; B1/S1/S2/S9/S10/S11/NIT4 repaired and merged; B2 TX duty now hard-bounded (13/13 TB); D013 proposed for TX transducer default._
+_Last updated: 2026-08-26 by codex/sol-t020 (session 6) — review S6/S7/S8/NIT3 gateware hardening landed uncommitted on agent/T-020-gateware (make test 17/17); TX_NSLEEP schematic follow-up resolved (sheet already J40.48; TX Drive text box fixed). Previously: claude/orchestrator — cross-family review (orchestration/review/REVIEW-2026-08-26.md) found 2 blockers + 11 should-fix; B1/S1/S2/S9/S10/S11/NIT4 repaired and merged; B2 TX duty now hard-bounded (13/13 TB); D013 proposed for TX transducer default._
 
 ## Now
 - **Agent queue exhausted 2026-08-26; the project is human-gated.** P1/P2/P5
@@ -93,7 +93,7 @@ _Last updated: 2026-08-26 by claude/orchestrator — cross-family review (orches
   Cmod ~200-400 mA typ allocation added to the 5V budget as an unmeasured
   assumption); the stale self-powered/SJ1-SJ2 text is deleted. `pcb drc` still SIGABRTs in the sandbox (exit 134) — ERC is
   the gate; DRC re-run unsandboxed remains open.
-- **KiCad open?** Unknown. **KiCad files changed on disk 2026-08-26 (sonar.kicad_sch,
+- **KiCad open?** Unknown. **2026-08-26 codex/sol-t020: `20kHz-h-bridge.kicad_sch` text box edited on disk (pio44->pio48 TX_NSLEEP text only) — reload KiCad.** **KiCad files changed on disk 2026-08-26 (sonar.kicad_sch,
   new digital.kicad_sch) — Joshua: reload KiCad before opening the project.**
   2026-08-26 terra-t012: power-tree files rewritten/deleted on branch
   agent/T-012-power-tree (power_supply, 5v_to_12v_boost, ideal_diode,
@@ -115,7 +115,7 @@ _Last updated: 2026-08-26 by claude/orchestrator — cross-family review (orches
 | T-006 kicad-cli check harness | **cheap** | **done**; baseline recorded |
 | T-009 Pico 2 snapshot firmware | **mid** | **done (host-verified)**; physical integration waits on pins/SDK/board |
 | T-021 host software | mid | **done**; physical FT232H/libusb still untested |
-| T-020 Vivado gateware | **top** | **in-progress**; `make test` PASS (13/13, Icarus 13.0) incl. the B2 per-half-cycle duty hard-bound regression; bitstream + hardware demo wait on the Vivado host |
+| T-020 Vivado gateware | **top** | **in-progress**; `make test` PASS (17/17, Icarus 13.0) incl. review S6/S7/S8 hardening (per-domain reset syncs, functional UNISIM-style models, no-clipped-edge clock TB); bitstream + hardware demo wait on the Vivado host |
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
 | T-016 mic coupon bake-off | mid | **review**; review findings S10/S11/NIT4 fixed 2026-08-26 (quantities reconciled 24 mics/MPN + 12 buffers; C1..C8 now 100 nF X7R 0603; ruff pinned 0.14.0 — host must run `uv lock` once); check_coupons.sh exit 0 re-verified; Joshua's CP-BM checklist in `coupons/mic-bakeoff/docs/order-package.md` |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
@@ -137,12 +137,16 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
 (credits first, then the 5× tier); the 5-hour cap alone is pacing, not a blocker.
 
 ## Blockers
-- **REVIEW-2026-08-26 follow-up (schematic, pre-CP-C):** the T-013 netlist
-  audit recorded TX_NSLEEP on J40.44 in `digital.kicad_sch`, but pinmap.md/XDC/
-  tx-limits.md agree on pio48/V8 (pio44 is ETH_RXD1, an input). Move the
-  digital-sheet TX_NSLEEP global label J40.44 -> J40.48 and fix the TX Drive
-  text box ("pio1/2/44/8" -> "pio1/2/48/8") before CP-C. Owner: repair ticket
-  or T-015. Found by codex/sol-t020 while fixing review finding S3.
+- ~~REVIEW-2026-08-26 follow-up (schematic, pre-CP-C): TX_NSLEEP J40.44 vs
+  pio48~~ **RESOLVED 2026-08-26 (codex/sol-t020, session 6):** the audit was
+  stale. Evidence: `digital.kicad_sch` regenerates content-identical (UUIDs
+  only) from current `scripts/gen_digital_sheet.py`, whose PINS maps DIP
+  position 48 -> TX_NSLEEP and whose sheet code attaches each net label by
+  `pm[str(position)]` - so the sheet's TX_NSLEEP label is on J40.48; the
+  ETH_RXD1 label sits 4 rows (10.16 mm) below it at J40.44; pinmap.md:111
+  and the XDC agree (pio48/V8). No generator fix needed. The one genuinely
+  stale artifact was the TX Drive sheet text box ("pio1/2/44/8 out") on
+  `20kHz-h-bridge.kicad_sch` - corrected to "pio1/2/48/8 out".
 - **D013 proposed (needs Joshua, CP-B/CP-C):** v1 default TX = piezo horn
   tweeter 20-32 kHz chirps; MA40S4S 40 kHz use gated on Joshua's datasheet
   reading of whether 20 Vpp is a terminal or fundamental limit (terminal =>

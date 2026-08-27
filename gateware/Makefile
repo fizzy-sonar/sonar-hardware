@@ -2,7 +2,9 @@ IVERILOG ?= iverilog
 PYTHON ?= python3
 VVP ?= vvp
 BUILD_DIR := build
-RTL := rtl/pdm_ddr_sampler.sv \
+RTL := rtl/reset_sync.sv \
+	rtl/button_debounce.sv \
+	rtl/pdm_ddr_sampler.sv \
 	rtl/async_fifo.sv \
 	rtl/frame_byte_packer.sv \
 	rtl/stream_header.sv \
@@ -25,6 +27,16 @@ test: $(BUILD_DIR)
 		-Ptb_sampler_packer.PDM_CLOCK_HZ=4800000 \
 		-o $(BUILD_DIR)/tb_sampler_4800 $(RTL) sim/tb_sampler_packer.sv
 	$(VVP) $(BUILD_DIR)/tb_sampler_4800
+	$(IVERILOG) -g2012 -Wall -DXILINX -s tb_sampler_packer \
+		-Ptb_sampler_packer.PDM_CLOCK_HZ=3072000 \
+		-o $(BUILD_DIR)/tb_sampler_3072_xilinx $(RTL) \
+		sim/xilinx_7series_stubs.sv sim/tb_sampler_packer.sv
+	$(VVP) $(BUILD_DIR)/tb_sampler_3072_xilinx
+	$(IVERILOG) -g2012 -Wall -DXILINX -s tb_sampler_packer \
+		-Ptb_sampler_packer.PDM_CLOCK_HZ=4800000 \
+		-o $(BUILD_DIR)/tb_sampler_4800_xilinx $(RTL) \
+		sim/xilinx_7series_stubs.sv sim/tb_sampler_packer.sv
+	$(VVP) $(BUILD_DIR)/tb_sampler_4800_xilinx
 	$(IVERILOG) -g2012 -Wall -s tb_fifo_ft245 \
 		-o $(BUILD_DIR)/tb_fifo_ft245 $(RTL) sim/tb_fifo_ft245.sv
 	$(VVP) $(BUILD_DIR)/tb_fifo_ft245
@@ -43,6 +55,13 @@ test: $(BUILD_DIR)
 	$(IVERILOG) -g2012 -Wall -s tb_clock_tx \
 		-o $(BUILD_DIR)/tb_clock_tx $(RTL) sim/tb_clock_tx.sv
 	$(VVP) $(BUILD_DIR)/tb_clock_tx
+	$(IVERILOG) -g2012 -Wall -s tb_reset_sync \
+		-o $(BUILD_DIR)/tb_reset_sync $(RTL) sim/tb_reset_sync.sv
+	$(VVP) $(BUILD_DIR)/tb_reset_sync
+	$(IVERILOG) -g2012 -Wall -s tb_pdm_clock \
+		-o $(BUILD_DIR)/tb_pdm_clock $(RTL) rtl/pdm_clock_7series.sv \
+		sim/xilinx_7series_stubs.sv sim/tb_pdm_clock.sv
+	$(VVP) $(BUILD_DIR)/tb_pdm_clock
 	$(IVERILOG) -g2012 -Wall -s tb_tx_duty_bound \
 		-o $(BUILD_DIR)/tb_tx_duty_bound $(RTL) sim/tb_tx_duty_bound.sv
 	$(VVP) $(BUILD_DIR)/tb_tx_duty_bound
@@ -64,7 +83,7 @@ test: $(BUILD_DIR)
 	$(IVERILOG) -g2012 -Wall -DXILINX -s sonar_top -t null \
 		$(RTL) rtl/pdm_clock_7series.sv rtl/sonar_top.sv \
 		sim/xilinx_7series_stubs.sv
-	@echo "PASS XILINX primitive branches and sonar_top elaborate with compile-only stubs"
+	@echo "PASS XILINX primitive branches and sonar_top elaborate (functional stub models; -t null elaboration retained)"
 	$(PYTHON) sim/check_ports.py
 
 $(BUILD_DIR):

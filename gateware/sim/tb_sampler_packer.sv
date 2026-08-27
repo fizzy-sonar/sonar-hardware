@@ -19,6 +19,8 @@ module tb_sampler_packer #(
     integer channel;
     integer n;
     reg [23:0] next_frame;
+    reg [23:0] expected_checksum = 24'd0;
+    reg [23:0] capture_checksum = 24'd0;
 
     pdm_ddr_sampler dut (
         .pdm_clk_fb(pdm_clk),
@@ -50,6 +52,7 @@ module tb_sampler_packer #(
         begin
             expected[expected_written] = logical_frame;
             expected_written = expected_written + 1;
+            expected_checksum = expected_checksum ^ logical_frame;
             for (line = 0; line < 12; line = line + 1)
                 pdm_data[line] = logical_frame[2*line];
             @(posedge pdm_clk);
@@ -72,6 +75,7 @@ module tb_sampler_packer #(
                        expected_read, frame_data, expected[expected_read]);
             end
             expected_read = expected_read + 1;
+            capture_checksum = capture_checksum ^ frame_data;
         end
     end
 
@@ -117,8 +121,14 @@ module tb_sampler_packer #(
         pdm_data = 12'd0;
         @(posedge pdm_clk);
         wait (expected_read == TEST_FRAMES);
-        $display("PASS sampler/tone rate=%0dHz frames=%0d payload=%0db/s",
-                 PDM_CLOCK_HZ, expected_read, PDM_CLOCK_HZ * 24);
+        if (capture_checksum !== expected_checksum)
+            $fatal(1, "capture checksum %06x != expected %06x",
+                   capture_checksum, expected_checksum);
+        // The checksum is branch-independent: the -DXILINX (SAME_EDGE_
+        // PIPELINED IDDR model) run must print the identical value.
+        $display("PASS sampler/tone rate=%0dHz frames=%0d payload=%0db/s checksum=%06x",
+                 PDM_CLOCK_HZ, expected_read, PDM_CLOCK_HZ * 24,
+                 capture_checksum);
         $finish;
     end
 

@@ -254,3 +254,71 @@ the Vivado host; UART snapshot mode demonstrated in sim.
     `check_ports.py` bijection still 28 ports/73 bits exact.
   - No commits (orchestrator commits). Ticket stays in-progress on the
     Vivado-host + hardware-demo gates.
+
+- 2026-08-26 codex/sol-t020 (session 6): REVIEW-2026-08-26 fixes, scope
+  S6/S7/S8/NIT3 + the session-5 TX_NSLEEP schematic follow-up.
+  - **S6 FIXED:** new `gateware/rtl/reset_sync.sv` (async-assert /
+    sync-release, one per receiving domain). `sonar_top` now fans the
+    POR/btn[1] master reset through reset_sync into sysclk, pdm_clk_fb
+    (3.072 MHz), ft_clkout (60 MHz) and sram_clk (48 MHz, async input
+    `reset || !clocks_locked`) domains; domains whose clock is absent at
+    POR hold reset until their clock runs (intended). New
+    `gateware/rtl/button_debounce.sv` (2-flop sync + 20 ms stability
+    window) debounces btn[0] in sysclk; sram_snapshot's internal 2-flop
+    start sync (sram_snapshot.sv:234-247) still handles the sram_clk CDC -
+    debounce removes the mechanical multi-trigger it never could.
+    clocks_locked also gets a 2-flop sync before gating the startup FSM.
+    New TB `sim/tb_reset_sync.sv`: immediate async assert, release exactly
+    on the 2nd domain posedge (never off-edge, never cross-domain
+    simultaneous), released-stays-released, bounce/glitch rejection,
+    single clean press transition.
+  - **S8 FIXED:** `pdm_clock_7series` registers BUFGCTRL S0/S1 in their
+    own I0/I1 domains per UG472, with a one-hot interlock (each select
+    gated by the other's synchronized deassertion) so the mux switch is
+    glitch-free by construction; buffer_oe is 2-flop synchronized into
+    selected_clock before the ODDR D1. Consequence found while wiring
+    this: the old SWITCH_OFF_CYCLES=4 (333 ns) off-window was SHORTER than
+    the OE-sync latency (2 x 651 ns at 1.536 MHz), so the "switch only
+    while off" invariant did not survive synchronization - default raised
+    to 20 (1.67 us). ODDR D2=0 means every emitted high pulse is a full
+    half-period by construction; `sim/tb_pdm_clock.sv` proves it at
+    waveform level through the functional models: no clipped/runt pulse
+    across enable, disable-via-wake, and the rate switch (monitors every
+    pulse against both rates, +/-8%), plus rate checks (1.536 MHz
+    standard, 3.072 MHz run +/-10%, sram_clk 48 MHz, MMCM lock).
+  - **S7 FIXED:** `sim/xilinx_7series_stubs.sv` is now FUNCTIONAL
+    behavioral models (IDDR SAME_EDGE_PIPELINED with true latency, ODDR
+    SAME_EDGE, BUFGCTRL glitch-free mux, MMCME2_BASE VCO/divider
+    generators + lock) - the -DXILINX synthesis branch of pdm_ddr_sampler
+    and all of pdm_clock_7series now execute in Icarus. The sampler's
+    XILINX branch needed one more pipeline_valid stage to match true
+    IDDR latency (Q pair valid one full clock after the sampled edge
+    pair) - without it the branch published one garbage frame at start.
+    tb_sampler_packer now prints a capture checksum and runs BOTH
+    branches at BOTH rates: identical checksum cff870 in all four runs,
+    i.e. the Xilinx branch produces bit-identical captures. The
+    `-t null` sonar_top elaboration step is kept. STILL OPEN (Vivado
+    host): UNISIM/xsim equivalence run + placed timing/CDC proof - added
+    to the remaining-items list below.
+  - **NIT3 FIXED:** the dead `discard_samples` wire in sonar_top is gone;
+    the port stays on pdm_clock_startup as observability (tb_clock_tx
+    checks the discard markings) and is intentionally left unconnected
+    with a comment saying capture_enable does the real gating.
+  - **TX_NSLEEP follow-up (from session 5) RESOLVED - sheet already
+    agrees with pinmap:** the T-013 netlist audit was stale. Evidence:
+    `digital.kicad_sch` regenerates content-identical (UUID-only diff)
+    from the current `scripts/gen_digital_sheet.py`; the generator's
+    PINS maps DIP position 48 -> TX_NSLEEP and labels attach by position
+    (`pm[str(p[1])]`); ETH_RXD1 sits 4 rows below at J40.44; pinmap.md
+    pio48/V8 and the XDC (V8) agree. No generator change needed. The
+    only stale artifact was the TX Drive text box on
+    `20kHz-h-bridge.kicad_sch` ("pio1/2/44/8 out" -> "pio1/2/48/8 out"),
+    fixed. STATUS blocker cleared; T-013 Log annotated.
+  - Verification: `make clean && make test` 17/17 PASS (Icarus 13.0) -
+    was 13/13; +tb_reset_sync, +tb_pdm_clock, +2 XILINX-branch sampler
+    runs; check_ports bijection 28 ports/73 bits exact;
+    `scripts/check_pinmap_vs_xdc.py` PASS 44/44 (XDC/pinmap untouched).
+  - No commits (orchestrator commits). Ticket stays in-progress:
+    remaining = Vivado host (build, UNISIM/xsim equivalence, placed
+    timing/CDC, SRAM set_output_delay budgeting), hardware demo, CP-C
+    items, control plane.

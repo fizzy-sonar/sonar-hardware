@@ -1,5 +1,11 @@
 # T-016 order package (CP-BM; Joshua clicks, agent never spends)
 
+**ENGINEERING HOLD — 2026-09-05: DO NOT ORDER THESE ARTIFACTS.** Independent
+review confirmed an incorrect U1 pin map and copper shorts on both variants.
+T-022 must deliver corrected, independently verified boards before purchase
+review resumes. See [review R1/R2](../../../orchestration/review/REVIEW-2026-09-05.md).
+The historical checklist below is not evidence of release readiness.
+
 _All prices unverified this session (offline sandbox; no distributor pages
 reachable). Fill the price column at order time from the distributor pages
 linked in `sourcing-evidence.md`. Quantities reconciled 2026-08-26 (REVIEW S10):

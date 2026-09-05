@@ -1,17 +1,21 @@
 ---
 id: T-016
 title: Quantitative PDM microphone coupon bake-off + MPN release
-status: review
+status: blocked
 phase: P2
 tier: mid        # coupon EDA package, calibrated analysis, and release report
 priority: 1
 assignee: codex/terra-t016
-depends_on: [T-001, T-002, T-008]
+depends_on: [T-001, T-002, T-008, T-022]
 needs_human: true
 created: 2026-08-25
-updated: 2026-08-26
+updated: 2026-09-05
 ---
 ## Goal
+**2026-09-05 engineering hold:** REVIEW-2026-09-05 R1/R2 confirmed wrong U1
+pins and physical coupon shorts. T-022 must repair and verify the package before
+returning to CP-BM review; the current artifacts are not order-ready.
+
 Complete the physical SPH0641LU4H-1 versus ICS-41352 bake-off required by D011,
 then release exactly one microphone MPN and its manufacturer land pattern for
 T-010. T-008's SPH design is only the provisional electrical baseline until this
@@ -301,3 +305,9 @@ baseline before T-010 starts.
   deterministic hierarchical screening guard over reseat, unit/site, coupon, and
   fixture terms; defined fixed paired SPH/ICS blocks and exact band/bin threshold
   use; and removed any claim that 12 devices qualify a population percentile.
+- 2026-09-05 codex/T-019: independent review confirmed wrong CDCLVC1112 pins
+  against TI, including device GND pin 11 connected to +3V3_MIC. Actual DRC with
+  in-memory refill: SPH 82 / ICS 92 violations, zero unconnected, five shorts per
+  variant. Custom geometric checker passes because it omits relevant comparisons.
+  Changed review -> blocked, added T-022 dependency and order hold. Next: T-022
+  repairs/verifies actual boards before returning to CP-BM; no order authorized.

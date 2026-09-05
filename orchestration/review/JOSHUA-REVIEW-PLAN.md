@@ -1,5 +1,12 @@
 # Joshua's review plan — 2026-08-26 work batch
 
+**2026-09-05 update:** coupon orders are on engineering hold.
+[Independent review](REVIEW-2026-09-05.md) confirmed incorrect buffer pins and
+physical shorts and opened T-022–T-025. The guided page and historical checklist
+below must not be used to approve the current coupon fabrication files.
+Agents own repairs; Joshua's purchase and final release decisions remain.
+MA40S4S stays disabled at 12 V; source interpretation is in review R7.
+
 Everything below is bite-sized (2–10 min each). Do them in any order; the ones marked
 **GATE** block spending money or ordering boards. If anything looks wrong, just tell the
 next agent the item number and what you saw — each item names its fix-path.

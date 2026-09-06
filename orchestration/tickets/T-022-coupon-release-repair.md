@@ -1,11 +1,11 @@
 ---
 id: T-022
 title: Repair coupon electrical and physical release blockers
-status: ready
+status: in-progress
 phase: P2
 tier: mid
 priority: 1
-assignee:
+assignee: codex
 depends_on: []
 needs_human: false
 created: 2026-09-05
@@ -33,5 +33,7 @@ Coupon suite plus actual `kicad-cli pcb drc --refill-zones --severity-all
 mapping, source revision, hashes and full outputs.
 
 ## Log
+- 2026-09-05 codex: claimed implementation after Joshua said continue. Scope is
+  both coupon projects and their generator/verification/export documentation.
 - 2026-09-05 codex/T-019: created from confirmed pin errors and DRC shorts.
   Start with the manufacturer pin map and actual pad orientation.

@@ -1,0 +1,2 @@
+REPRODUCED: stalled USB stops snapshot tap; taps before=9 after=9
+orchestration/review/evidence-2026-09-05/tb_fallback_starvation.sv:32: $finish called at 11700000 (1ps)

@@ -1,0 +1,2 @@
+REPRODUCED: transient empty read discards subsequent valid data: stream ended after 0 frames; requested 1
+REPRODUCED: chunked vs whole decimator max difference=0.233102

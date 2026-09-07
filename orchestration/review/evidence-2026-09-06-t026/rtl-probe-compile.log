@@ -1,0 +1,5 @@
+gateware/rtl/pdm_stream_core.sv:61: error: Unknown module type: pdm_ddr_sampler
+2 error(s) during elaboration.
+*** These modules were missing:
+        pdm_ddr_sampler referenced 1 times.
+***

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1500 850" role="img" aria-labelledby="title desc">
+  <title id="title">Sonar FPGA readout proof ladder</title>
+  <desc id="desc">A five-step proof ladder: component simulation, top-level fault tests, Vivado timing CDC and resource reports, hardware counter loopback, four-microphone coherent capture, and finally a known-target echo. Current evidence is only partial at the first step; later steps are open and no progress percentage is implied.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#137c82"/></marker>
+    <style>
+      .ink{fill:#102a43}.muted{fill:#486581}.body{font:20px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.h{font:700 23px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.title{font:700 34px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.step{fill:#f5f8fa;stroke:#9fb3c8;stroke-width:2}.partial{fill:#fff4d6;stroke:#b26a00;stroke-width:3}.open{fill:#fff0ef;stroke:#bd2c2c;stroke-width:3}.arrow{stroke:#137c82;stroke-width:6;fill:none;marker-end:url(#arrow)}
+    </style>
+  </defs>
+  <rect width="1500" height="850" fill="#ffffff"/>
+  <text x="55" y="62" class="title ink">Proof ladder: from RTL behavior to a measured echo</text>
+  <text x="55" y="98" class="body muted">Each rung closes a different uncertainty. Current evidence reaches only the first rung partially.</text>
+  <path d="M250 282 H315 M510 282 H575 M770 282 H835 M1030 282 H1095" class="arrow"/>
+
+  <rect x="55" y="145" width="195" height="275" rx="14" class="partial"/>
+  <text x="78" y="187" class="h ink">1 · Component sim</text>
+  <text x="78" y="229" class="body muted">DDR sampler</text><text x="78" y="261" class="body muted">packer + FIFO</text><text x="78" y="293" class="body muted">SRAM / UART</text><text x="78" y="325" class="body muted">TX safety logic</text>
+  <text x="78" y="373" class="body ink" font-weight="700">PARTIAL</text><text x="78" y="402" class="body muted">17/17 portable tests</text>
+
+  <rect x="315" y="145" width="195" height="275" rx="14" class="open"/>
+  <text x="338" y="187" class="h ink">2 · Top-level</text><text x="338" y="219" class="h ink">fault tests</text>
+  <text x="338" y="261" class="body muted">USB stall +</text><text x="338" y="293" class="body muted">snapshot restart</text><text x="338" y="325" class="body muted">TX start=0</text><text x="338" y="349" class="body muted">no timestamp</text><text x="338" y="373" class="body ink" font-weight="700">OPEN</text><text x="338" y="402" class="body muted">sonar_top behavior</text>
+
+  <rect x="575" y="145" width="195" height="275" rx="14" class="open"/>
+  <text x="598" y="187" class="h ink">3 · Vivado proof</text><text x="598" y="229" class="body muted">timing closure</text><text x="598" y="261" class="body muted">CDC reports</text><text x="598" y="293" class="body muted">resource reports</text><text x="598" y="341" class="body ink" font-weight="700">OPEN</text><text x="598" y="373" class="body muted">host + bitstream</text><text x="598" y="405" class="body muted">required</text>
+
+  <rect x="835" y="145" width="195" height="275" rx="14" class="open"/>
+  <text x="858" y="187" class="h ink">4 · Hardware</text><text x="858" y="219" class="h ink">loopback</text><text x="858" y="261" class="body muted">counter pattern</text><text x="858" y="293" class="body muted">FT232H + SRAM/UART</text><text x="858" y="341" class="body ink" font-weight="700">OPEN</text><text x="858" y="373" class="body muted">Cmod powered</text><text x="858" y="405" class="body muted">and measured</text>
+
+  <rect x="1095" y="145" width="195" height="275" rx="14" class="open"/>
+  <text x="1118" y="187" class="h ink">5 · Coherent</text><text x="1118" y="219" class="h ink">capture</text><text x="1118" y="261" class="body muted">four real mics</text><text x="1118" y="293" class="body muted">shared timing</text><text x="1118" y="341" class="body ink" font-weight="700">OPEN</text><text x="1118" y="373" class="body muted">raw capture +</text><text x="1118" y="405" class="body muted">coherence check</text>
+
+  <rect x="55" y="515" width="1235" height="190" rx="14" fill="#e8f1f7" stroke="#1d4e89" stroke-width="3"/>
+  <text x="82" y="558" class="h ink">6 · Known-target echo (release-facing demonstration)</text>
+  <text x="82" y="600" class="body muted">Commanded TX → timestamped RX capture → host range estimate → repeatable reflector result.</text>
+  <text x="82" y="638" class="body muted">Requires the preceding proof, a real acquisition path, and saved raw/configuration evidence.</text>
+  <text x="82" y="678" class="body ink" font-weight="700">NOT CLAIMED — no fake progress percentage</text>
+  <text x="55" y="780" class="body muted">Legend: amber = current evidence is partial; red = unverified/open; blue = later measured proof target.</text>
+  <text x="55" y="815" class="body muted">Sources: gateware/README.md · gateware/Makefile · gateware/rtl/sonar_top.sv · REVIEW-2026-09-05.md</text>
+</svg>

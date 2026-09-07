@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-labelledby="title desc">
+  <title id="title">FPGA PDM readout and snapshot coupling</title>
+  <desc id="desc">Twenty-four PDM microphones share twelve DDR data wires into the Cmod FPGA. The FPGA samples and packs frames into a stream FIFO sent through an FT232H to the host. The SRAM and UART snapshot branch currently taps accepted stream frames, so a stalled USB stream can starve it. Rates and FIFO slack are calculated, while hardware integration is unproven.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#137c82"/></marker>
+    <marker id="arrow-amber" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto"><path d="M0,0 L12,6 L0,12 z" fill="#b26a00"/></marker>
+    <style>
+      .ink{fill:#102a43}.muted{fill:#486581}.small{font:16px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.body{font:20px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.h{font:700 25px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.title{font:700 34px -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}.card{fill:#f5f8fa;stroke:#9fb3c8;stroke-width:2}.sim{fill:#e8f1f7;stroke:#1d4e89;stroke-width:3}.gap{fill:#fff4d6;stroke:#b26a00;stroke-width:3}.hw{fill:#fff0ef;stroke:#bd2c2c;stroke-width:3}.flow{stroke:#137c82;stroke-width:6;fill:none;marker-end:url(#arrow)}.warnflow{stroke:#b26a00;stroke-width:5;stroke-dasharray:12 9;fill:none;marker-end:url(#arrow-amber)}
+    </style>
+  </defs>
+  <rect width="1600" height="1000" fill="#ffffff"/>
+  <text x="60" y="62" class="title ink">FPGA raw PDM readout: stream path and coupled snapshot</text>
+  <text x="60" y="95" class="body muted">24 microphones → 12 DDR wires → 24-bit frames. Data-rate and FIFO slack are calculated; physical readout is not yet proven.</text>
+
+  <rect x="60" y="145" width="190" height="170" rx="14" class="card"/>
+  <text x="82" y="183" class="h ink">24 PDM mics</text><text x="82" y="215" class="body muted">paired channels</text><text x="82" y="253" class="body ink">3.072–4.8 MHz</text><text x="82" y="285" class="small muted">candidate / unmeasured</text>
+  <rect x="330" y="145" width="200" height="170" rx="14" class="card"/>
+  <text x="354" y="183" class="h ink">12 DDR wires</text><text x="354" y="217" class="body muted">rising + falling</text><text x="354" y="251" class="body muted">edges = 24 ch</text><text x="354" y="285" class="small muted">physical path unmeasured</text>
+  <rect x="610" y="125" width="350" height="210" rx="14" class="sim"/>
+  <text x="635" y="167" class="h ink">Cmod FPGA</text><text x="635" y="201" class="body muted">DDR sample → pack</text><text x="635" y="235" class="body muted">3-byte logical frame</text><text x="635" y="281" class="small muted">sonar_top + pdm_stream_core</text><text x="635" y="305" class="small muted">portable simulation only</text>
+  <path d="M250 230 H330" class="flow"/><text x="260" y="213" class="small muted">12 data</text>
+  <path d="M530 230 H610" class="flow"/><text x="541" y="213" class="small muted">24-bit</text>
+
+  <rect x="1040" y="145" width="220" height="170" rx="14" class="sim"/>
+  <text x="1065" y="183" class="h ink">Stream FIFO</text><text x="1065" y="219" class="body muted">16,384 × 24</text><text x="1065" y="255" class="body ink">49,152 bytes</text><text x="1065" y="287" class="small muted">elastic, stops on full</text>
+  <rect x="1340" y="145" width="200" height="170" rx="14" class="hw"/>
+  <text x="1363" y="183" class="h ink">FT232H</text><text x="1363" y="219" class="body muted">FT245 USB HS</text><text x="1363" y="255" class="body muted">→ host laptop</text><text x="1363" y="287" class="small muted">hardware unproven</text>
+  <path d="M960 230 H1040" class="flow"/><path d="M1260 230 H1340" class="flow"/>
+
+  <rect x="1040" y="410" width="500" height="195" rx="14" class="gap"/>
+  <text x="1065" y="450" class="h ink">Snapshot branch (currently coupled)</text>
+  <text x="1065" y="488" class="body muted">accepted-frame tap → SRAM → UART snapshot</text>
+  <text x="1065" y="522" class="body ink">USB stall → stream FIFO fills → tap stops</text>
+  <text x="1065" y="556" class="body ink">Therefore snapshot can starve.</text>
+  <text x="1065" y="586" class="body ink">TX control/timestamp absent (.start=0)</text>
+  <path d="M930 335 H1000 V455 H1040" class="warnflow"/>
+  <text x="942" y="392" class="small" fill="#8a4b00">tap only while accepting</text>
+
+  <rect x="60" y="400" width="890" height="250" rx="14" class="card"/>
+  <text x="88" y="442" class="h ink">Calculated raw payload and stall slack</text>
+  <text x="88" y="484" class="body ink">3.072 MHz × 24 channels ÷ 8 = <tspan font-weight="700">9.216 MB/s</tspan></text>
+  <text x="88" y="522" class="body ink">4.8 MHz × 24 channels ÷ 8 = <tspan font-weight="700">14.4 MB/s</tspan></text>
+  <text x="88" y="570" class="body ink">49,152 B ÷ 9.216 MB/s = <tspan font-weight="700">5.33 ms</tspan> FIFO slack</text>
+  <text x="88" y="608" class="body ink">49,152 B ÷ 14.4 MB/s = <tspan font-weight="700">3.41 ms</tspan> FIFO slack</text>
+
+  <rect x="60" y="710" width="1480" height="210" rx="14" class="card"/>
+  <text x="88" y="752" class="h ink">Evidence boundary</text>
+  <rect x="88" y="782" width="22" height="22" fill="#e8f1f7" stroke="#1d4e89" stroke-width="3"/><text x="124" y="802" class="body ink">Working / simulated: sampler, packer, FIFO, formats, and tests.</text>
+  <rect x="750" y="782" width="22" height="22" fill="#fff4d6" stroke="#b26a00" stroke-width="3"/><text x="786" y="802" class="body ink">Known integration gap: USB stall couples snapshot to stream.</text>
+  <rect x="88" y="844" width="22" height="22" fill="#fff0ef" stroke="#bd2c2c" stroke-width="3"/><text x="124" y="864" class="body ink">Hardware unproven: Vivado closure, FT232H capture, and Cmod SRAM/UART.</text>
+  <text x="88" y="900" class="small muted">Sources: gateware/rtl/pdm_stream_core.sv · gateware/rtl/sonar_top.sv · gateware/README.md · REVIEW-2026-09-05.md</text>
+</svg>

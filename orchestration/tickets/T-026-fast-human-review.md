@@ -35,10 +35,27 @@ Reduce human review to consequential decisions, not technical rubber-stamping.
 - FPGA readout diagram, measured/calculated/simulated/unverified distinctions,
   known blockers and executable proof ladder, linked to evidence.
 - Reuse existing actual artifacts; full review remains accessible as appendix.
-- Readable responsive/printable review, saved/exportable human notes with no
-  automatic approvals or ticket mutations; structural/link/content tests.
+- Readable responsive/printable, read-only review; answers stay in the existing
+  conversation, with no copy/paste workflow or forms (Joshua's explicit update).
+  No automatic approvals or ticket mutations; structural/link/content tests.
 - Verify required repo checks, log evidence, update STATUS/journal, commit.
 
 ## Log
 - 2026-09-06 codex: claimed at Joshua's request. Cheaper agents handle bounded
   artifacts; coordinator retains engineering judgement. T-023/24/25 not implemented.
+- 2026-09-06 codex: three Luna/medium artifact agents supplied fresh probes,
+  concise brief, and two factual SVGs. Root reviewed source and integrated a
+  static decision-first page. Joshua rejected copying: removed all new forms,
+  JavaScript and export workflow; answers stay in chat, one immediate hardware
+  question. No HDL/design changes or approvals.
+- Verification: gateware 17/17 PASS; pinned Python 3.14.2 / NumPy 2.3.2 host
+  unittest 5/5 PASS; starvation and host probes reproduce known defects.
+  `scripts/check_fast_review.py`: local 20 / portable 19 references resolve,
+  one question; missing/stale source-hash negative checks PASS. Ruff checks and
+  formatting PASS; shell syntax and diff whitespace PASS. Full appendix
+  generator/checker: 8 steps, 11 historical review items, 71 images, 158 links,
+  18 required assets PASS. `bash scripts/check.sh` exits 0 outside sandbox,
+  accepting existing ERC/DRC baselines, not declaring the main PCB clean.
+- Publishing: existing new owner-only Site registered once; registry persists
+  at `orchestration/review/site/.openai/hosting.json`. Only curated static output
+  is in the separate ignored source checkout. Deployment closeout pending.

@@ -981,6 +981,13 @@ def main() -> int:
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Sonar v1 — guided visual review</title><style>{CSS}</style></head>
 <body><main>
+<aside style="border:2px solid #943626;padding:16px;background:#fff4ed">
+<b>Engineering appendix, not the current approval checklist.</b> Start with
+<code>./scripts/open_review.sh</code> for the T-026 five-minute review. The older
+questions and cached simulation summary below are historical context; T-022
+repaired the coupon electrical defects, while T-023/T-024 integration gaps remain
+open. Do not use this appendix to approve purchase, TX drive or product readiness.
+</aside>
 <h1>Sonar v1 — guided visual review</h1>
 <p class="lede">For Joshua. This walks you through what exists, what is simulated,
 what is physically laid out, and exactly which choices still need you. Every image

@@ -1,7 +1,7 @@
 ---
 id: T-016
 title: Quantitative PDM microphone coupon bake-off + MPN release
-status: blocked
+status: review
 phase: P2
 tier: mid        # coupon EDA package, calibrated analysis, and release report
 priority: 1
@@ -9,12 +9,14 @@ assignee: codex/terra-t016
 depends_on: [T-001, T-002, T-008, T-022]
 needs_human: true
 created: 2026-08-25
-updated: 2026-09-05
+updated: 2026-09-06
 ---
 ## Goal
-**2026-09-05 engineering hold:** REVIEW-2026-09-05 R1/R2 confirmed wrong U1
-pins and physical coupon shorts. T-022 must repair and verify the package before
-returning to CP-BM review; the current artifacts are not order-ready.
+**2026-09-06 back at CP-BM review:** T-022 repaired REVIEW-2026-09-05 R1/R2.
+Both rev B coupons pass full filled-board DRC (0/0/0), independent complete TI
+pin mapping, 94-pad schematic/PCB parity, regression and actual fabrication-export
+checks. See `coupons/mic-bakeoff/docs/T-022-release-verification.md`.
+Joshua still owns sourcing/DFM/purchase approval, bench work and MPN ratification.
 
 Complete the physical SPH0641LU4H-1 versus ICS-41352 bake-off required by D011,
 then release exactly one microphone MPN and its manufacturer land pattern for
@@ -232,6 +234,11 @@ baseline before T-010 starts.
 - `git diff --check` and ticket-dependency audit pass; exact output is pasted here.
 
 ## Log
+- 2026-09-06 codex/T-022: electrical/physical repair verified; status restored to
+  review, not done. Rev B adds the fifth U1 100 nF bypass (C11), fixes geometry,
+  pin mapping and TP6 net, and corrects actual drill/placement/BOM outputs.
+  Full suite and repo harness exit 0; evidence in
+  `orchestration/review/evidence-2026-09-06-t022/`. No purchase or MPN release.
 - 2026-08-26 codex/terra-t016-fix: coupon-package review findings fixed
   (`orchestration/review/REVIEW-2026-08-26.md`). **S10 (quantities not
   self-consistent):** reconciled in `docs/order-package.md` — JLC 5-board min

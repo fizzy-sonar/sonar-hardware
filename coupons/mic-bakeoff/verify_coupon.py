@@ -13,21 +13,63 @@ Checks, per coupon variant:
   4. Header pin/net map (assembly/bench-critical).
   5. Board outline, mounting holes, fab note text.
 
-kicad-cli pcb drc cannot run in this sandbox (SIGABRT on any board; the T-006
-harness needed approved unsandboxed runs), so this geometric audit plus the
-kicad-cli ERC + gerber/drill/pos exports are the executable evidence here.
+This independent audit supplements, never replaces, full KiCad DRC. First
+export fresh schematic XML and ERC reports using check_coupons.sh.
 """
 
 from __future__ import annotations
 
 import math
+import re
 import sys
+from collections import Counter
+import xml.etree.ElementTree as ET
 from pathlib import Path
 
 import pcbnew
 
 ROOT = Path(__file__).resolve().parents[2]
 MIN_GAP_MM = 0.127
+
+# Independently transcribed from TI SCAS895B section 5, CDCLVC1112 PW-24
+# column. Do NOT import the generator's map: this must detect a wrong generator.
+TI_PIN_NAMES = (
+    "CLKIN",
+    "1G",
+    "Y0",
+    "GND",
+    "VDD",
+    "Y4",
+    "GND",
+    "Y6",
+    "VDD",
+    "Y9",
+    "GND",
+    "Y11",
+    "VDD",
+    "Y10",
+    "GND",
+    "Y8",
+    "Y7",
+    "VDD",
+    "Y5",
+    "GND",
+    "Y2",
+    "VDD",
+    "Y3",
+    "Y1",
+)
+TI_PIN_NETS = {
+    str(n): {
+        "CLKIN": "CLK_IN",
+        "1G": "CLK_EN",
+        "Y0": "CLK_Y0",
+        "Y1": "CLK_FBR",
+        "GND": "GND",
+        "VDD": "+3V3_MIC",
+    }.get(name, "")
+    for n, name in enumerate(TI_PIN_NAMES, 1)
+}
 
 failures = []
 
@@ -68,7 +110,7 @@ def collect_copper(board):
                             "circle",
                             mm(pos.x),
                             mm(pos.y),
-                            mm(track.GetWidth()) / 2,
+                            mm(track.GetWidth(pcbnew.F_Cu)) / 2,
                         )
                     )
                 continue
@@ -88,23 +130,28 @@ def collect_copper(board):
                     )
                 )
     for fp in board.GetFootprints():
-        rot = fp.GetOrientation().AsDegrees()
         for pad in fp.Pads():
-            net = pad.GetNetname()
-            if not net:
+            if pad.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH:
                 continue
+            net = pad.GetNetname() or f"NC:{fp.GetReference()}.{pad.GetNumber()}"
             x, y = pad_abs(pad)
             sz = pad.GetSize()
             w, h = mm(sz.x), mm(sz.y)
-            if abs(abs(rot) - 90.0) < 1.0:
+            rot = pad.GetOrientation().AsDegrees() % 180
+            if abs(rot - 90.0) < 1.0:
                 w, h = h, w
             shape = pad.GetShape()
             on_f = pad.IsOnLayer(pcbnew.F_Cu)
             on_b = pad.IsOnLayer(pcbnew.B_Cu)
             layers = [ln for ln, on in (("F.Cu", on_f), ("B.Cu", on_b)) if on]
             ref = fp.GetReference()
-            if shape in (pcbnew.PAD_SHAPE_CIRCLE, pcbnew.PAD_SHAPE_CUSTOM):
-                # custom: annular GND ring; outer circle is the conservative extent
+            if shape == pcbnew.PAD_SHAPE_CUSTOM:
+                # Conservative outer extent of the annulus, NOT its small
+                # offset anchor. The actual aperture is checked separately.
+                center = fp.GetPosition()
+                for layer in layers:
+                    copper[layer].append((net, ref, "circle", mm(center.x), mm(center.y), 0.8125))
+            elif shape == pcbnew.PAD_SHAPE_CIRCLE:
                 for layer in layers:
                     copper[layer].append((net, ref, "circle", x, y, w / 2))
             else:
@@ -190,6 +237,20 @@ def seg_seg(a, b) -> float:
 
 
 def verify_variant(variant: str) -> None:
+    report = (ROOT / f"build/t016/{variant}-erc.rpt").read_text()
+    blocks = re.split(r"^\[", report, flags=re.M)[1:]
+    actual_erc = Counter(
+        (b.split("]")[0], tuple(re.findall(r"Symbol (\w+) Pin (\d+)", b))) for b in blocks
+    )
+    expected_erc = Counter(
+        {
+            ("power_pin_not_driven", (("M1", "2"),)): 1,
+            ("power_pin_not_driven", (("M1", "5"),)): 1,
+            ("pin_to_pin", (("M1", "1"), ("M2", "1"))): 1,
+            ("pin_to_pin", (("M3", "1"), ("M4", "1"))): 1,
+        }
+    )
+    check(actual_erc == expected_erc, f"{variant}: ERC matches four exact reviewed waivers")
     name = f"{variant}-coupon"
     path = ROOT / "coupons" / "mic-bakeoff" / name / f"{name}.kicad_pcb"
     board = pcbnew.LoadBoard(str(path))
@@ -198,6 +259,39 @@ def verify_variant(variant: str) -> None:
     unconn = board.GetConnectivity().GetUnconnectedCount(False)
     check(unconn == 0, f"{variant}: connectivity after zone fill ({unconn} unconnected)")
 
+    u1 = next(fp for fp in board.GetFootprints() if fp.GetReference() == "U1")
+    actual = {p.GetNumber(): p.GetNetname() for p in u1.Pads()}
+    check(actual == TI_PIN_NETS, f"{variant}: all 24 U1 pads vs independent TI map")
+    bypass = {
+        fp.GetReference()
+        for fp in board.GetFootprints()
+        if fp.GetReference() in ("C5", "C6", "C7", "C8", "C11")
+        and fp.GetValue() == "100nF X7R"
+        and {p.GetNetname() for p in fp.Pads()} == {"+3V3_MIC", "GND"}
+    }
+    check(len(bypass) == 5, f"{variant}: five 100 nF buffer bypass capacitors")
+    xml = ET.parse(ROOT / f"build/t016/{variant}-net.xml").getroot()
+    nodes = {}
+    for net in xml.findall("nets/net"):
+        name = net.attrib["name"].lstrip("/")
+        if name.startswith("unconnected-"):
+            name = ""
+        for node in net.findall("node"):
+            nodes[(node.attrib["ref"], node.attrib["pin"])] = name
+    pcb_nodes = {
+        (fp.GetReference(), p.GetNumber()): p.GetNetname()
+        for fp in board.GetFootprints()
+        for p in fp.Pads()
+        if p.GetNumber()
+    }
+    check(nodes == pcb_nodes, f"{variant}: schematic/PCB exact pin-net parity ({len(nodes)} pads)")
+    pins = xml.findall("libparts/libpart[@part='CDCLVC1112PWR_T016']/pins/pin")
+    pin_names = {p.attrib["num"]: p.attrib["name"].rsplit("_", 1)[0] for p in pins}
+    check(
+        pin_names == dict(zip(map(str, range(1, 25)), TI_PIN_NAMES)),
+        f"{variant}: schematic symbol pin names vs independent TI table",
+    )
+
     copper = collect_copper(board)
     for layer, items in copper.items():
         worst = (1e9, None)
@@ -205,7 +299,7 @@ def verify_variant(variant: str) -> None:
             for j in range(i + 1, len(items)):
                 na, ga = items[i][0], items[i][2:]
                 nb, gb = items[j][0], items[j][2:]
-                if na == nb or (items[i][1] and items[i][1] == items[j][1]):
+                if na == nb:
                     continue
                 d = dist_geom(ga, gb)
                 if d < worst[0]:
@@ -218,6 +312,10 @@ def verify_variant(variant: str) -> None:
             worst[0] >= MIN_GAP_MM - 1e-6,
             f"{variant}: {layer} min different-net copper gap {worst[0]:.3f} mm >= {MIN_GAP_MM} mm",
         )
+
+    check(
+        apertures_clear(board), f"{variant}: actual copper/paste polygons clear all port interiors"
+    )
 
     # Acoustic ports: four 0.50 mm NPTH at mic centres; ring interior copper-free.
     npth = []
@@ -285,6 +383,70 @@ def verify_variant(variant: str) -> None:
         len(holes_mount) == 4 and all(abs(h[1] - 2.2) < 1e-6 for h in holes_mount),
         f"{variant}: 4x M2 mounting holes",
     )
+
+    # Negative tests mutate memory only, then restore. The previous checker
+    # passed the actual bad designs; prove the same defect classes are caught.
+    pad11 = next(p for p in u1.Pads() if p.GetNumber() == "11")
+    saved = pad11.GetNetCode()
+    pad11.SetNetCode(next(p.GetNetCode() for p in u1.Pads() if p.GetNumber() == "5"))
+    check(
+        {p.GetNumber(): p.GetNetname() for p in u1.Pads()} != TI_PIN_NETS,
+        f"{variant}: negative test rejects wrong U1 supply pin",
+    )
+    pad11.SetNetCode(saved)
+    cap = next(fp for fp in board.GetFootprints() if fp.GetReference() == "C1")
+    pads = list(cap.Pads())
+    saved_pos = pads[1].GetPosition()
+    pads[1].SetPosition(pads[0].GetPosition())
+    items = [i for i in collect_copper(board)["F.Cu"] if i[1] == "C1"]
+    check(
+        dist_geom(items[0][2:], items[1][2:]) < MIN_GAP_MM,
+        f"{variant}: negative test detects same-footprint supply short",
+    )
+    pads[1].SetPosition(saved_pos)
+    unused = next(p for p in u1.Pads() if p.GetNumber() == "6")
+    saved_pos = unused.GetPosition()
+    unused.SetPosition(pad11.GetPosition())
+    items = [i for i in collect_copper(board)["F.Cu"] if i[1] == "U1"]
+    nc = next(i for i in items if i[0] == "NC:U1.6")
+    check(
+        any(i[0] != nc[0] and dist_geom(nc[2:], i[2:]) < MIN_GAP_MM for i in items),
+        f"{variant}: negative test detects no-net pad touching ground",
+    )
+    unused.SetPosition(saved_pos)
+    mic = next(fp for fp in board.GetFootprints() if fp.GetReference() == "M1")
+    ring = next(p for p in mic.Pads() if p.GetNumber() == "3")
+    saved_size = ring.GetSize()
+    ring.SetSize(pcbnew.VECTOR2I(pcbnew.FromMM(1.625), pcbnew.FromMM(1.625)))
+    check(
+        not apertures_clear(board), f"{variant}: negative test rejects copper/paste anchor in port"
+    )
+    ring.SetSize(saved_size)
+
+
+def apertures_clear(board):
+    # Sample each 0.50 mm-radius clear interior at 10 um Cartesian spacing.
+    # The nominal ring inner radius is 0.5125 mm. Use KiCad's actual polygon
+    # (anchor UNION primitives), so a ring-shaped source string is not enough.
+    for fp in board.GetFootprints():
+        if fp.GetReference() not in ("M1", "M2", "M3", "M4"):
+            continue
+        pos = fp.GetPosition()
+        points = [
+            pcbnew.VECTOR2I(pos.x + pcbnew.FromMM(dx / 100), pos.y + pcbnew.FromMM(dy / 100))
+            for dx in range(-50, 51)
+            for dy in range(-50, 51)
+            if dx * dx + dy * dy <= 2500
+        ]
+        for pad in fp.Pads():
+            if pad.GetAttribute() == pcbnew.PAD_ATTRIB_NPTH:
+                continue
+            for layer in (pcbnew.F_Cu, pcbnew.F_Paste):
+                if pad.IsOnLayer(layer):
+                    poly = pad.GetEffectivePolygon(layer)
+                    if any(poly.Contains(p) for p in points):
+                        return False
+    return True
 
 
 def main() -> int:

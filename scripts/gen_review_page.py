@@ -902,8 +902,13 @@ def main() -> int:
     layout_html += (
         '<p class="note"><b>Coupon boards are the current physical design to review.</b> '
         "Each is 70×30 mm, four layers, four bottom-port microphones, four 0.50 mm NPTH "
-        "acoustic ports, and the worst four-load clock branch. The CDCLVC1112 pin map "
-        "still needs Joshua’s datasheet confirmation before ordering.</p>"
+        "acoustic ports, and the worst four-load clock branch. T-022 repaired the "
+        "complete CDCLVC1112 pin map and physical shorts: rev B full DRC is 0/0/0 "
+        "for both variants. Read the "
+        '<a href="../../coupons/mic-bakeoff/docs/T-022-release-verification.md">'
+        "repair evidence and remaining DFM gates</a>. Sourcing, assembly DFM and "
+        "purchase approval remain Joshua’s; the integrated echo path is still "
+        "unfinished (T-023/T-024/T-025).</p>"
     )
     layout_html += board_gallery(
         sph_board,

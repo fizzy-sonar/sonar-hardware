@@ -1,0 +1,118 @@
+== regenerate coupons (idempotent)
+wrote /Users/joshuahimmens/code/sonar-hardware/coupons/mic-bakeoff/sph-coupon
+wrote /Users/joshuahimmens/code/sonar-hardware/coupons/mic-bakeoff/ics-coupon
+canonical library placement: sph-coupon
+canonical library placement: ics-coupon
+wrote /Users/joshuahimmens/code/sonar-hardware/coupons/mic-bakeoff/sph-coupon
+wrote /Users/joshuahimmens/code/sonar-hardware/coupons/mic-bakeoff/ics-coupon
+canonical library placement: sph-coupon
+canonical library placement: ics-coupon
+regen: byte-identical across two runs
+== sph ERC
+== sph BOM
+== sph full DRC (all severities; no exemptions)
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to build/t016/sph-drc.rpt
+== ics ERC
+== ics BOM
+== ics full DRC (all severities; no exemptions)
+Found 0 violations
+Found 0 unconnected items
+Saved DRC Report to build/t016/ics-drc.rpt
+== geometric verification (pcbnew: fill, connectivity, clearance, structure)
+./src/common/stdpbase.cpp(59): assert ""traits"" failed in Get(): create wxApp before calling this
+07:04:34 PM: Debug: Adding duplicate image handler for 'PNG file'
+07:04:34 PM: Debug: Adding duplicate image handler for 'JPEG file'
+07:04:34 PM: Debug: Adding duplicate image handler for 'TIFF file'
+07:04:34 PM: Debug: Adding duplicate image handler for 'GIF file'
+07:04:34 PM: Debug: Adding duplicate image handler for 'PNM file'
+07:04:34 PM: Debug: Adding duplicate image handler for 'PCX file'
+07:04:34 PM: Debug: Adding duplicate image handler for 'IFF file'
+07:04:34 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+07:04:34 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+07:04:34 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+07:04:34 PM: Debug: Adding duplicate image handler for 'TGA file'
+07:04:34 PM: Debug: Adding duplicate image handler for 'XPM file'
+PASS sph: ERC matches four exact reviewed waivers
+PASS sph: connectivity after zone fill (0 unconnected)
+PASS sph: all 24 U1 pads vs independent TI map
+PASS sph: five 100 nF buffer bypass capacitors
+PASS sph: schematic/PCB exact pin-net parity (94 pads)
+PASS sph: schematic symbol pin names vs independent TI table
+PASS sph: F.Cu min different-net copper gap 0.150 mm >= 0.127 mm
+PASS sph: B.Cu min different-net copper gap 0.150 mm >= 0.127 mm
+PASS sph: actual copper/paste polygons clear all port interiors
+PASS sph: exactly 4x 0.50 mm NPTH acoustic ports (4 found)
+PASS sph: ports at mic centres ([15.0, 27.0, 39.0, 51.0])
+PASS sph: J1 pin/net map True
+PASS sph: mic pad 1 (DATA) in datasheet quadrant (-1, 1)
+PASS sph: 4x M2 mounting holes
+PASS sph: negative test rejects wrong U1 supply pin
+PASS sph: negative test detects same-footprint supply short
+PASS sph: negative test detects no-net pad touching ground
+PASS sph: negative test rejects copper/paste anchor in port
+PASS ics: ERC matches four exact reviewed waivers
+PASS ics: connectivity after zone fill (0 unconnected)
+PASS ics: all 24 U1 pads vs independent TI map
+PASS ics: five 100 nF buffer bypass capacitors
+PASS ics: schematic/PCB exact pin-net parity (94 pads)
+PASS ics: schematic symbol pin names vs independent TI table
+PASS ics: F.Cu min different-net copper gap 0.145 mm >= 0.127 mm
+PASS ics: B.Cu min different-net copper gap 0.145 mm >= 0.127 mm
+PASS ics: actual copper/paste polygons clear all port interiors
+PASS ics: exactly 4x 0.50 mm NPTH acoustic ports (4 found)
+PASS ics: ports at mic centres ([15.0, 27.0, 39.0, 51.0])
+PASS ics: J1 pin/net map True
+PASS ics: mic pad 1 (DATA) in datasheet quadrant (1, -1)
+PASS ics: 4x M2 mounting holes
+PASS ics: negative test rejects wrong U1 supply pin
+PASS ics: negative test detects same-footprint supply short
+PASS ics: negative test detects no-net pad touching ground
+PASS ics: negative test rejects copper/paste anchor in port
+VERIFY: all coupon checks passed
+== fab export (gerbers/drill/pos, zones filled)
+./src/common/stdpbase.cpp(59): assert ""traits"" failed in Get(): create wxApp before calling this
+07:04:41 PM: Debug: Adding duplicate image handler for 'PNG file'
+07:04:41 PM: Debug: Adding duplicate image handler for 'JPEG file'
+07:04:41 PM: Debug: Adding duplicate image handler for 'TIFF file'
+07:04:41 PM: Debug: Adding duplicate image handler for 'GIF file'
+07:04:41 PM: Debug: Adding duplicate image handler for 'PNM file'
+07:04:41 PM: Debug: Adding duplicate image handler for 'PCX file'
+07:04:41 PM: Debug: Adding duplicate image handler for 'IFF file'
+07:04:41 PM: Debug: Adding duplicate image handler for 'Windows icon file'
+07:04:41 PM: Debug: Adding duplicate image handler for 'Windows cursor file'
+07:04:41 PM: Debug: Adding duplicate image handler for 'Windows animated cursor file'
+07:04:41 PM: Debug: Adding duplicate image handler for 'TGA file'
+07:04:41 PM: Debug: Adding duplicate image handler for 'XPM file'
+sph-coupon: fab package written to /Users/joshuahimmens/code/sonar-hardware/build/t016/sph-coupon-fab
+ics-coupon: fab package written to /Users/joshuahimmens/code/sonar-hardware/build/t016/ics-coupon-fab
+PASS sph: actual drill files separate PTH/NPTH; four exact acoustic ports
+PASS sph: metric centroid CSV, 21 SMD placements, 23 BOM components; no bare pads
+PASS ics: actual drill files separate PTH/NPTH; four exact acoustic ports
+PASS ics: metric centroid CSV, 21 SMD placements, 23 BOM components; no bare pads
+== analysis selftest + normative block byte-identity
+normative estimator block sha256: 7408e0ae89c82afdaa6d0fc579436230bc4322ca008317742494f46c25cf4b3b
+normative estimator blocks byte-identical: OK
+estimator worked example (m=11.85, R=0.1, V=0.75, C=1.0, U95=2.45): OK
+U_fixture_k2 > 1.0 dB raises fixture-invalid: OK
+T-001 reference wiring: margin=27.09 dB, range=20.18 m, small=7.09 dB: OK
+branch 1 (SPH pass, ICS hard fail -> release SPH): OK
+branch 2 tie (L+U95 <= 3 dB -> release SPH): OK
+branch 2b (3 < L+U95 <= 6 dB -> Joshua component choice): OK
+branch 3a (both pass, L+U95 > 6 dB -> ICS decision): OK
+branch 3b (SPH fail, ICS pass -> ICS decision): OK
+branch 4 (one MPN unsourceable -> inconclusive/waiver): OK
+branch 5 (both fail -> freeze neither): OK
+fixture-invalid (U_fixture_k2 > 1.0 dB): OK
+fixture-invalid (reference drift > 0.5 dB): OK
+incomplete population -> inconclusive: OK
+power gate fails 90 mA steady estimate (> 80 mA): OK
+overload unverified below 117 dB SPL fixture capability: OK
+port gate fails on a bad drilled port: OK
+noise screen fails a +10 dB-noise SPH population via T-001 gate: OK
+SELFTEST: all synthetic threshold and selection-branch checks passed
+== lint
+All checks passed!
+6 files already formatted
+SUMMARY: coupon package checks passed

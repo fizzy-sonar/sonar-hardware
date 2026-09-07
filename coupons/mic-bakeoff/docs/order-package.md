@@ -1,13 +1,12 @@
 # T-016 order package (CP-BM; Joshua clicks, agent never spends)
 
-**ENGINEERING HOLD — 2026-09-05: DO NOT ORDER THESE ARTIFACTS.** Independent
-review confirmed an incorrect U1 pin map and copper shorts on both variants.
-T-022 must deliver corrected, independently verified boards before purchase
-review resumes. See [review R1/R2](../../../orchestration/review/REVIEW-2026-09-05.md).
-The historical checklist below is not evidence of release readiness.
+**Rev B — back at CP-BM human review, 2026-09-06.** T-022 repaired the wrong
+U1 map and copper shorts; both variants pass full filled-board DRC (0/0/0).
+See [release evidence](T-022-release-verification.md). The R1/R2 engineering
+hold is lifted for these repaired sources, NOT for older exports. Joshua must
+still approve sourcing, price, assembly DFM and purchases; no order is authorized.
 
-_All prices unverified this session (offline sandbox; no distributor pages
-reachable). Fill the price column at order time from the distributor pages
+_Stock and prices were not refreshed during T-022. Fill the price column at order time from the distributor pages
 linked in `sourcing-evidence.md`. Quantities reconciled 2026-08-26 (REVIEW S10):
 JLC's 5-board minimum per variant is fully assembled, which needs 20 mics per
 MPN and 10 clock buffers total; +20% assembly-loss/rework spares on each gives
@@ -36,9 +35,9 @@ if it cannot be bought in coupon quantity, the bake-off is inconclusive by rule
 | Surface | ENIG |
 | Acoustic holes | 4x 0.50 mm **non-plated** per board — see fab note on Cmts.User |
 | Min track/space used | 0.20 / 0.145 mm (within JLC 4L minimums) |
-| Vias | 0.6/0.3 mm (one 0.5/0.25 at U1 pin 11) |
+| Vias | 0.6/0.3 mm, plus ten 0.5/0.25 mm U1 supply/ground fan-out vias |
 | Assembly | SMD both variants fully assembled; headers (J1, JP1) THT |
-| Files | `build/t016/<variant>-coupon-fab/gerbers/` + `-pos.csv` + BOM below |
+| Files | Fresh `build/t016/<variant>-coupon-fab/gerbers/` including separate `-PTH.drl`/`-NPTH.drl`, metric body-centroid `-pos.csv`, and BOM; archive `SHA256.json` |
 | Stencil | annular GND-ring paste per footprint; keep paste out of the ports |
 | Handling | no board wash / ultrasonic clean; nothing into the ports |
 
@@ -47,8 +46,8 @@ if it cannot be bought in coupon quantity, the bake-off is inconclusive by rule
 | Ref | Part | Qty/coupon |
 |---|---|---:|
 | M1..M4 | variant MPN (SPH0641LU4H-1 or ICS-41352) | 4 |
-| U1 | CDCLVC1112PWR (TSSOP-24) — **pin map UNVERIFIED, see README** | 1 |
-| C1..C8 | 100 nF X7R 0603 (dielectric fixed 2026-08-26, REVIEW S11: 100 nF C0G/NP0 does not exist in 0603; X7R DC-bias droop at the 3.3 V rail is acceptable for digital PDM mic supply bypass — mic PSRR covers residual rail noise) | 8 |
+| U1 | CDCLVC1112PWR (TSSOP-24) — complete TI pin audit passed | 1 |
+| C1..C8, C11 | 100 nF X7R 0603; four mic bypasses plus five buffer bypasses | 9 |
 | C9 | 1 uF 0603 | 1 |
 | C10 | 10 uF 0603 | 1 |
 | R0, R1 | 10 ohm 0603 1% | 2 |
@@ -59,20 +58,27 @@ if it cannot be bought in coupon quantity, the bake-off is inconclusive by rule
 
 ## Pre-order checklist (Joshua, ~15 min)
 
-1. Confirm CDCLVC1112PWR pin map against the TI datasheet; fix
-   `BUFFER_PIN_MAP` in `generate_coupon.py` if needed; regenerate; re-run
-   `check_coupons.sh`.
-2. Re-run `kicad-cli pcb drc` on both coupons unsandboxed (sandboxed runs
-   SIGABRT — see README verification status) and confirm no new violations.
+1. Review the T-022 release evidence and use only rev B sources. Regenerate with
+   KiCad closed; run `check_coupons.sh` and archive the source/export hashes.
+2. Require the suite's full DRC to report zero violations/unconnected pads for
+   both boards. A crash is a failed gate, not permission to waive DRC.
 3. At JLC DFM review: confirm mic pick-and-place rotation against each
    datasheet's pin-1 corner mark (ICS: Figure 3 is the PCB-side view used here).
-4. Confirm the JLC BOM pick for C1..C8 is a 100 nF **X7R** 0603 part
+4. Confirm the JLC BOM pick for C1..C8 and C11 is a 100 nF **X7R** 0603 part
    (changed from the unfillable C0G/NP0 spec on 2026-08-26, REVIEW S11); no C0G
    line should remain anywhere in the order.
 5. Re-check stock + price for both exact MPNs (evidence file is dated
    2026-08-25/26; stock moves) at the reconciled quantities (24 per MPN,
    12 buffers — REVIEW S10).
-6. Then, and only then: place the orders.
+6. Resolve the DFM items in the release record: acoustic NPTH/stencil handling,
+   1 oz outer copper, assembly coordinates/rotation and small reference text.
+   Use `-pos.csv` for body-centroid placement; `-origin-pos.csv` is traceability
+   only (mic origins are acoustic ports). Both use absolute mm with negative Y;
+   rotations are NOT supplier-normalized. SPH centres are 0.971 mm below their
+   ports; ICS centres are 0.710 mm right of their ports in the PCB top view.
+   Test points are bare copper, headers
+   are THT, and neither belongs in the SMD placement file.
+7. Joshua alone approves the quote and places the orders after those checks.
 
 ## Quantity reconciliation (REVIEW S10, 2026-08-26 — every number cross-checked)
 

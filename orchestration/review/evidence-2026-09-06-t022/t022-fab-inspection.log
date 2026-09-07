@@ -1,0 +1,6 @@
+PASS sph: actual drill files separate PTH/NPTH; four exact acoustic ports
+PASS sph: metric centroid CSV, 21 SMD placements, 23 BOM components; no bare pads
+PASS sph: six actual Gerber layers rendered independently for visual review
+PASS ics: actual drill files separate PTH/NPTH; four exact acoustic ports
+PASS ics: metric centroid CSV, 21 SMD placements, 23 BOM components; no bare pads
+PASS ics: six actual Gerber layers rendered independently for visual review

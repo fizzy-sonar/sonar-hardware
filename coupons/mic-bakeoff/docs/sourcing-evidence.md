@@ -30,8 +30,10 @@ nothing below represents unavailable stock as orderable._
 
 ## CDCLVC1112PWR (TI)
 
-- Current TI part; standard distribution. Pin map for the coupon symbol is
-  UNVERIFIED this session (datasheet offline) — see README pre-order checklist.
+- Pin map repaired and verified under T-022 using live TI SCAS895B, section 5
+  (2026-09-05); see [release record](T-022-release-verification.md). All 24 actual
+  pads and schematic symbol names checked independently. Stock/pricing were not
+  refreshed in this repair session and still require an order-time check.
 
 ## D009 compatibility note
 

@@ -21,9 +21,9 @@ Dimension provenance (primary datasheets, local PDF copies):
   Figure 16 + Figure 18 (bottom view). Pin table 9
   (1=DATA, 2=SELECT, 3=GND ring, 4=CLK, 5=VDD). Body 3.50x2.65x0.98 mm,
   sound port Ø0.375 mm; PCB hole 0.5-1.0 mm recommended.
-- CDCLVC1112PWR pin map: **UNVERIFIED** (datasheet not available offline).
-  The map lives in BUFFER_PIN_MAP below and MUST be confirmed against the TI
-  CDCLVC11xx datasheet before ordering (see README pre-order checklist).
+- CDCLVC1112PWR: TI SCAS895B section 5, verified 2026-09-05.
+  https://www.ti.com/lit/ds/symlink/cdclvc1112.pdf
+  Independent pin/net assertions live in verify_coupon.py.
 """
 
 from __future__ import annotations
@@ -81,33 +81,68 @@ MIC_FOOTPRINTS = {
     },
 }
 
-# TI CDCLVC1112PWR (TSSOP-24) pin map -- UNVERIFIED, confirm vs TI datasheet.
+# TI SCAS895B section 5, PW-24 top view (T-022, 2026-09-05).
 BUFFER_PIN_MAP = {
     1: "CLKIN",
     2: "1G",
-    3: "GND",
-    4: "Y0",
-    5: "Y1",
-    6: "Y2",
-    7: "Y3",
-    8: "Y4",
-    9: "Y5",
-    10: "GND",
-    11: "VDD",
-    12: "Y6",
-    13: "Y7",
-    14: "Y8",
+    3: "Y0",
+    4: "GND",
+    5: "VDD",
+    6: "Y4",
+    7: "GND",
+    8: "Y6",
+    9: "VDD",
+    10: "Y9",
+    11: "GND",
+    12: "Y11",
+    13: "VDD",
+    14: "Y10",
     15: "GND",
-    16: "VDD",
-    17: "Y9",
-    18: "Y10",
-    19: "Y11",
+    16: "Y8",
+    17: "Y7",
+    18: "VDD",
+    19: "Y5",
     20: "GND",
-    21: "VDD",
+    21: "Y2",
     22: "VDD",
-    23: "NC",
-    24: "NC",
+    23: "Y3",
+    24: "Y1",
 }
+
+BUFFER_NETS = {
+    pin: {
+        "CLKIN": "CLK_IN",
+        "1G": "CLK_EN",
+        "Y0": "CLK_Y0",
+        "Y1": "CLK_FBR",
+        "GND": "GND",
+        "VDD": "+3V3_MIC",
+    }.get(role, "")
+    for pin, role in BUFFER_PIN_MAP.items()
+}
+
+
+def buffer_pad_xy(pin: int) -> tuple[float, float]:
+    column, dy = (pin - 1, 2.8) if pin <= 12 else (24 - pin, -2.8)
+    return U1_POS[0] - 3.575 + column * 0.65, U1_POS[1] + dy
+
+
+def ground_ring_pad(spec: dict, net_attr: str = "") -> str:
+    # A KiCad custom-pad anchor is COPPER, unioned with its primitives. Keep a
+    # small anchor entirely inside the annulus; never use a disk at the port.
+    ro, ri = spec["ring_outer"] / 2, spec["ring_inner"] / 2
+    ax = (ro + ri) / 2
+    primitives = []
+    for poly in _annulus_polys(ro, ri, seg=64):
+        points = " ".join(f"(xy {x - ax:.6f} {y:.6f})" for x, y in poly)
+        primitives.append(f"(gr_poly (pts {points}) (stroke (width 0) (type solid)) (fill yes))")
+    return (
+        f'(pad "3" smd custom (at {ax} 0) (size 0.1 0.1) '
+        f'(layers "F.Cu" "F.Paste" "F.Mask") {net_attr} '
+        "(zone_connect 2) (options (clearance outline) (anchor circle)) "
+        f'(primitives {" ".join(primitives)}) (uuid "{uid()}"))'
+    )
+
 
 BOARD_W, BOARD_H = 70.0, 30.0
 MIC_X = [15.0, 27.0, 39.0, 51.0]
@@ -159,20 +194,7 @@ def emit_mic_footprint(spec: dict) -> str:
             f'\t(pad "{num}" smd rect (at {x} {y}) (size {w} {h}) '
             f'(layers "F.Cu" "F.Paste" "F.Mask") (uuid "{uid()}"))'
         )
-    # Pad 3: annular GND ring (custom copper), paste pulled back, plus four small
-    # bridge pads so the zone/thermal connection lands on copper outside the ring.
-    ro, ri = spec["ring_outer"] / 2, spec["ring_inner"] / 2
-    polys = _annulus_polys(ro, ri)
-    prim = []
-    for poly in polys:
-        pts = " ".join(f"(xy {px:.4f} {py:.4f})" for px, py in poly)
-        prim.append(f"\t\t(gr_poly (pts {pts}) (stroke (width 0) (type solid)) (fill yes))")
-    lines.append(
-        f'\t(pad "3" smd custom (at 0 0) (size {ro * 2:.3f} {ro * 2:.3f}) '
-        f'(layers "F.Cu" "F.Paste" "F.Mask")\n'
-        "\t\t(options (clearance outline) (anchor circle))\n"
-        f"\t\t(primitives\n" + "\n".join(prim) + f')\n\t\t(uuid "{uid()}"))'
-    )
+    lines.append(ground_ring_pad(spec))
     # 0.50 mm non-plated acoustic hole, mask opened, no copper annulus.
     lines.append(
         '\t(pad "" np_thru_hole circle (at 0 0) (size 0.5 0.5) (drill 0.5) '
@@ -191,10 +213,8 @@ def emit_mic_footprint(spec: dict) -> str:
         f"\t(fp_rect (start {ccx - cw / 2:.3f} {ccy - ch / 2:.3f}) (end {ccx + cw / 2:.3f} {ccy + ch / 2:.3f}) "
         f'(stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))'
     )
-    lines.append(
-        f"\t(fp_rect (start {x0 - 0.12:.3f} {y0 - 0.12:.3f}) (end {x1 + 0.12:.3f} {y1 + 0.12:.3f}) "
-        f'(stroke (width 0.12) (type solid)) (fill no) (layer "F.SilkS") (uuid "{uid()}"))'
-    )
+    # Full body rectangle would cross the terminal-side solder mask. The fab
+    # outline plus the clear pin-1 dot below carry orientation without clipping.
     p1 = spec["pads"][0]
     lines.append(
         f"\t(fp_circle (center {p1[2]:.3f} {p1[3] + 0.65:.3f}) (end {p1[2] + 0.2:.3f} {p1[3] + 0.65:.3f}) "
@@ -210,7 +230,7 @@ def emit_mic_footprint(spec: dict) -> str:
 
 def emit_smd0603(tag: str) -> str:
     pads = []
-    for n, x in ((1, -0.5), (2, 0.5)):
+    for n, x in ((1, -0.8), (2, 0.8)):
         pads.append(
             f'\t(pad "{n}" smd roundrect (at {x} 0) (size 0.9 1.0) (layers "F.Cu" "F.Paste" "F.Mask") '
             f'(roundrect_rratio 0.25) (uuid "{uid()}"))'
@@ -222,7 +242,7 @@ def emit_smd0603(tag: str) -> str:
         + "\n"
         + "\n".join(pads)
         + f'\n\t(fp_rect (start -0.8 -0.4) (end 0.8 0.4) (stroke (width 0.05) (type solid)) (fill no) (layer "F.Fab") (uuid "{uid()}"))'
-        + f'\n\t(fp_rect (start -1.0 -0.75) (end 1.0 0.75) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))\n)\n'
+        + f'\n\t(fp_rect (start -1.5 -0.75) (end 1.5 0.75) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))\n)\n'
     )
 
 
@@ -238,13 +258,13 @@ def emit_tssop24() -> str:
         )
     return (
         f'(footprint "TSSOP-24_4.4x7.8mm_P0.65mm_T016"\n\t(layer "F.Cu")\n\t(uuid "{uid()}")'
-        '\n\t(descr "TSSOP-24, 4.4x7.8mm body, 0.65mm pitch (generic; CDCLVC1112PWR pin map UNVERIFIED)")\n\t(attr smd)\n'
+        '\n\t(descr "TSSOP-24, 4.4x7.8mm body, 0.65mm pitch; TI SCAS895B pin map")\n\t(attr smd)\n'
         + _fp_text("reference", "REF**", 0, -4.2, "F.SilkS")
         + _fp_text("value", "TSSOP-24_4.4x7.8mm_P0.65mm_T016", 0, 4.2, "F.Fab")
         + "\n"
         + "\n".join(pads)
         + f'\n\t(fp_rect (start -3.9 -2.2) (end 3.9 2.2) (stroke (width 0.05) (type solid)) (fill no) (layer "F.Fab") (uuid "{uid()}"))'
-        + f'\n\t(fp_rect (start -4.35 -3.75) (end 4.35 3.75) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))'
+        + f'\n\t(fp_rect (start -4.15 -3.8) (end 4.15 3.8) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))'
         + f'\n\t(fp_circle (center -4.15 3.1) (end -3.95 3.1) (stroke (width 0.15) (type solid)) (fill yes) (layer "F.SilkS") (uuid "{uid()}"))\n)\n'
     )
 
@@ -273,7 +293,7 @@ def emit_pinheader(rows: int, cols: int, tag: str) -> str:
 
 def emit_testpoint() -> str:
     return (
-        f'(footprint "TP_1.5mm_T016"\n\t(layer "F.Cu")\n\t(uuid "{uid()}")\n\t(descr "SMD test point pad 1.5 mm")\n\t(attr smd)\n'
+        f'(footprint "TP_1.5mm_T016"\n\t(layer "F.Cu")\n\t(uuid "{uid()}")\n\t(descr "Bare copper test point pad 1.5 mm; no assembled component")\n\t(attr smd exclude_from_pos_files exclude_from_bom)\n'
         + _fp_text("reference", "REF**", 0, -1.5, "F.SilkS")
         + _fp_text("value", "TP_1.5mm_T016", 0, 1.5, "F.Fab")
         + f'\n\t(pad "1" smd circle (at 0 0) (size 1.5 1.5) (layers "F.Cu" "F.Mask") (uuid "{uid()}"))'
@@ -329,11 +349,11 @@ def sym_def(
 def mic_sym_pins() -> list[tuple[str, str, float, float, float, str]]:
     # left side: CLK, SELECT, GND; right side: VDD, DATA
     return [
-        ("4", "CLK", -6.35, 2.54, 0, "input"),
-        ("2", "SELECT", -6.35, 0.0, 0, "input"),
-        ("3", "GND", -6.35, -2.54, 0, "power_in"),
-        ("5", "VDD", 6.35, 2.54, 180, "power_in"),
-        ("1", "DATA", 6.35, 0.0, 180, "output"),
+        ("4", "CLK", -10.16, 2.54, 0, "input"),
+        ("2", "SELECT", -10.16, 0.0, 0, "input"),
+        ("3", "GND", -10.16, -2.54, 0, "power_in"),
+        ("5", "VDD", 10.16, 2.54, 180, "power_in"),
+        ("1", "DATA", 10.16, 0.0, 180, "output"),
     ]
 
 
@@ -366,7 +386,7 @@ def rc_sym(name: str, ref: str) -> str:
 
 
 SYMBOL_DEFS = {
-    "MIC": ("PDM_MIC_T016", "M", mic_sym_pins(), 12.7, 7.62),
+    "MIC": ("PDM_MIC_T016", "M", mic_sym_pins(), 20.32, 7.62),
     "BUF": ("CDCLVC1112PWR_T016", "U", buffer_sym_pins(), 25.4, 33.02),
     "R": ("R_T016", "R", []),
     "C": ("C_T016", "C", []),
@@ -397,7 +417,7 @@ SYMBOL_DEFS = {
 
 # --- Schematic emitter ---------------------------------------------------------------
 SYM_META = {
-    "MIC": ("PDM_MIC_T016", "M", mic_sym_pins(), 12.7, 7.62),
+    "MIC": ("PDM_MIC_T016", "M", mic_sym_pins(), 20.32, 7.62),
     "BUF": ("CDCLVC1112PWR_T016", "U", buffer_sym_pins(), 25.4, 33.02),
     "R": (
         "R_T016",
@@ -455,12 +475,12 @@ class Schematic:
     def place(
         self, kind: str, ref: str, value: str, footprint: str, x: float, y: float
     ) -> dict[str, tuple[float, float]]:
-        name, _, pins, _, _ = SYM_META[kind]
+        name, _, pins, _, height = SYM_META[kind]
         # KiCad symbol-lib coordinates have +y UP; schematic coordinates +y DOWN.
         pin_xy = {num: (x + dx, y - dy) for num, _, dx, dy, _, _ in pins}
         props = [
-            ("Reference", ref, 0, -3, False),
-            ("Value", value, 0, 3, False),
+            ("Reference", ref, 0, -height / 2 - 2.0, False),
+            ("Value", value, 0, height / 2 + 2.0, False),
             ("Footprint", footprint, 0, 0, True),
             ("Datasheet", "", 0, 0, True),
             ("Description", "", 0, 0, True),
@@ -470,7 +490,8 @@ class Schematic:
             f'\t\t(lib_id "coupon-symbols:{name}")',
             f"\t\t(at {x} {y} 0)",
             "\t\t(unit 1) (body_style 1)",
-            "\t\t(exclude_from_sim no) (in_bom yes) (on_board yes) (in_pos_files yes) (dnp no)",
+            f"\t\t(exclude_from_sim no) (in_bom {'no' if ref.startswith('TP') else 'yes'}) "
+            f"(on_board yes) (in_pos_files {'no' if ref.startswith('TP') else 'yes'}) (dnp no)",
             "\t\t(fields_autoplaced yes)",
             f'\t\t(uuid "{uid()}")',
         ]
@@ -506,6 +527,7 @@ class Schematic:
         self.items.append(f'\t(no_connect (at {x:.2f} {y:.2f}) (uuid "{uid()}"))')
 
     def text(self, x: float, y: float, body: str) -> None:
+        body = body.replace("\\", "\\\\").replace('"', '\\"').replace("\n", "\\n")
         self.items.append(
             f'\t(text "{body}" (at {x} {y} 0) (effects (font (size 1.5 1.5)))\n\t\t(uuid "{uid()}"))'
         )
@@ -519,8 +541,8 @@ def build_schematic(variant: str, project: str) -> str:
 
     # Mic instances: M1/M3 SELECT low (even channels), M2/M4 SELECT high.
     mic_nets = []
-    for i, x in enumerate((50.8, 81.28, 111.76, 142.24)):
-        pins = sch.place("MIC", f"M{i + 1}", spec["mpn"], mic_fp, x, 60.96)
+    for i, (x, y) in enumerate(((55.88, 55.88), (177.8, 55.88), (55.88, 86.36), (177.8, 86.36))):
+        pins = sch.place("MIC", f"M{i + 1}", spec["mpn"], mic_fp, x, y)
         sel = "GND" if i % 2 == 0 else "+3V3_MIC"
         data = "D0M" if i < 2 else "D1M"
         nets = {"4": "CLK_ST", "2": sel, "3": "GND", "5": "+3V3_MIC", "1": data}
@@ -534,8 +556,8 @@ def build_schematic(variant: str, project: str) -> str:
             f"C{i + 1}",
             "100nF X7R 0603",
             "coupon:C_0603_T016",
-            g(x + 15.24),
-            60.96,
+            g(x + 35.56),
+            y,
         )
         sch.stub_label(*cpins["1"], (-1.0, 0.0), "+3V3_MIC")
         sch.stub_label(*cpins["2"], (1.0, 0.0), "GND")
@@ -543,7 +565,7 @@ def build_schematic(variant: str, project: str) -> str:
     upins = sch.place(
         "BUF",
         "U1",
-        "CDCLVC1112PWR (PIN MAP UNVERIFIED)",
+        "CDCLVC1112PWR",
         "coupon:TSSOP-24_4.4x7.8mm_P0.65mm_T016",
         69.85,
         129.54,
@@ -566,18 +588,19 @@ def build_schematic(variant: str, project: str) -> str:
             sch.stub_label(px, py, outward, net)
 
     discretes = [
-        ("R", "R0", "10R 0603", 38.1, 137.16, "CLK_Y0", "CLK_ST"),
-        ("R", "R1", "10R 0603", 38.1, 134.62, "CLK_FBR", "CLK_FB"),
-        ("R", "R12", "100k 0603", 38.1, 142.24, "CLK_EN", "GND"),
-        ("R", "R13", "0R 0603", 60.96, 100.33, "D0M", "D0"),
-        ("R", "R14", "0R 0603", 60.96, 105.41, "D1M", "D1"),
-        ("C", "C5", "100nF X7R 0603", 95.25, 120.65, "+3V3_MIC", "GND"),
-        ("C", "C6", "100nF X7R 0603", 95.25, 125.73, "+3V3_MIC", "GND"),
-        ("C", "C7", "100nF X7R 0603", 95.25, 129.54, "+3V3_MIC", "GND"),
-        ("C", "C8", "100nF X7R 0603", 95.25, 135.89, "+3V3_MIC", "GND"),
-        ("C", "C9", "1uF 0603", 95.25, 139.7, "+3V3_MIC", "GND"),
-        ("C", "C10", "10uF 0603", 95.25, 144.78, "+3V3_MIC", "GND"),
-        ("JP", "JP1", "JUMPER (current break)", 120.65, 120.65, "+3V3_MIC", "+3V3_IN"),
+        ("R", "R0", "10R 0603", 25.4, 116.84, "CLK_Y0", "CLK_ST"),
+        ("R", "R1", "10R 0603", 25.4, 132.08, "CLK_FBR", "CLK_FB"),
+        ("R", "R12", "100k 0603", 25.4, 147.32, "CLK_EN", "GND"),
+        ("R", "R13", "0R 0603", 172.72, 111.76, "D0M", "D0"),
+        ("R", "R14", "0R 0603", 172.72, 127.0, "D1M", "D1"),
+        ("C", "C5", "100nF X7R 0603", 120.65, 111.76, "+3V3_MIC", "GND"),
+        ("C", "C6", "100nF X7R 0603", 120.65, 124.46, "+3V3_MIC", "GND"),
+        ("C", "C7", "100nF X7R 0603", 120.65, 137.16, "+3V3_MIC", "GND"),
+        ("C", "C8", "100nF X7R 0603", 120.65, 149.86, "+3V3_MIC", "GND"),
+        ("C", "C9", "1uF 0603", 165.1, 149.86, "+3V3_MIC", "GND"),
+        ("C", "C10", "10uF 0603", 165.1, 162.56, "+3V3_MIC", "GND"),
+        ("C", "C11", "100nF X7R 0603", 120.65, 162.56, "+3V3_MIC", "GND"),
+        ("JP", "JP1", "JUMPER (current break)", 238.76, 152.4, "+3V3_MIC", "+3V3_IN"),
     ]
     for kind, ref, val, x, y, n1, n2 in discretes:
         pins = sch.place(
@@ -598,8 +621,8 @@ def build_schematic(variant: str, project: str) -> str:
         "J1",
         "Conn_02x05 bench header",
         "coupon:PINHEADER_2X05_T016",
-        160.02,
-        129.54,
+        254.0,
+        60.96,
     )
     j1_nets = {
         "1": "+3V3_IN",
@@ -619,23 +642,22 @@ def build_schematic(variant: str, project: str) -> str:
         sch.stub_label(px, py, outward, net)
 
     tp_defs = [
-        ("TP1", "+3V3_MIC", 120.65, 105.41),
-        ("TP2", "CLK_ST", 120.65, 110.49),
-        ("TP3", "CLK_ST", 120.65, 115.57),
-        ("TP4", "D0", 135.89, 100.33),
-        ("TP5", "D1", 135.89, 105.41),
-        ("TP6", "CLK_FB", 135.89, 110.49),
+        ("TP1", "+3V3_MIC", 218.44, 106.68),
+        ("TP2", "CLK_ST", 218.44, 119.38),
+        ("TP3", "CLK_ST", 218.44, 132.08),
+        ("TP4", "D0", 261.62, 106.68),
+        ("TP5", "D1", 261.62, 119.38),
+        ("TP6", "CLK_FB", 261.62, 132.08),
     ]
     for ref, net, x, y in tp_defs:
         pins = sch.place("TP", ref, f"TP {net}", "coupon:TP_1.5mm_T016", x, y)
         sch.stub_label(*pins["1"], (-1.0, 0.0), net)
 
     sch.text(
-        30,
-        40,
-        f"T-016 PDM mic bake-off coupon, variant {variant} ({spec['mpn']}). "
-        "Four mics on one CDCLVC1112PWR output = worst-case four-load branch. "
-        "No pulls on D0/D1. 0.50 mm NPTH acoustic ports. Buffer pin map UNVERIFIED - see README.",
+        148.5,
+        25.4,
+        f"T-016 {variant} ({spec['mpn']}) — rev B. TI SCAS895B pin map verified.\n"
+        "Four mics on one clock output; no DATA pulls; 0.50 mm NPTH acoustic ports.",
     )
 
     lib_syms = "\n".join(
@@ -716,21 +738,22 @@ class Pcb:
 
     def fp_0603(self, ref: str, value: str, x: float, y: float, rot: int, n1: str, n2: str) -> None:
         pads = []
-        for num, (dx, dy), net in ((1, (-0.5, 0.0), n1), (2, (0.5, 0.0), n2)):
+        for num, (dx, dy), net in ((1, (-0.8, 0.0), n1), (2, (0.8, 0.0), n2)):
             w, h = 0.9, 1.0
             pads.append(
-                f'\t\t(pad "{num}" smd roundrect (at {dx} {dy}) (size {w} {h}) (layers "F.Cu" "F.Paste" "F.Mask") '
+                f'\t\t(pad "{num}" smd roundrect (at {dx} {dy} {rot}) (size {w} {h}) (layers "F.Cu" "F.Paste" "F.Mask") '
                 f'(roundrect_rratio 0.25) (net {NET_ID[net]} "{net}") (uuid "{uid()}"))'
             )
         self.items.append(
-            f'\t(footprint "coupon:C_0603_T016" (layer "F.Cu") (uuid "{uid()}")\n'
+            f'\t(footprint "coupon:{ref[0]}_0603_T016" (layer "F.Cu") (uuid "{uid()}")\n'
             f"\t\t(at {x} {y} {rot})\n"
+            "\t\t(attr smd)\n"
             + _fp_text("reference", ref, 0, -1.2, "F.SilkS")
             + _fp_text("value", value, 0, 1.2, "F.Fab")
             + "\n"
             + "\n".join(pads)
             + f'\n\t\t(fp_rect (start -0.8 -0.4) (end 0.8 0.4) (stroke (width 0.05) (type solid)) (fill no) (layer "F.Fab") (uuid "{uid()}"))'
-            + f'\n\t\t(fp_rect (start -1.0 -0.75) (end 1.0 0.75) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))\n\t)'
+            + f'\n\t\t(fp_rect (start -1.5 -0.75) (end 1.5 0.75) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))\n\t)'
         )
 
     def fp_mic(self, spec: dict, ref: str, x: float, y: float, nets: dict[int, str]) -> None:
@@ -748,17 +771,7 @@ class Pcb:
                 f'\t\t(pad "{num}" smd rect (at {px} {py}) (size {w} {h}) '
                 f'(layers "F.Cu" "F.Paste" "F.Mask") (net {NET_ID[net]} "{net}") (uuid "{uid()}"))'
             )
-        ro, ri = spec["ring_outer"] / 2, spec["ring_inner"] / 2
-        prim = []
-        for poly in _annulus_polys(ro, ri):
-            pts = " ".join(f"(xy {px:.4f} {py:.4f})" for px, py in poly)
-            prim.append(f"\t\t\t(gr_poly (pts {pts}) (stroke (width 0) (type solid)) (fill yes))")
-        lines.append(
-            f'\t\t(pad "3" smd custom (at 0 0) (size {ro * 2:.3f} {ro * 2:.3f}) (layers "F.Cu" "F.Paste" "F.Mask")\n'
-            f'\t\t\t(net {NET_ID["GND"]} "GND")\n'
-            "\t\t\t(options (clearance outline) (anchor circle))\n"
-            "\t\t\t(primitives\n" + "\n".join(prim) + f'\n\t\t\t) (uuid "{uid()}"))'
-        )
+        lines.append(ground_ring_pad(spec, f'(net {NET_ID["GND"]} "GND")'))
         lines.append(
             '\t\t(pad "" np_thru_hole circle (at 0 0) (size 0.5 0.5) (drill 0.5) (layers "*.Cu" "*.Mask") '
             f'(uuid "{uid()}"))'
@@ -800,7 +813,7 @@ class Pcb:
             + "\n"
             + "\n".join(pads)
             + f'\n\t\t(fp_rect (start -3.9 -2.2) (end 3.9 2.2) (stroke (width 0.05) (type solid)) (fill no) (layer "F.Fab") (uuid "{uid()}"))'
-            + f'\n\t\t(fp_rect (start -4.35 -3.75) (end 4.35 3.75) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))'
+            + f'\n\t\t(fp_rect (start -4.15 -3.8) (end 4.15 3.8) (stroke (width 0.05) (type solid)) (fill no) (layer "F.CrtYd") (uuid "{uid()}"))'
             + f'\n\t\t(fp_circle (center -4.15 3.1) (end -3.95 3.1) (stroke (width 0.15) (type solid)) (fill yes) (layer "F.SilkS") (uuid "{uid()}"))\n\t)'
         )
 
@@ -957,53 +970,46 @@ def build_pcb(variant: str) -> str:
         pcb.via(vx, 15.5, "GND")
 
     # --- Clock buffer area ---
-    pcb.fp_tssop24(
-        *U1_POS,
-        {
-            1: "CLK_IN",
-            2: "CLK_EN",
-            3: "GND",
-            4: "CLK_Y0",
-            5: "CLK_FBR",
-            10: "GND",
-            11: "+3V3_MIC",
-            15: "GND",
-            16: "+3V3_MIC",
-            20: "GND",
-            21: "+3V3_MIC",
-            22: "+3V3_MIC",
-        },
-    )
+    pcb.fp_tssop24(*U1_POS, BUFFER_NETS)
     # Y0 source resistor, then the clock trunk with stubs to all four mics.
     pcb.fp_0603("R0", "10R", 16.5, 11.8, 0, "CLK_Y0", "CLK_ST")
-    pcb.path([(8.375, 11.0), (8.375, 11.8), (15.55, 11.8)], "CLK_Y0")
+    y0x, y0y = buffer_pad_xy(3)
+    pcb.path([(y0x, y0y), (y0x, 8.5)], "CLK_Y0")
+    pcb.via(y0x, 8.5, "CLK_Y0")
+    pcb.path([(y0x, 8.5), (15.7, 8.5), (15.7, 10.3)], "CLK_Y0", layer="B.Cu")
+    pcb.via(15.7, 10.3, "CLK_Y0")
+    pcb.path([(15.7, 10.3), (15.7, 11.8)], "CLK_Y0")
     trunk_end = 52.4 if variant == "SPH" else 51.4
     trunk_start = 16.4 if variant == "SPH" else 13.6  # first mic's stub x
     pcb.path([(17.45, 11.8), (17.9, 11.8), (17.9, TRUNK_Y)], "CLK_ST", w=0.25)
     pcb.seg(trunk_start, TRUNK_Y, trunk_end, TRUNK_Y, "CLK_ST", w=0.25)
     # Y1 returned clock via R1 to J1 pin 9.
-    pcb.fp_0603("R1", "10R", 9.025, 8.3, 270, "CLK_FB", "CLK_FBR")
-    pcb.seg(9.025, 9.5, 9.025, 9.3, "CLK_FBR")
-    pcb.fp_tp("TP6", 11.0, 8.8, "CLK_FBR")
-    pcb.seg(9.525, 8.8, 11.0, 8.8, "CLK_FBR")
-    pcb.seg(9.025, 7.35, 9.025, 6.8, "CLK_FB")
-    pcb.via(9.025, 6.8, "CLK_FB")
-    pcb.path([(9.025, 6.8), (62.73, 6.8), (62.73, 9.92)], "CLK_FB", layer="B.Cu")
+    pcb.fp_0603("R1", "10R", 3.0, 8.3, 270, "CLK_FBR", "CLK_FB")
+    y1x, y1y = buffer_pad_xy(24)
+    pcb.path([(y1x, y1y), (y1x, 5.8), (3.0, 5.8), (3.0, 7.5)], "CLK_FBR")
+    pcb.fp_tp("TP6", 3.0, 12.0, "CLK_FB")
+    pcb.seg(3.0, 9.1, 3.0, 12.0, "CLK_FB")
+    pcb.via(3.0, 10.0, "CLK_FB")
+    pcb.path([(3.0, 10.0), (3.0, 6.8), (62.73, 6.8), (62.73, 9.92)], "CLK_FB", layer="B.Cu")
     # 1G pulldown + enable from header (B.Cu run).
-    pcb.fp_0603("R12", "100k", 9.5, 13.6, 0, "CLK_EN", "GND")
+    pcb.fp_0603("R12", "100k", 6.5, 16.5, 0, "CLK_EN", "GND")
     pcb.seg(7.075, 9.5, 7.075, 12.46, "CLK_EN")
     pcb.via(7.075, 12.46, "CLK_EN")
     pcb.path([(62.73, 12.46), (7.075, 12.46)], "CLK_EN", layer="B.Cu")
-    pcb.path([(8.4, 12.46), (8.4, 13.6)], "CLK_EN", layer="B.Cu")
-    pcb.via(8.4, 13.6, "CLK_EN")
-    pcb.path([(10.4, 13.6), (11.3, 13.6), (11.3, 15.3)], "GND")
+    pcb.seg(7.8, 12.46, 7.8, 13.3, "CLK_EN", layer="B.Cu")
+    pcb.via(7.8, 13.3, "CLK_EN")
+    pcb.path([(7.8, 13.3), (7.8, 15.3), (5.7, 15.3), (5.7, 16.5)], "CLK_EN")
     pcb.via(11.3, 15.3, "GND")
-    # U1 VDD pin 11 via (top row) and bottom-row VDD vias.
-    pcb.seg(12.925, 11.0, 12.925, 11.3, "+3V3_MIC")
-    pcb.via(12.925, 11.3, "+3V3_MIC", size=0.5, drill=0.25)
-    for vx in (11.625, 8.375, 7.725):
-        pcb.seg(vx, 4.0, vx, 3.3, "+3V3_MIC")
-        pcb.via(vx, 3.0, "+3V3_MIC")
+    # Every actual VDD/GND pad reaches its plane; no guessed pin numbers.
+    # 0.5/0.25 mm vias leave 0.15 mm copper clearance at 0.65 mm pin pitch.
+    for pin, role in BUFFER_PIN_MAP.items():
+        if role not in ("VDD", "GND"):
+            continue
+        px, py = buffer_pad_xy(pin)
+        vy = py + 1.3 if pin <= 12 else py - 1.3
+        net = BUFFER_NETS[pin]
+        pcb.seg(px, py, px, vy, net)
+        pcb.via(px, vy, net, size=0.5, drill=0.25)
     # Clock trunk test points: near (source end) and far (last load).
     pcb.path([(18.4, TRUNK_Y), (18.4, 14.0)], "CLK_ST")
     pcb.fp_tp("TP2", 18.4, 14.0, "CLK_ST")
@@ -1011,17 +1017,27 @@ def build_pcb(variant: str) -> str:
     pcb.fp_tp("TP3", 53.5, TRUNK_Y, "CLK_ST")
 
     # --- U1 decoupling + bulk caps; VDD via below each cap, GND into the pour ---
-    for cx, ref, val in (
-        (6.5, "C5", "100nF X7R"),
-        (8.9, "C6", "100nF X7R"),
-        (11.3, "C7", "100nF X7R"),
-        (13.7, "C8", "100nF X7R"),
-        (16.1, "C9", "1uF"),
-        (18.5, "C10", "10uF"),
+    for cx, cy, ref, val in (
+        (8.525, 2.0, "C5", "100nF X7R"),
+        (14.375, 2.0, "C6", "100nF X7R"),
+        (9.025, 13.5, "C7", "100nF X7R"),
+        (11.625, 13.5, "C8", "100nF X7R"),
+        (21.5, 2.0, "C9", "1uF"),
+        (25.5, 2.0, "C10", "10uF"),
     ):
-        pcb.fp_0603(ref, val, cx, 2.0, 0, "+3V3_MIC", "GND")
-        pcb.seg(cx - 0.5, 2.45, cx - 0.5, 2.9, "+3V3_MIC")
-        pcb.via(cx - 0.5, 3.2, "+3V3_MIC")
+        pcb.fp_0603(ref, val, cx, cy, 270 if ref in ("C7", "C8") else 0, "+3V3_MIC", "GND")
+        if ref in ("C5", "C6"):
+            # Share the adjacent VDD pin's via rather than overlap two drills.
+            pcb.seg(cx - 0.8, cy, cx - 0.8, 3.4, "+3V3_MIC")
+        elif ref in ("C7", "C8"):
+            pcb.seg(cx, cy - 0.8, cx, 11.6, "+3V3_MIC")
+        else:
+            pcb.seg(cx - 0.8, cy, cx - 0.8, cy + 1.2, "+3V3_MIC")
+            pcb.via(cx - 0.8, cy + 1.2, "+3V3_MIC")
+    # Fifth VDD terminal (pin 18): TI SCAS895B section 10 recommends one
+    # 100 nF bypass per supply pin. Rotate C11 to fit between C5 and C6.
+    pcb.fp_0603("C11", "100nF X7R", 11.125, 2.0, 90, "+3V3_MIC", "GND")
+    pcb.path([(11.125, 2.8), (10.325, 2.8), (10.325, 3.4)], "+3V3_MIC")
 
     # --- Data merge jumpers + B.Cu connector runs + test points ---
     pcb.fp_0603("R13", "0R", 20.0, 23.0, 0, "D0M", "D0")
@@ -1088,8 +1104,8 @@ def build_pcb(variant: str) -> str:
     for hx, hy in ((4, 4), (66, 4), (4, 26), (66, 26)):
         pcb.fp_hole(hx, hy)
 
-    pcb.silk_text(35, 27.5, f"T-016 {spec['mpn']} coupon  rev A")
-    pcb.silk_text(35, 25.9, "no wash; ports stay bare", layer="F.SilkS")
+    pcb.silk_text(35, 27.5, f"T-016 {spec['mpn']} coupon  rev B")
+    pcb.silk_text(35, 25.5, "no wash; ports stay bare", layer="F.SilkS")
     pcb.silk_text(
         35,
         4.0,
@@ -1166,6 +1182,11 @@ def _kicad_pro(name: str) -> str:
         (Path(__file__).resolve().parents[2] / "rx_amp_sim" / "rx_amp_sim.kicad_pro").read_text()
     )
     ref["meta"]["filename"] = f"{name}.kicad_pro"
+    # Explicit coupon process limits, rather than inherited 0.2 mm routing rules.
+    ref["net_settings"]["classes"][0]["clearance"] = 0.127
+    ref["board"]["design_settings"] = {
+        "rules": {"min_clearance": 0.127, "min_through_hole_diameter": 0.25},
+    }
     return json.dumps(ref, indent=2) + "\n"
 
 
@@ -1214,6 +1235,26 @@ def main() -> None:
     for variant in ("SPH", "ICS"):
         d = write_variant(variant)
         print(f"wrote {d}")
+    import os
+    import subprocess
+    import sys
+
+    mac_python = "/Applications/KiCad/KiCad.app/Contents/Frameworks/Python.framework/Versions/3.9/bin/python3.9"
+    kpython = os.environ.get(
+        "KICAD_PYTHON", mac_python if Path(mac_python).exists() else sys.executable
+    )
+    # Isolate each board: the bundled macOS SWIG runtime is not safe to reload
+    # another board after destroying a board containing replaced footprints.
+    for variant in ("sph", "ics"):
+        board = OUT / f"{variant}-coupon/{variant}-coupon.kicad_pcb"
+        result = subprocess.run(
+            [kpython, str(OUT / "place_library_footprints.py"), str(board)],
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode:
+            raise RuntimeError(result.stdout + result.stderr)
+        print(f"canonical library placement: {variant}-coupon")
 
 
 if __name__ == "__main__":

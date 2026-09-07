@@ -1,20 +1,28 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-09-05 by codex/T-019 — independent review reopened engineering.
-Coupon orders are on HOLD: wrong clock-buffer pins and copper shorts confirmed.
-T-022–T-025 ready; T-016 blocked on T-022. Joshua's project edit is preserved._
+_Last updated: 2026-09-06 by codex/T-022 — coupon rev B repairs verified.
+T-022 done; T-016 back at CP-BM human review. No purchase authorized.
+T-023–T-025 remain ready. Joshua's main-project edit is preserved._
 
 ## Now
-- **Current verdict: HOLD coupon orders; continue engineering.** Read
-  `orchestration/review/REVIEW-2026-09-05.md` before using the older guided page.
-  R1: wrong U1 pins; R2: filled-coupon DRC 82/92 violations including five shorts
-  per variant; R3: USB stall kills SRAM fallback; R4: no commanded/timestamped TX;
+- **T-022 done: R1/R2 repaired, coupon rev B back at CP-BM review.** Full filled-board
+  DRC is 0 violations / 0 unconnected / 0 footprint errors on both variants.
+  Independent complete TI pin map, 94-pad schematic/PCB parity, negative tests,
+  actual Gerber/drill/CSV inspection and deterministic regeneration pass. Read
+  `coupons/mic-bakeoff/docs/T-022-release-verification.md` and the updated order
+  package. Stock/price refresh, assembly DFM, purchase approval and physical tests
+  remain Joshua's gates. Do not order historical rev A artifacts.
+- **Product review remains open.** REVIEW-2026-09-05 R3: USB stall kills SRAM
+  fallback; R4: no commanded/timestamped TX;
   R5: idle reads become EOF; R6: finite-record DSP is not a live pipeline.
   Gateware 17/17 and host 5/5 still PASS. New probes reproduce R3/R5/R6.
-- **Next work:** T-022 (mid, priority 1) repairs coupons; T-023 (top, priority 1)
+- **Next work:** T-023 (top, priority 1)
   completes integrated capture; T-024 (mid) completes live host processing;
-  T-025 (mid) prepares a concrete first-echo/bench proposal. T-016 is blocked on
-  T-022 before returning to CP-BM review. No design source or decision changed.
+  T-025 (mid) prepares a concrete first-echo/bench proposal. Coupon design sources
+  changed under T-022; no architecture decision was changed or ratified.
+- **KiCad safety, 2026-09-06:** no KiCad editor process was running before regeneration.
+  Both coupon projects, symbols and footprints changed on disk: reload before
+  opening. `sonar-v1-pcb/sonar.kicad_pro` user edit left untouched.
 - **MA40S4S:** live Murata section 5.3 specifies a 20 Vpp maximum input; treat it
   as a terminal limit and keep this transducer disabled at 12 V. D013 ratification
   remains Joshua's. A human interpretation is not a substitute for this rating.
@@ -28,7 +36,7 @@ T-022–T-025 ready; T-016 blocked on T-022. Joshua's project edit is preserved.
   marked legacy and NOT FOR APPROVAL because P3 has not started.
 - **Historical 2026-08-26 milestone snapshot (engineering reopened above).** P1/P2/P5
   agent work is landed: T-009/T-021/T-012/T-013 done, T-011 done (live-gate defect found +
-  repaired + re-verified), T-016 now blocked on T-022, T-020 simulator milestone
+  repaired + re-verified), T-016 (now back at review after T-022), T-020 simulator milestone
   done (bitstream waits on Vivado host). Remaining: Joshua's CP-B/CP-BM reviews,
   T-007 purchases/host choice, then T-010 (unblocked by CP-BM) → T-014 → T-015
   (cross-family review) → CP-C. T-005 EDA spike: **done, NO-GO for v1** (host `pcb build` confirmed the boundary) — see `spikes/eda-zener/REPORT.md`. **T-017 deep port done 2026-08-27 (codex/terra-t017):** with network+host, Zener builds — 3 blocks (power_supply, rx_preamp_tile, tx_drive) + 3 ICs (AP63301/OPA4171/DRV8876), `pcb build` ✓ 67 components, netlist node-for-node parity vs KiCad, live BOM; importer still emits empty stubs. **Session 2 (authenticated, same day):** diode account live — BOM coverage survey 28/29 lines hit, 23/29 with symbol+footprint assets, all 10 key ICs fully covered; all 3 ICs swapped from hand-written to registry (LCSC) assets via the search→download→vendor flow (component API is search/download only; CSE quota exhausted, LCSC works); rebuild ✓ 67 components with ZERO net/node netlist deltas; BOM match improved to 79.2%. Verdict **GO-WITH-CONDITIONS for v2, strengthened** (account condition drops, multi-unit softens; toolchain-pin/importer/JLC-table remain); D008 stands. Integrated on `main` through merge `1e2a012` and journal close-out `d33867a`.
@@ -63,7 +71,7 @@ T-022–T-025 ready; T-016 blocked on T-022. Joshua's project edit is preserved.
 - **T-008 done (electrical baseline only):** provisional SPH0641LU4H-1 at
   3.072 MHz, 24 mics paired onto 12 DATA lines, 3.3 V CDCLVC1112 clock tree, and
   9.216 MB/s raw contract v1. D011's final MPN/footprint is **not released**.
-- **T-016 blocked on T-022 (2026-09-05); historical package description:** separate SPH and ICS coupon
+- **T-016 historical pre-repair package description (superseded by rev B above):** separate SPH and ICS coupon
   designs, sourcing/order package, runbook, fixture drawing, raw-data schema,
   and the deterministic analyzer are delivered and verified
   (`coupons/mic-bakeoff/check_coupons.sh` exit 0). Caveats called out in the
@@ -133,7 +141,7 @@ T-022–T-025 ready; T-016 blocked on T-022. Joshua's project edit is preserved.
 
 | Ticket | Tier | Notes |
 |---|---|---|
-| T-022 coupon release repair | **mid** | **ready**, priority 1; confirmed U1 pin errors and physical shorts; blocks coupon order |
+| T-022 coupon release repair | **mid** | **done**; rev B full DRC 0/0/0 both variants, pin/geometry/export checks pass; T-016 back at human review |
 | T-023 commanded echo capture | **top** | **ready**, priority 1; independent fallback and TX/control/timestamp integration; coordinate with T-020 |
 | T-024 live host pipeline | **mid** | **ready**; idle/EOF semantics, stateful DSP, bounded capture/replay |
 | T-025 first-echo bench plan | **mid** | **ready**; measurable demo, executable acquisition, equipment/access/cost proposal |
@@ -144,7 +152,7 @@ T-022–T-025 ready; T-016 blocked on T-022. Joshua's project edit is preserved.
 | T-021 host software | mid | **done**; physical FT232H/libusb still untested |
 | T-020 Vivado gateware | **top** | **in-progress**; `make test` PASS (17/17, Icarus 13.0) incl. review S6/S7/S8 hardening (per-domain reset syncs, functional UNISIM-style models, no-clipped-edge clock TB); bitstream + hardware demo wait on the Vivado host |
 | T-008 PDM RX design | **top** | **done**; provisional electrical baseline, not physical MPN release |
-| T-016 mic coupon bake-off | mid | **blocked on T-022**; current U1 pin map and copper shorts prohibit ordering. Historical checks do not establish release readiness. |
+| T-016 mic coupon bake-off | mid | **review (CP-BM)**; repaired rev B verified under T-022; human DFM/sourcing/purchase/bench gates remain |
 | T-010 array sheet | mid | **blocked on T-016**; no provisional footprint/BOM freeze |
 | T-011 digital sheet | **top** | **done**; live-gate repair verified 44/44 vs live master XDC; `scripts/check_pinmap_vs_xdc.py` is the reproducible gate |
 | T-012 power tree | mid | **done**; rails table in `orchestration/rails.md`; CP-C reviews |
@@ -164,9 +172,9 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
 (credits first, then the 5× tier); the 5-hour cap alone is pacing, not a blocker.
 
 ## Blockers
-- **2026-09-05 engineering hold, T-016:** wrong U1 mapping plus physical shorts
-  on both coupons (REVIEW R1/R2). Complete T-022 before purchase review. The
-  historical T-016 `review` descriptions below do not indicate current release.
+- **T-016 human gate:** T-022 resolved the 2026-09-05 electrical hold. Use only
+  verified rev B exports; confirm DFM, current sourcing/quotes and purchase
+  approval before ordering. Physical bake-off and final MPN release remain open.
 - ~~REVIEW-2026-08-26 follow-up (schematic, pre-CP-C): TX_NSLEEP J40.44 vs
   pio48~~ **RESOLVED 2026-08-26 (codex/sol-t020, session 6):** the audit was
   stale. Evidence: `digital.kicad_sch` regenerates content-identical (UUIDs

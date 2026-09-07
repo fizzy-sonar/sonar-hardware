@@ -1,10 +1,21 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-09-06 by codex/T-022 — coupon rev B repairs verified.
-T-022 done; T-016 back at CP-BM human review. No purchase authorized.
-T-023–T-025 remain ready. Joshua's main-project edit is preserved._
+_Last updated: 2026-09-06 by codex/T-026 — read-only fast review delivered.
+T-023–T-025 remain ready; FPGA integration defects still open. No purchase
+authorized. Joshua's main-project edit is preserved._
 
 ## Now
+- **T-026 done: fast, read-only review.** `./scripts/open_review.sh` now opens
+  `build/review/fast.html` immediately without regenerating EDA artifacts. One
+  immediate question: what Cmod/FT232H/Vivado access is available? Answers stay
+  in chat; Joshua explicitly rejected copying/exporting answers. `--full` keeps
+  the visual appendix; `--live` regenerates it and runs gateware. The short brief
+  and two diagrams are under `orchestration/review/`. Fresh gateware 17/17 and
+  pinned host 5/5 pass while independent starvation/host probes still reproduce
+  bugs. No bitstream/physical capture proof. Private Site was registered but
+  **not published**: external upload was denied by permission review; do not
+  retry unless Joshua explicitly authorizes the payload/destination. Local
+  review is complete; optional remote publication is not an engineering gate.
 - **T-022 done: R1/R2 repaired, coupon rev B back at CP-BM review.** Full filled-board
   DRC is 0 violations / 0 unconnected / 0 footprint errors on both variants.
   Independent complete TI pin map, 94-pad schematic/PCB parity, negative tests,
@@ -28,7 +39,7 @@ T-023–T-025 remain ready. Joshua's main-project edit is preserved._
   remains Joshua's. A human interpretation is not a substitute for this rating.
 - Older milestone details below are retained as history. Claims that the agent
   queue is exhausted or coupons are ready for purchase are superseded above.
-- **T-018 done:** run `./scripts/open_review.sh` for the guided CP-B/CP-BM review
+- **T-018 historical appendix:** run `./scripts/open_review.sh --full` for the guided CP-B/CP-BM review
   surface. It freshly generates current schematic/PDF renders, main-board and both
   coupon top/bottom 2D + 3D views, analysis/DSP/gateware evidence, persistent review
   notes, and a paste-ready response. `./scripts/open_review.sh --live` also re-runs
@@ -141,6 +152,7 @@ T-023–T-025 remain ready. Joshua's main-project edit is preserved._
 
 | Ticket | Tier | Notes |
 |---|---|---|
+| T-026 fast human review | **top** coordinator + **cheap** artifacts | **done**; read-only local review, one immediate question, no copy workflow; optional remote upload not authorized |
 | T-022 coupon release repair | **mid** | **done**; rev B full DRC 0/0/0 both variants, pin/geometry/export checks pass; T-016 back at human review |
 | T-023 commanded echo capture | **top** | **ready**, priority 1; independent fallback and TX/control/timestamp integration; coordinate with T-020 |
 | T-024 live host pipeline | **mid** | **ready**; idle/EOF semantics, stateful DSP, bounded capture/replay |

@@ -1,7 +1,7 @@
 ---
 id: T-026
 title: Five-minute decision review and FPGA readout proof plan
-status: in-progress
+status: done
 phase: P5
 tier: top
 priority: 1
@@ -58,4 +58,15 @@ Reduce human review to consequential decisions, not technical rubber-stamping.
   accepting existing ERC/DRC baselines, not declaring the main PCB clean.
 - Publishing: existing new owner-only Site registered once; registry persists
   at `orchestration/review/site/.openai/hosting.json`. Only curated static output
-  is in the separate ignored source checkout. Deployment closeout pending.
+  is in the separate ignored source checkout. External source push failed in
+  sandbox (DNS), then permission review denied escalation because payload and
+  destination lacked explicit authorization. Stopped without workaround; no
+  source uploaded, version saved or Site deployed. User informed and approval
+  requested asynchronously. Optional remote publication remains on hold; local
+  deliverable is complete and does not require it.
+- Closeout: source hash coverage expanded to all current gateware/host/test
+  code, constraints/build scripts, probes and dependency lock; no design source
+  changed between tests and hashing. Page verifies snapshot freshness. Root
+  implementation commit `15eb055`; no root-repository push. Existing KiCad
+  used-designator reorder preserved. Browser visual QA not performed (not
+  requested); SVG XML and page structure/link checks pass.

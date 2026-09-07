@@ -1,5 +1,11 @@
 # Fast review site
 
+Publication status (2026-09-06): registered, **not deployed**. The external Git
+upload was denied by permission review because Joshua had not explicitly
+authorized this payload/destination. No source upload, saved version or
+deployment succeeded. Do not retry or use a different upload path without
+explicit authorization. The local review is the completed deliverable.
+
 The source remains the existing Python/static-HTML review architecture:
 `scripts/gen_fast_review.py`, `../fast-review.html`, and the two
 SVG assets. Do not scaffold a replacement app or publish the parent repository.

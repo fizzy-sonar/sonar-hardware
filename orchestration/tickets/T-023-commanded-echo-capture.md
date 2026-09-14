@@ -1,15 +1,15 @@
 ---
 id: T-023
 title: Integrated commanded TX and USB-independent snapshot capture
-status: ready
+status: in-progress
 phase: P5
 tier: top
 priority: 1
-assignee:
+assignee: codex
 depends_on: []
 needs_human: false
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-13
 ---
 ## Goal
 Resolve REVIEW-2026-09-05 R3/R4 through sonar_top. Coordinate ownership with T-020.
@@ -32,5 +32,11 @@ Full gateware suite plus top-level behavioral tests. Convert the T-019 starvatio
 probe into desired-behavior coverage; prove TX timestamp survives host parsing.
 
 ## Log
+- 2026-09-13 codex: claimed for Joshua's pre-hardware readiness request. First
+  close USB-induced snapshot starvation with behavioral regression coverage;
+  audit readout/build/procurement gates and record an actionable purchase and
+  bring-up sequence. No hardware is available. Full commanded-TX integration,
+  implementation reports and physical evidence must remain explicitly open
+  unless actually delivered. T-020 keeps Vivado/physical ownership.
 - 2026-09-05 codex/T-019: created. TX is tied off and fallback stops on main FIFO
   overflow. Simulation work is not blocked on a Vivado purchase.

@@ -54,6 +54,11 @@ the design. AMD documents a
 generate the configuration from the chosen installer rather than borrowing
 another release's component names.
 
+For the later Dedalus/credits question, see the [project-specific cloud cost
+comparison and unsent email draft](cloud-compute-pricing.md). It compares a
+three-day sprint and intermittent monthly use; no alternative provider has
+been tested with Vivado or selected automatically.
+
 Make a source handoff on this Mac after committing the intended changes:
 
 ```sh

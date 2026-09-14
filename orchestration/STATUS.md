@@ -6,6 +6,12 @@ metadata; T-024/T-025 ready. Joshua prefers Vivado; D012 retained. Next host is
 a proposed x86 Linux VM. No purchases; main-project edit preserved._
 
 ## Now
+- **Cloud cost follow-up, 2026-09-14:** `docs/cloud-compute-pricing.md` compares
+  4 vCPU/8 GiB, 100 GiB disk and 20 compute hours over 3 days versus one month.
+  Linode is about $5.18 for that sprint; Modal's published monthly credit covers
+  the modeled usage, subject to actual tool compatibility. Dedalus student email
+  is drafted only; its free disk cap, access, architecture and storage billing
+  need resolution. No outreach, provisioning, provider selection or spend.
 - **Vivado retained, 2026-09-14:** Joshua owns a school DE10-Lite and Raspberry
   Pi, but prefers Vivado and can arrange a VM. D012/Cmod remains binding; D014
   is not adopted and T-027 must not start. Recommended first host: x86-64 Ubuntu

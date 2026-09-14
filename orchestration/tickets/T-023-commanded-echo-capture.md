@@ -111,3 +111,12 @@ $ verify T-022 source/export SHA256 manifests
   onto main, preserving the user's uncommitted sonar.kicad_pro edit. T-023
   remains in progress; implementation execution belongs to T-020 once SSH and
   Vivado are available, and commanded-TX work can continue independently.
+
+- 2026-09-14 cloud-pricing follow-up: Joshua asked about Dedalus credits and
+  comparable services, then requested project-specific pricing assumptions.
+  Added `docs/cloud-compute-pricing.md` with source-linked rates, computed
+  72-hour/monthly cases, recurring versus introductory credits, storage quotas
+  and an unsent Dedalus email. Key boundary: no provider has run Vivado for us;
+  credits do not resolve quotas, x86/OS support or licensing. No accounts,
+  messages, uploads or spend. Arithmetic computed with Python; documentation
+  checks recorded in the session journal. RTL/constraints unchanged.

@@ -39,3 +39,30 @@ Next: user provisions/accesses an x86 Ubuntu host and AMD installer/license;
 use the source-identified handoff and batch run to obtain the first T-020
 implementation evidence. Independently continue T-023 command/TX/timestamp
 integration and T-024 host reliability repairs. Hold production-PCB release.
+
+## Dedalus / pricing follow-up
+
+Joshua asked whether Dedalus Machines and credits could help, then asked for
+pricing with reasonable project assumptions. Added `docs/cloud-compute-pricing.md`
+and linked it from the run card. Modeled one 4-vCPU/8-GiB job, 100 GiB retained
+disk, 20 compute hours, with 72-hour and 730-hour retention. Live primary pricing
+and Python arithmetic give Linode $5.18/$48; Daytona $7.36/$14.11 before trial
+credits; Modal Sandbox $9.52 usage covered by its $30 recurring credit; Dedalus
+Pro $20.72/$27.30 if storage is outside the included compute credit. Storage
+credit ambiguity and Dedalus's contradictory header/FAQ rate are explicit.
+Daytona's $25 tier-unlock top-up is prepaid balance, not a recurring fee.
+
+Captured Modal Function/Daytona archive cost reductions as conditional options,
+Azure's student credit without inventing a VM quote, and E2B's disk/session
+limits. Dedalus architecture and actual Vivado compatibility remain unknown;
+current docs say sleep drops processes/memory even though marketing suggests
+runtime preservation. Requested admission/larger storage/$100 credit in a local
+email draft only. No message, account, provider deployment or spend occurred.
+No provider SDK or installer was downloaded/executed. Docs-only changes stay on
+main per protocol; source-identified gateware handoff remains valid at 464ba6a.
+
+Verification: exact Decimal arithmetic checks PASS for both scenarios, credit
+and subscription calculations, and Modal CPU normalization. New local Markdown
+link resolves; `git diff --check` passes. The earlier source manifest still
+matches 44/44 and the user's KiCad project hash is unchanged. No simulation or
+physical check was repeated for this documentation-only follow-up.

@@ -1,5 +1,12 @@
 # Before buying Sonar hardware — 2026-09-13
 
+**Update after Joshua's hardware inventory correction:** he owns a DE10-Lite
+from school. **Pause the Cmod purchase.** That board is a credible alternative
+for the next bench milestone, with a Quartus/board-interface port required.
+See [proposed D014](../orchestration/decisions/D014-owned-de10-lite-bench.md).
+The buying recommendation below predates this correction; no platform switch
+or DE10-Lite implementation is yet approved or verified.
+
 **Buy development capability; hold the main sonar PCB.** The architecture is a
 credible experiment and has a staged bring-up path. A working ultrasonic imager,
 its range and its update rate are not validated. Buying a development board does

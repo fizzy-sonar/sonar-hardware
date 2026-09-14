@@ -1,5 +1,9 @@
 # Sonar v1 dev-hardware buy list (review only)
 
+**Latest inventory correction, 2026-09-13:** Joshua owns a DE10-Lite from school.
+Pause the Cmod purchase while the [D014 bench proposal](decisions/D014-owned-de10-lite-bench.md)
+is considered. This does not remove the external USB readout or software gates.
+
 **2026-09-13 purchase-readiness update:** use
 [`docs/pre-hardware-readiness.md`](../docs/pre-hardware-readiness.md) before this
 historical basket. Cmod 410-328-35 is now $104 USD (1,180 shown in stock); Adafruit

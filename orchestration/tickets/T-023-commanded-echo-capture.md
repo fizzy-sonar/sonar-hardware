@@ -83,5 +83,13 @@ SUMMARY: all invoked KiCad commands completed successfully.
 exit=0 (baseline violations accepted; not main-board release)
 
 $ verify T-022 source/export SHA256 manifests
-{"match": 66, "missing": 0, "changed": 0}
+  {"match": 66, "missing": 0, "changed": 0}
 ```
+
+- 2026-09-13 inventory follow-up: Joshua owns a DE10-Lite from school. Checked
+  Terasic resources, MAX 10 DDR support and Quartus availability against primary
+  sources, and inspected the current Xilinx/Cmod wrappers. Feasible bench
+  alternative, not a drop-in target. D014 proposed; T-027 port blocked pending
+  adoption. Pause Cmod procurement. No RTL changed, no Quartus build/pin audit
+  or physical verification performed. Document links and git diff --check pass;
+  earlier tests remain applicable to unchanged RTL, not to a DE10-Lite port.

@@ -2,10 +2,17 @@
 
 _Last updated: 2026-09-13 by codex/T-023 — USB-independent snapshots repaired
 and top-level tested. T-023 remains in progress for commanded TX/status/timing
-metadata; T-024/T-025 ready. Joshua has no hardware and clarified that FPGA/USB
+metadata; T-024/T-025 ready. Joshua owns a school DE10-Lite and clarified that FPGA/USB
 capture reliability is the concern. No purchases; main-project edit preserved._
 
 ## Now
+- **Inventory correction, 2026-09-13:** Joshua owns a DE10-Lite from school.
+  **Pause Cmod procurement.** D014 proposes using it for the next bench milestone;
+  T-027 (top) is blocked pending adoption of that D012 amendment. MAX 10 resources
+  and DDR support are plausible, but Quartus clock/sampler/top/pin port is needed.
+  USB-Blaster does not replace FT232H streaming; SDRAM is not Cmod SRAM. No port,
+  pin audit or physical proof yet. The Cmod target remains intact, and T-023's
+  platform-independent command/metadata work can continue.
 - **T-023 progress, 2026-09-13:** acquisition tap now precedes USB flow control;
   FIFO pointers reset without a running FT clock. Four new actual-top behavioral
   tests pass at 3.072/4.8 MHz with absent/blocked USB, delayed/consecutive
@@ -174,6 +181,7 @@ capture reliability is the concern. No purchases; main-project edit preserved._
 |---|---|---|
 | T-026 fast human review | **top** coordinator + **cheap** artifacts | **done**; read-only local review, one immediate question, no copy workflow; optional remote upload not authorized |
 | T-022 coupon release repair | **mid** | **done**; rev B full DRC 0/0/0 both variants, pin/geometry/export checks pass; T-016 back at human review |
+| T-027 DE10-Lite bench port | **top** | **blocked on proposed D014**; owned-board alternative, no port started |
 | T-023 commanded echo capture | **top** | **in-progress**, priority 1; snapshot independence repaired/tested, commanded TX/control/timestamp still open; coordinate with T-020 |
 | T-024 live host pipeline | **mid** | **ready**; idle/EOF semantics, stateful DSP, bounded capture/replay |
 | T-025 first-echo bench plan | **mid** | **ready**; measurable demo, executable acquisition, equipment/access/cost proposal |

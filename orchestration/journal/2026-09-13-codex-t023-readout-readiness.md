@@ -65,3 +65,19 @@ Retain current platform pending proof. Development hardware can precede acoustic
 validation; production PCB cannot. Cmod Micro-B conflicts with a strict all-USB-C
 rule, so do not silently substitute a board or assume that preference was waived.
 No purchase, spend, external publication, message or ratification performed.
+
+## Follow-up: existing school DE10-Lite
+
+Joshua corrected the inventory: he owns a DE10-Lite. Manufacturer specs support
+feasibility (MAX 10 50K logic elements, 1,638 Kbit M9K, 64 MB SDRAM, 3.3 V
+header); MAX 10 GPIO Lite supports hard DDR capture. Existing clock/sampler/top
+wrappers are Xilinx/Cmod-specific and cannot just be compiled for MAX 10.
+USB-Blaster is a programming/debug connection, not the FT232H payload link.
+
+Recorded proposed D014 and blocked T-027 for a bounded Quartus bench port; no
+ratified platform was changed. Updated buying/readiness guidance to pause Cmod
+procurement. Start with small on-chip-memory capture/readback, then FT232H and
+coupons; avoid making an SDRAM controller the initial prerequisite. Exact
+clock-capable header pins, timing, clock plan and school Quartus host access
+remain to establish. No HDL or board files changed in this follow-up. Primary
+source links and limits are in D014; document links and diff whitespace checked.

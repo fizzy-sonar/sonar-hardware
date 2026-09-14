@@ -1,8 +1,9 @@
 # Sonar v1 dev-hardware buy list (review only)
 
-**Latest inventory correction, 2026-09-13:** Joshua owns a DE10-Lite from school.
-Pause the Cmod purchase while the [D014 bench proposal](decisions/D014-owned-de10-lite-bench.md)
-is considered. This does not remove the external USB readout or software gates.
+**Latest direction, 2026-09-14:** Joshua owns a DE10-Lite and Raspberry Pi but
+prefers Vivado. Retain D012/Cmod; D014 is not adopted. First run the x86 cloud
+implementation diagnostic using the [Vivado run card](../docs/vivado-validation.md),
+then reassess the development-board purchase. No DE10-Lite port is authorized.
 
 **2026-09-13 purchase-readiness update:** use
 [`docs/pre-hardware-readiness.md`](../docs/pre-hardware-readiness.md) before this

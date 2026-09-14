@@ -1,18 +1,18 @@
 # Before buying Sonar hardware — 2026-09-13
 
-**Update after Joshua's hardware inventory correction:** he owns a DE10-Lite
-from school. **Pause the Cmod purchase.** That board is a credible alternative
-for the next bench milestone, with a Quartus/board-interface port required.
-See [proposed D014](../orchestration/decisions/D014-owned-de10-lite-bench.md).
-The buying recommendation below predates this correction; no platform switch
-or DE10-Lite implementation is yet approved or verified.
+**Latest direction, 2026-09-14:** Joshua owns a school DE10-Lite and a Raspberry
+Pi, but prefers Vivado. Retain ratified D012 and the Cmod target; D014 is not
+adopted and the DE10-Lite port must not start. Run the first implementation
+checks on an x86 Linux VM before committing to more FPGA hardware. See the
+[Vivado host and validation run card](vivado-validation.md). The earlier Cmod
+pause was for evaluating the owned-board alternative, not a platform change.
 
 **Buy development capability; hold the main sonar PCB.** The architecture is a
 credible experiment and has a staged bring-up path. A working ultrasonic imager,
 its range and its update rate are not validated. Buying a development board does
 not require first proving the acoustic design; ordering the production array does.
-Joshua reports no hardware and clarified that his concern is **FPGA/USB capture
-reliability**, rather than a future ASIC. No purchase, account, remote upload or decision
+Joshua clarified that his concern is **FPGA/USB capture reliability**, rather
+than a future ASIC. No purchase, account, remote upload or decision
 ratification was performed in this session.
 
 ## Decision in three stages

@@ -9,13 +9,17 @@ assignee:
 depends_on: []
 needs_human: false
 created: 2026-09-13
-updated: 2026-09-13
+updated: 2026-09-14
 ---
 
 ## Goal
 If D014 is adopted, use Joshua's owned DE10-Lite to prove the digital capture
 path before another FPGA purchase. Blocked on proposed D014; do not implement
 a replacement for ratified D012 without Joshua adopting that change.
+
+**Current direction, 2026-09-14:** Joshua retains his Vivado preference. D014
+is not adopted; this port is not selected and must not start. Use the x86
+Vivado host path in `docs/vivado-validation.md` for the next implementation work.
 
 ## Definition of Done
 - Exact board revision, manufacturer QSF/schematic/pin audit, clock-capable PDM

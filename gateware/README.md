@@ -75,11 +75,12 @@ sticky through the low interval and clear only when the next capture starts.
 
 ## Vivado project generation
 
-Vivado is not available on macOS. On an x86 Linux/Windows Vivado host:
+Vivado does not run natively on macOS. An x86-64 Linux cloud VM can perform
+the build without a board attached; see the [host setup and validation run
+card](../docs/vivado-validation.md). On a supported Vivado host:
 
 ```sh
 cd gateware
-vivado -mode batch -source vivado/create_project.tcl
 vivado -mode batch -source vivado/build_bitstream.tcl
 ```
 
@@ -87,6 +88,10 @@ vivado -mode batch -source vivado/build_bitstream.tcl
 timing-only placeholder XDC when no real pin map exists. `build_bitstream.tcl`
 refuses to run until T-011 provides `constraints/sonar_cmod_a7.xdc`; there are no
 fabricated `PACKAGE_PIN` values in this branch.
+
+The build script already creates the project. A successful bitstream is not
+complete signoff: external I/O timing constraints, setup/hold and unconstrained
+path review, CDC/DRC, RAM inference and vendor-model checks remain T-020 gates.
 
 ## SRAM snapshot fallback (D012)
 

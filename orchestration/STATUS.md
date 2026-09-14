@@ -1,18 +1,18 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-09-13 by codex/T-023 — USB-independent snapshots repaired
+_Last updated: 2026-09-14 by codex/T-023 — USB-independent snapshots repaired
 and top-level tested. T-023 remains in progress for commanded TX/status/timing
-metadata; T-024/T-025 ready. Joshua owns a school DE10-Lite and clarified that FPGA/USB
-capture reliability is the concern. No purchases; main-project edit preserved._
+metadata; T-024/T-025 ready. Joshua prefers Vivado; D012 retained. Next host is
+a proposed x86 Linux VM. No purchases; main-project edit preserved._
 
 ## Now
-- **Inventory correction, 2026-09-13:** Joshua owns a DE10-Lite from school.
-  **Pause Cmod procurement.** D014 proposes using it for the next bench milestone;
-  T-027 (top) is blocked pending adoption of that D012 amendment. MAX 10 resources
-  and DDR support are plausible, but Quartus clock/sampler/top/pin port is needed.
-  USB-Blaster does not replace FT232H streaming; SDRAM is not Cmod SRAM. No port,
-  pin audit or physical proof yet. The Cmod target remains intact, and T-023's
-  platform-independent command/metadata work can continue.
+- **Vivado retained, 2026-09-14:** Joshua owns a school DE10-Lite and Raspberry
+  Pi, but prefers Vivado and can arrange a VM. D012/Cmod remains binding; D014
+  is not adopted and T-027 must not start. Recommended first host: x86-64 Ubuntu
+  22.04.5, 8 GB/4 vCPU/160 GB Linode, Vivado 2026.1 BASIC. This Mac/Pi are ARM;
+  an ordinary ARM VM does not solve tool support. See `docs/vivado-validation.md`
+  for exact handoff/build commands, source provenance and remaining signoff gates.
+  No VM, license enrollment, external upload or Vivado run has occurred.
 - **T-023 progress, 2026-09-13:** acquisition tap now precedes USB flow control;
   FIFO pointers reset without a running FT clock. Four new actual-top behavioral
   tests pass at 3.072/4.8 MHz with absent/blocked USB, delayed/consecutive
@@ -181,7 +181,7 @@ capture reliability is the concern. No purchases; main-project edit preserved._
 |---|---|---|
 | T-026 fast human review | **top** coordinator + **cheap** artifacts | **done**; read-only local review, one immediate question, no copy workflow; optional remote upload not authorized |
 | T-022 coupon release repair | **mid** | **done**; rev B full DRC 0/0/0 both variants, pin/geometry/export checks pass; T-016 back at human review |
-| T-027 DE10-Lite bench port | **top** | **blocked on proposed D014**; owned-board alternative, no port started |
+| T-027 DE10-Lite bench port | **top** | **blocked; not selected**; D014 not adopted, Joshua prefers Vivado |
 | T-023 commanded echo capture | **top** | **in-progress**, priority 1; snapshot independence repaired/tested, commanded TX/control/timestamp still open; coordinate with T-020 |
 | T-024 live host pipeline | **mid** | **ready**; idle/EOF semantics, stateful DSP, bounded capture/replay |
 | T-025 first-echo bench plan | **mid** | **ready**; measurable demo, executable acquisition, equipment/access/cost proposal |

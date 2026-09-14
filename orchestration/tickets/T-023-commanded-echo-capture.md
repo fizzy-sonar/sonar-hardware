@@ -9,7 +9,7 @@ assignee: codex
 depends_on: []
 needs_human: false
 created: 2026-09-05
-updated: 2026-09-13
+updated: 2026-09-14
 ---
 ## Goal
 Resolve REVIEW-2026-09-05 R3/R4 through sonar_top. Coordinate ownership with T-020.
@@ -93,3 +93,21 @@ $ verify T-022 source/export SHA256 manifests
   adoption. Pause Cmod procurement. No RTL changed, no Quartus build/pin audit
   or physical verification performed. Document links and git diff --check pass;
   earlier tests remain applicable to unchanged RTL, not to a DE10-Lite port.
+
+- 2026-09-14 Vivado/branch follow-up: Joshua prefers Vivado and has a Raspberry
+  Pi, can run a local VM or arrange Linode. Retained ratified D012/Cmod; D014
+  remains unadopted and T-027 blocked/not selected. Added
+  `docs/vivado-validation.md`: supported x86 Linux host, current free BASIC
+  license scope, 8 GB cloud sizing, source archive/hashes, exact existing batch
+  entry point, evidence retrieval and incomplete I/O/timing/CDC signoff gates.
+  No Vivado run, VM/account creation or remote transfer performed. Existing
+  simulation/host evidence is still applicable: source SHA256 manifest 44/44
+  matches; local Markdown links 9/9 and `git diff --check` pass. No RTL, XDC or
+  KiCad changes in this follow-up. Full tests were not repeated for documentation
+  changes; prior 21/21 gateware and 5/5 host outcomes are retained with their
+  physical-validation limits. Branch was required by orchestration/README step
+  4; main was an ancestor (0 main-only / 2 branch-only commits before this
+  follow-up). Close out with a local fast-forward of the committed checkpoint
+  onto main, preserving the user's uncommitted sonar.kicad_pro edit. T-023
+  remains in progress; implementation execution belongs to T-020 once SSH and
+  Vivado are available, and commanded-TX work can continue independently.

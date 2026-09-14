@@ -9,6 +9,15 @@ supersedes: D012 (bench platform and toolchain only, if ratified)
 
 ## Proposal
 
+**2026-09-14 disposition:** not adopted; Joshua says he still prefers Vivado.
+Keep ratified D012. This proposal is retained as an available alternative,
+not the current next step; T-027 stays blocked and must not start. Joshua also
+has a Raspberry Pi and can arrange a VM. The current recommendation is an
+x86 Linux Vivado build before buying another FPGA board; see
+[the validation run card](../../docs/vivado-validation.md).
+
+### Original proposal, 2026-09-13 (not adopted)
+
 Joshua now reports owning a DE10-Lite from school. Pause the Cmod purchase and
 use the existing board for initial digital/coupon validation, after a bounded
 Quartus port and pin/timing audit. This is a recommendation, not a ratification

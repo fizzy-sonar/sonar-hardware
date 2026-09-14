@@ -120,3 +120,17 @@ $ verify T-022 source/export SHA256 manifests
   credits do not resolve quotas, x86/OS support or licensing. No accounts,
   messages, uploads or spend. Arithmetic computed with Python; documentation
   checks recorded in the session journal. RTL/constraints unchanged.
+
+- 2026-09-14 forward-plan follow-up: Joshua confirmed home desk only, US$250
+  for cloud/Cmod/FT232H/interconnect excluding coupons/equipment, and 2–4
+  hands-on hours/week. Added docs/next-steps.md and linked from ROADMAP; updated
+  T-025 with assembled-wiring and temporary-instrument-access requirements.
+  Target first Vivado reports this week, checked desk capture by early October,
+  conditional first echo Oct 12–25. These are estimates, not background jobs,
+  completed gates or vendor delivery promises. openFPGALoader's primary docs
+  list cmoda7_35t and macOS install, providing a candidate local programming
+  path still awaiting a physical test. Plan links 3/3, budget sum US$250,
+  source hashes 44/44 and diff whitespace checks pass; KiCad unchanged. No
+  HDL/host changes, installs, purchases, provider setup or messages this turn.
+  Next engineering work remains actual command/status/TX-event integration;
+  execute T-020 on the x86 host once available and then close T-024 host defects.

@@ -128,9 +128,11 @@ and chunked-DSP defects (T-024) and commanded TX/metadata (T-023) remain open.
 
 A cloud machine also cannot directly see a Cmod plugged into this Mac. Before
 the physical bench session, establish and test a local programming/debug path
-or an appropriate remote cable connection. A Pi/open-source loader may help,
-but exact Cmod/cable support has not been verified here. Do not assume Vivado's
-hardware server runs on ARM or that the DE10-Lite's USB-Blaster programs Cmod.
+or an appropriate remote cable connection. Follow-up source review confirms
+openFPGALoader lists Cmod A7-35T and documents macOS installation; see
+[`next-steps.md`](next-steps.md). Actual USB access/programming remains untested.
+Do not assume Vivado's hardware server runs on ARM or that the DE10-Lite's
+USB-Blaster programs Cmod.
 
 The immediate order is: **x86 Vivado diagnostic build → repair/review the
 implementation evidence → development-board counter tests → microphone coupon

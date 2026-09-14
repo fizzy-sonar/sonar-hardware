@@ -6,6 +6,14 @@ metadata; T-024/T-025 ready. Joshua prefers Vivado; D012 retained. Next host is
 a proposed x86 Linux VM. No purchases; main-project edit preserved._
 
 ## Now
+- **Execution plan, 2026-09-14:** Joshua confirmed **home desk only**, **US$250**
+  for cloud/development modules/cables/adapters (excluding coupons/equipment),
+  and **2–4 hands-on hours/week**. `docs/next-steps.md` defines the staged calendar:
+  first Vivado reports this week, target checked digital capture by early October,
+  conditional first echo Oct 12–25 after assembled coupons and measurement access.
+  Next user inputs: usable x86 SSH host, AMD installer/license access and shipping
+  country/postal code. openFPGALoader officially lists Cmod A7-35T plus macOS
+  installation; actual local programming remains untested. No lab access assumed.
 - **Cloud cost follow-up, 2026-09-14:** `docs/cloud-compute-pricing.md` compares
   4 vCPU/8 GiB, 100 GiB disk and 20 compute hours over 3 days versus one month.
   Linode is about $5.18 for that sprint; Modal's published monthly credit covers

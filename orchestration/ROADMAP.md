@@ -4,6 +4,12 @@ Full rationale in `/PLAN.md`. This file tracks execution. A phase may start only
 its entry gate is satisfied. Human checkpoints (CP-x) are the only places Joshua is
 required; everything else is agent work.
 
+**Current short-term execution plan (2026-09-14):**
+[`docs/next-steps.md`](../docs/next-steps.md) applies Joshua's home-desk-only
+constraint, US$250 first-stage ceiling and 2–4 hours/week. Target digital
+bring-up by early October; first echo is conditional on assembled coupons and
+measurement access. The checkpoints below remain binding.
+
 | Phase | Scope (tickets) | Entry gate | Exit gate |
 |---|---|---|---|
 | **P1** Analysis & RX design | T-001, T-002, T-006, T-007, T-008 (T-005 optional) | — (open now) | Link budget + provisional PDM RX baseline and quantitative mic gate reviewed at **CP-B**; physical MPN release moves to T-016 |

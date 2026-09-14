@@ -66,3 +66,28 @@ and subscription calculations, and Modal CPU normalization. New local Markdown
 link resolves; `git diff --check` passes. The earlier source manifest still
 matches 44/44 and the user's KiCad project hash is unchanged. No simulation or
 physical check was repeated for this documentation-only follow-up.
+
+## Timeline and confirmed human constraints
+
+Joshua requested the forward plan, timeline and required inputs. Confirmed via
+chat: home desk only; US$250 for cloud/dev modules/cables/adapters, excluding
+coupons/instruments; 2–4 hands-on hours/week. Added docs/next-steps.md, linked
+ROADMAP/run card and updated T-025. Initial dev purchase follows initial fit,
+pin review and a programming plan; complete implementation and host reliability
+checks can proceed during delivery. Target desk capture by early October and
+first echo Oct 12–25, explicitly conditional on assembled coupon/source and
+temporary measurement access. No full-array date or acoustic proof is promised.
+
+Primary openFPGALoader board docs explicitly list cmoda7_35t; install docs show
+macOS Homebrew support. This narrows the local-programming unknown to an actual
+installation/USB/board test. No program was installed or hardware tested. No
+school lab, free assembly or home soldering is assumed. Budget envelopes sum
+to US$250; a separate actual delivered basket needs shipping destination.
+
+Verification: local plan links 3/3; budget sum check PASS; prior source evidence
+44/44 hashes unchanged; user KiCad hash unchanged; git diff --check PASS. An
+initial multi-file patch failed its final context check and was atomic (git
+status confirmed no partial application); corrected patch then applied. Work
+is documentation on main. No account, spend, upload, message, gate ratification
+or background execution. Next inputs are x86 SSH access, AMD installer/license
+access and shipping country/postal code; local T-023 engineering can continue.

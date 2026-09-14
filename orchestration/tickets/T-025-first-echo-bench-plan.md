@@ -9,7 +9,7 @@ assignee:
 depends_on: []
 needs_human: true
 created: 2026-09-05
-updated: 2026-09-05
+updated: 2026-09-14
 ---
 ## Goal
 Prepare REVIEW-2026-09-05's concrete first-echo bench proposal within existing
@@ -44,3 +44,10 @@ and sample rate at each candidate clock. End at review for Joshua's choices.
   adapter, FIFO EEPROM configuration, separate safe TX driver and calibrated
   lab access. Joshua has no hardware. Sources/wiring audited in
   docs/ft232h-bench-preflight.md; no physical acceptance or purchases performed.
+- 2026-09-14 planning inputs: Joshua has only a home desk and 2–4 hands-on
+  hours/week. US$250 is for initial cloud/development modules/interconnect;
+  coupons and equipment are excluded. See docs/next-steps.md. Source assembled
+  headers/adapters and a safe standalone TX driver; propose temporary borrowed,
+  rented or service-based measurement access with a separate quote. No school
+  lab, home soldering or calibrated instruments may be assumed. First echo
+  Oct 12–25 is conditional; no orders or gate changes have occurred.

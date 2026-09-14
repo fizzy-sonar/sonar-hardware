@@ -32,11 +32,56 @@ Full gateware suite plus top-level behavioral tests. Convert the T-019 starvatio
 probe into desired-behavior coverage; prove TX timestamp survives host parsing.
 
 ## Log
+- 2026-09-05 codex/T-019: created. TX is tied off and fallback stops on main FIFO
+  overflow. Simulation work is not blocked on a Vivado purchase.
 - 2026-09-13 codex: claimed for Joshua's pre-hardware readiness request. First
   close USB-induced snapshot starvation with behavioral regression coverage;
   audit readout/build/procurement gates and record an actionable purchase and
   bring-up sequence. No hardware is available. Full commanded-TX integration,
   implementation reports and physical evidence must remain explicitly open
   unless actually delivered. T-020 keeps Vivado/physical ownership.
-- 2026-09-05 codex/T-019: created. TX is tied off and fallback stops on main FIFO
-  overflow. Simulation work is not blocked on a Vivado purchase.
+
+- 2026-09-13 codex close-out: repaired acquisition tap independence and FIFO
+  reset/initialization for absent FT clock; four actual-top regressions added.
+  Current purchase/bring-up report: docs/pre-hardware-readiness.md; FT232H
+  adapter/EEPROM audit: docs/ft232h-bench-preflight.md. FPGA/USB reliability is
+  Joshua's clarified concern. No hardware is available. Ticket remains
+  in-progress: arm/fire/read/status, driver wake/fault/limits, real TX sample
+  timestamp and host contract still required. Next: add the actual control and
+  event metadata path without changing the approved architecture.
+
+  Verification (real output excerpts; full logs in
+  orchestration/review/evidence-2026-09-13-t023/):
+
+```text
+$ make -C gateware test
+PASS SRAM snapshot full 512 KiB window bytes=524334 bit-exact
+PASS top snapshot 3072000 Hz FT_PRESENT=0: delayed/two captures, SRAM/UART counter+CRC, reconnect/reset, TX idle
+PASS top snapshot 3072000 Hz FT_PRESENT=1: delayed/two captures, SRAM/UART counter+CRC, reconnect/reset, TX idle
+PASS top snapshot 4800000 Hz FT_PRESENT=0: delayed/two captures, SRAM/UART counter+CRC, reconnect/reset, TX idle
+PASS top snapshot 4800000 Hz FT_PRESENT=1: delayed/two captures, SRAM/UART counter+CRC, reconnect/reset, TX idle
+PASS sonar_top <-> XDC port bijection: 28 ports / 73 bits exact (active get_ports only, DNP block excluded)
+exit=0; total PASS lines=21
+
+$ vvp build/t023-mutation   # old USB-gated tap, negative control
+FATAL: gateware/sim/tb_top_snapshot.sv:122: snapshot length 48, want 240
+       Time: 5891855200  Scope: tb_top_snapshot.capture
+exit=1 (expected)
+
+$ PYTHONPATH=host uv run --offline python -m unittest discover -s tests -v
+----------------------------------------------------------------------
+Ran 5 tests in 0.564s
+
+OK
+
+$ PYTHONPATH=host uv run --offline python orchestration/review/evidence-2026-09-05/probe_host.py
+REPRODUCED: transient empty read discards subsequent valid data: stream ended after 0 frames; requested 1
+REPRODUCED: chunked vs whole decimator max difference=0.233102
+
+$ bash scripts/check.sh
+SUMMARY: all invoked KiCad commands completed successfully.
+exit=0 (baseline violations accepted; not main-board release)
+
+$ verify T-022 source/export SHA256 manifests
+{"match": 66, "missing": 0, "changed": 0}
+```

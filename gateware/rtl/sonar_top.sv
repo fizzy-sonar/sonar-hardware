@@ -188,8 +188,9 @@ module sonar_top #(
     wire ft_d_oe_unused = ft_d_oe;
 
     // 512 KiB SRAM snapshot fallback (D012). The SRAM/UART clock domain is
-    // held in reset until the MMCM locks; capture frames tap the accepted
-    // stream so a snapshot can never observe frames the primary path dropped.
+    // held in reset until the MMCM locks. Acquisition taps precede USB flow
+    // control, so a stopped/absent USB path cannot starve a later snapshot.
+    // Snapshot completeness is checked by its own FIFO/count/error mechanism.
     sram_snapshot #(
         .PDM_CLOCK_HZ(PDM_CLOCK_HZ)
     ) snapshot_i (
@@ -209,10 +210,10 @@ module sonar_top #(
     assign led0_g = capture_stopped;
     assign led0_r = tx_limit_fault | ~tx_nfault;
 
-    // T-013-released envelope for the MA40S4S default (orchestration/
-    // tx-limits.md): 40 kHz ceiling, amplitude 187/256 (<=20 Vpp), 10 ms
-    // bursts. Idle until a control plane drives start; both bridge inputs stay
-    // low and nSLEEP holds the driver asleep.
+    // TX remains disabled pending T-023's command/fault/wake integration.
+    // Historical amplitude 187/256 is NOT terminal-voltage protection:
+    // MA40S4S is prohibited at 12 V VM (24 Vpp), regardless of PWM duty.
+    // D013 is still proposed. Both bridge inputs and nSLEEP stay low here.
     tx_nco_pwm #(
         .PHASE_BITS(24),
         .MAX_PHASE_INCREMENT(24'd55924), // <=40 kHz at 12 MHz

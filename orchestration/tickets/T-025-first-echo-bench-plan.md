@@ -36,3 +36,11 @@ and sample rate at each candidate clock. End at review for Joshua's choices.
 ## Log
 - 2026-09-05 codex/T-019: created. Pico default 5.333 ms window needs revision
   or a defined delayed-acquisition sequence for a 1–3 m demonstration.
+- 2026-09-13 codex/T-023: new purchase/readiness brief in
+  docs/pre-hardware-readiness.md. Account for 45.55 s/full snapshot at the current
+  Cmod UART divisor; 1 Hz needs another validated drain/window. The clock/24
+  sample rates are 128/200 kHz; current YAML fixes 128 kHz. Budget clock tolerance
+  at microphone mode boundaries, assembled THT headers, a short grounded FT245
+  adapter, FIFO EEPROM configuration, separate safe TX driver and calibrated
+  lab access. Joshua has no hardware. Sources/wiring audited in
+  docs/ft232h-bench-preflight.md; no physical acceptance or purchases performed.

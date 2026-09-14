@@ -33,3 +33,9 @@ processing benchmark, deterministic capture/replay demo.
 ## Log
 - 2026-09-05 codex/T-019: created; empty-read EOF and 0.233102 chunked/whole
   decimator difference reproduced. Existing five host tests pass.
+- 2026-09-13 codex/T-023: FPGA/USB reliability is Joshua's stated concern. Both
+  host defects still reproduce; baseline host suite is 5/5. FTDI section 4.13
+  requires FT245 mode in EEPROM before set_bitmode(0, 0x40); current transport
+  does not verify that prerequisite. Add configuration preflight/readback,
+  device cleanup and known-pattern soak CLI to integration work. Source and
+  adapter map: docs/ft232h-bench-preflight.md. No physical bridge available.

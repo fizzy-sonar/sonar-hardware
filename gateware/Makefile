@@ -80,6 +80,18 @@ test: $(BUILD_DIR)
 		-o $(BUILD_DIR)/tb_sram_snapshot_full $(RTL) \
 		sim/is61wv5128bll_model.sv sim/tb_sram_snapshot.sv
 	$(VVP) $(BUILD_DIR)/tb_sram_snapshot_full
+	@for rate in 3072000 4800000; do \
+		for present in 0 1; do \
+			$(IVERILOG) -g2012 -Wall -DXILINX -s tb_top_snapshot \
+				-Ptb_top_snapshot.PDM_CLOCK_HZ=$$rate \
+				-Ptb_top_snapshot.FT_PRESENT=$$present \
+				-o $(BUILD_DIR)/tb_top_snapshot_$$rate\_$$present $(RTL) \
+				rtl/pdm_clock_7series.sv rtl/sonar_top.sv \
+				sim/xilinx_7series_stubs.sv sim/is61wv5128bll_model.sv \
+				sim/tb_top_snapshot.sv && \
+			$(VVP) $(BUILD_DIR)/tb_top_snapshot_$$rate\_$$present || exit $$?; \
+		done; \
+	done
 	$(IVERILOG) -g2012 -Wall -DXILINX -s sonar_top -t null \
 		$(RTL) rtl/pdm_clock_7series.sv rtl/sonar_top.sv \
 		sim/xilinx_7series_stubs.sv

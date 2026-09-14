@@ -1,5 +1,22 @@
 # Gateware testbench notes (T-020)
 
+## T-023 integrated snapshot regression (2026-09-13)
+
+`tb_top_snapshot.sv` adds four behavioral runs through the real `sonar_top`:
+3.072/4.8 MHz, FT clock absent from power-on or clock present with TXE blocked.
+The actual 16,384-frame FIFO fills before a delayed button trigger; two snapshots
+must still traverse SRAM and UART with tagged counters and both CRCs intact.
+USB reconnection retains sticky stream failure; manual reset clears it and a
+third snapshot succeeds. TX stays asleep. Startup/button/UART time and snapshot
+length are compressed; no internal signal is forced. The full-window SRAM test
+remains separate. Restoring the old `accepting && sampled_valid` tap produces
+`snapshot length 48, want 240`, proving this regression detects starvation.
+
+The FIFO reset repair separates synchronous RAM accesses from asynchronously
+asserted pointer/flag reset, with explicit configuration-time pointer values for
+a clock absent at time zero. `rd_data` is unspecified outside `rd_valid`. Actual
+Vivado BRAM inference and reset/CDC timing remain T-020 gates.
+
 ## Port bijection gate
 
 `check_ports.py` (wired into `make test`, 12th check) asserts an exact

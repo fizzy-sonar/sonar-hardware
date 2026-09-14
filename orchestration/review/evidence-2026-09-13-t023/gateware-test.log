@@ -1,0 +1,112 @@
+iverilog -g2012 -Wall -s tb_sampler_packer \
+		-Ptb_sampler_packer.PDM_CLOCK_HZ=3072000 \
+		-o build/tb_sampler_3072 rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv sim/tb_sampler_packer.sv
+vvp build/tb_sampler_3072
+PASS sampler/tone rate=3072000Hz frames=80 payload=73728000b/s checksum=cff870
+sim/tb_sampler_packer.sv:132: $finish called at 27506440 (1ps)
+iverilog -g2012 -Wall -s tb_sampler_packer \
+		-Ptb_sampler_packer.PDM_CLOCK_HZ=4800000 \
+		-o build/tb_sampler_4800 rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv sim/tb_sampler_packer.sv
+vvp build/tb_sampler_4800
+PASS sampler/tone rate=4800000Hz frames=80 payload=115200000b/s checksum=cff870
+sim/tb_sampler_packer.sv:132: $finish called at 17604054 (1ps)
+iverilog -g2012 -Wall -DXILINX -s tb_sampler_packer \
+		-Ptb_sampler_packer.PDM_CLOCK_HZ=3072000 \
+		-o build/tb_sampler_3072_xilinx rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv \
+		sim/xilinx_7series_stubs.sv sim/tb_sampler_packer.sv
+vvp build/tb_sampler_3072_xilinx
+PASS sampler/tone rate=3072000Hz frames=80 payload=73728000b/s checksum=cff870
+sim/tb_sampler_packer.sv:132: $finish called at 27506442 (1ps)
+iverilog -g2012 -Wall -DXILINX -s tb_sampler_packer \
+		-Ptb_sampler_packer.PDM_CLOCK_HZ=4800000 \
+		-o build/tb_sampler_4800_xilinx rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv \
+		sim/xilinx_7series_stubs.sv sim/tb_sampler_packer.sv
+vvp build/tb_sampler_4800_xilinx
+PASS sampler/tone rate=4800000Hz frames=80 payload=115200000b/s checksum=cff870
+sim/tb_sampler_packer.sv:132: $finish called at 17604056 (1ps)
+iverilog -g2012 -Wall -s tb_fifo_ft245 \
+		-o build/tb_fifo_ft245 rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv sim/tb_fifo_ft245.sv
+vvp build/tb_fifo_ft245
+PASS async FIFO/packer/FT245 backpressure bytes=24
+sim/tb_fifo_ft245.sv:117: $finish called at 705000 (1ps)
+iverilog -g2012 -Wall -s tb_stream_core \
+		-o build/tb_stream_core rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv sim/tb_stream_core.sv
+vvp build/tb_stream_core
+PASS core SNR1 + 100 exact frames survive long/random TXE# stalls
+sim/tb_stream_core.sv:166: $finish called at 10855000 (1ps)
+iverilog -g2012 -Wall -s tb_overflow_stop \
+		-o build/tb_overflow_stop rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv sim/tb_overflow_stop.sv
+vvp build/tb_overflow_stop
+PASS overflow stops and drains exact 8-frame prefix; capture restart increments SNR1 ID
+sim/tb_overflow_stop.sv:159: $finish called at 4685000 (1ps)
+iverilog -g2012 -Wall -s tb_stream_header \
+		-o build/tb_stream_header rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv sim/tb_stream_header.sv
+vvp build/tb_stream_header
+PASS SNR1 exact 32-byte headers start once per capture and hold under backpressure
+sim/tb_stream_header.sv:81: $finish called at 785000 (1ps)
+iverilog -g2012 -Wall -s tb_uart_snapshot \
+		-o build/tb_uart_snapshot rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv sim/tb_uart_snapshot.sv
+rtl/uart_snapshot.sv:114: warning: @* is sensitive to all 4 words in array 'memory'.
+rtl/uart_snapshot.sv:115: warning: @* is sensitive to all 4 words in array 'memory'.
+rtl/uart_snapshot.sv:116: warning: @* is sensitive to all 4 words in array 'memory'.
+vvp build/tb_uart_snapshot
+PASS UART SNP1 snapshot bytes=60 CRCs verified
+sim/tb_uart_snapshot.sv:122: $finish called at 48735000 (1ps)
+iverilog -g2012 -Wall -s tb_clock_tx \
+		-o build/tb_clock_tx rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv sim/tb_clock_tx.sv
+vvp build/tb_clock_tx
+PASS exact 1.536/3.072/4.8MHz plan, 50ms+10ms startup, and bounded TX chirp safety
+sim/tb_clock_tx.sv:158: $finish called at 806000 (1ps)
+iverilog -g2012 -Wall -s tb_reset_sync \
+		-o build/tb_reset_sync rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv sim/tb_reset_sync.sv
+vvp build/tb_reset_sync
+PASS reset_sync/release edges=2/domain + debounce clean
+sim/tb_reset_sync.sv:179: $finish called at 9958513 (1ps)
+iverilog -g2012 -Wall -s tb_pdm_clock \
+		-o build/tb_pdm_clock rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv rtl/pdm_clock_7series.sv \
+		sim/xilinx_7series_stubs.sv sim/tb_pdm_clock.sv
+vvp build/tb_pdm_clock
+PASS pdm_clock waveform: pulses=68 std=17 run10us=37 sram2us=1964, no clipped edges
+sim/tb_pdm_clock.sv:125: $finish called at 42875327 (1ps)
+iverilog -g2012 -Wall -s tb_tx_duty_bound \
+		-o build/tb_tx_duty_bound rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv sim/tb_tx_duty_bound.sv
+vvp build/tb_tx_duty_bound
+reviewer config: 1333 half-cycles, 0 over bound
+amplitude sweep 0..255 done
+chirp endpoints done
+20->32kHz ramp done
+PASS B2 duty hard-bound: 6536 half-cycles checked, 0 over bound; worst duty 187/188 = 254/256
+sim/tb_tx_duty_bound.sv:161: $finish called at 84039464977 (1ps)
+iverilog -g2012 -Wall -s tb_sram_snapshot \
+		-Ptb_sram_snapshot.SNAPSHOT_FRAMES=16 \
+		-Ptb_sram_snapshot.CLKS_PER_BIT=8 \
+		-Ptb_sram_snapshot.FRAME_TIMEOUT_CLKS=2000 \
+		-o build/tb_sram_snapshot_small rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv \
+		sim/is61wv5128bll_model.sv sim/tb_sram_snapshot.sv
+vvp build/tb_sram_snapshot_small
+PASS SRAM snapshot SNP1 round-trip: two back-to-back 16-frame captures + timeout-empty header, CRCs verified
+sim/tb_sram_snapshot.sv:220: $finish called at 461671023 (1ps)
+iverilog -g2012 -Wall -s tb_sram_snapshot \
+		-Ptb_sram_snapshot.SNAPSHOT_FRAMES=174762 \
+		-Ptb_sram_snapshot.CLKS_PER_BIT=2 \
+		-Ptb_sram_snapshot.FRAME_TIMEOUT_CLKS=4194304 \
+		-Ptb_sram_snapshot.FULL_WINDOW=1 \
+		-o build/tb_sram_snapshot_full rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv \
+		sim/is61wv5128bll_model.sv sim/tb_sram_snapshot.sv
+vvp build/tb_sram_snapshot_full
+PASS SRAM snapshot full 512 KiB window bytes=524334 bit-exact
+sim/tb_sram_snapshot.sv:220: $finish called at 281834382995 (1ps)
+PASS top snapshot 3072000 Hz FT_PRESENT=0: delayed/two captures, SRAM/UART counter+CRC, reconnect/reset, TX idle
+sim/tb_top_snapshot.sv:176: $finish called at 6239133246 (1ps)
+PASS top snapshot 3072000 Hz FT_PRESENT=1: delayed/two captures, SRAM/UART counter+CRC, reconnect/reset, TX idle
+sim/tb_top_snapshot.sv:176: $finish called at 6239133246 (1ps)
+PASS top snapshot 4800000 Hz FT_PRESENT=0: delayed/two captures, SRAM/UART counter+CRC, reconnect/reset, TX idle
+sim/tb_top_snapshot.sv:176: $finish called at 4272534180 (1ps)
+PASS top snapshot 4800000 Hz FT_PRESENT=1: delayed/two captures, SRAM/UART counter+CRC, reconnect/reset, TX idle
+sim/tb_top_snapshot.sv:176: $finish called at 4272534180 (1ps)
+iverilog -g2012 -Wall -DXILINX -s sonar_top -t null \
+		rtl/reset_sync.sv rtl/button_debounce.sv rtl/pdm_ddr_sampler.sv rtl/async_fifo.sv rtl/frame_byte_packer.sv rtl/stream_header.sv rtl/ft245_sync_tx.sv rtl/pdm_stream_core.sv rtl/uart_tx.sv rtl/uart_snapshot.sv rtl/pdm_clock_startup.sv rtl/tx_nco_pwm.sv rtl/sram_snapshot.sv rtl/pdm_clock_7series.sv rtl/sonar_top.sv \
+		sim/xilinx_7series_stubs.sv
+PASS XILINX primitive branches and sonar_top elaborate (functional stub models; -t null elaboration retained)
+python3 sim/check_ports.py
+PASS sonar_top <-> XDC port bijection: 28 ports / 73 bits exact (active get_ports only, DNP block excluded)

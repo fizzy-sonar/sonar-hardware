@@ -1,0 +1,45 @@
+kicad-cli: /Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli
+build: /Users/joshuahimmens/code/sonar-hardware/build
+== sonar_erc
+exit=5
+baseline violation exit accepted: 5
+== sonar_netlist
+exit=0
+== sonar_pdf
+exit=0
+== sonar_svg
+exit=0
+== sonar_bom
+exit=0
+== rx_amp_sim_erc
+exit=5
+baseline violation exit accepted: 5
+== rx_amp_sim_netlist
+exit=0
+== rx_amp_sim_pdf
+exit=0
+== rx_amp_sim_svg
+exit=0
+== rx_amp_sim_bom
+exit=0
+== txrx_dev_erc
+exit=5
+baseline violation exit accepted: 5
+== txrx_dev_netlist
+exit=0
+== txrx_dev_pdf
+exit=0
+== txrx_dev_svg
+exit=0
+== txrx_dev_bom
+exit=0
+== sonar_drc
+exit=5
+baseline violation exit accepted: 5
+== rx_amp_sim_drc
+exit=5
+baseline violation exit accepted: 5
+== txrx_dev_drc
+exit=5
+baseline violation exit accepted: 5
+SUMMARY: all invoked KiCad commands completed successfully.

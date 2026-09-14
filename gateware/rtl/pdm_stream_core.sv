@@ -16,8 +16,9 @@ module pdm_stream_core #(
     output reg         overflow_sticky,
     output reg         capture_stopped,
 
-    // Accepted-frame tap for the SRAM snapshot fallback (sram_snapshot). These
-    // are pdm_clk_fb-domain; the snapshot controller crosses them over itself.
+    // Acquisition tap for the SRAM snapshot fallback, before USB flow control.
+    // These are pdm_clk_fb-domain; the snapshot controller owns its own CDC,
+    // capacity and error reporting. USB overflow must not stop this tap.
     output wire [23:0] tap_frame_data,
     output wire        tap_frame_valid,
 
@@ -48,15 +49,15 @@ module pdm_stream_core #(
     reg accepting;
     reg [31:0] next_capture_id;
 
-    assign tap_frame_data  = sampled_frame;
-    assign tap_frame_valid = accepting && sampled_valid;
-
     wire pdm_capture_active = pdm_capture_sync;
     wire pdm_capture_start = pdm_capture_sync && !pdm_capture_sync_d;
     wire ft_capture_active = ft_capture_sync;
     wire ft_capture_start = ft_capture_sync && !ft_capture_sync_d;
     wire pdm_path_reset = pdm_reset || !pdm_capture_active;
     wire ft_path_reset = ft_reset || !ft_capture_active;
+
+    assign tap_frame_data  = sampled_frame;
+    assign tap_frame_valid = pdm_capture_active && sampled_valid;
 
     pdm_ddr_sampler sampler_i (
         .pdm_clk_fb(pdm_clk_fb),

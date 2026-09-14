@@ -43,7 +43,7 @@ module sram_snapshot #(
     input  wire        reset,
     input  wire        start,          // asynchronous OK; synchronized here
 
-    // PDM-domain accepted-frame tap from pdm_stream_core.
+    // PDM-domain acquisition tap, independent of USB acceptance.
     input  wire        stream_clk,
     input  wire        stream_reset,
     input  wire [23:0] stream_frame_data,

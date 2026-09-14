@@ -39,6 +39,9 @@ The suite checks:
   and a stream-stopped timeout capture drained over UART byte- and CRC-exact
   against a timing-enforcing IS61WV5128BLL model, plus one full 512 KiB window
   (174,762 frames = 524,286 payload bytes) proven bit-exact;
+- four behavioral `sonar_top` cases at 3.072/4.8 MHz, with absent or blocked USB,
+  delayed triggers, consecutive snapshots, SRAM/UART counter+CRC checks,
+  reconnect/reset and TX idle; the FIFO remains at production depth;
 - exact 1.536/3.072/4.8 MHz divider arithmetic and the 50 ms standard-mode /
   clock-off / 10 ms ultrasonic startup sequence;
 - TX reset/idle safety, rejected/crossed limit violations, complementary drive,
@@ -49,9 +52,12 @@ The suite checks:
   commented DNP RMII block is excluded.
 
 The final test also elaborates the complete `sonar_top` and each `XILINX` RTL
-branch against compile-only 7-series primitive stubs. Those stubs catch portable
-interface/elaboration mistakes; they intentionally do not model primitive timing
-or replace UNISIM/xsim and placed Vivado checks.
+branch against functional 7-series primitive models. Behavioral tests use those
+models too; they do not replace UNISIM/xsim or placed Vivado timing checks.
+The suite has 21 checks as of T-023, 2026-09-13. See
+[`docs/pre-hardware-readiness.md`](../docs/pre-hardware-readiness.md) for the
+remaining commanded-TX, host, implementation and physical gates. SRAM taps are
+independent of USB acceptance; UART drain is currently about 46 s/full snapshot.
 
 `rtl/pdm_ddr_sampler.sv` uses a portable behavioral edge model unless `XILINX` is
 defined. The Xilinx branch instantiates `IDDR` in `SAME_EDGE_PIPELINED` mode and

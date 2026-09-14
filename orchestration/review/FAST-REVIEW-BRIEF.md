@@ -1,5 +1,11 @@
 # Sonar v1 — 60-second review brief
 
+**2026-09-13 update:** this brief is historical. T-023 has repaired USB-induced
+snapshot starvation and added actual-top tests (21 total checks pass). TX control,
+host defects, Vivado and hardware proof remain open. Joshua has no hardware;
+the current answer and buying sequence are in
+[`docs/pre-hardware-readiness.md`](../../docs/pre-hardware-readiness.md).
+
 ## Bottom line
 
 The project is ready for bounded integration engineering, not a hardware-readiness

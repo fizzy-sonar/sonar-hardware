@@ -1,0 +1,2 @@
+FATAL: gateware/sim/tb_top_snapshot.sv:122: snapshot length 48, want 240
+       Time: 5891855200  Scope: tb_top_snapshot.capture

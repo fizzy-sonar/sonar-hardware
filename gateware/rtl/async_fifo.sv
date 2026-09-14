@@ -24,8 +24,10 @@ module async_fifo #(
     localparam integer PTR_WIDTH  = ADDR_WIDTH + 1;
 
     reg [WIDTH-1:0] memory [0:DEPTH-1];
-    reg [PTR_WIDTH-1:0] wr_binary, wr_gray;
-    reg [PTR_WIDTH-1:0] rd_binary, rd_gray;
+    // Explicit configuration-time values also cover a clock absent from time
+    // zero: a reset already high at elaboration need not produce an event.
+    reg [PTR_WIDTH-1:0] wr_binary = 0, wr_gray = 0;
+    reg [PTR_WIDTH-1:0] rd_binary = 0, rd_gray = 0;
     (* ASYNC_REG = "TRUE" *) reg [PTR_WIDTH-1:0] rd_gray_sync1, rd_gray_sync2;
     (* ASYNC_REG = "TRUE" *) reg [PTR_WIDTH-1:0] wr_gray_sync1, wr_gray_sync2;
 
@@ -49,7 +51,22 @@ module async_fifo #(
         end
     end
 
+    // Memory ports deliberately have no asynchronous reset, preserving the
+    // synchronous dual-port RAM inference template. Pointer/flag resets below
+    // assert even if the other domain has no clock (e.g. unplugged FT232H).
     always @(posedge wr_clk) begin
+        if (!wr_reset && wr_take)
+            memory[wr_binary[ADDR_WIDTH-1:0]] <= wr_data;
+    end
+
+    always @(posedge rd_clk) begin
+        if (!rd_reset && rd_take)
+            rd_data <= memory[rd_binary[ADDR_WIDTH-1:0]];
+    end
+
+    // Callers must synchronize reset release in each receiving domain. Read
+    // data is unspecified unless rd_valid; clearing pointers discards old data.
+    always @(posedge wr_clk or posedge wr_reset) begin
         if (wr_reset) begin
             wr_binary     <= {PTR_WIDTH{1'b0}};
             wr_gray       <= {PTR_WIDTH{1'b0}};
@@ -59,22 +76,18 @@ module async_fifo #(
         end else begin
             rd_gray_sync1 <= rd_gray;
             rd_gray_sync2 <= rd_gray_sync1;
-            if (wr_take) begin
-                memory[wr_binary[ADDR_WIDTH-1:0]] <= wr_data;
-            end
             wr_binary <= wr_binary_next;
             wr_gray   <= wr_gray_next;
             wr_full   <= wr_full_next;
         end
     end
 
-    always @(posedge rd_clk) begin
+    always @(posedge rd_clk or posedge rd_reset) begin
         if (rd_reset) begin
             rd_binary     <= {PTR_WIDTH{1'b0}};
             rd_gray       <= {PTR_WIDTH{1'b0}};
             wr_gray_sync1 <= {PTR_WIDTH{1'b0}};
             wr_gray_sync2 <= {PTR_WIDTH{1'b0}};
-            rd_data       <= {WIDTH{1'b0}};
             rd_valid      <= 1'b0;
             rd_empty      <= 1'b1;
         end else begin

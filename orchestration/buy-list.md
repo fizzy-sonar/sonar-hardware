@@ -1,5 +1,14 @@
 # Sonar v1 dev-hardware buy list (review only)
 
+**2026-09-13 purchase-readiness update:** use
+[`docs/pre-hardware-readiness.md`](../docs/pre-hardware-readiness.md) before this
+historical basket. Cmod 410-328-35 is now $104 USD (1,180 shown in stock); Adafruit
+2264 is $14.95/in stock. Other prices below were not refreshed. Cmod uses Micro-B,
+so the listed USB-C cable alone is insufficient. FT232H needs assembled headers,
+an adapter, verified FIFO EEPROM setup and physical throughput proof; see
+[`ft232h-bench-preflight.md`](../docs/ft232h-bench-preflight.md). The current basket
+omits a complete coupon TX driver/calibrated bench. Hold the main PCB; it is legacy.
+
 **Checked 2026-08-25 (USD, before tax/shipping).** These are links for Joshua to
 review and click; no carts, accounts, or orders were created. Shipping, tax, and
 cross-border duties can move the total. “In stock” is the page state checked on

@@ -1,10 +1,30 @@
 # STATUS — Sonar v1
 
-_Last updated: 2026-09-06 by codex/T-026 — read-only fast review delivered.
-T-023–T-025 remain ready; FPGA integration defects still open. No purchase
-authorized. Joshua's main-project edit is preserved._
+_Last updated: 2026-09-13 by codex/T-023 — USB-independent snapshots repaired
+and top-level tested. T-023 remains in progress for commanded TX/status/timing
+metadata; T-024/T-025 ready. Joshua has no hardware and clarified that FPGA/USB
+capture reliability is the concern. No purchases; main-project edit preserved._
 
 ## Now
+- **T-023 progress, 2026-09-13:** acquisition tap now precedes USB flow control;
+  FIFO pointers reset without a running FT clock. Four new actual-top behavioral
+  tests pass at 3.072/4.8 MHz with absent/blocked USB, delayed/consecutive
+  snapshots, SRAM/UART counters+CRCs and reconnect/reset; all 21 gateware checks
+  pass. Mutation restoring the USB-gated tap fails with header-only capture.
+  **R3 starvation is repaired in simulation; R4 commanded TX is still open.**
+  No Vivado synthesis/timing/CDC or physical proof. T-023 is not done.
+- **Purchase/bring-up answer:** `docs/pre-hardware-readiness.md` recommends
+  development capability first, rev B coupons after assembly/bench/quote gates,
+  and HOLD the legacy main PCB. Cmod is $104 on the current distributor listing
+  and still Micro-B; prior USB-C preference is not silently waived. FT232H's
+  required EEPROM FIFO setup and a source-audited adapter map are in
+  `docs/ft232h-bench-preflight.md`. Current UART needs >=45.55 s/full snapshot;
+  the proposed 1 Hz demo is not supported by that default. T-024/T-025 updated.
+- Host suite remains 5/5 but idle-EOF and chunk-state defects still reproduce.
+  Required KiCad harness passes its existing-baseline rules, not clean-main-board
+  rules. Coupon release source/export hashes match 66/66; no KiCad file changed.
+  Earlier fast-review evidence predates the RTL repair; its hash guard should
+  mark it stale. Use the new readiness brief for current next actions.
 - **T-026 done: fast, read-only review.** `./scripts/open_review.sh` now opens
   `build/review/fast.html` immediately without regenerating EDA artifacts. One
   immediate question: what Cmod/FT232H/Vivado access is available? Answers stay
@@ -23,10 +43,10 @@ authorized. Joshua's main-project edit is preserved._
   `coupons/mic-bakeoff/docs/T-022-release-verification.md` and the updated order
   package. Stock/price refresh, assembly DFM, purchase approval and physical tests
   remain Joshua's gates. Do not order historical rev A artifacts.
-- **Product review remains open.** REVIEW-2026-09-05 R3: USB stall kills SRAM
-  fallback; R4: no commanded/timestamped TX;
+- **Product review remains open.** REVIEW-2026-09-05 R3 is repaired in simulation
+  on 2026-09-13; R4: no commanded/timestamped TX;
   R5: idle reads become EOF; R6: finite-record DSP is not a live pipeline.
-  Gateware 17/17 and host 5/5 still PASS. New probes reproduce R3/R5/R6.
+  Gateware 21/21 and host 5/5 PASS. Host probes still reproduce R5/R6.
 - **Next work:** T-023 (top, priority 1)
   completes integrated capture; T-024 (mid) completes live host processing;
   T-025 (mid) prepares a concrete first-echo/bench proposal. Coupon design sources
@@ -154,7 +174,7 @@ authorized. Joshua's main-project edit is preserved._
 |---|---|---|
 | T-026 fast human review | **top** coordinator + **cheap** artifacts | **done**; read-only local review, one immediate question, no copy workflow; optional remote upload not authorized |
 | T-022 coupon release repair | **mid** | **done**; rev B full DRC 0/0/0 both variants, pin/geometry/export checks pass; T-016 back at human review |
-| T-023 commanded echo capture | **top** | **ready**, priority 1; independent fallback and TX/control/timestamp integration; coordinate with T-020 |
+| T-023 commanded echo capture | **top** | **in-progress**, priority 1; snapshot independence repaired/tested, commanded TX/control/timestamp still open; coordinate with T-020 |
 | T-024 live host pipeline | **mid** | **ready**; idle/EOF semantics, stateful DSP, bounded capture/replay |
 | T-025 first-echo bench plan | **mid** | **ready**; measurable demo, executable acquisition, equipment/access/cost proposal |
 | T-002 parts & lifecycle audit | **cheap** | **done**; matrix committed; unlocks T-008 |
@@ -226,6 +246,11 @@ T-007 on a top reasoning tier is the main avoidable waste. Decision rule: if the
   `sonar-v1-pcb/sonar.kicad_pro` change remains untouched and uncommitted.
 
 ## Recent sessions
+- 2026-09-13 — codex/T-023: USB-independent snapshot and clockless FIFO reset
+  repair; 21 gateware checks, 5 host checks, starvation negative control and
+  existing-baseline KiCad harness verified. Current purchase/bring-up brief and
+  FT232H adapter/EEPROM preflight delivered. No hardware/Vivado or TX-command
+  proof. Journal: `2026-09-13-codex-t023-readout-readiness.md`.
 - 2026-09-05 — codex/T-019: independent review complete, seven findings and a
   first-echo execution path. Confirmed TI pin mismatch, ran full filled-coupon
   DRC outside sandbox (82/92 violations, zero unconnected, five shorts each),

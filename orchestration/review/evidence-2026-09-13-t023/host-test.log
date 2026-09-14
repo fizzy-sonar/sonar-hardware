@@ -1,0 +1,10 @@
+test_end_to_end_point_target_recovers_range_and_bearing (test_host.HostPipelineTests.test_end_to_end_point_target_recovers_range_and_bearing) ... ok
+test_snp1_round_trip_and_bit_order (test_host.HostPipelineTests.test_snp1_round_trip_and_bit_order) ... ok
+test_snp1_validates_crc_and_header_contract (test_host.HostPipelineTests.test_snp1_validates_crc_and_header_contract) ... ok
+test_snr1_stream_parser_handles_chunking_and_rejects_partial_tail (test_host.HostPipelineTests.test_snr1_stream_parser_handles_chunking_and_rejects_partial_tail) ... ok
+test_snr1_surfaces_sticky_overflow (test_host.HostPipelineTests.test_snr1_surfaces_sticky_overflow) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.564s
+
+OK

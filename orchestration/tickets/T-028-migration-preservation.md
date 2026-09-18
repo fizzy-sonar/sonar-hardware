@@ -22,3 +22,4 @@ JSON comparison of the project edit, git diff --check, scripts/check.sh, and git
 
 ## Log
 - 2026-09-18: Claimed migration housekeeping. The only working edit reorders the used_designators string without changing the set. Origin is the existing fizzy-sonar/sonar-hardware repository. No force pushes or design changes planned.
+- 2026-09-18: Verification PASS: project JSON differs only by used_designators ordering; git diff --check clean. scripts/check.sh exited 0 with SUMMARY: all invoked KiCad commands completed successfully. Existing ERC/DRC violations are baseline-accepted, not a clean-board signoff. `git branch --no-merged main` returned no branches: pushing main preserves all ordinary local branch histories. Next: push and verify origin/main hash.

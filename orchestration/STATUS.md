@@ -6,6 +6,7 @@ metadata; T-024/T-025 ready. Joshua prefers Vivado; D012 retained. Next host is
 a proposed x86 Linux VM. No purchases; main-project edit preserved._
 
 ## Now
+- **Migration preservation, 2026-09-18 (T-028):** existing KiCad project setting edit committed; required harness passed baseline rules. Public GitHub push blocked by automatic approval review pending explicit permission to publish full pending history. See T-028 and migration journal. Engineering gates remain unchanged.
 - **Execution plan, 2026-09-14:** Joshua confirmed **home desk only**, **US$250**
   for cloud/development modules/cables/adapters (excluding coupons/equipment),
   and **2–4 hands-on hours/week**. `docs/next-steps.md` defines the staged calendar:
